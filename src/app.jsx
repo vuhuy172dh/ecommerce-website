@@ -4,10 +4,15 @@ import HomePage from './pages/home'
 import ProductCartPage from './pages/productCart'
 import ProductDetailPage from './pages/productDetail'
 import ProductListingPage from './pages/productListing'
+import Navbar from './components/navbar'
+import Footer from './components/footer'
 
 function App() {
   return (
     <div>
+      <header>
+        <Navbar />
+      </header>
       <main>
         <Routes>
           <Route path="/" element={<HomePage />} />
@@ -17,6 +22,9 @@ function App() {
           <Route path="/ProductListing" element={<ProductListingPage />} />
         </Routes>
       </main>
+      <footer>
+        <Footer />
+      </footer>
     </div>
   )
 }
