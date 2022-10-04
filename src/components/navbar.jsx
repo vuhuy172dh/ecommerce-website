@@ -18,7 +18,7 @@ function Navbar() {
       />
 
       {/* this is navbar top */}
-      <div className="w-full py-1 px-4 flex justify-between items-center">
+      <div className="w-full py-1 px-8 flex justify-between items-center">
         <div className="mobile:hidden tablet:block">
           <ButtonIcon Icon="search" />
         </div>
@@ -42,7 +42,7 @@ function Navbar() {
       </div>
 
       {/* this is divider */}
-      <hr className="w-[calc(100%-2rem)] border-t-1 border-[rgba(0,0,0,0.1)] hidden laptop:block" />
+      <hr className="w-[calc(100%-4rem)] border-t-1 border-[rgba(0,0,0,0.1)] hidden laptop:block" />
 
       {/* this is navbar bottom */}
       <div className="justify-center hidden tablet:flex">
