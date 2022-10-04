@@ -22,7 +22,7 @@ function ProductCartPage() {
     <div className="w-[100%] p-6 laptop:px-[180px] laptop:py-16">
       <div className="border-b-2 border-primary-300">
         <p className="text-[24px] laptop:text-[36px]">Your shopping cart</p>
-        <div className="hidden laptop:flex justify-between">
+        <div className="hidden laptop:flex py-3 justify-between border-b-2 border-primary-300">
           <p className="w-[45%]">Product</p>
           <p>Quantity</p>
           <p>Total</p>
