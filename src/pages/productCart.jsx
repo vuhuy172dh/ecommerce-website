@@ -1,8 +1,9 @@
-import ProductCartItem from '../components/productCartItem'
+import ProductCartList from '../components/productCartList'
 import img1 from '../assets/images/BlueChair.png'
 import Button from './../components/button'
 
 function ProductCartPage() {
+  //fake API
   const cartItems = [
     {
       id: 1,
@@ -21,6 +22,7 @@ function ProductCartPage() {
   ]
   return (
     <div className="w-[100%] p-6 laptop:px-[180px] laptop:py-16">
+      {/*Product Cart*/}
       <div className="border-b-2 border-primary-300">
         <p className="text-[24px] laptop:text-[36px]">Your shopping cart</p>
         <div className="hidden laptop:flex py-3 justify-between border-b-2 border-primary-300">
@@ -28,7 +30,8 @@ function ProductCartPage() {
           <p>Quantity</p>
           <p>Total</p>
         </div>
-        <ProductCartItem cartItems={cartItems} />
+        {/*Product Cart List*/}
+        <ProductCartList cartItems={cartItems} />
       </div>
       <div className="flex flex-row-reverse my-4">
         <p className="text-[20px] text-primary">
