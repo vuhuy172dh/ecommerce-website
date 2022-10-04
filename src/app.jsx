@@ -6,12 +6,17 @@ import ProductDetailPage from './pages/productDetail'
 import ProductListingPage from './pages/productListing'
 import Navbar from './components/navbar'
 import Footer from './components/footer'
+import NavDrawer from './components/navDrawer'
+import NavMode from './hooks/useNavMode'
 
 function App() {
   return (
     <div>
       <header>
-        <Navbar />
+        <NavMode>
+          <Navbar />
+          <NavDrawer />
+        </NavMode>
       </header>
       <main>
         <Routes>

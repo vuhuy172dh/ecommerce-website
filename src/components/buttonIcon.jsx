@@ -5,18 +5,32 @@ import {
   faCircleUser,
   faSearch
 } from '@fortawesome/free-solid-svg-icons'
+import {
+  faFacebook,
+  faLinkedin,
+  faInstagram,
+  faSkype,
+  faTwitter,
+  faPinterest
+} from '@fortawesome/free-brands-svg-icons'
 
 const icons = {
   search: faSearch,
   cart: faCartShopping,
   menu: faBars,
-  user: faCircleUser
+  user: faCircleUser,
+  facebook: faFacebook,
+  linkedin: faLinkedin,
+  instagram: faInstagram,
+  skype: faSkype,
+  twitter: faTwitter,
+  pinterest: faPinterest
 }
 
 function ButtonIcon({ Icon, onClick }) {
   return (
     <div
-      className="w-10 h-10 flex justify-center items-center cursor-pointer hover:bg-border_grey rounded-full"
+      className="min-w-[2.5rem] min-h-[2.5rem] p-2 w-full h-full flex-1 flex justify-center items-center cursor-pointer hover:bg-border_grey rounded-full"
       onClick={onClick}
     >
       <FontAwesomeIcon icon={icons[Icon]} />
