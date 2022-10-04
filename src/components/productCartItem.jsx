@@ -19,17 +19,25 @@ const productCartItem = ({ cartItems }) => {
             <p className="text-[14px] py-2">{detail}</p>
             <p className="text-[16px]">${price}</p>
           </div>
-          <div className="ml-6 laptop:hidden">
-            <FontAwesomeIcon icon={faMinus} />
-            <span className="mx-5">1</span>
-            <FontAwesomeIcon icon={faPlus} />
+          <div className="ml-6 flex laptop:hidden">
+            <div className="w-[24px] h-[24px] rounded-full hover:cursor-pointer hover:bg-border_grey flex align-middle justify-center">
+              <FontAwesomeIcon icon={faMinus} className="m-auto" />
+            </div>
+            <div className="mx-5">1</div>
+            <div className="w-[24px] h-[24px] rounded-full hover:cursor-pointer hover:bg-border_grey flex align-middle justify-center">
+              <FontAwesomeIcon icon={faPlus} className="m-auto" />
+            </div>
           </div>
         </div>
       </div>
       <div className="hidden laptop:flex items-center">
-        <FontAwesomeIcon icon={faMinus} />
+        <div className="w-[24px] h-[24px] rounded-full hover:cursor-pointer hover:bg-border_grey flex align-middle justify-center">
+          <FontAwesomeIcon icon={faMinus} className="m-auto" />
+        </div>
         <span className="mx-5">1</span>
-        <FontAwesomeIcon icon={faPlus} />
+        <div className="w-[24px] h-[24px] rounded-full hover:cursor-pointer hover:bg-border_grey flex align-middle justify-center">
+          <FontAwesomeIcon icon={faPlus} className="m-auto" />
+        </div>
       </div>
       <div className="hidden laptop:flex items-center">
         <p>$ {price}</p>

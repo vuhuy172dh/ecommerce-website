@@ -1,5 +1,6 @@
 import ProductCartItem from '../components/productCartItem'
 import img1 from '../assets/images/BlueChair.png'
+import Button from './../components/button'
 
 function ProductCartPage() {
   const cartItems = [
@@ -39,10 +40,8 @@ function ProductCartPage() {
           Taxes and shipping are calculated at checkout
         </p>
       </div>
-      <div className="w-[100%] flex justify-center laptop:justify-end mt-10">
-        <button className="w-[90%] laptop:w-[172px] bg-primary text-[16px] py-2 laptop:py-5 text-white">
-          Go to checkout
-        </button>
+      <div className="w-[100%] flex mt-5 laptop:w-[172px] laptop:float-right">
+        <Button Color="primary" children="Go to checkout" />
       </div>
     </div>
   )
