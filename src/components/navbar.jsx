@@ -3,6 +3,7 @@ import { useNavMode } from '../hooks/useNavMode'
 import BannerCarousel from './bannerCarousel'
 import ButtonIcon from './buttonIcon'
 import LinkButton from './linkButton'
+import SearchField from './searchField'
 
 function Navbar() {
   const { mode, handleMode } = useNavMode()
@@ -20,22 +21,31 @@ function Navbar() {
 
       {/* this is navbar top */}
       <div className="w-full py-1 px-8 flex justify-between items-center">
-        <div className="mobile:hidden tablet:block">
-          <ButtonIcon Icon="search" />
+        {/* Search field */}
+        <div className="mobile:hidden tablet:block relative">
+          <SearchField Direction="ltr" />
         </div>
 
+        {/* Avion Logo */}
         <div className="text-h3">
           <Link to="/">Avion</Link>
         </div>
 
-        <div className="flex gap-4 items-center">
+        <div className="flex gap-2 items-center">
+          {/* search text field */}
           <div className="tablet:hidden">
-            <ButtonIcon Icon="search" />
+            <SearchField />
           </div>
+
+          {/* cart icon button */}
           <ButtonIcon Icon="cart" />
+
+          {/* Menu icon button */}
           <div className="tablet:hidden" onClick={handleMode}>
             <ButtonIcon Icon="menu" />
           </div>
+
+          {/*User icon button */}
           <div className="mobile:hidden tablet:block">
             <ButtonIcon Icon="user" />
           </div>
