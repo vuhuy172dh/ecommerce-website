@@ -2,6 +2,8 @@ import homepage from '../assets/images/homepage.png'
 import feature2 from '../assets/images/features2.png'
 import signup from '../assets/images/signup.png'
 import Button from '../components/button'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCircleCheck } from '@fortawesome/free-solid-svg-icons'
 
 function HomePage() {
   return (
@@ -97,9 +99,18 @@ function HomePage() {
             ranges, sales, pop up stores and more
           </p>
           <ul className="text-white text-body-md laptop:w-full laptop:px-10 laptop:flex laptop:justify-between">
-            <li>Exclusive offers</li>
-            <li>Free events</li>
-            <li>Large discounts</li>
+            <li className="flex gap-1 items-center">
+              <FontAwesomeIcon icon={faCircleCheck} />
+              Exclusive offers
+            </li>
+            <li className="flex gap-1 items-center">
+              <FontAwesomeIcon icon={faCircleCheck} />
+              Free events
+            </li>
+            <li className="flex gap-1 items-center">
+              <FontAwesomeIcon icon={faCircleCheck} />
+              Large discounts
+            </li>
           </ul>
 
           {/* Sign up */}

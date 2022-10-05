@@ -1,5 +1,7 @@
+import { Link } from 'react-router-dom'
 import Button from './button'
 import ButtonIcon from './buttonIcon'
+import LinkButton from './linkButton'
 
 function Footer() {
   return (
@@ -10,11 +12,21 @@ function Footer() {
         <div className="flex flex-col gap-5 items-center py-5 border border-primary rounded-xl tablet:border-none tablet:items-start tablet:grow">
           <p className="text-h3 tablet:text-h5">Categories</p>
           <ul className="flex flex-col items-center gap-2 text-body-lg tablet:text-body-sm tablet:items-start">
-            <li>Crockery</li>
-            <li>Furniture</li>
-            <li>Homeware</li>
-            <li>Plant pots</li>
-            <li>Chairs</li>
+            <li>
+              <LinkButton size="small">Crockery</LinkButton>
+            </li>
+            <li>
+              <LinkButton size="small">Furniture</LinkButton>
+            </li>
+            <li>
+              <LinkButton size="small">Homeware</LinkButton>
+            </li>
+            <li>
+              <LinkButton size="small">Plant pots</LinkButton>
+            </li>
+            <li>
+              <LinkButton size="small">Chairs</LinkButton>
+            </li>
           </ul>
         </div>
 
@@ -22,11 +34,21 @@ function Footer() {
         <div className="flex flex-col gap-5 items-center py-5 border border-primary rounded-xl tablet:border-none tablet:items-start tablet:grow">
           <p className="text-h3 tablet:text-h5">Menu</p>
           <ul className="flex flex-col items-center gap-2 text-body-lg tablet:text-body-sm tablet:items-start">
-            <li>New arrivals</li>
-            <li>Best sellers</li>
-            <li>Recently viewed</li>
-            <li>Popular this week</li>
-            <li>All products</li>
+            <li>
+              <LinkButton>New arrivals</LinkButton>
+            </li>
+            <li>
+              <LinkButton>Best sellers</LinkButton>
+            </li>
+            <li>
+              <LinkButton>Recently viewed</LinkButton>
+            </li>
+            <li>
+              <LinkButton>Popular this week</LinkButton>
+            </li>
+            <li>
+              <LinkButton>All products</LinkButton>
+            </li>
           </ul>
         </div>
 
@@ -34,11 +56,21 @@ function Footer() {
         <div className="flex flex-col gap-5 items-center py-5 border border-primary rounded-xl tablet:border-none tablet:items-start tablet:grow">
           <p className="text-h3 tablet:text-h5">Our company</p>
           <ul className="flex flex-col items-center gap-2 text-body-lg tablet:text-body-sm tablet:items-start">
-            <li>About us</li>
-            <li>Vacancies</li>
-            <li>Contact us</li>
-            <li>Privacy</li>
-            <li>Returns Policy</li>
+            <li>
+              <LinkButton>About us</LinkButton>
+            </li>
+            <li>
+              <LinkButton>Vacancies</LinkButton>
+            </li>
+            <li>
+              <LinkButton>Contact us</LinkButton>
+            </li>
+            <li>
+              <LinkButton>Privacy</LinkButton>
+            </li>
+            <li>
+              <LinkButton>Returns Policy</LinkButton>
+            </li>
           </ul>
         </div>
 

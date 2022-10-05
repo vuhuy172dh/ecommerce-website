@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom'
 import { useNavMode } from '../hooks/useNavMode'
 import BannerCarousel from './bannerCarousel'
 import ButtonIcon from './buttonIcon'
+import LinkButton from './linkButton'
 
 function Navbar() {
   const { mode, handleMode } = useNavMode()
@@ -47,13 +48,31 @@ function Navbar() {
       {/* this is navbar bottom */}
       <div className="justify-center hidden tablet:flex">
         <ul className="py-2 flex items-center">
-          <li className="px-4 text-body-md">Plant pots</li>
-          <li className="px-4 text-body-md">Ceramics</li>
-          <li className="px-4 text-body-md">Tables</li>
-          <li className="px-4 text-body-md">Chairs</li>
-          <li className="px-4 text-body-md">Crockery</li>
-          <li className="px-4 text-body-md">Tableware</li>
-          <li className="px-4 text-body-md">Cutlery</li>
+          <li className="text-body-md">
+            <LinkButton path="/" size="large">
+              Plant pots
+            </LinkButton>
+          </li>
+          <li className="text-body-md">
+            <LinkButton path="/" size="large">
+              Ceramics
+            </LinkButton>
+          </li>
+          <li className="text-body-md">
+            <LinkButton size="large">Tables</LinkButton>
+          </li>
+          <li className="text-body-md">
+            <LinkButton size="large">Chairs</LinkButton>
+          </li>
+          <li className="text-body-md">
+            <LinkButton size="large">Crockery</LinkButton>
+          </li>
+          <li className="text-body-md">
+            <LinkButton size="large">Tableware</LinkButton>
+          </li>
+          <li className="text-body-md">
+            <LinkButton size="large">Cutlery</LinkButton>
+          </li>
         </ul>
       </div>
     </div>

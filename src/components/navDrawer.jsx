@@ -1,6 +1,8 @@
+import { Link } from 'react-router-dom'
 import { useNavMode } from '../hooks/useNavMode'
 import Button from './button'
 import ButtonIcon from './buttonIcon'
+import LinkButton from './linkButton'
 
 function NavDrawer() {
   const { mode, handleMode } = useNavMode()
@@ -24,7 +26,7 @@ function NavDrawer() {
         } overflow-auto`}
       >
         {/* this is navdrawer's menu */}
-        <div className="flex flex-col w-full px-12 mt-4">
+        <div className="flex flex-col w-full px-4 mt-4">
           {/* Menu title */}
           <p className="text-center text-h3">CATEGORIES</p>
           {/* Divider */}
@@ -33,21 +35,37 @@ function NavDrawer() {
           {/* Menu list */}
           <div className="mt-4 flex columns-2 gap-28">
             <ul className="flex-1 flex flex-col gap-4">
-              <li>All products</li>
-              <li>Plant pots</li>
-              <li>Ceramics</li>
-              <li>Tables</li>
+              <li>
+                <LinkButton size="small">All products</LinkButton>
+              </li>
+              <li>
+                <LinkButton size="small">Plant pots</LinkButton>
+              </li>
+              <li>
+                <LinkButton size="small">Ceramics</LinkButton>
+              </li>
+              <li>
+                <LinkButton size="small">Tables</LinkButton>
+              </li>
             </ul>
-            <ul className="flex-1 flex flex-col gap-4 items-start">
-              <li>Chairs</li>
-              <li>Crockery</li>
-              <li>Tableware</li>
-              <li>Cutlery</li>
+            <ul className="flex-1 flex flex-col gap-4">
+              <li>
+                <LinkButton size="small">Chairs</LinkButton>
+              </li>
+              <li>
+                <LinkButton size="small">Crockery</LinkButton>
+              </li>
+              <li>
+                <LinkButton size="small">Tableware</LinkButton>
+              </li>
+              <li>
+                <LinkButton size="small">Cutlery</LinkButton>
+              </li>
             </ul>
           </div>
         </div>
 
-        <div className="flex flex-col w-full px-12 mt-4">
+        <div className="flex flex-col w-full px-4 mt-4">
           {/* Menu title */}
           <p className="text-center text-h3">MEMU</p>
           {/* Divider */}
@@ -56,33 +74,50 @@ function NavDrawer() {
           {/* Menu list */}
           <div className="mt-4 flex columns-2 gap-28">
             <ul className="flex-1 flex flex-col gap-4">
-              <li>New Arrivals</li>
-              <li>Best Sellers</li>
+              <li>
+                <LinkButton size="small">New Arrivals</LinkButton>
+              </li>
+              <li>
+                <LinkButton size="small">Best Sellers</LinkButton>
+              </li>
             </ul>
-            <ul className="flex-1 flex flex-col gap-4 items-start">
-              <li>Recently viewed</li>
-              <li>Popular this week</li>
+            <ul className="flex-1 flex flex-col gap-4">
+              <li>
+                <LinkButton size="small">Recently viewed</LinkButton>
+              </li>
+              <li>
+                <LinkButton size="small">Popular this week</LinkButton>
+              </li>
             </ul>
           </div>
         </div>
 
-        <div className="flex flex-col w-full px-12 mt-4">
+        <div className="flex flex-col w-full px-4 mt-4">
           {/* Menu title */}
           <p className="text-center text-h3">OUR COMPANY</p>
-
           {/* Divider */}
           <hr className="border-t border-t-border_dark" />
 
           {/* Menu list */}
           <div className="mt-4 flex columns-2 gap-28">
             <ul className="flex-1 flex flex-col gap-4">
-              <li>About Us</li>
-              <li>Vacancies</li>
+              <li>
+                <LinkButton size="small">About us</LinkButton>
+              </li>
+              <li>
+                <LinkButton size="small">Vacancies</LinkButton>
+              </li>
             </ul>
-            <ul className="flex-1 flex flex-col gap-4 items-start">
-              <li>Contact Us</li>
-              <li>Privacy</li>
-              <li>Returns Policy</li>
+            <ul className="flex-1 flex flex-col gap-4">
+              <li>
+                <LinkButton size="small">Contact Us</LinkButton>
+              </li>
+              <li>
+                <LinkButton size="small">Privacy</LinkButton>
+              </li>
+              <li>
+                <LinkButton size="small">Returns Policy</LinkButton>
+              </li>
             </ul>
           </div>
         </div>
