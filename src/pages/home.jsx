@@ -1,9 +1,7 @@
 import homepage from '../assets/images/homepage.png'
 import feature2 from '../assets/images/features2.png'
-import signup from '../assets/images/signup.png'
 import Button from '../components/button'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCircleCheck } from '@fortawesome/free-solid-svg-icons'
+import EmailSignUp from '../components/emailSignUp'
 
 function HomePage() {
   return (
@@ -80,51 +78,8 @@ function HomePage() {
         </div>
       </div>
 
-      {/* this feature 2 */}
-      <div className="w-full mb-10 flex flex-col relative items-center">
-        {/* this is background image */}
-        <img
-          src={signup}
-          alt="signup backdround"
-          className=" w-full max-h-[500px] object-cover"
-        />
-
-        {/* top content */}
-        <div className="absolute top-1/2 -translate-y-1/2 w-full p-8 flex flex-col gap-4 laptop:w-2/5 laptop:items-center">
-          <p className="text-white text-h3 laptop:text-h2">
-            Join the club and get the benefits
-          </p>
-          <p className="text-white text-body-sm laptop:text-center laptop:px-10">
-            Sign up for our newsletter and receive exclusive offers on new
-            ranges, sales, pop up stores and more
-          </p>
-          <ul className="text-white text-body-md laptop:w-full laptop:px-10 laptop:flex laptop:justify-between">
-            <li className="flex gap-1 items-center">
-              <FontAwesomeIcon icon={faCircleCheck} />
-              Exclusive offers
-            </li>
-            <li className="flex gap-1 items-center">
-              <FontAwesomeIcon icon={faCircleCheck} />
-              Free events
-            </li>
-            <li className="flex gap-1 items-center">
-              <FontAwesomeIcon icon={faCircleCheck} />
-              Large discounts
-            </li>
-          </ul>
-
-          {/* Sign up */}
-          <div className="flex laptop:w-full laptop:px-10">
-            <input
-              className="bg-light_grey pl-8 grow-[1]"
-              placeholder="your@email.com"
-            />
-            <Button Size="medium" State="default" Color="primary">
-              Sign up
-            </Button>
-          </div>
-        </div>
-      </div>
+      {/* this is email sign up component */}
+      <EmailSignUp />
     </div>
   )
 }
