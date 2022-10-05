@@ -7,7 +7,7 @@ function NavDrawer() {
 
   return (
     <div
-      className={`w-full h-screen fixed bottom-0 z-20 ${
+      className={`w-full h-screen tablet:hidden fixed bottom-0 z-20 ${
         mode ? 'visible z-10' : 'invisible -z-10'
       } transition-all duration-300`}
     >
