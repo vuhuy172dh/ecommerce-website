@@ -5,9 +5,9 @@ import LinkButton from './linkButton'
 function Footer() {
   return (
     <div className="w-full flex flex-col items-center bg-dark_primary">
-      {/* this is top footer */}
+      {/* top footer */}
       <div className="w-full flex flex-col px-10 py-10 gap-10 text-white tablet:flex-row tablet:gap-0 tablet:items-start">
-        {/* this is categories component */}
+        {/* "categories" component */}
         <div className="flex flex-col gap-5 items-center py-5 border border-primary rounded-xl tablet:border-none tablet:items-start tablet:grow">
           <p className="text-h3 tablet:text-h5">Categories</p>
           <ul className="flex flex-col items-center gap-2 text-body-lg tablet:text-body-sm tablet:items-start">
@@ -29,7 +29,7 @@ function Footer() {
           </ul>
         </div>
 
-        {/* this is menu component */}
+        {/* 'menu' component */}
         <div className="flex flex-col gap-5 items-center py-5 border border-primary rounded-xl tablet:border-none tablet:items-start tablet:grow">
           <p className="text-h3 tablet:text-h5">Menu</p>
           <ul className="flex flex-col items-center gap-2 text-body-lg tablet:text-body-sm tablet:items-start">
@@ -51,7 +51,7 @@ function Footer() {
           </ul>
         </div>
 
-        {/* this is our company conponent */}
+        {/* 'our company' conponent */}
         <div className="flex flex-col gap-5 items-center py-5 border border-primary rounded-xl tablet:border-none tablet:items-start tablet:grow">
           <p className="text-h3 tablet:text-h5">Our company</p>
           <ul className="flex flex-col items-center gap-2 text-body-lg tablet:text-body-sm tablet:items-start">
@@ -73,11 +73,12 @@ function Footer() {
           </ul>
         </div>
 
-        {/* this is email component */}
+        {/* email field component */}
         <div className="flex flex-col gap-2 py-5 tablet:grow-[2]">
           {/* email title */}
           <p className="text-h5">Join our mailing list</p>
 
+          {/* email field */}
           <div className="w-full flex">
             <input
               placeholder="your@email.com"
@@ -90,14 +91,17 @@ function Footer() {
         </div>
       </div>
 
-      {/* this is divider */}
+      {/* divider */}
       <hr className="w-[calc(100%-4rem)] border-t border-t-primary" />
 
-      {/* this is footer bottom */}
+      {/* footer bottom */}
       <div className="w-full py-5 tablet:px-8 tablet:flex tablet:flex-row tablet:items-center">
+        {/* copyright */}
         <p className="text-body-sm text-white text-center mr-auto">
           Copyright 2022 Avion LTD
         </p>
+
+        {/* social media */}
         <div className="hidden tablet:flex justify-end text-white">
           <ButtonIcon Icon="linkedin" />
           <ButtonIcon Icon="facebook" />

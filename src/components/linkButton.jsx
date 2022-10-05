@@ -1,5 +1,14 @@
 import { Link } from 'react-router-dom'
 
+/*
+LinkButton: used to link to a page. This LinkButton has the effect that draws an underline
+
+Properties:
+- children
+- path: string (default: '/')
+- size: 'small' | 'large' (default: 'small')
+*/
+
 const sizes = {
   small: 'px-2',
   large: 'px-4'

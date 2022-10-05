@@ -1,3 +1,11 @@
+/*
+ButtonIcon: 
+
+Properties: 
+- Icon: string (name of the icon)
+- onClick: function
+*/
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
   faBars,

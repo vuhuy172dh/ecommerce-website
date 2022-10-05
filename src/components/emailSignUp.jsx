@@ -6,7 +6,7 @@ import Button from './button'
 function EmailSignUp() {
   return (
     <div className="w-full mb-10 flex flex-col relative items-center">
-      {/* this is background image */}
+      {/* background image */}
       <img
         src={signup}
         alt="signup backdround"
@@ -37,7 +37,7 @@ function EmailSignUp() {
           </li>
         </ul>
 
-        {/* Sign up */}
+        {/* Sign up field*/}
         <div className="flex laptop:w-full laptop:px-10">
           <input
             className="bg-light_grey pl-8 grow-[1]"

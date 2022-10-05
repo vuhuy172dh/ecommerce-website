@@ -6,9 +6,9 @@ import EmailSignUp from '../components/emailSignUp'
 function HomePage() {
   return (
     <div className="w-full flex flex-col">
-      {/* this is homepage poster */}
+      {/* homepage poster */}
       <div className="w-full flex flex-col mb-8 relative">
-        {/* this is poster content */}
+        {/* poster content */}
         <div className="w-full px-8 mb-8 flex flex-col justify-between top-1/2 tablet:-translate-y-1/2 right-[5%] tablet:p-10 tablet:absolute tablet:w-1/2 laptop:w-2/5 tablet:h-1/2 tablet:bg-white">
           <div className="w-full flex flex-col gap-2">
             <p className="text-h3 tablet:text-h3 text-dark_primary">
@@ -29,7 +29,7 @@ function HomePage() {
           </div>
         </div>
 
-        {/* this is poster image */}
+        {/* poster image */}
         <div className="w-full">
           <img
             src={homepage}
@@ -39,17 +39,17 @@ function HomePage() {
         </div>
       </div>
 
-      {/* this is info item */}
+      {/* info item */}
       <div></div>
 
-      {/* this is product item list */}
+      {/* product item list */}
       <div></div>
 
-      {/* this is feature 1*/}
+      {/* feature 1*/}
       <div className="w-full px-8 mb-10 flex flex-col gap-10 tablet:flex-row">
-        {/* this is box - 1 */}
+        {/* box - 1 */}
         <div className="flex-1 flex flex-col gap-10 w-full p-8 tablet:p-12 bg-dark_primary text-white tablet:justify-between">
-          {/* this is content */}
+          {/* content */}
           <div className="flex flex-col w-full gap-1">
             <p className="text-h4 tablet:text-h2">
               It started with a small idea
@@ -60,7 +60,7 @@ function HomePage() {
             </p>
           </div>
 
-          {/* this is button */}
+          {/* button */}
           <div className="w-full flex tablet:block">
             <Button Size="medium" Color="opaque" State="default">
               View collection
@@ -68,7 +68,7 @@ function HomePage() {
           </div>
         </div>
 
-        {/* this is poster img */}
+        {/* box - 2 : image */}
         <div className="flex-1 w-full">
           <img
             src={feature2}
@@ -78,7 +78,7 @@ function HomePage() {
         </div>
       </div>
 
-      {/* this is email sign up component */}
+      {/* email sign up component */}
       <EmailSignUp />
     </div>
   )

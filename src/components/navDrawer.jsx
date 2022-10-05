@@ -13,26 +13,26 @@ function NavDrawer() {
         mode ? 'visible z-10' : 'invisible -z-10'
       } transition-all duration-300`}
     >
-      {/* this is navdrawer's backdrop */}
+      {/* navdrawer's backdrop */}
       <div
         className="w-full h-screen fixed top-0 left-0 opacity-100 backdrop-blur-sm z-10 cursor-pointer"
         onClick={handleMode}
       ></div>
 
-      {/* this is navdrawer's content */}
+      {/* navdrawer's content */}
       <div
         className={`w-full h-[90vh] fixed bottom-0 left-0 z-20 bg-light_grey border-t rounded-t-[2rem] transition-all duration-300 ${
           mode ? 'translate-y-0 opacity-100' : 'translate-y-full opacity-0'
         } overflow-auto`}
       >
-        {/* this is navdrawer's menu */}
+        {/* 'CATEGORIES' component */}
         <div className="flex flex-col w-full px-4 mt-4">
           {/* Menu title */}
           <p className="text-center text-h3">CATEGORIES</p>
           {/* Divider */}
           <hr className="border-t border-t-border_dark" />
 
-          {/* Menu list */}
+          {/* '' */}
           <div className="mt-4 flex columns-2 gap-28">
             <ul className="flex-1 flex flex-col gap-4">
               <li>
@@ -65,6 +65,7 @@ function NavDrawer() {
           </div>
         </div>
 
+        {/* 'MENU' component */}
         <div className="flex flex-col w-full px-4 mt-4">
           {/* Menu title */}
           <p className="text-center text-h3">MEMU</p>
@@ -92,6 +93,7 @@ function NavDrawer() {
           </div>
         </div>
 
+        {/* 'OUR COMPANY' component */}
         <div className="flex flex-col w-full px-4 mt-4">
           {/* Menu title */}
           <p className="text-center text-h3">OUR COMPANY</p>
@@ -122,12 +124,12 @@ function NavDrawer() {
           </div>
         </div>
 
-        {/*Navdrawer's footer*/}
+        {/*Navdrawer footer*/}
         <div className="w-full mt-4 px-12 flex flex-col gap-4">
-          {/*footer's title*/}
+          {/*footer title*/}
           <p className="text-h4 font-[500]">Join our mailing list</p>
 
-          {/*footer's emal*/}
+          {/*footer emal field*/}
           <div className="flex">
             <input
               className="bg-border_grey pl-4 grow-[1]"
@@ -138,7 +140,7 @@ function NavDrawer() {
             </Button>
           </div>
 
-          {/*footer's social media*/}
+          {/*footer social media*/}
           <div className="flex">
             <ButtonIcon Icon="linkedin" />
             <ButtonIcon Icon="facebook" />
