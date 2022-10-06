@@ -21,7 +21,7 @@ function ProductCartPage() {
     }
   ]
   return (
-    <div className="w-[100%] p-6 laptop:px-[180px] laptop:py-16">
+    <div className="w-[100%] mb-12 p-6 laptop:px-[180px] laptop:py-16">
       {/*Product Cart*/}
       <div className="border-b-2 border-primary-300">
         <p className="text-[24px] laptop:text-[36px]">Your shopping cart</p>
