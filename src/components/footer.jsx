@@ -1,6 +1,6 @@
-import ButtonIcon from './buttonIcon'
 import EmailField from './emailField'
 import LinkButton from './linkButton'
+import SocialMedia from './socialMedia'
 
 function Footer() {
   return (
@@ -94,13 +94,8 @@ function Footer() {
         </p>
 
         {/* social media */}
-        <div className="hidden tablet:flex justify-end text-white">
-          <ButtonIcon Icon="linkedin" />
-          <ButtonIcon Icon="facebook" />
-          <ButtonIcon Icon="instagram" />
-          <ButtonIcon Icon="skype" />
-          <ButtonIcon Icon="twitter" />
-          <ButtonIcon Icon="pinterest" />
+        <div className="hidden tablet:block">
+          <SocialMedia Color="dark" />
         </div>
       </div>
     </div>

@@ -3,6 +3,7 @@ Name: ButtonIcon
 Description: Icon button
 Properties: 
   Icon: 'search'|'cart'|'menu'|'user'|'facebook'|'linkedin'|'instagram'|'skype'|'twitter'|'pinterest'
+  Color: 'light'|'dark' (default: 'light')
   onClick: function
 */
 
@@ -35,10 +36,15 @@ const icons = {
   pinterest: faPinterest
 }
 
-function ButtonIcon({ Icon, onClick }) {
+const colors = {
+  light: 'text-dark_primary hover:bg-border_grey',
+  dark: 'text-white hover:bg-primary'
+}
+
+function ButtonIcon({ Icon, Color = 'light', onClick }) {
   return (
     <div
-      className="min-w-[2.5rem] min-h-[2.5rem] p-2 w-full h-full flex-1 flex justify-center items-center cursor-pointer hover:bg-border_grey rounded-full"
+      className={`min-w-[2.5rem] min-h-[2.5rem] p-2 w-full h-full flex-1 flex justify-center items-center cursor-pointer ${colors[Color]} rounded-full`}
       onClick={onClick}
     >
       <FontAwesomeIcon icon={icons[Icon]} />

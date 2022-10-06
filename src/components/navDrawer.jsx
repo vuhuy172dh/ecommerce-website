@@ -1,7 +1,7 @@
 import { useNavMode } from '../hooks/useNavMode'
-import ButtonIcon from './buttonIcon'
 import EmailField from './emailField'
 import LinkButton from './linkButton'
+import SocialMedia from './socialMedia'
 
 function NavDrawer() {
   const { mode, handleMode } = useNavMode()
@@ -132,13 +132,8 @@ function NavDrawer() {
           <EmailField Color="light" />
 
           {/*footer social media*/}
-          <div className="flex">
-            <ButtonIcon Icon="linkedin" />
-            <ButtonIcon Icon="facebook" />
-            <ButtonIcon Icon="instagram" />
-            <ButtonIcon Icon="skype" />
-            <ButtonIcon Icon="twitter" />
-            <ButtonIcon Icon="pinterest" />
+          <div className="block">
+            <SocialMedia />
           </div>
         </div>
       </div>
