@@ -8,6 +8,7 @@ import img2 from '../assets/images/CeilingLamp.png'
 import img3 from '../assets/images/SingleVase.png'
 import img4 from '../assets/images/DarkChair.png'
 import clubImg from '../assets/images/features3.png'
+import ProductItemListing from '../components/productItemListing'
 
 function ProductListingPage() {
   const productItems = [
@@ -119,16 +120,9 @@ function ProductListingPage() {
 
       {/* this is list Product component */}
       <div className="px-6 py-7 laptop:px-20 laptop:pb-10">
-        <div className="grid grid-cols-2 gap-4 laptop:grid-cols-4 laptop:gap-x-5 laptop:gap-y-7">
-          {products.map((item) => (
-            <ProductItem
-              key={item.id}
-              Img={item.imgUrl}
-              Name={item.name}
-              Price={item.price}
-            />
-          ))}
-        </div>
+        {/* Product Item Lists */}
+        <ProductItemListing products={products} />
+
         {/* Load more Button */}
         {visible ? (
           <div className="flex mt-8 laptop:max-w-[180px] laptop:mx-auto">

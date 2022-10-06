@@ -1,9 +1,65 @@
 import homepage from '../assets/images/homepage.png'
 import feature2 from '../assets/images/features2.png'
 import Button from '../components/button'
+import LinkButton from '../components/linkButton'
 import EmailSignUp from '../components/emailSignUp'
+import ProductItemListing from '../components/productItemListing'
+import { useState, useEffect } from 'react'
+
+import img1 from '../assets/images/ThreeVases.png'
+import img2 from '../assets/images/CeilingLamp.png'
+import img3 from '../assets/images/SingleVase.png'
+import img4 from '../assets/images/DarkChair.png'
+
+const productItems = [
+  {
+    id: 1,
+    imgUrl: img1,
+    name: 'Rustic Vase Set',
+    price: 155
+  },
+  {
+    id: 2,
+    imgUrl: img2,
+    name: 'The Luccy Lamp',
+    price: 399
+  },
+  {
+    id: 3,
+    imgUrl: img3,
+    name: 'The Silky Vase',
+    price: 125
+  },
+  {
+    id: 4,
+    imgUrl: img4,
+    name: 'The Silky Vase',
+    price: 125
+  },
+  {
+    id: 5,
+    imgUrl: img1,
+    name: 'The Silky Vase',
+    price: 125
+  },
+  {
+    id: 6,
+    imgUrl: img2,
+    name: 'The Silky Vase',
+    price: 125
+  }
+]
+
+const limitedValue = 4
 
 function HomePage() {
+  const [products, setProducts] = useState([])
+
+  useEffect(() => {
+    // fake fetch API with init page number
+    setProducts(productItems.slice(0, limitedValue))
+  }, [])
+
   return (
     <div className="w-full flex flex-col">
       {/* homepage poster */}
@@ -43,7 +99,15 @@ function HomePage() {
       <div></div>
 
       {/* product item list */}
-      <div></div>
+      <div className="px-8 my-8">
+        {/* title */}
+        <div className="my-4 w-fit">
+          <LinkButton path="/productListing">
+            <p className="text-h3">All Product</p>
+          </LinkButton>
+        </div>
+        <ProductItemListing products={products} />
+      </div>
 
       {/* feature 1*/}
       <div className="w-full px-8 mb-10 flex flex-col gap-10 tablet:flex-row">
