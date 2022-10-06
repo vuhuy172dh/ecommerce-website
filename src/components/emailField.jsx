@@ -17,7 +17,7 @@ function EmailField({ Color = 'dark' }) {
     <div className="w-full flex">
       <input
         placeholder="your@email.com"
-        className={`${colors[Color][0]} grow-[1] pl-5`}
+        className={`${colors[Color][0]} grow-[1] pl-5 overflow-auto`}
       />
       <Button Size="medium" State="default" Color={colors[Color][1]}>
         Sign up
