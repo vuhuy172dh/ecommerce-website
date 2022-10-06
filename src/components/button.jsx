@@ -1,14 +1,16 @@
+/*
+Name: Button
+Description: Button
+Properties: 
+  Size: 'medium' | 'small' (default: 'medium')
+  Color: 'white' | 'secondary' | 'opaque' | 'primary' | 'ghost' (default: 'white')
+  State: 'default' | 'disabled'
+  IconRight: true | false (default: false)
+  onClick: function
+*/
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCaretDown } from '@fortawesome/free-solid-svg-icons'
-
-/*
-attribute: 
-  Size: medium | small
-  Color: white | secondary | opaque | primary | ghost
-  State: default | disabled
-  IconRight: true | false
-  IconRightClick: function
-*/
 
 const sizes = {
   medium: 'py-4 px-8',
@@ -49,17 +51,16 @@ function Button({
   Size = 'medium',
   State = 'default',
   IconRight = false,
-  IconRightClick = () => {},
+  onClick = () => {},
   children = 'Button'
 }) {
   return (
     <button
-      className={`${className} text-body-md min-w-fit min-h-fit flex-1 flex items-center justify-center gap-4 relative ease-out duration-300 ${colors[Color][State]} ${sizes[Size]}`}
+      className={`text-body-md min-w-fit min-h-fit flex-1 flex items-center justify-center gap-4 relative ease-out duration-300 ${colors[Color][State]} ${sizes[Size]}`}
+      onClick={onClick}
     >
       {children}
-      {IconRight && (
-        <FontAwesomeIcon icon={faCaretDown} onClick={IconRightClick} />
-      )}
+      {IconRight && <FontAwesomeIcon icon={faCaretDown} />}
     </button>
   )
 }
