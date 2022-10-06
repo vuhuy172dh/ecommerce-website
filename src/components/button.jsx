@@ -46,7 +46,6 @@ const colors = {
 }
 
 function Button({
-  className,
   Color = 'white',
   Size = 'medium',
   State = 'default',
