@@ -6,7 +6,7 @@ Properties:
   Color: 'white' | 'secondary' | 'opaque' | 'primary' | 'ghost' (default: 'white')
   State: 'default' | 'disabled'
   IconRight: true | false (default: false)
-  IconRightClick: function
+  onClick: function
 */
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -50,17 +50,16 @@ function Button({
   Size = 'medium',
   State = 'default',
   IconRight = false,
-  IconRightClick = () => {},
+  onClick = () => {},
   children = 'Button'
 }) {
   return (
     <button
       className={`text-body-md min-w-fit min-h-fit flex-1 flex items-center justify-center gap-4 relative ease-out duration-300 ${colors[Color][State]} ${sizes[Size]}`}
+      onClick={onClick}
     >
       {children}
-      {IconRight && (
-        <FontAwesomeIcon icon={faCaretDown} onClick={IconRightClick} />
-      )}
+      {IconRight && <FontAwesomeIcon icon={faCaretDown} />}
     </button>
   )
 }
