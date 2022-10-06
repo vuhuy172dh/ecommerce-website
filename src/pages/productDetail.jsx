@@ -77,11 +77,11 @@ function ProductDetailPage() {
             </div>
           </div>
           {/* Group btn */}
-          <div className="flex flex-col laptop:items-center mt-8 mb-8 laptop:mt-12 laptop:w-96 laptop:flex-row-reverse">
-            <Button Color="white" className="laptop:ml-4">
+          <div className="gap-4 flex flex-col laptop:items-center mt-8 mb-8 laptop:mt-12 laptop:w-96 laptop:flex-row-reverse">
+            <Button Color="white">
               Save to favorites
             </Button>
-            <Button Color="primary" className="mt-4 laptop:mt-0">
+            <Button Color="primary">
               Add to cart
             </Button>
           </div>
