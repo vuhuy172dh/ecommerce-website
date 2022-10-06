@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react"
 import Button from "../components/button"
 import ProductItem from "../components/productItem"
 
@@ -48,6 +49,35 @@ function ProductListingPage() {
     }
   ]
 
+  const limitedValue = 2;
+  const [products, setProducts] = useState([]);
+  const [current, setCurrent] = useState(2);
+
+  const [visible, setVisible] = useState(true);
+
+  useEffect(()=>{
+    // fake fetch API with init page number
+    setProducts(productItems.slice(0, current))
+  },[])
+
+  // handle load more 
+  const handleLoadMore = () =>{
+    // fake fetch API with new page number
+    // Check data, if fetch has data -> implement, else -> disable button
+    const newlist = productItems.slice(current, current + limitedValue);  
+    if(newlist.length > 0){
+      setProducts(prev => {
+        return [...prev, ...newlist]
+      });
+      
+      setCurrent(current + limitedValue);
+    }
+    else{
+      setVisible(!visible);
+    }
+  
+  }
+
   return (
     <div>
       {/* this is Header component */}
@@ -77,15 +107,19 @@ function ProductListingPage() {
       <div className="px-6 py-7 laptop:px-20 laptop:pb-10">
         <div className="grid grid-cols-2 gap-4 laptop:grid-cols-4 laptop:gap-x-5 laptop:gap-y-7">
               {
-                productItems.map(item => (
+                products.map(item => (
                   <ProductItem key={item.id} Img={item.imgUrl} Name={item.name} Price={item.price}/>
                 ))
               }
         </div>
         {/* Load more Button */}
-        <div className="flex mt-8 laptop:max-w-[180px] laptop:mx-auto">
-          <Button Color='secondary'>View collection</Button>
-        </div>
+        {
+          visible ? (
+            <div className="flex mt-8 laptop:max-w-[180px] laptop:mx-auto" onClick={handleLoadMore}>
+            <Button Color='secondary'>View collection</Button>
+          </div>
+          ):('')
+        }
       </div>
 
       {/* this is Contact component */}
