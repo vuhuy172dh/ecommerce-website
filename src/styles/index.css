@@ -21,6 +21,38 @@
 }
 
 body {
+  /* Scrollbar vertical */
+  overflow-y: overlay;
+
   margin: 0;
   font-family: 'Clash Display', sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  line-height: 140%;
+}
+
+small,
+p,
+span {
+  line-height: 150%;
+}
+
+/* Scollbar */
+html *::-webkit-scrollbar {
+  border-radius: 0;
+  width: 8px;
+}
+html *::-webkit-scrollbar-thumb {
+  border-radius: 4px;
+  background-color: rgba(0, 0, 0, 0.15);
+}
+html *::-webkit-scrollbar-track {
+  border-radius: 0;
+  background-color: rgba(0, 0, 0, 0);
 }
