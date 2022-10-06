@@ -1,5 +1,5 @@
-import Button from './button'
 import ButtonIcon from './buttonIcon'
+import EmailField from './emailField'
 import LinkButton from './linkButton'
 
 function Footer() {
@@ -79,15 +79,7 @@ function Footer() {
           <p className="text-h5">Join our mailing list</p>
 
           {/* email field */}
-          <div className="w-full flex">
-            <input
-              placeholder="your@email.com"
-              className="bg-[rgba(255,255,255,0.15)] grow-[1] pl-5"
-            />
-            <Button Size="medium" State="default" Color="white">
-              Sign up
-            </Button>
-          </div>
+          <EmailField />
         </div>
       </div>
 

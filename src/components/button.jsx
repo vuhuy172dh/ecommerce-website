@@ -1,14 +1,16 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCaretDown } from '@fortawesome/free-solid-svg-icons'
-
 /*
-attribute: 
-  Size: medium | small
-  Color: white | secondary | opaque | primary | ghost
-  State: default | disabled
-  IconRight: true | false
+Name: Button
+Description: Button
+Properties: 
+  Size: 'medium' | 'small' (default: 'medium')
+  Color: 'white' | 'secondary' | 'opaque' | 'primary' | 'ghost' (default: 'white')
+  State: 'default' | 'disabled'
+  IconRight: true | false (default: false)
   IconRightClick: function
 */
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCaretDown } from '@fortawesome/free-solid-svg-icons'
 
 const sizes = {
   medium: 'py-4 px-8',

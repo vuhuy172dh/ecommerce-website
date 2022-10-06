@@ -1,3 +1,10 @@
+/*
+Name: BannerCarousel
+Description: To show banner carousel on top of the web
+Properties: 
+  slides: string[] (an array of banners)
+*/
+
 import useEmblaCarousel from 'embla-carousel-react'
 import Autoplay from 'embla-carousel-autoplay'
 

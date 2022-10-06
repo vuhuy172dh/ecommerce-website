@@ -9,7 +9,7 @@ function Navbar() {
   const { mode, handleMode } = useNavMode()
 
   return (
-    <div className="w-full flex flex-col items-center mb-4">
+    <div className="w-full flex flex-col items-center mb-4 relative z-10">
       {/* banner carousel */}
       <BannerCarousel
         slides={[

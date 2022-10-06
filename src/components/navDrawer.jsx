@@ -1,7 +1,6 @@
-import { Link } from 'react-router-dom'
 import { useNavMode } from '../hooks/useNavMode'
-import Button from './button'
 import ButtonIcon from './buttonIcon'
+import EmailField from './emailField'
 import LinkButton from './linkButton'
 
 function NavDrawer() {
@@ -21,7 +20,7 @@ function NavDrawer() {
 
       {/* navdrawer's content */}
       <div
-        className={`w-full h-[90vh] fixed bottom-0 left-0 z-20 bg-light_grey border-t rounded-t-[2rem] transition-all duration-300 ${
+        className={`w-full h-[90vh] fixed bottom-0 left-0 z-20 bg-white border-t rounded-t-[2rem] transition-all duration-300 ${
           mode ? 'translate-y-0 opacity-100' : 'translate-y-full opacity-0'
         } overflow-auto`}
       >
@@ -130,15 +129,7 @@ function NavDrawer() {
           <p className="text-h4 font-[500]">Join our mailing list</p>
 
           {/*footer emal field*/}
-          <div className="flex">
-            <input
-              className="bg-border_grey pl-4 grow-[1]"
-              placeholder="your@gmail.com"
-            />
-            <Button Size="medium" Color="primary" State="default">
-              Sign up
-            </Button>
-          </div>
+          <EmailField Color="light" />
 
           {/*footer social media*/}
           <div className="flex">

@@ -1,3 +1,7 @@
+/*
+Description: This hook is used for control navbar mode
+*/
+
 import { createContext, useContext, useState } from 'react'
 
 export const NavModeContext = createContext()

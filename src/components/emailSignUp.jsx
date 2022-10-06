@@ -1,7 +1,7 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCircleCheck } from '@fortawesome/free-solid-svg-icons'
 import signup from '../assets/images/signup.png'
-import Button from './button'
+import EmailField from './emailField'
 
 function EmailSignUp() {
   return (
@@ -39,13 +39,7 @@ function EmailSignUp() {
 
         {/* Sign up field*/}
         <div className="flex laptop:w-full laptop:px-10">
-          <input
-            className="bg-light_grey pl-8 grow-[1]"
-            placeholder="your@email.com"
-          />
-          <Button Size="medium" State="default" Color="primary">
-            Sign up
-          </Button>
+          <EmailField Color="light" />
         </div>
       </div>
     </div>

@@ -1,13 +1,13 @@
+/*
+Name: SearchField
+Description: a component to search product. This component has an effect when clicking the icon
+Properties: 
+  Direction: ltr | rtl (default: rtl) (determine the direction of the component to stretch text field)
+*/
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSearch } from '@fortawesome/free-solid-svg-icons'
 import { useState } from 'react'
-
-/*
-SearchField: a component to search product. This component has an effect when clicking the icon
-
-Properties: 
-- Direction: ltr | rtl (default: rtl) (determine the direction of the component to stretch text field)
-*/
 
 const directions = {
   ltr: ['origin-left scale-x-100', 'origin-left scale-x-0', 'left-1', 'left-1'],

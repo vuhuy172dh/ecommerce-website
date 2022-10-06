@@ -1,9 +1,9 @@
 /*
-ButtonIcon: 
-
+Name: ButtonIcon
+Description: Icon button
 Properties: 
-- Icon: string (name of the icon)
-- onClick: function
+  Icon: 'search'|'cart'|'menu'|'user'|'facebook'|'linkedin'|'instagram'|'skype'|'twitter'|'pinterest'
+  onClick: function
 */
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
