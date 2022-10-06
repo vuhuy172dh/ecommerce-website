@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import Button from "../components/button"
 import ProductItem from "../components/productItem"
+import EmailField from "../components/emailField"
 
 import img1 from '../assets/images/ThreeVases.png'
 import img2 from '../assets/images/CeilingLamp.png'
@@ -49,9 +50,9 @@ function ProductListingPage() {
     }
   ]
 
-  const limitedValue = 2;
+  const limitedValue = 4;
   const [products, setProducts] = useState([]);
-  const [current, setCurrent] = useState(2);
+  const [current, setCurrent] = useState(4);
 
   const [visible, setVisible] = useState(true);
 
@@ -60,11 +61,11 @@ function ProductListingPage() {
     setProducts(productItems.slice(0, current))
   },[])
 
-  // handle load more 
   const handleLoadMore = () =>{
     // fake fetch API with new page number
     // Check data, if fetch has data -> implement, else -> disable button
     const newlist = productItems.slice(current, current + limitedValue);  
+
     if(newlist.length > 0){
       setProducts(prev => {
         return [...prev, ...newlist]
@@ -75,13 +76,12 @@ function ProductListingPage() {
     else{
       setVisible(!visible);
     }
-  
   }
 
   return (
     <div>
       {/* this is Header component */}
-      <header className=" bg-gray-100 py-8 px-6 laptop:bg-white laptop:pt-20 laptop:pb-3 laptop:px-20">
+      <header className=" bg-light_grey py-8 px-6 laptop:bg-white laptop:pt-20 laptop:pb-3 laptop:px-20">
         <h2 className="text-center mb-10 text-h2 laptop:mb-8">View all products</h2>
         <div className="flex gap-3 laptop:hidden">
           <Button Size="small" Color='white' IconRight>Sorting</Button>
@@ -97,7 +97,7 @@ function ProductListingPage() {
             <Button Size="small" Color='white' IconRight>Brand</Button>
           </div>
           <div className="flex items-center">
-            <p className="mr-4 text-[14px] font-normal font-satoshi">Sorting by:</p>
+            <p className="mr-4 text-body-sm">Sorting by:</p>
             <Button Size="small" Color='white' IconRight>Date added</Button>
           </div>
         </nav>
@@ -124,16 +124,13 @@ function ProductListingPage() {
 
       {/* this is Contact component */}
       <div className="hidden laptop:flex">
-          <img className="w-[50%]" src={clubImg} alt="join club" />
-          <div className="w-[50%] object-cover p-[70px] flex flex-col justify-between">
+          <img className="w-1/2" src={clubImg} alt="join club" />
+          <div className="w-1/2 object-cover p-[70px] flex flex-col justify-between">
               <div>
                 <h3 className="text-h2">Join the club and get the benefits</h3>
-                <p className="text-h5 my-5 w-[80%]">Sign up for our newsletter and receive exclusive offers on new ranges, sale, pop up store and more</p>
+                <p className="text-h5 my-5 w-4/5">Sign up for our newsletter and receive exclusive offers on new ranges, sale, pop up store and more</p>
               </div>
-              <div className="flex w-[80%]">
-                <input className="flex-1 bg-light_grey pl-8 outline-none" type="text" placeholder="your@email.com"/>
-                <div className="w-[118px]"><Button Color="primary">Signup</Button></div>
-              </div>
+              <EmailField Color="light"/>
           </div>
       </div>
     </div>
