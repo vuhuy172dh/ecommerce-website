@@ -1,3 +1,10 @@
+/*
+Name: ProductItemListing
+Description: A list of Product Item
+Properties: 
+  products: A list of Product Object
+*/
+
 import ProductItem from './productItem'
 
 function ProductItemListing({ products }) {
