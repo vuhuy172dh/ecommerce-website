@@ -1,6 +1,7 @@
 import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus, faMinus } from '@fortawesome/free-solid-svg-icons'
+import Counter from './counter'
 
 const productCartList = ({ cartItems }) => {
   return cartItems.map(({ id, name, detail, price, imgUrl }) => (
@@ -22,25 +23,15 @@ const productCartList = ({ cartItems }) => {
             <p className="text-[14px] py-2">{detail}</p>
             <p className="text-[16px]">${price}</p>
           </div>
-          <div className="ml-6 flex laptop:hidden">
-            <div className="w-[24px] h-[24px] rounded-full hover:cursor-pointer hover:bg-border_grey flex align-middle justify-center">
-              <FontAwesomeIcon icon={faMinus} className="m-auto" />
-            </div>
-            <div className="mx-5">1</div>
-            <div className="w-[24px] h-[24px] rounded-full hover:cursor-pointer hover:bg-border_grey flex align-middle justify-center">
-              <FontAwesomeIcon icon={faPlus} className="m-auto" />
-            </div>
+          {/* counter */}
+          <div className="w-fit laptop:hidden">
+            <Counter />
           </div>
         </div>
       </div>
       <div className="hidden laptop:flex items-center">
-        <div className="w-[24px] h-[24px] rounded-full hover:cursor-pointer hover:bg-border_grey flex align-middle justify-center">
-          <FontAwesomeIcon icon={faMinus} className="m-auto" />
-        </div>
-        <span className="mx-5">1</span>
-        <div className="w-[24px] h-[24px] rounded-full hover:cursor-pointer hover:bg-border_grey flex align-middle justify-center">
-          <FontAwesomeIcon icon={faPlus} className="m-auto" />
-        </div>
+        {/* counter */}
+        <Counter />
       </div>
       <div className="hidden laptop:flex items-center">
         <p>$ {price}</p>

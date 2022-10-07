@@ -5,6 +5,7 @@ import EmailField from '../components/emailField'
 // Sample img
 import DandyChairImg from '../assets/images/DandyChair.png'
 import WhiteRoomImg from '../assets/images/features3.png'
+import Counter from '../components/counter'
 
 function ProductDetailPage() {
   return (
@@ -64,11 +65,7 @@ function ProductDetailPage() {
           {/* Stepper */}
           <div className="mt-7 laptop:w-32 laptop:mt-10">
             <h5 className="text-h5 mb-3 ">Quantity</h5>
-            <div className="px-4 flex justify-between items-center bg-white">
-              <button className="p-3">-</button>
-              <span className="font-satoshi">1</span>
-              <button className="p-3">+</button>
-            </div>
+            <Counter />
           </div>
           {/* Group btn */}
           <div className="gap-4 flex flex-col laptop:items-center mt-8 mb-8 laptop:mt-12 laptop:w-96 laptop:flex-row-reverse">
