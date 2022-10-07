@@ -5,7 +5,7 @@ import EmailField from './emailField'
 
 function EmailSignUp() {
   return (
-    <div className="w-full mb-10 flex flex-col relative items-center">
+    <div className="w-full flex flex-col relative items-center">
       {/* background image */}
       <img
         src={signup}
