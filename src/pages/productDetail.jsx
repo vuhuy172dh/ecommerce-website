@@ -1,5 +1,6 @@
 import Button from '../components/button'
 import InfoItem from '../components/infoItem'
+import EmailField from '../components/emailField'
 
 // Sample img
 import DandyChairImg from '../assets/images/DandyChair.png'
@@ -51,20 +52,16 @@ function ProductDetailPage() {
               <div className="h-11 w-1 bg-border_grey"></div>
               <div>
                 <h6 className="text-h6 mb-4">Width</h6>
-                <small className="text-body-sm laptop:text-body-md">
-                  75cm
-                </small>
+                <small className="text-body-sm laptop:text-body-md">75cm</small>
               </div>
               <div className="h-11 w-1 bg-border_grey"></div>
               <div>
                 <h6 className="text-h6 mb-4">Depth</h6>
-                <small className="text-body-sm laptop:text-body-md">
-                  50cm
-                </small>
+                <small className="text-body-sm laptop:text-body-md">50cm</small>
               </div>
             </div>
           </div>
-          {/* Quantity */}
+          {/* Stepper */}
           <div className="mt-7 laptop:w-32 laptop:mt-10">
             <h5 className="text-h5 mb-3 ">Quantity</h5>
             <div className="px-4 flex justify-between items-center bg-white">
@@ -75,12 +72,8 @@ function ProductDetailPage() {
           </div>
           {/* Group btn */}
           <div className="gap-4 flex flex-col laptop:items-center mt-8 mb-8 laptop:mt-12 laptop:w-96 laptop:flex-row-reverse">
-            <Button Color="white">
-              Save to favorites
-            </Button>
-            <Button Color="primary">
-              Add to cart
-            </Button>
+            <Button Color="white">Save to favorites</Button>
+            <Button Color="primary">Add to cart</Button>
           </div>
         </div>
       </section>
@@ -103,14 +96,7 @@ function ProductDetailPage() {
           </div>
           <div className="flex-1"></div>
           <div className="flex laptop:max-w-md">
-            <input
-              className="flex-1 overflow-auto px-8 bg-light_grey"
-              type="text"
-              placeholder="your@email.com"
-            />
-            <Button className="grow-0" Size="medium" Color="primary">
-              Sign up
-            </Button>
+            <EmailField Color="light" />
           </div>
         </div>
       </section>
