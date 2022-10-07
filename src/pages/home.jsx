@@ -97,12 +97,12 @@ function HomePage() {
       </div>
 
       {/* info item */}
-      <div className="w-full px-8">
+      <div className="w-full px-8 py-8 tablet:my-20">
         <InfoItem />
       </div>
 
       {/* product item list */}
-      <div className="px-8 my-8">
+      <div className="px-8 my-8 tablet:my-20">
         {/* title */}
         <div className="my-4 w-fit">
           <LinkButton path="/productListing">
