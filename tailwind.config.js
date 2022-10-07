@@ -25,6 +25,9 @@ module.exports = {
         light_grey: '#f9f9f9',
         border_grey: '#ebe8f4',
         border_dark: '#cac6da'
+      },
+      spacing: {
+        1: '1px'
       }
     }
   },
