@@ -1,6 +1,5 @@
 import Button from '../components/button'
-import Banner from '../components/banner'
-import FeatureItem from '../components/featureItem'
+import InfoItem from '../components/infoItem'
 
 // Sample img
 import DandyChairImg from '../assets/images/DandyChair.png'
@@ -9,8 +8,6 @@ import WhiteRoomImg from '../assets/images/features3.png'
 function ProductDetailPage() {
   return (
     <div className="text-dark_primary mx-6 laptop:mx-20">
-      {/* Banner */}
-      <Banner />
       {/* Product detail */}
       <section className="grid grid-cols-4 gap-x-5 px-6 -mx-6 bg-light_grey laptop:grid-cols-12 laptop:py-12 laptop:-mx-20 laptop:px-20">
         <div className="col-span-4 -mx-6 laptop:mx-0 laptop:col-span-6">
@@ -32,7 +29,7 @@ function ProductDetailPage() {
           {/* Description */}
           <div className="mt-7 laptop:mt-6">
             <h5 className="text-h5 mb-3">Product description</h5>
-            <small className="text-h6 font-satoshi laptop:text-h5">
+            <small className="text-body-sm laptop:text-body-md">
               A timeless design, with premium materials features as one of our
               most popular and iconic pieces. The dandy chair is perfect for any
               stylish living space with beech legs and lambskin leather
@@ -47,21 +44,21 @@ function ProductDetailPage() {
             <div className="flex justify-between items-center mt-4 ">
               <div>
                 <h6 className="text-h6 mb-4">Height</h6>
-                <small className="text-h6 font-satoshi laptop:text-h5">
+                <small className="text-body-sm laptop:text-body-md">
                   110cm
                 </small>
               </div>
-              <div className="h-11 w-[1px] bg-gray-300"></div>
+              <div className="h-11 w-1 bg-border_grey"></div>
               <div>
                 <h6 className="text-h6 mb-4">Width</h6>
-                <small className="text-h6 font-satoshi laptop:text-h5">
+                <small className="text-body-sm laptop:text-body-md">
                   75cm
                 </small>
               </div>
-              <div className="h-11 w-[1px] bg-gray-300"></div>
+              <div className="h-11 w-1 bg-border_grey"></div>
               <div>
                 <h6 className="text-h6 mb-4">Depth</h6>
-                <small className="text-h6 font-satoshi laptop:text-h5">
+                <small className="text-body-sm laptop:text-body-md">
                   50cm
                 </small>
               </div>
@@ -88,7 +85,7 @@ function ProductDetailPage() {
         </div>
       </section>
       {/* Feature */}
-      <FeatureItem />
+      <InfoItem />
       {/* Email sign up */}
       <section className="flex flex-col laptop:flex-row laptop:-mx-20">
         <div className="-mx-6 laptop:basis-3/6 laptop:mx-0">
@@ -99,7 +96,7 @@ function ProductDetailPage() {
             <h4 className="text-h4 mb-4 laptop:text-h2 laptop:mb-5">
               Join the club and get the benefits
             </h4>
-            <small className="text-h6 font-satoshi laptop:text-h5">
+            <small className="text-body-sm laptop:text-body-md">
               Sign up for our newsletter and receive exclusive offers on new
               ranges, sales, pop up stores and more
             </small>

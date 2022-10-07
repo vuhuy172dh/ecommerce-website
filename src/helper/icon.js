@@ -1,4 +1,4 @@
-import ICONS from './constant'
+import ICONS from '../constant/icon'
 import PropTypes from 'prop-types'
 
 /*
