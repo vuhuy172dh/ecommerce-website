@@ -77,8 +77,12 @@ function ProductDetailPage() {
           </div>
         </div>
       </section>
-      {/* Feature */}
-      <InfoItem />
+
+      {/* Infor Card List */}
+      <div className="w-full py-12 laptop:py-20">
+        <InfoItem />
+      </div>
+
       {/* Email sign up */}
       <section className="flex flex-col laptop:flex-row laptop:-mx-20">
         <div className="-mx-6 laptop:basis-3/6 laptop:mx-0">

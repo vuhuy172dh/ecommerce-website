@@ -4,6 +4,7 @@ import Button from '../components/button'
 import LinkButton from '../components/linkButton'
 import EmailSignUp from '../components/emailSignUp'
 import ProductItemListing from '../components/productItemListing'
+import InfoItem from '../components/infoItem'
 import { useState, useEffect } from 'react'
 
 import img1 from '../assets/images/ThreeVases.png'
@@ -96,7 +97,9 @@ function HomePage() {
       </div>
 
       {/* info item */}
-      <div></div>
+      <div className="w-full px-8">
+        <InfoItem />
+      </div>
 
       {/* product item list */}
       <div className="px-8 my-8">
