@@ -27,7 +27,7 @@ function InfoItem() {
   return (
     // Feature list
     <section className="w-full">
-      <h4 className="text-h4 mb-3 laptop:text-center laptop:text-h3">
+      <h4 className="text-h4 mb-9 pr-20 laptop:text-center laptop:text-h3">
         What makes our brand different
       </h4>
       {/* Feature item */}
