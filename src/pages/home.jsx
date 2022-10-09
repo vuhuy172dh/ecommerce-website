@@ -118,7 +118,7 @@ function HomePage() {
       {/* feature 1*/}
       <div className="w-full px-8 mb-10 flex flex-col gap-10 tablet:flex-row">
         {/* box - 1 */}
-        <div className="flex-1 flex flex-col gap-10 w-full p-8 tablet:p-12 bg-dark_primary text-white tablet:justify-between">
+        <div className="flex-1 flex flex-col gap-10 w-full p-8 tablet:p-12 bg-dark_primary text-white tablet:justify-between rounded-xl overflow-hidden shadow-xl shadow-gray-700/40">
           {/* content */}
           <div className="flex flex-col w-full gap-1">
             <p className="text-h4 tablet:text-h2">
@@ -141,7 +141,7 @@ function HomePage() {
         </div>
 
         {/* box - 2 : image */}
-        <div className="flex-1 w-full">
+        <div className="flex-1 w-full rounded-xl overflow-hidden shadow-xl shadow-gray-600/50">
           <img
             src={feature2}
             alt="poster"

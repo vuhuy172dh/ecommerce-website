@@ -31,9 +31,14 @@ function InfoItemList() {
         What makes our brand different
       </h4>
       {/* Feature item */}
-      <div className="grid grid-cols-4 gap-x-5 laptop:grid-cols-12 laptop:gap-y-5">
-        {featureList.map((item) => (
-          <InfoItem icon={item.icon} label={item.label} desc={item.desc} />
+      <div className="grid grid-cols-4 tablet:grid-cols-6 gap-x-5 laptop:grid-cols-12 laptop:gap-y-5">
+        {featureList.map((item, index) => (
+          <InfoItem
+            icon={item.icon}
+            label={item.label}
+            desc={item.desc}
+            key={index}
+          />
         ))}
       </div>
     </section>

@@ -24,7 +24,7 @@ function DarkModeButton() {
   return (
     <AnimatePresence mode="wait">
       <motion.div
-        className={`fixed z-50 top-2 left-[calc(5%-20px)] w-10 h-10 flex justify-center items-center rounded-xl ${
+        className={`fixed z-50 top-2 left-[calc(5%-20px)] w-10 h-10 justify-center items-center rounded-xl hidden tablet:flex ${
           mode ? modes.light.style : modes.dark.style
         } cursor-pointer`}
         key={mode}

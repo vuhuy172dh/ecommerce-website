@@ -11,7 +11,7 @@ function Navbar() {
   const scrollY = useScrollPosition()
 
   return (
-    <div className="w-full flex justify-center mb-20 tablet:mb-36 relative z-50">
+    <div className="w-full flex justify-center mb-20 tablet:mb-36 relative z-30">
       <div
         className={`w-full tablet:w-4/5 mb-8 ${
           scrollY === 0

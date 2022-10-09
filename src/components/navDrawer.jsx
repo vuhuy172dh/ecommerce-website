@@ -8,7 +8,7 @@ function NavDrawer() {
 
   return (
     <div
-      className={`w-full h-screen tablet:hidden fixed bottom-0 z-20 ${
+      className={`w-full h-screen tablet:hidden fixed bottom-0 z-50 ${
         mode ? 'visible z-10' : 'invisible -z-10'
       } transition-all duration-300`}
     >
@@ -35,30 +35,46 @@ function NavDrawer() {
           <div className="mt-4 flex columns-2 gap-28">
             <ul className="flex-1 flex flex-col gap-4">
               <li>
-                <LinkButton size="small">All products</LinkButton>
+                <LinkButton size="small" color="dark">
+                  All products
+                </LinkButton>
               </li>
               <li>
-                <LinkButton size="small">Plant pots</LinkButton>
+                <LinkButton size="small" color="dark">
+                  Plant pots
+                </LinkButton>
               </li>
               <li>
-                <LinkButton size="small">Ceramics</LinkButton>
+                <LinkButton size="small" color="dark">
+                  Ceramics
+                </LinkButton>
               </li>
               <li>
-                <LinkButton size="small">Tables</LinkButton>
+                <LinkButton size="small" color="dark">
+                  Tables
+                </LinkButton>
               </li>
             </ul>
             <ul className="flex-1 flex flex-col gap-4">
               <li>
-                <LinkButton size="small">Chairs</LinkButton>
+                <LinkButton size="small" color="dark">
+                  Chairs
+                </LinkButton>
               </li>
               <li>
-                <LinkButton size="small">Crockery</LinkButton>
+                <LinkButton size="small" color="dark">
+                  Crockery
+                </LinkButton>
               </li>
               <li>
-                <LinkButton size="small">Tableware</LinkButton>
+                <LinkButton size="small" color="dark">
+                  Tableware
+                </LinkButton>
               </li>
               <li>
-                <LinkButton size="small">Cutlery</LinkButton>
+                <LinkButton size="small" color="dark">
+                  Cutlery
+                </LinkButton>
               </li>
             </ul>
           </div>
@@ -75,18 +91,26 @@ function NavDrawer() {
           <div className="mt-4 flex columns-2 gap-28">
             <ul className="flex-1 flex flex-col gap-4">
               <li>
-                <LinkButton size="small">New Arrivals</LinkButton>
+                <LinkButton size="small" color="dark">
+                  New Arrivals
+                </LinkButton>
               </li>
               <li>
-                <LinkButton size="small">Best Sellers</LinkButton>
+                <LinkButton size="small" color="dark">
+                  Best Sellers
+                </LinkButton>
               </li>
             </ul>
             <ul className="flex-1 flex flex-col gap-4">
               <li>
-                <LinkButton size="small">Recently viewed</LinkButton>
+                <LinkButton size="small" color="dark">
+                  Recently viewed
+                </LinkButton>
               </li>
               <li>
-                <LinkButton size="small">Popular this week</LinkButton>
+                <LinkButton size="small" color="dark">
+                  Popular this week
+                </LinkButton>
               </li>
             </ul>
           </div>
@@ -103,21 +127,31 @@ function NavDrawer() {
           <div className="mt-4 flex columns-2 gap-28">
             <ul className="flex-1 flex flex-col gap-4">
               <li>
-                <LinkButton size="small">About us</LinkButton>
+                <LinkButton size="small" color="dark">
+                  About us
+                </LinkButton>
               </li>
               <li>
-                <LinkButton size="small">Vacancies</LinkButton>
+                <LinkButton size="small" color="dark">
+                  Vacancies
+                </LinkButton>
               </li>
             </ul>
             <ul className="flex-1 flex flex-col gap-4">
               <li>
-                <LinkButton size="small">Contact Us</LinkButton>
+                <LinkButton size="small" color="dark">
+                  Contact Us
+                </LinkButton>
               </li>
               <li>
-                <LinkButton size="small">Privacy</LinkButton>
+                <LinkButton size="small" color="dark">
+                  Privacy
+                </LinkButton>
               </li>
               <li>
-                <LinkButton size="small">Returns Policy</LinkButton>
+                <LinkButton size="small" color="dark">
+                  Returns Policy
+                </LinkButton>
               </li>
             </ul>
           </div>

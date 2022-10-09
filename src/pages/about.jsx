@@ -4,6 +4,7 @@ import EmailSignUp from '../components/emailSignUp'
 import feature2 from '../assets/images/features1.png'
 import feature3 from '../assets/images/features3.png'
 import Button from '../components/button'
+import InfoItemList from '../components/infoItemList'
 
 function AboutPage() {
   return (
@@ -83,7 +84,7 @@ function AboutPage() {
       </div>
       {/*Info item section */}
       <div className="laptop:px-20 laptop:py-12 px-6 mb-12">
-        <InfoItem />
+        <InfoItemList />
       </div>
       {/* Email signup section */}
       <div>
