@@ -11,6 +11,7 @@ Properties:
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCaretDown } from '@fortawesome/free-solid-svg-icons'
+import { motion } from 'framer-motion'
 
 const sizes = {
   medium: 'py-4 px-8',
@@ -50,17 +51,23 @@ function Button({
   Size = 'medium',
   State = 'default',
   IconRight = false,
+  Custom = false,
   onClick = () => {},
-  children = 'Button'
+  children = 'Button',
+  Padding = ''
 }) {
   return (
-    <button
-      className={`text-body-md min-w-fit min-h-fit flex-1 flex items-center justify-center gap-4 relative ease-out duration-300 ${colors[Color][State]} ${sizes[Size]}`}
+    <motion.div
+      className={`text-body-md min-w-fit min-h-fit flex-1 flex items-center justify-center gap-4 relative ease-out duration-300 ${
+        colors[Color][State]
+      } ${Custom ? Padding : sizes[Size]}`}
+      whileHover={{ scale: 1.05 }}
+      whileTap={{ scale: 0.9 }}
       onClick={onClick}
     >
       {children}
       {IconRight && <FontAwesomeIcon icon={faCaretDown} />}
-    </button>
+    </motion.div>
   )
 }
 
