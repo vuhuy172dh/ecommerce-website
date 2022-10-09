@@ -6,7 +6,9 @@ Properties:
   Color: 'white' | 'secondary' | 'opaque' | 'primary' | 'ghost' (default: 'white')
   State: 'default' | 'disabled'
   IconRight: true | false (default: false)
-  onClick: function
+  onClick: function,
+  Custom: false | true (default: false)
+  Padding: string (active when Custom={true})
 */
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -49,13 +51,17 @@ function Button({
   Color = 'white',
   Size = 'medium',
   State = 'default',
+  Custom = false,
   IconRight = false,
   onClick = () => {},
-  children = 'Button'
+  children = 'Button',
+  Padding = ''
 }) {
   return (
     <button
-      className={`text-body-md min-w-fit min-h-fit flex-1 flex items-center justify-center gap-4 relative ease-out duration-300 ${colors[Color][State]} ${sizes[Size]}`}
+      className={`text-body-md min-w-fit min-h-fit flex-1 flex items-center justify-center gap-4 relative ease-out duration-300 ${
+        colors[Color][State]
+      } ${Custom ? Padding : sizes[Size]}`}
       onClick={onClick}
     >
       {children}
