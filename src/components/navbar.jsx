@@ -49,7 +49,9 @@ function Navbar() {
             </div>
 
             {/* cart icon button */}
-            <ButtonIcon Icon="cart" />
+            <Link to="/productCart">
+              <ButtonIcon Icon="cart" />
+            </Link>
 
             {/* Menu icon button */}
             <div className="tablet:hidden" onClick={handleMode}>
