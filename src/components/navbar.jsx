@@ -100,7 +100,9 @@ function Navbar() {
               </LinkButton>
             </li>
             <li className="text-body-md">
-              <LinkButton size="large">Cutlery</LinkButton>
+              <LinkButton size="large" color="dark">
+                Cutlery
+              </LinkButton>
             </li>
           </ul>
         </div>
