@@ -14,6 +14,7 @@ import SignIn from './pages/signIn'
 import SignUp from './pages/signUp'
 import ForgetPassword from './pages/forgetPassword'
 import DarkModeButton from './components/darkModeButton'
+import CartFloatButton from './components/cartFloatButton'
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
           <NavDrawer />
         </NavMode>
         <DarkModeButton />
+        <CartFloatButton />
       </header>
       <main>
         <Routes>
