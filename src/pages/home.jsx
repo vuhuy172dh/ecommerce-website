@@ -4,7 +4,6 @@ import Button from '../components/button'
 import LinkButton from '../components/linkButton'
 import EmailSignUp from '../components/emailSignUp'
 import ProductItemListing from '../components/productItemListing'
-import InfoItem from '../components/infoItem'
 import { useState, useEffect } from 'react'
 
 import img1 from '../assets/images/ThreeVases.png'
@@ -12,6 +11,7 @@ import img2 from '../assets/images/CeilingLamp.png'
 import img3 from '../assets/images/SingleVase.png'
 import img4 from '../assets/images/DarkChair.png'
 import { Link } from 'react-router-dom'
+import InfoItemList from '../components/infoItemList'
 
 const productItems = [
   {
@@ -101,7 +101,7 @@ function HomePage() {
 
       {/* info item */}
       <div className="w-full px-8 py-8 tablet:my-20">
-        <InfoItem />
+        <InfoItemList />
       </div>
 
       {/* product item list */}
