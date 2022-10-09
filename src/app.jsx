@@ -10,6 +10,9 @@ import Footer from './components/footer'
 import NavDrawer from './components/navDrawer'
 import NavMode from './hooks/useNavMode'
 import User from './pages/user'
+import SignIn from './pages/signIn'
+import SignUp from './pages/signUp'
+import ForgetPassword from './pages/forgetPassword'
 
 function App() {
   return (
@@ -29,6 +32,9 @@ function App() {
           <Route path="/products" element={<ProductListingPage />} />
           <Route path="/product/:productId" element={<ProductDetailPage />} />
           <Route path="/products/:category" element={<ProductListingPage />} />
+          <Route path="/signin" element={<SignIn />} />
+          <Route path="/signup" element={<SignUp />} />
+          <Route path="/forgetPassword" element={<ForgetPassword />} />
         </Routes>
       </main>
       <footer>
