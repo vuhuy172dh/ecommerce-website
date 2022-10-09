@@ -13,6 +13,7 @@ import User from './pages/user'
 import SignIn from './pages/signIn'
 import SignUp from './pages/signUp'
 import ForgetPassword from './pages/forgetPassword'
+import DarkModeButton from './components/darkModeButton'
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
           <Navbar />
           <NavDrawer />
         </NavMode>
+        <DarkModeButton />
       </header>
       <main>
         <Routes>
