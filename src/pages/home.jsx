@@ -11,6 +11,7 @@ import img1 from '../assets/images/ThreeVases.png'
 import img2 from '../assets/images/CeilingLamp.png'
 import img3 from '../assets/images/SingleVase.png'
 import img4 from '../assets/images/DarkChair.png'
+import { Link } from 'react-router-dom'
 
 const productItems = [
   {
@@ -80,9 +81,11 @@ function HomePage() {
             </p>
           </div>
           <div className="flex w-full tablet:w-1/3">
-            <Button Size="medium" Color="secondary" State="default">
-              View collection
-            </Button>
+            <Link to="/products">
+              <Button Size="medium" Color="secondary" State="default">
+                View collection
+              </Button>
+            </Link>
           </div>
         </div>
 
@@ -105,7 +108,7 @@ function HomePage() {
       <div className="px-8 my-8 tablet:my-20">
         {/* title */}
         <div className="my-4 w-fit">
-          <LinkButton path="/productListing">
+          <LinkButton path="/products">
             <p className="text-h3">All Product</p>
           </LinkButton>
         </div>
@@ -129,9 +132,11 @@ function HomePage() {
 
           {/* button */}
           <div className="w-full flex tablet:block">
-            <Button Size="medium" Color="opaque" State="default">
-              View collection
-            </Button>
+            <Link to="/products">
+              <Button Size="medium" Color="opaque" State="default">
+                View collection
+              </Button>
+            </Link>
           </div>
         </div>
 

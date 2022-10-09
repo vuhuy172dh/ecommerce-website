@@ -38,7 +38,9 @@ function Navbar() {
           </div>
 
           {/* cart icon button */}
-          <ButtonIcon Icon="cart" />
+          <Link to="/producCart">
+            <ButtonIcon Icon="cart" />
+          </Link>
 
           {/* Menu icon button */}
           <div className="tablet:hidden" onClick={handleMode}>
@@ -47,7 +49,9 @@ function Navbar() {
 
           {/*User icon button */}
           <div className="mobile:hidden tablet:block">
-            <ButtonIcon Icon="user" />
+            <Link to="/user/account/profile">
+              <ButtonIcon Icon="user" />
+            </Link>
           </div>
         </div>
       </div>

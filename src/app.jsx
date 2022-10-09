@@ -1,5 +1,5 @@
 import React from 'react'
-import { Routes, Route } from 'react-router-dom'
+import { Routes, Route, Router } from 'react-router-dom'
 import AboutPage from './pages/about'
 import HomePage from './pages/home'
 import ProductCartPage from './pages/productCart'
@@ -9,6 +9,7 @@ import Navbar from './components/navbar'
 import Footer from './components/footer'
 import NavDrawer from './components/navDrawer'
 import NavMode from './hooks/useNavMode'
+import User from './pages/user'
 
 function App() {
   return (
@@ -22,10 +23,12 @@ function App() {
       <main>
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path="/ProductDetail" element={<ProductDetailPage />} />
-          <Route path="/About" element={<AboutPage />} />
-          <Route path="/ProductCart" element={<ProductCartPage />} />
-          <Route path="/ProductListing" element={<ProductListingPage />} />
+          <Route path="/about" element={<AboutPage />} />
+          <Route path="/user/account/profile" element={<User />} />
+          <Route path="/producCart" element={<ProductCartPage />} />
+          <Route path="/products" element={<ProductListingPage />} />
+          <Route path="/product/:productId" element={<ProductDetailPage />} />
+          <Route path="/products/:category" element={<ProductListingPage />} />
         </Routes>
       </main>
       <footer>
