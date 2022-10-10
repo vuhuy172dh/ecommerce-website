@@ -1,5 +1,4 @@
 import EmailField from '../components/emailField'
-import { useState, useEffect, useRef } from 'react'
 import useScrollPosition from '../hooks/useScrollPosition'
 
 // Sample img
@@ -11,42 +10,51 @@ import ProductDesc from '../components/productDesc'
 import ProductCarousel from '../components/productCarousel'
 import ProductScrollView from '../components/productScrollView'
 import Overview from '../components/overview'
+import useClientRect from '../hooks/useClientRect'
+
+const images = [DandyChairImg, CeilingLamp, DandyChairImg, CeilingLamp]
 
 function ProductDetailPage() {
-  const ref = useRef(null)
-  const [height, setHeight] = useState(0)
+  // get scroll position
   const scrollY = useScrollPosition()
-  useEffect(() => {
-    const handleInnerWidth = () => {
-      setHeight(ref.current.offsetHeight)
-    }
-    handleInnerWidth()
-    window.addEventListener('resize', handleInnerWidth)
+  // get element height
+  const { rect: imgsRect, ref: imgsRef } = useClientRect()
 
-    return () => window.removeEventListener('resize', handleInnerWidth)
-  })
+  // scroll to index image when click on image overview
+  const handleScroll = (index) => {
+    window.scrollTo({
+      top: index * (imgsRect?.height / 4) + 144,
+      left: 0,
+      behavior: 'smooth'
+    })
+  }
 
-  console.log(height, scrollY)
   return (
-    <div className="mx-6 laptop:mx-20">
+    <div className="mx-2 tablet:mx-6 laptop:mx-20">
       {/* Product detail */}
       <section className="flex flex-col w-full tablet:flex-row tablet:gap-4">
         {/* product image list for mobile*/}
         <div className="block tablet:hidden">
-          <ProductCarousel
-            images={[
-              DandyChairImg,
-              DandyChairImg,
-              DandyChairImg,
-              DandyChairImg
-            ]}
-          />
+          <ProductCarousel images={images} />
         </div>
 
         {/* product image list for laptop */}
-        <div className="w-full hidden tablet:block" ref={ref}>
+        <div className="w-full hidden tablet:block" ref={imgsRef}>
           <ProductScrollView
             images={[DandyChairImg, CeilingLamp, DandyChairImg, CeilingLamp]}
+          />
+        </div>
+
+        {/* floating overview */}
+        <div className="hidden tablet:block">
+          <Overview
+            images={images}
+            visible={
+              scrollY <= (imgsRect?.height / 4) * 3 + 144 && scrollY > 0
+                ? true
+                : false
+            }
+            onClick={handleScroll}
           />
         </div>
 
@@ -60,14 +68,6 @@ function ProductDetailPage() {
             quantity={5}
           />
         </div>
-
-        {/* floating overview */}
-        <Overview
-          images={[DandyChairImg, CeilingLamp, DandyChairImg, CeilingLamp]}
-          visible={
-            scrollY <= (height / 4) * 3 + 144 && scrollY > 0 ? true : false
-          }
-        />
       </section>
 
       {/* Infor Card List */}
