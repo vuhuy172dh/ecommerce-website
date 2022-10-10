@@ -96,7 +96,7 @@ function SignIn() {
         <p className="text-h6 mt-6 text-center text-gray-500 font-normal">
           Don't have an account? &nbsp;
           <a href="/signup" className="text-dark_primary">
-            Sign up
+            <u>Sign up</u>
           </a>
         </p>
       </section>
