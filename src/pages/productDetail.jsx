@@ -52,7 +52,13 @@ function ProductDetailPage() {
 
         {/* Product information  */}
         <div className="w-full h-full sticky top-20 bg-border_grey rounded-xl shadow-xl shadow-gray-700/40">
-          <ProductDesc />
+          <ProductDesc
+            name="The Dandy Chair"
+            desc="A timeless design, with premium materials features as one of our most popular and iconic pieces. The dandy chair is perfect for any stylish living space with beech legs and lambskin leather upholstery."
+            price={250}
+            dimensions={{ height: 110, width: 75, depth: 50 }}
+            quantity={5}
+          />
         </div>
 
         {/* floating overview */}

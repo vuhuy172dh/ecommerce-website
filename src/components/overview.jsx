@@ -1,3 +1,11 @@
+/*
+Name: Overview
+Description: This is image overview that floating on the left bottom of product detail page when scrolling through product images
+Properties:
+  - images: string array (an array of images)
+  - visible: true | false
+*/
+
 function Overview({ images, visible }) {
   return (
     <div

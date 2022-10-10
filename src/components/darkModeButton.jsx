@@ -20,7 +20,6 @@ function DarkModeButton() {
     setMode(!mode)
   }
 
-  console.log(mode)
   return (
     <AnimatePresence mode="wait">
       <motion.div

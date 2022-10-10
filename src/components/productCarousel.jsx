@@ -1,3 +1,10 @@
+/*
+Name: ProductCarousel
+Description: Carousel of product images 
+Properties:
+  - images: array of product images
+*/
+
 import { Swiper, SwiperSlide } from 'swiper/react'
 
 // import swiper style

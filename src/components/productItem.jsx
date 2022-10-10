@@ -1,6 +1,6 @@
 /*
 Name: ProductItem
-Description: Product Item
+Description: Product Item (for carousel of product or product listing page)
 Properties:
   Img: string
   Name: string
