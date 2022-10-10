@@ -1,11 +1,11 @@
 import Button from '../components/button'
 import InfoItem from '../components/infoItem'
 import EmailField from '../components/emailField'
+import Counter from '../components/counter'
 
 // Sample img
 import DandyChairImg from '../assets/images/DandyChair.png'
 import WhiteRoomImg from '../assets/images/features3.png'
-import Counter from '../components/counter'
 
 function ProductDetailPage() {
   return (
