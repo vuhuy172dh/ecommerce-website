@@ -8,13 +8,13 @@ function NavDrawer() {
 
   return (
     <div
-      className={`w-full h-screen tablet:hidden fixed bottom-0 z-50 ${
-        mode ? 'visible z-10' : 'invisible -z-10'
+      className={`w-full h-screen tablet:hidden fixed bottom-0 ${
+        mode ? 'visible z-50 ' : 'invisible -z-10'
       } transition-all duration-300`}
     >
       {/* navdrawer's backdrop */}
       <div
-        className="w-full h-screen fixed top-0 left-0 opacity-100 backdrop-blur-sm z-10 cursor-pointer"
+        className="w-full h-screen fixed top-0 left-0 opacity-100 bg-white/50 backdrop-blur-sm z-10 cursor-pointer"
         onClick={handleMode}
       ></div>
 
