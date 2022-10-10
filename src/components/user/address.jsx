@@ -1,5 +1,7 @@
   import AddressList from "./addressList"
   import Button from "../button"
+  import PopupAddress from "../popup/popupAddress"
+import { useState } from "react"
 
   const addressList = [
     {
@@ -26,6 +28,14 @@
   ]
 
   function Address() {
+
+    const [popupAddress, setPopupAddress] = useState(false);
+
+    const handleAddress = () => {
+      // show modal address
+      setPopupAddress(true);
+    }
+
     return (
       <>
         <div className="bg-white py-5 px-10">
@@ -34,12 +44,15 @@
               <h3 className="text-body-lg font-semibold text-dark_primary">Địa chỉ giao hàng</h3>
               <p className="text-body-md text-border_dark">Quản lý địa chỉ giao hàng của bạn</p>
             </div>
-            <div className="max-w-sm"><Button Color="primary">Thêm địa chỉ</Button></div>
+            <div className="max-w-sm"><Button Color="primary" onClick={handleAddress}>Thêm địa chỉ</Button></div>
           </header>
           <div>
             <AddressList addressList={addressList}/>
           </div>
         </div>
+        {
+          popupAddress && <PopupAddress/>
+        }
       </>
     )
   }

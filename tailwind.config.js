@@ -28,6 +28,24 @@ module.exports = {
       },
       spacing: {
         1: '1px'
+      },
+      keyframes: {  
+        growth: {
+          from: {
+            transform: 'scale(0.7)'
+          },
+          to: {
+            transform: 'scale(1)'
+          }
+        },
+        fadeIn: {
+          from: {
+            opacity: '0'
+          },
+          to: {
+            opacity: '1'
+          }
+        }
       }
     }
   },
