@@ -84,9 +84,11 @@ function HomePage() {
               </p>
             </div>
             <div className="flex w-full tablet:w-1/3">
-              <Button Size="medium" Color="secondary" State="default">
-                View collection
-              </Button>
+              <Link to="/products">
+                <Button Size="medium" Color="secondary" State="default">
+                  View collection
+                </Button>
+              </Link>
             </div>
           </div>
 

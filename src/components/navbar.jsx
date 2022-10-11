@@ -68,10 +68,12 @@ function Navbar() {
 
             {/*User icon button */}
             <div className="mobile:hidden tablet:block">
-              <ButtonIcon
-                Icon="user"
-                Color={darkMode === 'light' ? 'light' : 'dark'}
-              />
+              <Link to="/signin">
+                <ButtonIcon
+                  Icon="user"
+                  Color={darkMode === 'light' ? 'light' : 'dark'}
+                />
+              </Link>
             </div>
           </div>
         </div>
