@@ -6,16 +6,16 @@ Properties:
   Color: 'white' | 'secondary' | 'opaque' | 'primary' | 'ghost' (default: 'white')
   State: 'default' | 'disabled'
   IconRight: true | false (default: false)
+  onClick: function,
   Custom: false | true (default: false)
-  Padding: string (only activate when Custom is true)
-  onClick: function
+  Padding: string (active when Custom={true})
 */
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCaretDown } from '@fortawesome/free-solid-svg-icons'
 import { motion } from 'framer-motion'
 import { useState } from 'react'
-import {colors, sizes} from '../constant/button'
+import { colors, sizes } from '../constant/button'
 
 const itemVariants = {
   open: {
@@ -33,7 +33,7 @@ function Button({
   IconRight = false,
   Custom = false,
   onClick = () => {},
-  children = 'Button',
+  children = 'button',
   Padding = ''
 }) {
   const [isOpen, setIsOpen] = useState(false)
