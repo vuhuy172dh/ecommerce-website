@@ -7,29 +7,38 @@ export const DarkModeContext = createContext({
 
 const DarkMode = ({ children }) => {
   const [mode, setMode] = useState('light')
-  const declareDarkMode = () => {
-    document.documentElement.classList.add('dark')
-  }
 
   const handleDarkMode = () => {
-    if (mode === 'dark') setMode('light')
-    else setMode('dark')
+    if (mode === 'dark') {
+      setMode('light')
+      localStorage.theme = 'light'
+    } else {
+      setMode('dark')
+      localStorage.theme = 'dark'
+    }
   }
 
   useEffect(() => {
     const updateDarkMode = () => {
-      if (mode === 'light') {
-        document.documentElement.classList.remove('dark')
+      if (
+        localStorage.theme === 'dark' ||
+        (!('theme' in localStorage) &&
+          window.matchMedia('(prefers-color-scheme: dark)').matches)
+      ) {
+        document.documentElement.classList.add('dark')
         return
+      } else {
+        document.documentElement.classList.remove('dark')
       }
-
-      document.documentElement.classList.add('dark')
     }
-
     updateDarkMode()
+    if (document.documentElement.classList.contains('dark')) {
+      setMode('dark')
+    } else {
+      setMode('light')
+    }
   }, [setMode, mode])
 
-  declareDarkMode()
   return (
     <DarkModeContext.Provider value={{ mode, handleDarkMode }}>
       {children}
