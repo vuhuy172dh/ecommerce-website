@@ -34,12 +34,12 @@ function ProductCartPage() {
         <ProductCartList cartItems={cartItems} />
       </div>
       <div className="flex flex-row-reverse my-4">
-        <p className="text-[20px] text-primary">
+        <p className="text-[20px] text-primary dark:text-light_grey">
           Subtotal &emsp; <span className="text-[24px]">$210</span>
         </p>
       </div>
       <div className="flex flex-row-reverse">
-        <p className="text-primary text-[14px]">
+        <p className="text-primary text-[14px] dark:text-light_grey">
           Taxes and shipping are calculated at checkout
         </p>
       </div>

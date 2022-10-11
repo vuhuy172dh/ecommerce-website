@@ -1,5 +1,4 @@
 import React from 'react'
-import InfoItem from '../components/infoItem'
 import EmailSignUp from '../components/emailSignUp'
 import feature2 from '../assets/images/features1.png'
 import feature3 from '../assets/images/features3.png'
@@ -11,7 +10,7 @@ function AboutPage() {
     <div>
       {/* Page header*/}
       <div className="">
-        <p className="laptop:text-9 laptop:pt-16 laptop:pb-20 laptop:px-[450px]  text-h2 py-8 px-9 ">
+        <p className="laptop:text-9 laptop:pt-16 laptop:pb-20 laptop:px-[450px] text-h2 py-8 px-9 ">
           A brand built on the love of craftmanship, quality and outstanding
           customer service
         </p>

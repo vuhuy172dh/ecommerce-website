@@ -34,7 +34,7 @@ function ProductDetailPage() {
       {/* Product detail */}
       <section className="flex flex-col w-full tablet:flex-row tablet:gap-4">
         {/* product image list for mobile*/}
-        <div className="block tablet:hidden">
+        <div className="block tablet:hidden mb-8">
           <ProductCarousel images={images} />
         </div>
 
@@ -59,7 +59,7 @@ function ProductDetailPage() {
         </div>
 
         {/* Product information  */}
-        <div className="w-full h-full sticky top-20 bg-border_grey rounded-xl shadow-xl shadow-gray-700/40">
+        <div className="w-full h-full sticky top-20 bg-border_grey dark:bg-secondary rounded-xl shadow-lg shadow-gray-700/40 dark:shadow-gray-300/40">
           <ProductDesc
             name="The Dandy Chair"
             desc="A timeless design, with premium materials features as one of our most popular and iconic pieces. The dandy chair is perfect for any stylish living space with beech legs and lambskin leather upholstery."

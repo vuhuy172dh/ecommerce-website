@@ -12,6 +12,7 @@ import img3 from '../assets/images/SingleVase.png'
 import img4 from '../assets/images/DarkChair.png'
 import { Link } from 'react-router-dom'
 import InfoItemList from '../components/infoItemList'
+import { useDarkMode } from '../hooks/useDarkMode'
 
 const productItems = [
   {
@@ -56,6 +57,7 @@ const limitedValue = 4
 
 function HomePage() {
   const [products, setProducts] = useState([])
+  const { mode: darkMode } = useDarkMode()
 
   useEffect(() => {
     // fake fetch API with init page number
@@ -66,18 +68,18 @@ function HomePage() {
     <div className="w-full flex flex-col">
       {/* homepage poster */}
       <div className="w-full flex justify-center">
-        <div className="w-[calc(100%-2rem)] tablet:w-[calc(100%-4rem)] flex flex-col mb-8 relative rounded-3xl shadow-xl shadow-gray-700/50 overflow-hidden hover:scale-[1.01] transition-all duration-500">
+        <div className="w-[calc(100%-2rem)] tablet:w-[calc(100%-4rem)] flex flex-col mb-8 relative rounded-3xl shadow-xl shadow-gray-700/50 dark:shadow-gray-500/30 overflow-hidden hover:scale-[1.01] transition-all duration-500 dark:bg-secondary">
           {/* poster content */}
-          <div className="w-full px-8 mb-8 flex flex-col justify-between top-1/2 tablet:-translate-y-1/2 right-[5%] tablet:p-10 tablet:absolute tablet:w-1/2 laptop:w-2/5 tablet:h-1/2 tablet:bg-white">
+          <div className="w-full px-8 mb-8 flex flex-col justify-between top-1/2 tablet:-translate-y-1/2 right-[5%] tablet:p-10 tablet:absolute tablet:w-1/2 laptop:w-2/5 tablet:h-1/2 tablet:bg-white tablet:dark:bg-secondary">
             <div className="w-full flex flex-col gap-2">
-              <p className="text-h3 tablet:text-h3 text-dark_primary">
+              <p className="text-h3 tablet:text-h3 text-dark_primary dark:text-light_grey">
                 Luxury homeware for people who love timeless design quality
               </p>
-              <p className="text-body-md text-dark_primary tablet:hidden">
+              <p className="text-body-md text-dark_primary dark:text-light_grey tablet:hidden">
                 With our new collection, view over 400 bespoke pieces from
                 homeware through to furniture tody
               </p>
-              <p className="tablet:block text-body-lg text-dark_primary">
+              <p className="tablet:block text-body-lg text-dark_primary dark:text-light_grey">
                 Shop the new Spring 2022 collection today
               </p>
             </div>
@@ -108,7 +110,10 @@ function HomePage() {
       <div className="px-8 my-8 tablet:my-20">
         {/* title */}
         <div className="my-4 w-fit">
-          <LinkButton path="/products" color="dark">
+          <LinkButton
+            path="/products"
+            color={darkMode === 'light' ? 'dark' : 'light'}
+          >
             <p className="text-h3">All Product</p>
           </LinkButton>
         </div>
@@ -118,7 +123,7 @@ function HomePage() {
       {/* feature 1*/}
       <div className="w-full px-8 mb-10 flex flex-col gap-10 tablet:flex-row">
         {/* box - 1 */}
-        <div className="flex-1 flex flex-col gap-10 w-full p-8 tablet:p-12 bg-dark_primary text-white tablet:justify-between rounded-xl overflow-hidden shadow-xl shadow-gray-700/40">
+        <div className="flex-1 flex flex-col gap-10 w-full p-8 tablet:p-12 bg-dark_primary dark:bg-secondary text-white tablet:justify-between rounded-xl overflow-hidden shadow-xl shadow-gray-700/40">
           {/* content */}
           <div className="flex flex-col w-full gap-1">
             <p className="text-h4 tablet:text-h2">

@@ -4,11 +4,11 @@ import SocialMedia from './socialMedia'
 
 function Footer() {
   return (
-    <div className="w-full flex flex-col items-center bg-dark_primary">
+    <div className="w-full flex flex-col items-center bg-dark_primary dark:bg-secondary">
       {/* top footer */}
       <div className="w-full flex flex-col px-10 py-10 gap-10 text-white tablet:flex-row tablet:gap-0 tablet:items-start">
         {/* "categories" component */}
-        <div className="flex flex-col gap-5 items-center py-5 border border-primary rounded-xl tablet:border-none tablet:items-start tablet:grow">
+        <div className="flex flex-col gap-5 items-center py-5 border border-primary dark:border-light_grey/30 rounded-xl tablet:border-none tablet:items-start tablet:grow">
           <p className="text-h3 tablet:text-h5">Categories</p>
           <ul className="flex flex-col items-center gap-2 text-body-lg tablet:text-body-sm tablet:items-start">
             <li>
@@ -30,7 +30,7 @@ function Footer() {
         </div>
 
         {/* 'menu' component */}
-        <div className="flex flex-col gap-5 items-center py-5 border border-primary rounded-xl tablet:border-none tablet:items-start tablet:grow">
+        <div className="flex flex-col gap-5 items-center py-5 border border-primary dark:border-light_grey/30 rounded-xl tablet:border-none tablet:items-start tablet:grow">
           <p className="text-h3 tablet:text-h5">Menu</p>
           <ul className="flex flex-col items-center gap-2 text-body-lg tablet:text-body-sm tablet:items-start">
             <li>
@@ -52,7 +52,7 @@ function Footer() {
         </div>
 
         {/* 'our company' conponent */}
-        <div className="flex flex-col gap-5 items-center py-5 border border-primary rounded-xl tablet:border-none tablet:items-start tablet:grow">
+        <div className="flex flex-col gap-5 items-center py-5 border border-primary dark:border-light_grey/30 rounded-xl tablet:border-none tablet:items-start tablet:grow">
           <p className="text-h3 tablet:text-h5">Our company</p>
           <ul className="flex flex-col items-center gap-2 text-body-lg tablet:text-body-sm tablet:items-start">
             <li>
@@ -84,7 +84,7 @@ function Footer() {
       </div>
 
       {/* divider */}
-      <hr className="w-[calc(100%-4rem)] border-t border-t-primary" />
+      <hr className="w-[calc(100%-4rem)] border-t border-t-primary dark:border-t-light_grey" />
 
       {/* footer bottom */}
       <div className="w-full py-5 tablet:px-8 tablet:flex tablet:flex-row tablet:items-center">

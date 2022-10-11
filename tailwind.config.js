@@ -1,5 +1,6 @@
 module.exports = {
   content: ['./src/**/*.{js,jsx}'],
+  darkMode: 'class',
   theme: {
     fontSize: {
       h1: '36px',
@@ -22,6 +23,8 @@ module.exports = {
       colors: {
         primary: '#4e4d93',
         dark_primary: '#2a254b',
+        secondary: '#424242',
+        dark_secondary: '#1b1b1b',
         light_grey: '#f9f9f9',
         border_grey: '#ebe8f4',
         border_dark: '#cac6da'

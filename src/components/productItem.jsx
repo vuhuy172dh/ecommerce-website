@@ -19,11 +19,11 @@ function ProductItem({ Img, Name, Price }) {
         onClick={() => {}}
       />
       {/* this is information */}
-      <div className="w-4/5 absolute bottom-4 z-20 px-4 flex flex-col items-center bg-light_grey rounded-xl translate-y-[calc(100%+16px)] group-hover:translate-y-[calc(70%+16px)] hover:!translate-y-0 transition-all duration-200">
+      <div className="w-4/5 absolute bottom-4 z-20 px-4 flex flex-col items-center bg-light_grey dark:bg-secondary rounded-xl translate-y-[calc(100%+16px)] group-hover:translate-y-[calc(70%+16px)] hover:!translate-y-0 transition-all duration-200 dark:text-light_grey">
         <p className="text-center text-h4 py-2">
           <strong>INFO</strong>
         </p>
-        <hr className="w-[90%] border-t border-t-dark_primary" />
+        <hr className="w-[90%] border-t border-t-dark_primary dark:border-t-light_grey" />
         <div className="w-full py-2">
           <p>
             <strong>Name:</strong> {Name}

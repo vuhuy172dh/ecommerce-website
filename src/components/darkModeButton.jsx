@@ -1,7 +1,7 @@
 import { faMoon, faSun } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { AnimatePresence, motion } from 'framer-motion'
-import { useState } from 'react'
+import { useDarkMode } from '../hooks/useDarkMode'
 
 const modes = {
   light: {
@@ -15,10 +15,7 @@ const modes = {
 }
 
 function DarkModeButton() {
-  const [mode, setMode] = useState(true)
-  const handleMode = () => {
-    setMode(!mode)
-  }
+  const { mode, handleDarkMode } = useDarkMode()
 
   return (
     <AnimatePresence mode="wait">
@@ -31,9 +28,11 @@ function DarkModeButton() {
         animate={{ y: 0, opacity: 1 }}
         exit={{ y: 20, opacity: 0 }}
         transition={{ duration: 0.2 }}
-        onClick={handleMode}
+        onClick={handleDarkMode}
       >
-        <FontAwesomeIcon icon={mode ? modes.light.icon : modes.dark.icon} />
+        <FontAwesomeIcon
+          icon={mode === 'light' ? modes.light.icon : modes.dark.icon}
+        />
       </motion.div>
     </AnimatePresence>
   )
