@@ -1,9 +1,20 @@
 import Button from '../components/button'
-
+import { Link } from 'react-router-dom'
+import { useForm } from 'react-hook-form'
+import { yupResolver } from '@hookform/resolvers/yup'
+import { signupScheme } from '../validations/signup'
 // Sample img
 import WhiteRoomImg from '../assets/images/features3.png'
 
 function SignUp() {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors }
+  } = useForm({ resolver: yupResolver(signupScheme) })
+  const submitForm = (data) => {
+    console.log('Sign up form: ', data)
+  }
   return (
     <div className="flex justify-center tablet:justify-start laptop:justify-start mt-4 mx-6 gap-8 laptop:gap-16 tablet:mx-0 laptop:mx-0">
       <section className="hidden tablet:block table:basis-3/5 laptop:basis-3/5">
@@ -21,7 +32,7 @@ function SignUp() {
         </p>
 
         {/* Form Sign In */}
-        <form className="mt-10">
+        <form className="mt-10" onSubmit={handleSubmit(submitForm)}>
           {/* Fullname */}
           <label className="block">
             <h5 className="font-medium text-h5">Fullname</h5>
@@ -29,7 +40,11 @@ function SignUp() {
               className="block w-full mt-2 px-4 py-3 rounded border border-solid border-border_dark"
               type="text"
               placeholder="Enter your fullname*"
+              {...register('fullname')}
             />
+            <p className="text-body-sm text-red-700">
+              {errors.fullname?.message}
+            </p>
           </label>
 
           {/* Email */}
@@ -37,9 +52,11 @@ function SignUp() {
             <h5 className="font-medium text-h5">Email</h5>
             <input
               className="block w-full mt-2 px-4 py-3 rounded border border-solid border-border_dark"
-              type="text"
+              type="email"
               placeholder="Enter your email*"
+              {...register('email')}
             />
+            <p className="text-body-sm text-red-700">{errors.email?.message}</p>
           </label>
 
           {/* Password */}
@@ -49,14 +66,12 @@ function SignUp() {
               className="block w-full mt-2 px-4 py-3 rounded border border-solid border-border_dark"
               type="password"
               placeholder="Create password*"
+              {...register('password')}
             />
+            <p className="text-body-sm text-red-700">
+              {errors.password?.message}
+            </p>
           </label>
-
-          {/* Another */}
-          <p className="text-h6 mt-4 text-gray-500 font-normal">
-            Password must be least 8 characters long.
-          </p>
-
           <div className="mt-5 flex rounded overflow-hidden">
             <Button Color="primary" Size="small">
               Sign up
@@ -67,9 +82,9 @@ function SignUp() {
         {/* Direct sign in page */}
         <p className="text-h6 mt-6 text-center text-gray-500 font-normal">
           Already a member? &nbsp;
-          <a href="/signin" className="text-dark_primary">
-            <u>Sign in</u>
-          </a>
+          <Link to="/signin">
+            <u className="text-dark_primary">Sign in</u>
+          </Link>
         </p>
       </section>
     </div>
