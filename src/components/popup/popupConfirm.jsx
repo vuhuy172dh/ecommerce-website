@@ -1,7 +1,7 @@
 import Popup from "./popup"
 import Button from "../button"
 
-function PopupConfirm ({Title = "Title", Content = "Content", onBack , onConfirm = {}}) {
+function PopupConfirm ({Title = "Title", Content = "Content", onBack , onConfirm}) {
     return(
         <Popup>
             <div className="w-[450px]">

@@ -9,32 +9,36 @@ import { useState } from "react"
       name: "Hoàng Văn Phúc",
       phoneNumber:"0123321760",
       address:"Ktx khu A ĐHQG, Đường Tạ Quang Bửu, Phường Linh Trung Thành Phố Thủ Đức, TP. Hồ Chí Minh, Phường Linh Trung Thành Phố Thủ Đức, TP. Hồ Chí Minh",
-      default: true
+      default: true,
+      province: "Bình Định",
+      district: "Quy Nhơn",
+      ward: "Trần Phú"
     },
     {
       id: 2,
       name: "Hoàng Văn Phúc",
       phoneNumber:"0123321760",
       address:"Ktx khu A ĐHQG, Đường Tạ Quang Bửu, Phường Linh Trung Thành Phố Thủ Đức, TP. Hồ Chí Minh",
-      default: false
+      default: false,
+      province: "Bình Định",
+      district: "Quy Nhơn",
+      ward: "Trần Phú"
     },
     {
       id: 3,
       name: "Hoàng Văn Phúc",
       phoneNumber:"0123321760",
       address:"Ktx khu A ĐHQG, Đường Tạ Quang Bửu, Phường Linh Trung Thành Phố Thủ Đức, TP. Hồ Chí Minh, Phường Linh Trung Thành Phố Thủ Đức, TP. Hồ Chí Minh",
-      default: false
+      default: false,
+      province: "Bình Định",
+      district: "Quy Nhơn",
+      ward: "Trần Phú"
     }
   ]
 
   function Address() {
 
     const [popupAddress, setPopupAddress] = useState(false);
-
-    const handleAddress = () => {
-      // show modal address
-      setPopupAddress(true);
-    }
 
     return (
       <>
@@ -44,14 +48,14 @@ import { useState } from "react"
               <h3 className="text-body-lg font-semibold text-dark_primary">Địa chỉ giao hàng</h3>
               <p className="text-body-md text-border_dark">Quản lý địa chỉ giao hàng của bạn</p>
             </div>
-            <div className="max-w-sm"><Button Color="primary" onClick={handleAddress}>Thêm địa chỉ</Button></div>
+            <div className="max-w-sm"><Button Color="primary" onClick={()=>setPopupAddress(true)}>Thêm địa chỉ</Button></div>
           </header>
           <div>
             <AddressList addressList={addressList}/>
           </div>
         </div>
         {
-          popupAddress && <PopupAddress/>
+          popupAddress && <PopupAddress onBack={()=>setPopupAddress(false)}/>
         }
       </>
     )

@@ -3,7 +3,7 @@ import { faCheck, faXmark } from '@fortawesome/free-solid-svg-icons'
 
 function PopupStatus({success, failure, children}){
     return(
-        <div className="flex fixed top-0 right-0 left-0 bottom-0">
+        <div className="flex fixed top-0 right-0 left-0 bottom-0 animate-[fadeOut_2s_ease-in-out]">
             <div className="w-[300px] bg-gray-800 bg-opacity-60 m-auto z-20 rounded-md  px-8 py-5">
                 {
                     success && 
@@ -23,4 +23,4 @@ function PopupStatus({success, failure, children}){
     )
 }
 
-export default ResponStatus
+export default PopupStatus
