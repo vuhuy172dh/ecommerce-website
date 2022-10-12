@@ -135,8 +135,8 @@ function PopupAddress ({type = "create", address, onBack = () => {}}) {
     return(
       <>
         <Popup> 
-          <div className="w-[450px]">
-            <h3 className="text-body-lg font-semibold mb-5">Địa chỉ mới</h3>
+          <div className="w-full laptop:w-[450px]">
+            <h3 className="text-center mb-3 laptop:text-left text-body-lg font-semibold laptop:mb-5">{type === 'create'? 'Địa chỉ mới': 'Sửa địa chỉ'}</h3>
             <div className="flex flex-col gap-4">
               <div className="flex gap-2">
                 <input className="border border-1 border-primary border-solid w-1/2 h-9 px-2 outline-none" type="text" name="name" placeholder="Họ và tên" value={newAddress.Name} onChange={handleChange} />
@@ -178,7 +178,7 @@ function PopupAddress ({type = "create", address, onBack = () => {}}) {
               </select>
   
               <input className="border border-1 border-primary border-solid w-full h-9 px-2 outline-none" type="text" name="address" placeholder="Tên đường/ Số nhà" value={newAddress.Address} onChange={handleChange}/>
-              <div className="flex justify-end gap-3">
+              <div className="flex justify-center laptop:justify-end gap-3">
                 <div className=""><Button Color="secondary" onClick={() => onBack()}>Trở về</Button></div>
                 {
                   type === "create"? (<div><Button Color="primary" onClick={handleAddAddress}>Thêm địa chỉ</Button></div>):('')

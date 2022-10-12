@@ -42,13 +42,13 @@ import { useState } from "react"
 
     return (
       <>
-        <div className="bg-white py-5 px-10">
-          <header className="flex justify-between items-center border-b-2 border-primary pb-3">
+        <div className="px-4 bg-white py-5 laptop:px-10">
+          <header className="text-center laptop:text-left laptop:flex laptop:justify-between laptop:items-center laptop:border-b-2 border-primary pb-3">
             <div>
               <h3 className="text-body-lg font-semibold text-dark_primary">Địa chỉ giao hàng</h3>
-              <p className="text-body-md text-border_dark">Quản lý địa chỉ giao hàng của bạn</p>
+              <p className="mb-3 laptop:mb-0 text-body-md text-border_dark">Quản lý địa chỉ giao hàng của bạn</p>
             </div>
-            <div className="max-w-sm"><Button Color="primary" onClick={()=>setPopupAddress(true)}>Thêm địa chỉ</Button></div>
+            <div className="flex laptop:max-w-sm"><Button Color="primary" onClick={()=>setPopupAddress(true)}>Thêm địa chỉ</Button></div>
           </header>
           <div>
             <AddressList addressList={addressList}/>
