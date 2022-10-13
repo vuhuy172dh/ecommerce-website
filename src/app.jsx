@@ -17,6 +17,7 @@ import Address from './components/user/address'
 import Profile from './components/user/profile'
 import Purchase from './components/user/purchase'
 import Wishlist from './components/user/wishlist'
+import ChangePassword from './components/user/changePassword'
 
 const SidebarLayout = () => (
   <div className="laptop:flex">
@@ -43,6 +44,10 @@ function App() {
             <Route path="/user/account/address" element={<Address />} />
             <Route path="/user/account/purchases" element={<Purchase />} />
             <Route path="/user/account/wishlist" element={<Wishlist />} />
+            <Route
+              path="/user/account/changePassword"
+              element={<ChangePassword />}
+            />
           </Route>
           <Route path="/producCart" element={<ProductCartPage />} />
           <Route path="/products" element={<ProductListingPage />} />

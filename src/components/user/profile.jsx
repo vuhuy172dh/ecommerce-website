@@ -1,4 +1,4 @@
-import Button from "../button"
+import Button from '../button'
 const colors = {
   dark: ['bg-[rgba(255,255,255,0.15)]', 'white'],
   light: ['bg-light_grey', 'primary']
@@ -104,12 +104,8 @@ function Profile({ Color = 'light' }) {
         {/* Edit profile image */}
         <div></div>
       </div>
-      <div className='flex w-full laptop:w-1/6 laptop:mt- mobile:mb-16 mt-16'>
-        <Button
-          Size="medium"
-          Color="primary"
-          State="default"
-        >
+      <div className="flex w-full laptop:w-1/6 laptop:mt- mobile:mb-16 mt-16">
+        <Button Size="medium" Color="primary" State="default">
           Save
         </Button>
       </div>
