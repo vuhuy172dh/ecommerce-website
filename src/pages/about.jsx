@@ -3,11 +3,17 @@ import EmailSignUp from '../components/emailSignUp'
 import feature2 from '../assets/images/features1.png'
 import feature3 from '../assets/images/features3.png'
 import Button from '../components/button'
+import { Helmet } from 'react-helmet-async'
 import InfoItemList from '../components/infoItemList'
 
 function AboutPage() {
   return (
     <div>
+      {/*Helmet async*/}
+      <Helmet>
+        <title>About</title>
+      </Helmet>
+
       {/* Page header*/}
       <div className="">
         <p className="laptop:text-9 laptop:pt-16 laptop:pb-20 laptop:px-[450px] text-h2 py-8 px-9 ">

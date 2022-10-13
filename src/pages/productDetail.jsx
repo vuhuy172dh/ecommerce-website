@@ -5,6 +5,7 @@ import useScrollPosition from '../hooks/useScrollPosition'
 import DandyChairImg from '../assets/images/DandyChair.png'
 import CeilingLamp from '../assets/images/CeilingLamp.png'
 import WhiteRoomImg from '../assets/images/features3.png'
+import { Helmet } from 'react-helmet-async'
 import InfoItemList from '../components/infoItemList'
 import ProductDesc from '../components/productDesc'
 import ProductCarousel from '../components/productCarousel'
@@ -12,7 +13,19 @@ import ProductScrollView from '../components/productScrollView'
 import Overview from '../components/overview'
 import useClientRect from '../hooks/useClientRect'
 
-const images = [DandyChairImg, CeilingLamp, DandyChairImg, CeilingLamp]
+const product = {
+  name: 'The Dandy Chair',
+  description:
+    'A timeless design, with premium materials features as one of our most popular and iconic pieces. The Dandy Chair is perfect for any stylish living space with beech legs and lambskin leather upholstery.',
+  price: 250,
+  dimensions: {
+    height: 110,
+    width: 75,
+    depth: 50
+  },
+  quantity: 0,
+  images: [DandyChairImg, CeilingLamp, DandyChairImg, CeilingLamp]
+}
 
 function ProductDetailPage() {
   // get scroll position
@@ -31,24 +44,27 @@ function ProductDetailPage() {
 
   return (
     <div className="mx-2 tablet:mx-6 laptop:mx-20">
+      {/*helmet async*/}
+      <Helmet>
+        <title>{product.name}</title>
+      </Helmet>
+
       {/* Product detail */}
       <section className="flex flex-col w-full tablet:flex-row tablet:gap-4">
         {/* product image list for mobile*/}
         <div className="block tablet:hidden mb-8">
-          <ProductCarousel images={images} />
+          <ProductCarousel images={product.images} />
         </div>
 
         {/* product image list for laptop */}
         <div className="w-full hidden tablet:block" ref={imgsRef}>
-          <ProductScrollView
-            images={[DandyChairImg, CeilingLamp, DandyChairImg, CeilingLamp]}
-          />
+          <ProductScrollView images={product.images} />
         </div>
 
         {/* floating overview */}
         <div className="hidden tablet:block">
           <Overview
-            images={images}
+            images={product.images}
             visible={
               scrollY <= (imgsRect?.height / 4) * 3 + 144 && scrollY > 0
                 ? true
@@ -61,11 +77,11 @@ function ProductDetailPage() {
         {/* Product information  */}
         <div className="w-full h-full sticky top-20 bg-border_grey dark:bg-secondary rounded-xl shadow-lg shadow-gray-700/40 dark:shadow-gray-300/40">
           <ProductDesc
-            name="The Dandy Chair"
-            desc="A timeless design, with premium materials features as one of our most popular and iconic pieces. The dandy chair is perfect for any stylish living space with beech legs and lambskin leather upholstery."
-            price={250}
-            dimensions={{ height: 110, width: 75, depth: 50 }}
-            quantity={5}
+            name={product.name}
+            desc={product.description}
+            price={product.price}
+            dimensions={product.dimensions}
+            quantity={product.quantity}
           />
         </div>
       </section>

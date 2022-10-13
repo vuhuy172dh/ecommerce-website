@@ -1,6 +1,7 @@
 import ProductCartList from '../components/productCartList'
 import img1 from '../assets/images/BlueChair.png'
 import Button from './../components/button'
+import { Helmet } from 'react-helmet-async'
 
 function ProductCartPage() {
   //fake API
@@ -22,6 +23,11 @@ function ProductCartPage() {
   ]
   return (
     <div className="w-[100%] mb-12 p-6 laptop:px-[180px] laptop:py-16">
+      {/*Helmet async*/}
+      <Helmet>
+        <title>Cart</title>
+      </Helmet>
+
       {/*Product Cart*/}
       <div className="border-b-2 border-primary-300">
         <p className="text-[24px] laptop:text-[36px]">Your shopping cart</p>

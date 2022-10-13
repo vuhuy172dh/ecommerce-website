@@ -8,6 +8,7 @@ import img3 from '../assets/images/SingleVase.png'
 import img4 from '../assets/images/DarkChair.png'
 import clubImg from '../assets/images/features3.png'
 import ProductItemListing from '../components/productItemListing'
+import { Helmet } from 'react-helmet-async'
 
 const productItems = [
   {
@@ -78,6 +79,11 @@ function ProductListingPage() {
 
   return (
     <div className="relative">
+      {/*Helmet async*/}
+      <Helmet>
+        <title>Products</title>
+      </Helmet>
+
       {/* this is Header component */}
       <header className=" bg-light_grey dark:bg-secondary py-8 px-6 laptop:bg-white dark:laptop:bg-dark_secondary laptop:pt-20 laptop:pb-3 laptop:px-20 relative z-30">
         <h2 className="text-center mb-10 text-h2 laptop:mb-8">

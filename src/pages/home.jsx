@@ -11,6 +11,7 @@ import img2 from '../assets/images/CeilingLamp.png'
 import img3 from '../assets/images/SingleVase.png'
 import img4 from '../assets/images/DarkChair.png'
 import { Link } from 'react-router-dom'
+import { Helmet } from 'react-helmet-async'
 import InfoItemList from '../components/infoItemList'
 import { useDarkMode } from '../hooks/useDarkMode'
 
@@ -66,6 +67,11 @@ function HomePage() {
 
   return (
     <div className="w-full flex flex-col">
+      {/*Helmet async*/}
+      <Helmet>
+        <title>Avion</title>
+      </Helmet>
+
       {/* homepage poster */}
       <div className="w-full flex justify-center">
         <div className="w-[calc(100%-2rem)] tablet:w-[calc(100%-4rem)] flex flex-col mb-8 relative rounded-3xl shadow-xl shadow-gray-700/50 dark:shadow-gray-500/30 overflow-hidden hover:scale-[1.01] transition-all duration-500 dark:bg-secondary">

@@ -7,6 +7,7 @@ import { signinScheme } from '../validations/signin'
 
 // Sample img
 import WhiteRoomImg from '../assets/images/features3.png'
+import { Helmet } from 'react-helmet-async'
 
 function SignIn() {
   const {
@@ -22,6 +23,11 @@ function SignIn() {
   return (
     <div className="flex w-screen h-screen justify-center tablet:justify-start laptop:justify-start relative">
       {/*background*/}
+      {/*Helmet async*/}
+      <Helmet>
+        <title>Sign In</title>
+      </Helmet>
+
       <section className="w-full h-full hidden tablet:block relative z-10">
         <img
           className="w-full h-full object-cover relative z-10"
