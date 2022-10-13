@@ -43,15 +43,7 @@ function Purchase() {
       </nav>
 
       {/*Puchase container*/}
-      <section className="w-full">
-        {click === 0 ? (
-          <Delivering />
-        ) : click === 1 ? (
-          <Delivered />
-        ) : (
-          <Canceled />
-        )}
-      </section>
+      <section className="w-full"></section>
     </div>
   )
 }
