@@ -1,3 +1,4 @@
+import { Helmet } from 'react-helmet-async'
 import Button from '../button'
 const colors = {
   dark: ['bg-[rgba(255,255,255,0.15)]', 'white'],
@@ -7,7 +8,11 @@ const colors = {
 function Profile({ Color = 'light' }) {
   return (
     // Title
-    <div className="flex-row py-4 laptop:w-full">
+    <div className="flex-row px-6 laptop:w-full">
+      <Helmet>
+        <title>Profile</title>
+      </Helmet>
+
       <div className="border-b-2 border-primary-300 mb-5">
         <div className="laptop:text-h4">Personal information</div>
         <div className="text-body-sm laptop:text-body-md laptop:mb-2">

@@ -2,6 +2,7 @@ import Button from '../button'
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { changePasswordScheme } from '../../validations/changePassword'
+import { Helmet } from 'react-helmet-async'
 
 function ChangePassword() {
   const {
@@ -16,7 +17,12 @@ function ChangePassword() {
     console.log(data)
   }
   return (
-    <div className="w-full my-6 flex flex-col mx-4">
+    <div className="w-full px-6 flex flex-col">
+      {/*Helmet async*/}
+      <Helmet>
+        <title>Change Password</title>
+      </Helmet>
+
       <div className="flex flex-col items-start">
         <p className="text-h4">Change Password</p>
         <p className="text-body-sm">

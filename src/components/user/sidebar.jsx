@@ -3,7 +3,7 @@ import CeilingLamp from '../../assets/images/CeilingLamp.png'
 
 function Sidebar() {
   return (
-    <nav className="w-full h-10 bg-border_grey flex justify-center items-center laptop:w-1/5 laptop:h-screen laptop:flex-col laptop:justify-start laptop:rounded-tr-lg laptop:rounded-br-lg laptop:mr-8">
+    <nav className="w-full h-10 bg-border_grey flex justify-start tablet:justify-center overflow-auto no-scrollbar items-center laptop:w-1/5 laptop:h-screen laptop:flex-col laptop:justify-start laptop:rounded-tr-lg laptop:rounded-br-lg laptop:mr-8">
       {/*user avatar and name*/}
       <div className="items-center justify-center gap-2 my-10 hidden laptop:flex">
         {/*user avatar*/}
