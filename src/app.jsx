@@ -17,16 +17,20 @@ import DarkModeButton from './components/darkModeButton'
 import CartFloatButton from './components/cartFloatButton'
 
 function App() {
+  let path = window.location.pathname
+  console.log(path)
   return (
     <div>
-      <header>
-        <NavMode>
-          <Navbar />
-          <NavDrawer />
-        </NavMode>
-        <DarkModeButton />
-        <CartFloatButton />
-      </header>
+      {path === '/signin' || path === '/signup' || (
+        <header>
+          <NavMode>
+            <Navbar />
+            <NavDrawer />
+          </NavMode>
+          <DarkModeButton />
+          <CartFloatButton />
+        </header>
+      )}
       <main>
         <Routes>
           <Route path="/" element={<HomePage />} />
@@ -41,9 +45,11 @@ function App() {
           <Route path="/forgetPassword" element={<ForgetPassword />} />
         </Routes>
       </main>
-      <footer>
-        <Footer />
-      </footer>
+      {path === '/signin' || path === '/signup' || (
+        <footer>
+          <Footer />
+        </footer>
+      )}
     </div>
   )
 }

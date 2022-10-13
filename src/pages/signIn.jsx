@@ -20,40 +20,39 @@ function SignIn() {
   }
 
   return (
-    <div className="flex justify-center tablet:justify-start laptop:justify-start mt-4 mx-6 gap-8 laptop:gap-16 tablet:mx-0 laptop:mx-0">
-      <section className="hidden tablet:block table:basis-3/5 laptop:basis-3/5">
+    <div className="flex w-screen h-screen justify-center tablet:justify-start laptop:justify-start relative">
+      {/*background*/}
+      <section className="w-full h-full hidden tablet:block relative z-10">
         <img
-          className="w-full h-full object-cover"
+          className="w-full h-full object-cover relative z-10"
           src={WhiteRoomImg}
           alt="Ảnh nội thất"
         />
+        <div className="w-full h-full block bg-black/60 absolute top-0 z-20"></div>
       </section>
-      <section className="max-w-sm mb-7 flex-1 tablet:pr-8 table:basis-2/5 laptop:basis-2/5">
-        {/* Greeting go here */}
-        <h1 className="text-h1 my-2 ">Welcome back</h1>
-        <p className="text-body-md text-border_dark">
-          We are so happy to see you again.
-        </p>
 
+      {/*login container*/}
+      <section className="w-full laptop:w-fit laptop:py-12 laptop:absolute z-20 laptop:top-1/2 laptop:-translate-y-1/2 laptop:left-1/2 laptop:-translate-x-1/2 laptop:bg-white/10 laptop:backdrop-blur-lg laptop:shadow-lg laptop:shadow-black/30 laptop:rounded-2xl">
+        <a href="/">
+          <p className="w-full text-h2 text-center">Avion</p>
+        </a>
         {/* Form Sign In */}
-        <form className="mt-10" onSubmit={handleSubmit(submitForm)}>
+        <form className="mt-5 px-4" onSubmit={handleSubmit(submitForm)}>
           {/* Email */}
-          <label className="block">
-            <h5 className="font-medium text-h5">Email</h5>
+          <div>
             <input
-              className="block w-full mt-2 px-4 py-3 rounded border border-solid border-border_dark"
+              className="block w-full mt-2 px-4 py-3 rounded border border-border_dark"
               type="email"
               placeholder="Enter your email"
               {...register('email')}
             />
             <p className="text-body-sm text-red-700">{errors.email?.message}</p>
-          </label>
+          </div>
 
           {/* Password */}
-          <label className="mt-5 block">
-            <h5 className="font-medium text-h5">Password</h5>
+          <div>
             <input
-              className="block w-full mt-2 px-4 py-3 rounded border border-solid border-border_dark"
+              className="block w-full mt-2 px-4 py-3 rounded border border-border_dark"
               type="password"
               placeholder="Enter your password"
               {...register('password')}
@@ -61,7 +60,7 @@ function SignIn() {
             <p className="text-body-sm text-red-700">
               {errors.password?.message}
             </p>
-          </label>
+          </div>
 
           {/* Another */}
           <div className="mt-5 flex justify-between">
@@ -74,13 +73,13 @@ function SignIn() {
             <span className="text-right">
               <a
                 href="/forgetPassword"
-                className="text-h6 font-medium text-primary"
+                className="text-h6 font-medium text-primary laptop:text-border_grey"
               >
                 Forgot password
               </a>
             </span>
           </div>
-          <div className="mt-5 flex rounded overflow-hidden">
+          <div className="mt-4">
             <Button Color="primary" Size="small">
               Sign in
             </Button>
@@ -89,34 +88,34 @@ function SignIn() {
 
         {/* Divider */}
         <div className="flex items-center mt-6 justify-between">
-          <span className="border-t-[0.5px] border-gray-border w-[45%]" />
+          <span className="border-t-[0.5px] border-border_grey w-[45%]" />
           <span>or</span>
-          <span className="border-t-[0.5px] border-gray-border w-[45%]" />
+          <span className="border-t-[0.5px] border-border_grey w-[45%]" />
         </div>
 
         {/* Sign in with another social media */}
-        <div className="mt-5 flex rounded overflow-hidden border border-solid border-border_dark">
+        <div className="flex w-full flex-col laptop:flex-row laptop:justify-center laptop:items-center laptop:gap-8 mt-5 px-4">
           <Button Size="small">
             <span>
               <Icon icon="google_28" />
             </span>
-            Sign in with Google
+            <span className="block laptop:hidden">Sign in with Google</span>
+            <span className="hidden laptop:block">Google</span>
           </Button>
-        </div>
-        <div className="mt-5 flex rounded overflow-hidden border border-solid border-border_dark">
           <Button Size="small">
             <span>
               <Icon icon="facebook_28" />
             </span>
-            Sign in with Facebook
+            <span className="block laptop:hidden">Sign in with Facebook</span>
+            <span className="hidden laptop:block">Facebook</span>
           </Button>
         </div>
 
         {/* Direct sign up page */}
-        <p className="text-h6 mt-6 text-center text-gray-500 font-normal">
+        <p className="text-h6 mt-6 text-center text-border_dark font-normal">
           Don't have an account? &nbsp;
           <Link to="/signup">
-            <u className="text-dark_primary primary">Sign up</u>
+            <u className="text-dark_primary laptop:text-light_grey">Sign up</u>
           </Link>
         </p>
       </section>
