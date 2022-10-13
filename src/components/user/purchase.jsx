@@ -1,8 +1,5 @@
 import { useState } from 'react'
 import Button from '../button'
-import Delivering from '../delivering'
-import Delivered from '../delivered'
-import Canceled from '../canceled'
 
 function Purchase() {
   const [click, setClick] = useState(0)
