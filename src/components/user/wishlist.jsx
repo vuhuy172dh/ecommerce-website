@@ -64,7 +64,7 @@ const wishlistItems = [
 
 function Wishlist() {
   return (
-    <div className="w-full px-4 h-full overflow-auto">
+    <div className="w-full px-4 pb-14 h-full overflow-auto">
       <ProductItemListing products={wishlistItems} />
     </div>
   )
