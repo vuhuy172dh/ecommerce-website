@@ -6,10 +6,29 @@ import Counter from '../components/counter'
 // Sample img
 import DandyChairImg from '../assets/images/DandyChair.png'
 import WhiteRoomImg from '../assets/images/features3.png'
+import { Helmet } from 'react-helmet-async'
+
+const product = {
+  name: 'The Dandy Chair',
+  description:
+    'A timeless design, with premium materials features as one of our most popular and iconic pieces. The Dandy Chair is perfect for any stylish living space with beech legs and lambskin leather upholstery.',
+  price: 250,
+  dimensions: {
+    height: 110,
+    width: 75,
+    depth: 50
+  },
+  quantity: 0
+}
 
 function ProductDetailPage() {
   return (
     <div className="text-dark_primary mx-6 laptop:mx-20">
+      {/*helmet async*/}
+      <Helmet>
+        <title>{product.name}</title>
+      </Helmet>
+
       {/* Product detail */}
       <section className="grid grid-cols-4 gap-x-5 px-6 -mx-6 bg-light_grey laptop:grid-cols-12 laptop:py-12 laptop:-mx-20 laptop:px-20">
         <div className="col-span-4 -mx-6 laptop:mx-0 laptop:col-span-6">
@@ -23,7 +42,7 @@ function ProductDetailPage() {
           {/* Top Text */}
           <div className="mt-7 mb-4 laptop:mt-9 laptop:mb-7">
             <h3 className="text-h3 mb-3 laptop:text-h1 laptop:mb-4">
-              The Dandy Chair
+              {product.name}
             </h3>
             <h4 className="text-h4 laptop:text-h3">£250</h4>
           </div>
@@ -32,10 +51,7 @@ function ProductDetailPage() {
           <div className="mt-7 laptop:mt-6">
             <h5 className="text-h5 mb-3">Product description</h5>
             <small className="text-body-sm laptop:text-body-md">
-              A timeless design, with premium materials features as one of our
-              most popular and iconic pieces. The dandy chair is perfect for any
-              stylish living space with beech legs and lambskin leather
-              upholstery.
+              {product.description}
             </small>
           </div>
           {/* Dimensions */}
@@ -47,18 +63,22 @@ function ProductDetailPage() {
               <div>
                 <h6 className="text-h6 mb-4">Height</h6>
                 <small className="text-body-sm laptop:text-body-md">
-                  110cm
+                  {product.dimensions.height}cm
                 </small>
               </div>
               <div className="h-11 w-1 bg-border_grey"></div>
               <div>
                 <h6 className="text-h6 mb-4">Width</h6>
-                <small className="text-body-sm laptop:text-body-md">75cm</small>
+                <small className="text-body-sm laptop:text-body-md">
+                  {product.dimensions.width}cm
+                </small>
               </div>
               <div className="h-11 w-1 bg-border_grey"></div>
               <div>
                 <h6 className="text-h6 mb-4">Depth</h6>
-                <small className="text-body-sm laptop:text-body-md">50cm</small>
+                <small className="text-body-sm laptop:text-body-md">
+                  {product.dimensions.depth}cm
+                </small>
               </div>
             </div>
           </div>

@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react'
 import Button from '../components/button'
-import ProductItem from '../components/productItem'
 import EmailField from '../components/emailField'
 
 import img1 from '../assets/images/ThreeVases.png'
@@ -9,6 +8,7 @@ import img3 from '../assets/images/SingleVase.png'
 import img4 from '../assets/images/DarkChair.png'
 import clubImg from '../assets/images/features3.png'
 import ProductItemListing from '../components/productItemListing'
+import { Helmet } from 'react-helmet-async'
 
 function ProductListingPage() {
   const productItems = [
@@ -79,6 +79,11 @@ function ProductListingPage() {
 
   return (
     <div>
+      {/*Helmet async*/}
+      <Helmet>
+        <title>Products</title>
+      </Helmet>
+
       {/* this is Header component */}
       <header className=" bg-light_grey py-8 px-6 laptop:bg-white laptop:pt-20 laptop:pb-3 laptop:px-20">
         <h2 className="text-center mb-10 text-h2 laptop:mb-8">
