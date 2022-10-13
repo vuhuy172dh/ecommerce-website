@@ -29,30 +29,30 @@ function AddressItem({address}) {
                 {/* info contact*/}
                 <div>
                     <div className="laptop:flex items-center laptop:min-h-[56px]">
-                        <p className="hidden laptop:block laptop:min-w-[200px] text-right mr-8 text-border_dark">Họ và tên:</p>
+                        <p className="hidden laptop:block laptop:min-w-[200px] text-right mr-8 text-border_dark">Full name:</p>
                         <p className="mt-2 font-semibold laptop:font-normal laptop:mt-0 text-primary tracking-widest">{address.Name}</p>
-                        { address.Default && <div className="hidden laptop:block ml-8"><Button Color="primary">Địa chỉ giao hàng</Button></div> }
+                        { address.Default && <div className="hidden laptop:block ml-8"><Button Color="primary">Default address</Button></div> }
                     </div>
                     <div className="flex items-center laptop:min-h-[56px]">
-                        <p className="hidden laptop:block laptop:min-w-[200px] text-right mr-8 text-border_dark">Số điện thoại:</p>
+                        <p className="hidden laptop:block laptop:min-w-[200px] text-right mr-8 text-border_dark">Phone number:</p>
                         <p className="mt-2 font-semibold laptop:font-normal laptop:mt-0 text-primary tracking-widest">{address.PhoneNumber}</p>
                     </div>
                 </div>
                 {/* control button laptop*/}
                 <div className="hidden laptop:block">
-                    <Button onClick={() => setPopupDelete(true)}>Xóa</Button>
-                    <Button onClick = {() => setPopupUpdate(true)}>Sửa</Button>
+                    <Button onClick={() => setPopupDelete(true)}>Delete</Button>
+                    <Button onClick = {() => setPopupUpdate(true)}>Edit</Button>
                 </div>
             </div>
             {/* info address */}
             <div className="flex items-center laptop:min-h-[56px]">
-                <p className="hidden laptop:block min-w-[200px] text-right mr-8 text-border_dark">Địa chỉ:</p>
+                <p className="hidden laptop:block min-w-[200px] text-right mr-8 text-border_dark">Address:</p>
                 <p className="mt-2 laptop:mt-0 laptop:max-w-[50%] text-primary tracking-widest">{addressDefault}</p>
             </div>
             <div className="flex items-center">
-                <p className="hidden laptop:block min-w-[200px] text-right mr-8 text-border_dark">Chi tiết:</p>
+                <p className="hidden laptop:block min-w-[200px] text-right mr-8 text-border_dark">Detail address:</p>
                 <p className="my-2 laptop:my-0 laptop:max-w-[50%] text-primary tracking-widest">{address.Address}</p>
-                <div className="hidden laptop:block ml-auto"><Button Color="primary" State={address.Default ? "disable" : "default"} onClick={address.Default ? ()=>{} : () => setPopupDefaultAddress(true)}>Chọn làm địa chỉ giao hàng</Button></div>
+                <div className="hidden laptop:block ml-auto"><Button Color="primary" State={address.Default ? "disable" : "default"} onClick={address.Default ? ()=>{} : () => setPopupDefaultAddress(true)}>Choose as default</Button></div>
             </div>
             {/* control button mobile*/}
             <div className="flex gap-2 laptop:hidden">
@@ -63,8 +63,8 @@ function AddressItem({address}) {
 
             {/* Popup confirm delete */}
             { popupDelete && <PopupConfirm 
-                Title='Xác nhận xóa địa chỉ giao hàng' 
-                Content='Bạn có chắc chắn xóa địa chỉ này?' 
+                Title='Delete address' 
+                Content='Are you sure to delete this address?' 
                 onBack = {() => setPopupDelete(false)} 
                 onConfirm={handleDeleteAddress}/>
             }
@@ -74,8 +74,8 @@ function AddressItem({address}) {
             
             {/* Popup confirm set address default */}
             { popupDefaultAddress && <PopupConfirm 
-                Title='Xác nhận chọn địa chỉ giao hàng' 
-                Content='Bạn có chắc chắn chọn địa chỉ này làm mặc định?' 
+                Title='Choose default address' 
+                Content='Are you sure to choose this address as the default?' 
                 onBack = {() => setPopupDefaultAddress(false)} 
                 onConfirm={handleConfirmAddressDefault}/>
             }

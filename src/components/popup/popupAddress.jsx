@@ -1,15 +1,15 @@
 import Popup from "./popup"
 import Button from "../button"
-import PopupStatus from "../popup/popupStatus"
 import { useEffect, useState } from "react"
 
 import {useForm} from "react-hook-form" 
 import {yupResolver} from "@hookform/resolvers/yup"
 import * as yup from "yup"
 
+const phoneRegex = RegExp( /^\(?([0-9]{4})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{3})$/ )
 const schema = yup.object().shape({
   fullname: yup.string().required('Name should be required please'),
-  phone: yup.string().required('Phone should be required please'),
+  phone: yup.string().matches(phoneRegex,"Phone number is not valid").required('Phone should be required please'),
   province: yup.string().required('Province is required'),
   district: yup.string().required('District is required'),
   ward: yup.string().required('Ward  is required'),
@@ -21,13 +21,35 @@ function PopupAddress ({type = "create", address, onBack = () => {}}) {
 
   const provinceAPI = 'https://provinces.open-api.vn/api/'
 
+  // Default address:
+  const defaultAddress = {
+    fullname: '',
+    phone: '',
+    province: '',
+    district: '',
+    ward: '',
+    address: ''
+  }
+  function checkUpdateType(){
+    if(type === 'update'){
+      defaultAddress.fullname = address.Name
+      defaultAddress.phone = address.PhoneNumber
+      // defaultAddress.province = undefined
+      // defaultAddress.district = undefined
+      // defaultAddress.ward = undefined
+      defaultAddress.address = address.Address
+    }
+  }checkUpdateType()
+
   // declare useForm validation:
   const {
     register,
     handleSubmit,
-    clearErrors, 
     formState: {errors}
-  } = useForm({ resolver: yupResolver(schema) })
+  } = useForm({ 
+    defaultValues: defaultAddress,
+    resolver: yupResolver(schema) 
+  })
 
   // Create register:
   const fullname = register('fullname');
@@ -44,7 +66,6 @@ function PopupAddress ({type = "create", address, onBack = () => {}}) {
   const [isProvinceSelected, setIsProvinceSelected] = useState(false)
   const [isDistrictSelected, setIsDistrictSelected] = useState(false)
   const [isWardSelected, setIsWardSelected] = useState(false)
-  // const [isSuccess, setIsSuccess] = useState(false)
 
   const [newAddress, setNewAddress] = useState({
     Name: '',
@@ -62,7 +83,6 @@ function PopupAddress ({type = "create", address, onBack = () => {}}) {
   useEffect(() => {
     getProvince();
     if(type === 'update'){
-      clearErrors()
       setNewAddress({
         ...newAddress,
         Name: address.Name,
@@ -168,36 +188,31 @@ function PopupAddress ({type = "create", address, onBack = () => {}}) {
     }
   }
 
-  // handle add Address
-  const handleAddAddress = (data) => {
-    // HANDLE HERE
-    // setIsSuccess(true)
-    // setTimeout(()=>{
-    //   setIsSuccess(false)
-    //   onBack()
-    // }, 2000)
 
-  }
-    
-    // handle update Address 
-  const handleUpdateAddress = (data) => {  
-    // HANDLE HERE
-    console.log('data save to DB: ')
-    console.log((newAddress));
-  }
+  // handle submit form
+  const handleSubmitForm = (data) => {
+    if(type === 'create'){
+      console.log('create new address: ')
+      console.log((newAddress));
+    }
+    else if(type === 'update'){
+      console.log('update address: ')
+      console.log((newAddress));
+    }
+  }   
 
 
   return(
     <>
       <Popup> 
-        <form className="w-full laptop:w-[450px]" onSubmit={handleSubmit(handleUpdateAddress)}>
-          <h3 className="text-center mb-3 laptop:text-left text-body-lg font-semibold laptop:mb-5">{type === 'create'? 'Địa chỉ mới': 'Sửa địa chỉ'}</h3>
+        <form className="w-full laptop:w-[450px]" onSubmit={handleSubmit(handleSubmitForm)}>
+          <h3 className="text-center mb-3 laptop:text-left text-body-lg font-semibold laptop:mb-5">{type === 'create'? 'New address': 'Update address'}</h3>
           <div className="flex flex-col gap-4">
             <div className="flex gap-2">
               <input className="border border-1 border-primary border-solid w-1/2 h-9 px-2 outline-none" 
                 type="text"
                 name="fullname" 
-                placeholder="Họ và tên" 
+                placeholder="Full name" 
                 value={newAddress.Name}
                 {...fullname} 
                 onChange={e => {fullname.onChange(e); handleChange(e)}}
@@ -207,7 +222,7 @@ function PopupAddress ({type = "create", address, onBack = () => {}}) {
                 type="text" 
                 name="phone" 
                 value={newAddress.PhoneNumber}
-                placeholder="Số điện thoại" 
+                placeholder="Phone number" 
                 {...phone} 
                 onChange={e => {phone.onChange(e); handleChange(e)}}
               />
@@ -218,10 +233,10 @@ function PopupAddress ({type = "create", address, onBack = () => {}}) {
             </div>
 
             <select className={`border border-1 border-primary border-solid w-full h-9 px-2 outline-none ${(isProvinceSelected || type === 'update')? '' : "text-[#9ca3b7]"}`}
-              defaultValue={newAddress.ProvinceCode}
+              defaultValue=""
               name="province"  
               {...provinceName}
-              onChange={(e)=>{ provinceName.onChange(e); handleChange(e)}}
+              onChange={(e)=>{ handleChange(e); provinceName.onChange(e); }}
               onClick={()=>setIsProvinceSelected(true)}
             >
               {
@@ -230,14 +245,9 @@ function PopupAddress ({type = "create", address, onBack = () => {}}) {
                 : (
                     type === 'update'
                     ? <option value={newAddress.ProvinceCode}>{newAddress.Province}</option> 
-                    : <option value="" disabled hidden>Thêm tỉnh/ thành phố</option> 
+                    : <option value="" disabled hidden>-- Choose province/ city --</option> 
                   )
               }
-
-              {/* { isProvinceSelected 
-                ? province.map(prv => <option key={prv.code} value={prv.code}>{prv.name}</option>) 
-                : <option value="" disabled hidden>Thêm tỉnh/ thành phố</option> 
-              } */}
             </select>
             <p className={`flex-1 text-body-sm text-red-700 ${errors.province?'':'hidden'}`}>{errors.province?.message}</p>
 
@@ -245,7 +255,7 @@ function PopupAddress ({type = "create", address, onBack = () => {}}) {
               defaultValue=""
               name="district" 
               {...districtName}
-              onChange={(e)=>{districtName.onChange(e); handleChange(e)}}
+              onChange={(e)=>{handleChange(e); districtName.onChange(e); }}
               onClick={() => setIsDistrictSelected(true)}
             >
               {
@@ -254,13 +264,9 @@ function PopupAddress ({type = "create", address, onBack = () => {}}) {
                 : (
                     type === 'update'
                     ? <option value={newAddress.DistrictCode}>{newAddress.District}</option> 
-                    : <option value="" disabled hidden>Thêm quận/ huyện</option>
+                    : <option value="" disabled hidden>-- Choose district --</option>
                   )
               }
-
-              {/* { isDistrictSelected && district.length > 0
-                ? district.map(dst => <option key={dst.code} value={dst.code}>{dst.name}</option>) 
-                : <option value="" disabled hidden>Thêm quận/ huyện</option> } */}
             </select>
             <p className={`flex-1 text-body-sm text-red-700 ${errors.district?'':'hidden'}`}>{errors.district?.message}</p>
 
@@ -268,7 +274,7 @@ function PopupAddress ({type = "create", address, onBack = () => {}}) {
               defaultValue=""
               name="ward"
               {...wardName}
-              onChange={(e)=>{wardName.onChange(e); handleChange(e)}}
+              onChange={(e)=>{handleChange(e); wardName.onChange(e); }}
               onClick={() => setIsWardSelected(true)}
               >
                {
@@ -277,13 +283,9 @@ function PopupAddress ({type = "create", address, onBack = () => {}}) {
                 : (
                     type === 'update'
                     ? <option value={newAddress.WardCode}>{newAddress.Ward}</option> 
-                    : <option value="" disabled hidden>Thêm Phường/ xã</option>
+                    : <option value="" disabled hidden>-- Choose ward/ commune --</option>
                   )
                }
-
-              {/* { isWardSelected && ward.length > 0
-                ? ward.map(wd => <option key={wd.code} value={wd.code}>{wd.name}</option>)
-                : <option value="" disabled hidden>Thêm Phường/ xã</option> } */}
             </select>
             <p className={`flex-1 text-body-sm text-red-700 ${errors.ward?'':'hidden'}`}>{errors.ward?.message}</p>
 
@@ -291,25 +293,24 @@ function PopupAddress ({type = "create", address, onBack = () => {}}) {
               type="text" 
               name="address" 
               value={newAddress.Address}
-              placeholder="Tên đường/ Số nhà" 
+              placeholder="Street/ apartment number" 
               {...addressDetail} 
               onChange={e => {addressDetail.onChange(e); handleChange(e)}}
             />
             <p className={`flex-1 text-body-sm text-red-700 ${errors.address?'':'hidden'}`}>{errors.address?.message}</p>
 
             <div className="flex justify-center laptop:justify-end gap-3">
-              <div className=""><Button Color="secondary" onClick={() => onBack()}>Trở về</Button></div>
+              <div className=""><Button Color="secondary" onClick={() => onBack()}>Back</Button></div>
               {
-                type === "create"? (<div><Button Color="primary">Thêm địa chỉ</Button></div>):('')
+                type === "create"? (<div><Button Color="primary">Create address</Button></div>):('')
               }
               {
-                type === "update"? (<div><Button Color="primary">Cập nhật</Button></div>):('')
+                type === "update"? (<div><Button Color="primary">Save address</Button></div>):('')
               }
             </div>
           </div>
         </form>
-      </Popup>
-      {/* {isSuccess && <PopupStatus success>Thêm địa chỉ mới thành công</PopupStatus> } */}
+      </Popup>s
     </>
   )
 }
