@@ -1,22 +1,33 @@
-import Button from '../components/button'
-import Icon from '../helper/icon'
 import { Link } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
+
+import Button from '../components/button'
+import Icon from '../helper/icon'
 import { signinScheme } from '../validations/signin'
+import signInWithEmailAndPassword from '../services/auth/signin'
 
 // Sample img
 import WhiteRoomImg from '../assets/images/features3.png'
 
 function SignIn() {
+  // Get some APIs to manage form
   const {
     register,
     handleSubmit,
     formState: { errors }
   } = useForm({ resolver: yupResolver(signinScheme) })
 
-  const submitForm = (data) => {
-    console.log('sign in form', data)
+  // Handle data that get from form
+  const handleDataForm = (data) => {
+    // Get email, password
+    const { email, password } = data
+
+    // Call API at here
+    signInWithEmailAndPassword(email, password)
+
+    // Handle set state global
+    // Handle direct homepage
   }
 
   return (
@@ -36,7 +47,11 @@ function SignIn() {
         </p>
 
         {/* Form Sign In */}
-        <form className="mt-10" onSubmit={handleSubmit(submitForm)}>
+        <form
+          noValidate
+          className="mt-10"
+          onSubmit={handleSubmit(handleDataForm)}
+        >
           {/* Email */}
           <label className="block">
             <h5 className="font-medium text-h5">Email</h5>
