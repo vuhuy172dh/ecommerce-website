@@ -9,9 +9,9 @@ function PopupConfirm ({Title = "Title", Content = "Content", onBack , onConfirm
                 <p className="text-body-md text-primary mb-5">{Content}</p>
                 <div className="flex justify-center laptop:justify-end gap-3">
                     {
-                        onBack?<div className=""><Button Color="secondary" onClick={onBack}>Trở về</Button></div> :('')
+                        onBack?<div className=""><Button Color="secondary" onClick={onBack}>Back</Button></div> :('')
                     }
-                    <div className=""><Button Color="primary" onClick={onConfirm}>Xác nhận</Button></div>
+                    <div className=""><Button Color="primary" onClick={onConfirm}>Confirm</Button></div>
                 </div>
             </div>
         </Popup>

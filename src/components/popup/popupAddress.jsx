@@ -8,9 +8,13 @@ import * as yup from 'yup'
 import Input from './input'
 import Select from './select'
 
+const phoneRegex = RegExp(/^\(?([0-9]{4})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{3})$/)
 const schema = yup.object().shape({
   fullname: yup.string().required('Name should be required please'),
-  phone: yup.string().required('Phone should be required please'),
+  phone: yup
+    .string()
+    .matches(phoneRegex, 'Phone number is not valid')
+    .required('Phone should be required please'),
   province: yup.string().required('Province is required'),
   district: yup.string().required('District is required'),
   ward: yup.string().required('Ward  is required'),
@@ -164,23 +168,12 @@ function PopupAddress({ type = 'create', address, onBack = () => {} }) {
     resolver: yupResolver(schema)
   })
 
-  // handle add Address
-  const handleAddAddress = (data) => {
-    // HANDLE HERE
-    // setIsSuccess(true)
-    // setTimeout(()=>{
-    //   setIsSuccess(false)
-    //   onBack()
-    // }, 2000)
-  }
-
   // handle update Address
   const handleUpdateAddress = (data) => {
     // HANDLE HERE
     console.log('data save to DB: ')
     console.log(data)
     console.log(newAddress)
-    //console.log(newAddress)
   }
 
   return (
@@ -360,7 +353,7 @@ function PopupAddress({ type = 'create', address, onBack = () => {} }) {
           </div>
         </form>
       </Popup>
-      {/* {isSuccess && <PopupStatus success>Thêm địa chỉ mới thành công</PopupStatus> } */}
+      s
     </>
   )
 }
