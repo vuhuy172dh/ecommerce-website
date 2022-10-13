@@ -2,10 +2,16 @@ import Button from '../components/button'
 
 // Sample img
 import WhiteRoomImg from '../assets/images/features3.png'
+import { Helmet } from 'react-helmet-async'
 
 function ForgetPassword() {
   return (
     <div className="flex justify-center tablet:justify-start laptop:justify-start mt-4 mx-6 gap-8 laptop:gap-16 tablet:mx-0 laptop:mx-0">
+      {/*Helmet async*/}
+      <Helmet>
+        <title>Forget Password</title>
+      </Helmet>
+
       <section className="hidden tablet:block table:basis-3/5 laptop:basis-3/5">
         <img
           className="w-full h-full object-cover"
