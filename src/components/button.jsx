@@ -26,6 +26,8 @@ const itemVariants = {
   closed: { opacity: 0, y: 20, transition: { duration: 0.2 } }
 }
 
+const itemList = ['item 1', 'item 2', 'item 3', 'item 4', 'item 5', 'item 6']
+
 function Button({
   Color = 'white',
   Size = 'medium',
@@ -70,7 +72,7 @@ function Button({
         <motion.ul
           variants={{
             open: {
-              clipPath: 'inset(0% 0% 0% 0% round 10px)',
+              clipPath: 'inset(0% 0% 0% 0%)',
               transition: {
                 type: 'spring',
                 bounce: 0,
@@ -80,22 +82,23 @@ function Button({
               }
             },
             closed: {
-              clipPath: 'inset(10% 50% 90% 50% round 10px)',
+              clipPath: 'inset(10% 50% 90% 50%)',
               transition: {
                 type: 'spring',
                 bounce: 0,
                 duration: 0.3
               }
             }
-          }}
+          }
+        }
           style={{ pointerEvents: isOpen ? 'auto' : 'none' }}
-          className={`w-full max-h-80 flex flex-col gap-10 list-none m-0 mt-2 absolute bottom-0 translate-y-full ${colors[Color][State]}`}
+          className={`w-full max-h-80 rounded-lg flex flex-col gap-10 list-none m-0 mt-5 py-2 absolute -bottom-2 translate-y-full ${colors[Color][State]}`}
         >
-          <motion.li variants={itemVariants}>Item 1 </motion.li>
-          <motion.li variants={itemVariants}>Item 2 </motion.li>
-          <motion.li variants={itemVariants}>Item 3 </motion.li>
-          <motion.li variants={itemVariants}>Item 4 </motion.li>
-          <motion.li variants={itemVariants}>Item 5 </motion.li>
+          {itemList.map((item, index) => (
+          <motion.li variants={itemVariants} key={index} className="pl-4 cursor-pointer">
+            {item} 
+          </motion.li>
+          ))}
         </motion.ul>
       )}
     </motion.nav>
