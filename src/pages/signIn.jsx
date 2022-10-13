@@ -5,7 +5,7 @@ import { yupResolver } from '@hookform/resolvers/yup'
 import Button from '../components/button'
 import Icon from '../helper/icon'
 import { signinScheme } from '../validations/signin'
-import signInWithEmailAndPassword from '../services/auth/signin'
+import { signInWithEmailAndPassword, signInWithGoogle } from '../services/auth'
 
 // Sample img
 import WhiteRoomImg from '../assets/images/features3.png'
@@ -28,6 +28,11 @@ function SignIn() {
 
     // Handle set state global
     // Handle direct homepage
+  }
+
+  // Handle sign in with Gooole
+  const handleSignInWithGoogle = () => {
+    signInWithGoogle()
   }
 
   return (
@@ -111,7 +116,7 @@ function SignIn() {
 
         {/* Sign in with another social media */}
         <div className="mt-5 flex rounded overflow-hidden border border-solid border-border_dark">
-          <Button Size="small">
+          <Button Size="small" onClick={handleSignInWithGoogle}>
             <span>
               <Icon icon="google_28" />
             </span>

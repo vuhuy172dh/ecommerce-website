@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 
-import signUpWithEmailAndPassword from '../services/auth/signup'
+import { signUp } from '../services/auth'
 import Button from '../components/button'
 import { signupScheme } from '../validations/signup'
 
@@ -22,8 +22,11 @@ function SignUp() {
     // Get fullname, email, password
     const { fullname, email, password } = data
 
-    signUpWithEmailAndPassword(fullname, email, password)
+    // Sign up with email & password
+    signUp(fullname, email, password)
+
     // Set global state
+
     // Sau khi thành công thì direct đến home page
   }
 

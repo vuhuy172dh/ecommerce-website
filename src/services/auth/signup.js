@@ -5,7 +5,8 @@ import { db } from '../firebase.config'
 import { USERS } from '../constant/firestore'
 
 // Return [error, isProcessing]
-const signUpWithEmailAndPassword = async (fullname, email, password) => {
+// Sign up with email & password
+const signUp = async (fullname, email, password) => {
   // Error from firebase
   let error
   let userOutput = {
@@ -29,4 +30,4 @@ const signUpWithEmailAndPassword = async (fullname, email, password) => {
     })
 }
 
-export default signUpWithEmailAndPassword
+export default signUp
