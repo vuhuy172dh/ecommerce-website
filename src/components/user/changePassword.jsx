@@ -17,7 +17,7 @@ function ChangePassword() {
     console.log(data)
   }
   return (
-    <div className="w-full px-6 flex flex-col">
+    <div className="w-full px-6 pb-14 flex flex-col">
       {/*Helmet async*/}
       <Helmet>
         <title>Change Password</title>

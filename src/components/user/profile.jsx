@@ -1,55 +1,51 @@
 import { Helmet } from 'react-helmet-async'
 import Button from '../button'
-const colors = {
-  dark: ['bg-[rgba(255,255,255,0.15)]', 'white'],
-  light: ['bg-light_grey', 'primary']
-}
+import CeilingLamp from '../../assets/images/CeilingLamp.png'
 
-function Profile({ Color = 'light' }) {
+function Profile() {
   return (
-    // Title
-    <div className="flex-row px-6 laptop:w-full">
+    <div className="flex-row px-6 pb-14 mb-8 laptop:w-full bg-border_grey dark:bg-secondary dark:text-white rounded-tl-lg rounded-bl-lg shadow-md shadow-black/40 dark:shadow-light_grey/30">
+      {/*Helmet async*/}
       <Helmet>
         <title>Profile</title>
       </Helmet>
 
-      <div className="border-b-2 border-primary-300 mb-5">
+      {/*title*/}
+      <div className="mb-5">
         <div className="laptop:text-h4">Personal information</div>
         <div className="text-body-sm laptop:text-body-md laptop:mb-2">
           Manage personal information to secure your account
         </div>
       </div>
 
-      <div className="flex">
-        <div className="grid grid-cols-2">
-          {/* All labels fields */}
-          <div className="flex flex-col gap-3 justifu">
-            <label className="pr-5">Username</label>
-            <label className="pr-5">Email</label>
-            <label className="pr-5">Mobile phone</label>
-            <label className="pr-5">Gender</label>
-            <label className="pr-5">Day of birth</label>
-          </div>
+      <hr className="w-full border-t border-t-border_dark mb-8" />
 
-          {/* All input fields */}
-          <div className="flex flex-col gap-3">
-            {/* Username input */}
-            <input
-              placeholder="Username"
-              className={`${colors[Color][0]}  pl-5 overflow-auto`}
-            />
-            {/* Email input  */}
-            <input
-              placeholder="your@email.com"
-              className={`${colors[Color][0]} pl-5 overflow-auto`}
-            />
-            {/* Mobile phone input */}
-            <input
-              placeholder="mobile phone"
-              className={`${colors[Color][0]} pl-5 overflow-auto`}
-            />
-            {/* Genders radio options */}
-            <div className="flex gap-3">
+      {/*body*/}
+      <div className="w-full flex columns-2">
+        {/*form*/}
+        <form className="flex flex-1 flex-col items-start gap-6">
+          {/*User name*/}
+          <label className="flex items-center">
+            <p className="w-32">Username</p>
+            <input type="text" placeholder="username" className="py-2 px-2" />
+          </label>
+
+          {/*Email*/}
+          <label className="flex items-center">
+            <p className="w-32">Email</p>
+            <input type="email" placeholder="email" className="py-2 px-2" />
+          </label>
+
+          {/*Email*/}
+          <label className="flex items-center">
+            <p className="w-32">Phone</p>
+            <input type="number" placeholder="phone" className="py-2 px-2" />
+          </label>
+
+          {/*gender*/}
+          <label className="flex items-center py-2">
+            <p className="w-32">Gender</p>
+            <div>
               {/* Male */}
               <label className="inline-flex items-center">
                 <input
@@ -78,41 +74,33 @@ function Profile({ Color = 'light' }) {
                 <span className="ml-2">Other</span>
               </label>
             </div>
+          </label>
 
-            {/* Date of birth */}
+          {/*Date of birth*/}
+          <label className="flex items-center">
+            <p className="w-32">Date of birth</p>
+            <input
+              type="date"
+              placeholder="date of birth"
+              className="py-2 px-2"
+            />
+          </label>
 
-            <div class="relative">
-              <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
-                <svg
-                  aria-hidden="true"
-                  class="w-5 h-5 text-gray-500 dark:text-gray-400"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    fill-rule="evenodd"
-                    d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z"
-                    clip-rule="evenodd"
-                  ></path>
-                </svg>
-              </div>
-              <input
-                datepicker
-                type="text"
-                class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 datepicker-input"
-                placeholder="Select date"
-              />
-            </div>
+          <div className="w-full flex">
+            <Button>Update</Button>
+          </div>
+        </form>
+
+        {/*Change Avatar*/}
+        <div className="flex flex-col flex-1 items-center justify-center gap-6">
+          <div className="w-32 h-32 rounded-full overflow-hidden">
+            <img src={CeilingLamp} alt="avatar" className="w-full h-full" />
+          </div>
+
+          <div className="w-fit h-fit">
+            <Button>Browse</Button>
           </div>
         </div>
-        {/* Edit profile image */}
-        <div></div>
-      </div>
-      <div className="flex w-full laptop:w-1/6 laptop:mt- mobile:mb-16 mt-16">
-        <Button Size="medium" Color="primary" State="default">
-          Save
-        </Button>
       </div>
     </div>
   )
