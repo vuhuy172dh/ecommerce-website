@@ -10,9 +10,12 @@ import { useState } from "react"
       phoneNumber:"0123321760",
       address:"Ktx khu A ĐHQG, Đường Tạ Quang Bửu, Phường Linh Trung Thành Phố Thủ Đức, TP. Hồ Chí Minh, Phường Linh Trung Thành Phố Thủ Đức, TP. Hồ Chí Minh",
       default: true,
-      province: "Bình Định",
-      district: "Quy Nhơn",
-      ward: "Trần Phú"
+      province: "Tỉnh Hà Giang",
+      district: "Huyện Đồng Văn",
+      ward: "Xã Lũng Cú",
+      provinceCode: "2",
+      districtCode: "26",
+      wardCode: "715",
     },
     {
       id: 2,
@@ -20,20 +23,23 @@ import { useState } from "react"
       phoneNumber:"0123321760",
       address:"Ktx khu A ĐHQG, Đường Tạ Quang Bửu, Phường Linh Trung Thành Phố Thủ Đức, TP. Hồ Chí Minh",
       default: false,
-      province: "Bình Định",
-      district: "Quy Nhơn",
-      ward: "Trần Phú"
+      province: "Tỉnh Hà Giang",
+      district: "Huyện Đồng Văn",
+      ward: "Xã Lũng Cú",
+      provinceCode: "2",
+      districtCode: "26",
+      wardCode: "715",
     },
-    {
-      id: 3,
-      name: "Hoàng Văn Phúc",
-      phoneNumber:"0123321760",
-      address:"Ktx khu A ĐHQG, Đường Tạ Quang Bửu, Phường Linh Trung Thành Phố Thủ Đức, TP. Hồ Chí Minh, Phường Linh Trung Thành Phố Thủ Đức, TP. Hồ Chí Minh",
-      default: false,
-      province: "Bình Định",
-      district: "Quy Nhơn",
-      ward: "Trần Phú"
-    }
+    // {
+    //   id: 3,
+    //   name: "Hoàng Văn Phúc",
+    //   phoneNumber:"0123321760",
+    //   address:"Ktx khu A ĐHQG, Đường Tạ Quang Bửu, Phường Linh Trung Thành Phố Thủ Đức, TP. Hồ Chí Minh, Phường Linh Trung Thành Phố Thủ Đức, TP. Hồ Chí Minh",
+    //   default: false,
+    //   province: "Bình Định",
+    //   district: "Quy Nhơn",
+    //   ward: "Trần Phú"
+    // }
   ]
 
   function Address() {

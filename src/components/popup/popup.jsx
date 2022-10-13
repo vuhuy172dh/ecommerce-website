@@ -2,7 +2,7 @@
 function Popup ({children}) {
 
     return(
-        <div className="flex fixed top-0 right-0 left-0 bottom-0">
+        <div className="flex fixed top-0 right-0 left-0 bottom-0 z-[100]">
             {/* overlay */}
             <div className="absolute w-full h-full bg-black bg-opacity-30 z-[100] animate-[fadeIn_0.3s_ease-in]"></div>
 

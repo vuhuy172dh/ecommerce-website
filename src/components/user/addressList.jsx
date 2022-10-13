@@ -14,7 +14,11 @@ function AddressList({addressList = []}) {
                         Default: item.default, 
                         Province: item.province, 
                         District: item.district, 
-                        Ward: item.ward}}/>
+                        Ward: item.ward,
+                        ProvinceCode: item.provinceCode,
+                        DistrictCode: item.districtCode,
+                        WardCode: item.wardCode
+                    }}/>
                     )
             }   
         </>
