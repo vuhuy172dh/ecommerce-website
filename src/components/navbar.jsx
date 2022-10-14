@@ -38,7 +38,7 @@ function Navbar() {
           </div>
 
           {/* cart icon button */}
-          <Link to="/producCart">
+          <Link to="/productCart">
             <ButtonIcon Icon="cart" />
           </Link>
 
