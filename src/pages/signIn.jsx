@@ -1,6 +1,7 @@
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
+import { useState } from 'react'
 
 import Button from '../components/button'
 import Icon from '../helper/icon'
@@ -11,6 +12,10 @@ import { signInWithEmailAndPassword, signInWithGoogle } from '../services/auth'
 import WhiteRoomImg from '../assets/images/features3.png'
 
 function SignIn() {
+  let navigate = useNavigate()
+  // Error from firebase
+  const [error, setError] = useState('')
+
   // Get some APIs to manage form
   const {
     register,
@@ -25,14 +30,25 @@ function SignIn() {
 
     // Call API at here
     signInWithEmailAndPassword(email, password)
+      .then(() => {
+        navigate('/')
+      })
+      .catch((err) => {
+        setError(err)
+      })
 
     // Handle set state global
-    // Handle direct homepage
   }
 
   // Handle sign in with Gooole
   const handleSignInWithGoogle = () => {
     signInWithGoogle()
+      .then(() => {
+        navigate('/')
+      })
+      .catch((err) => {
+        setError(err)
+      })
   }
 
   return (
@@ -51,10 +67,20 @@ function SignIn() {
           We are so happy to see you again.
         </p>
 
+        {/* Error message */}
+        {error && (
+          <div className="mt-10 flex p-2 rounded border border-solid border-red-200">
+            <span className="text-red-500">
+              <Icon icon="close_24" />
+            </span>
+            <span className="ml-2 text-h6 self-center">{error}</span>
+          </div>
+        )}
+
         {/* Form Sign In */}
         <form
           noValidate
-          className="mt-10"
+          className="mt-5"
           onSubmit={handleSubmit(handleDataForm)}
         >
           {/* Email */}
