@@ -42,7 +42,7 @@ function PopupAddress({ type = 'create', address, onBack = () => {} }) {
   })
 
   // get Province:
-  const getProvince = async () => {
+  const getProvince = () => {
     fetch(provinceAPI)
       .then((res) => res.json())
       .then((res) => setProvince(res))
@@ -50,7 +50,7 @@ function PopupAddress({ type = 'create', address, onBack = () => {} }) {
   }
 
   // get District:
-  const getDistrict = async (provinceCode) => {
+  const getDistrict = (provinceCode) => {
     fetch(`${provinceAPI}p/${provinceCode}/?depth=2`)
       .then((res) => res.json())
       .then((res) => setDistrict(res.districts))
@@ -58,7 +58,7 @@ function PopupAddress({ type = 'create', address, onBack = () => {} }) {
   }
 
   // get Ward:
-  const getWard = async (districtCode) => {
+  const getWard = (districtCode) => {
     fetch(`${provinceAPI}d/${districtCode}/?depth=2`)
       .then((res) => res.json())
       .then((res) => setWard(res.wards))
@@ -111,6 +111,8 @@ function PopupAddress({ type = 'create', address, onBack = () => {} }) {
           Ward: '',
           WardCode: ''
         })
+        setValue('district', "")
+        setValue('ward', "")
         getDistrict(value)
       }
 
@@ -122,6 +124,7 @@ function PopupAddress({ type = 'create', address, onBack = () => {} }) {
           Ward: '',
           WardCode: ''
         })
+        setValue('ward', "")
         getWard(value)
       }
 
@@ -154,6 +157,7 @@ function PopupAddress({ type = 'create', address, onBack = () => {} }) {
         })
       }
     },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [newAddress]
   )
 
@@ -184,7 +188,7 @@ function PopupAddress({ type = 'create', address, onBack = () => {} }) {
           onSubmit={handleSubmit(handleUpdateAddress)}
         >
           <h3 className="text-center mb-3 laptop:text-left text-body-lg font-semibold laptop:mb-5">
-            {type === 'create' ? 'Địa chỉ mới' : 'Sửa địa chỉ'}
+            {type === 'create' ? 'Create new address' : 'Edit address'}
           </h3>
           <div className="flex flex-col gap-4">
             <div className="flex gap-2">
@@ -211,7 +215,7 @@ function PopupAddress({ type = 'create', address, onBack = () => {} }) {
                   register,
                   name: 'phone',
                   rules: {},
-                  type: 'number',
+                  type: 'text',
                   placeholder: 'your phone',
                   className:
                     'border border-1 border-primary border-solid w-1/2 h-9 px-2 outline-none',
@@ -243,7 +247,7 @@ function PopupAddress({ type = 'create', address, onBack = () => {} }) {
                 name: 'province',
                 rules: {},
                 type: '',
-                placeholder: 'Thêm tỉnh/ thành phố',
+                placeholder: 'Choose province/ city ',
                 className:
                   'border border-1 border-primary border-solid w-full h-9 px-2 outline-none',
                 handleChange: (e) => handleChange(e),
@@ -267,7 +271,7 @@ function PopupAddress({ type = 'create', address, onBack = () => {} }) {
                 name: 'district',
                 rules: {},
                 type: '',
-                placeholder: 'Thêm quận/ huyện',
+                placeholder: 'Choose district',
                 className:
                   'border border-1 border-primary border-solid w-full h-9 px-2 outline-none',
                 handleChange: (e) => handleChange(e),
@@ -291,7 +295,7 @@ function PopupAddress({ type = 'create', address, onBack = () => {} }) {
                 name: 'ward',
                 rules: {},
                 type: '',
-                placeholder: 'Thêm Phường/ xã',
+                placeholder: 'Choose ward/ commune',
                 className:
                   'border border-1 border-primary border-solid w-full h-9 px-2 outline-none',
                 handleChange: (e) => handleChange(e),
@@ -314,7 +318,7 @@ function PopupAddress({ type = 'create', address, onBack = () => {} }) {
                 register,
                 name: 'address',
                 type: 'text',
-                placeholder: 'Tên đường/ Số nhà',
+                placeholder: 'Street/ apartment number',
                 className:
                   'border border-1 border-primary border-solid w-full h-9 px-2 outline-none',
                 handleChange: (e) => handleChange(e),
@@ -332,19 +336,19 @@ function PopupAddress({ type = 'create', address, onBack = () => {} }) {
             <div className="flex justify-center laptop:justify-end gap-3">
               <div className="">
                 <Button Color="secondary" onClick={() => onBack()}>
-                  Trở về
+                  Back
                 </Button>
               </div>
               {type === 'create' ? (
                 <div>
-                  <Button Color="primary">Thêm địa chỉ</Button>
+                  <Button Color="primary">Create address</Button>
                 </div>
               ) : (
                 ''
               )}
               {type === 'update' ? (
                 <div>
-                  <Button Color="primary">Cập nhật</Button>
+                  <Button Color="primary">Save address</Button>
                 </div>
               ) : (
                 ''
