@@ -6,7 +6,7 @@ import SocialMedia from './socialMedia'
 
 function NavDrawer() {
   const { mode, handleMode } = useNavMode()
-  const { mode: darkMode } = useDarkMode
+  const { mode: darkMode } = useDarkMode()
 
   return (
     <div
