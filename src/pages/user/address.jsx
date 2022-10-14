@@ -1,6 +1,6 @@
-import AddressList from './addressList'
-import Button from '../button'
-import PopupAddress from '../popup/popupAddress'
+import AddressList from '../../components/user/addressList'
+import Button from '../../components/button'
+import PopupAddress from '../../components/popup/popupAddress'
 import { useState } from 'react'
 
 const addressList = [

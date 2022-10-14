@@ -1,4 +1,4 @@
-import ProductItemListing from '../productItemListing'
+import ProductItemListing from '../../components/productItemListing'
 
 import img1 from '../../assets/images/ThreeVases.png'
 import img2 from '../../assets/images/CeilingLamp.png'

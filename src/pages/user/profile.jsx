@@ -1,5 +1,5 @@
 import { Helmet } from 'react-helmet-async'
-import Button from '../button'
+import Button from '../../components/button'
 const colors = {
   dark: ['bg-[rgba(255,255,255,0.15)]', 'white'],
   light: ['bg-light_grey', 'primary']
