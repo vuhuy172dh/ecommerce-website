@@ -118,12 +118,12 @@ function SignIn() {
               </h5>
             </label>
             <span className="text-right">
-              <a
-                href="/forgetPassword"
+              <Link
+                to="/forgetPassword"
                 className="text-h6 font-medium text-primary"
               >
                 Forgot password
-              </a>
+              </Link>
             </span>
           </div>
           <div className="mt-5 flex rounded overflow-hidden">
