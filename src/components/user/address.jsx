@@ -39,7 +39,7 @@ function Address() {
 
   return (
     <>
-      <div className="px-4 bg-white py-5 laptop:px-10">
+      <div className="bg-white px-6 w-full">
         <header className="text-center laptop:text-left laptop:flex laptop:justify-between laptop:items-center laptop:border-b-2 border-primary pb-3">
           <div>
             <h3 className="text-body-lg font-semibold text-dark_primary">
