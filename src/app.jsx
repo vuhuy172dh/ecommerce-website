@@ -49,7 +49,7 @@ function App() {
               element={<ChangePassword />}
             />
           </Route>
-          <Route path="/producCart" element={<ProductCartPage />} />
+          <Route path="/productCart" element={<ProductCartPage />} />
           <Route path="/products" element={<ProductListingPage />} />
           <Route path="/product/:productId" element={<ProductDetailPage />} />
           <Route path="/products/:category" element={<ProductListingPage />} />
