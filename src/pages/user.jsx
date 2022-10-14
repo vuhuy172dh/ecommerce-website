@@ -1,3 +1,4 @@
+import Address from "../components/user/address"
 /*
 have user profile component
 have wishList component
@@ -6,7 +7,7 @@ have purchase component
 */
 
 function User() {
-  return <div>This is User</div>
+  return <Address/>
 }
 
 export default User

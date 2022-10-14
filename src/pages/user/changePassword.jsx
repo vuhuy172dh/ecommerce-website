@@ -1,4 +1,4 @@
-import Button from '../button'
+import Button from '../../components/button'
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { changePasswordScheme } from '../../validations/changePassword'

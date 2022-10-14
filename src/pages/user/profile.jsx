@@ -1,5 +1,5 @@
 import { Helmet } from 'react-helmet-async'
-import Button from '../button'
+import Button from '../../components/button'
 import CeilingLamp from '../../assets/images/CeilingLamp.png'
 
 function Profile() {

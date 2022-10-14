@@ -1,8 +1,5 @@
 import { useState } from 'react'
-import Button from '../button'
-import Delivering from '../delivering'
-import Delivered from '../delivered'
-import Canceled from '../canceled'
+import Button from '../../components/button'
 
 function Purchase() {
   const [click, setClick] = useState(0)
@@ -43,15 +40,7 @@ function Purchase() {
       </nav>
 
       {/*Puchase container*/}
-      <section className="w-full">
-        {click === 0 ? (
-          <Delivering />
-        ) : click === 1 ? (
-          <Delivered />
-        ) : (
-          <Canceled />
-        )}
-      </section>
+      <section className="w-full"></section>
     </div>
   )
 }
