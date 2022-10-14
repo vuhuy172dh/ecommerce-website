@@ -16,7 +16,7 @@ function Select(props) {
         props.onChange && props.onChange(e)
       }}
       value={value}
-      className={`${props.className} ${!value && "text-[#9ca3b7]"}`}
+      className={`${props.className} ${!value && 'text-[#9ca3b7]'}`}
     >
       {!value && (
         <option value="" disabled hidden>
@@ -24,7 +24,11 @@ function Select(props) {
         </option>
       )}
       {props.options?.map((option) => (
-        <option className='checked:bg-dark_primary checked:text-white' value={option.code} key={option.code}>
+        <option
+          className="checked:bg-dark_primary checked:text-white"
+          value={option.code}
+          key={option.code}
+        >
           {option.name}
         </option>
       ))}

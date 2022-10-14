@@ -111,8 +111,8 @@ function PopupAddress({ type = 'create', address, onBack = () => {} }) {
           Ward: '',
           WardCode: ''
         })
-        setValue('district', "")
-        setValue('ward', "")
+        setValue('district', '')
+        setValue('ward', '')
         getDistrict(value)
       }
 
@@ -124,7 +124,7 @@ function PopupAddress({ type = 'create', address, onBack = () => {} }) {
           Ward: '',
           WardCode: ''
         })
-        setValue('ward', "")
+        setValue('ward', '')
         getWard(value)
       }
 
