@@ -1,15 +1,21 @@
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
+import { useState } from 'react'
 
 import { signUp } from '../services/auth'
 import Button from '../components/button'
 import { signupScheme } from '../validations/signup'
+import Icon from '../helper/icon'
 
 // Sample img
 import WhiteRoomImg from '../assets/images/features3.png'
 
 function SignUp() {
+  let navigate = useNavigate()
+  // Error from firebase
+  const [error, setError] = useState('')
+
   // Get some APIs to manage form
   const {
     register,
@@ -24,10 +30,14 @@ function SignUp() {
 
     // Sign up with email & password
     signUp(fullname, email, password)
+      .then(() => {
+        navigate('/')
+      })
+      .catch((err) => {
+        setError(err)
+      })
 
     // Set global state
-
-    // Sau khi thành công thì direct đến home page
   }
 
   return (
@@ -45,6 +55,16 @@ function SignUp() {
         <p className="text-body-md text-border_dark">
           Sign up - once you have it, you love it.
         </p>
+
+        {/* Error message */}
+        {error && (
+          <div className="mt-10 flex p-2 rounded border border-solid border-red-200">
+            <span className="text-red-500">
+              <Icon icon="close_24" />
+            </span>
+            <span className="ml-2 text-h6 self-center">{error}</span>
+          </div>
+        )}
 
         {/* Form Sign up */}
         {/* "handleSubmit" will validate inputs before invoking "onSubmit" */}
