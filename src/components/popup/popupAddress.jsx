@@ -4,22 +4,9 @@ import { useCallback, useEffect, useState } from 'react'
 import Controller from './controller'
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
-import * as yup from 'yup'
 import Input from './input'
 import Select from './select'
-
-const phoneRegex = RegExp(/^\(?([0-9]{4})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{3})$/)
-const schema = yup.object().shape({
-  fullname: yup.string().required('Name should be required please'),
-  phone: yup
-    .string()
-    .matches(phoneRegex, 'Phone number is not valid')
-    .required('Phone should be required please'),
-  province: yup.string().required('Province is required'),
-  district: yup.string().required('District is required'),
-  ward: yup.string().required('Ward  is required'),
-  address: yup.string().required('Address should be required please.')
-})
+import { PopupAddressSchema } from '../../validations/popupAddress'
 
 function PopupAddress({ type = 'create', address, onBack = () => {} }) {
   const provinceAPI = 'https://provinces.open-api.vn/api/'
@@ -67,7 +54,6 @@ function PopupAddress({ type = 'create', address, onBack = () => {} }) {
 
   useEffect(() => {
     if (type === 'update') {
-      //clearErrors()
       setNewAddress({
         ...newAddress,
         Name: address.Name,
@@ -88,10 +74,10 @@ function PopupAddress({ type = 'create', address, onBack = () => {} }) {
       setValue('ward', address.WardCode)
       setValue('address', address.Address)
       // fetch data
-      getDistrict(address.ProvinceCode)
-      getWard(address.DistrictCode)
+      setDistrict(getDistrict(address.ProvinceCode))
+      setWard(getWard(address.DistrictCode))
     }
-    getProvince()
+    setProvince(getProvince())
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
@@ -169,7 +155,15 @@ function PopupAddress({ type = 'create', address, onBack = () => {} }) {
     setValue,
     formState: { errors }
   } = useForm({
-    resolver: yupResolver(schema)
+    defaultValues: {
+      fullname: '',
+      phone: '',
+      province: '',
+      district: '',
+      ward: '',
+      address: ''
+    },
+    resolver: yupResolver(PopupAddressSchema)
   })
 
   // handle update Address
