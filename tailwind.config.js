@@ -12,7 +12,7 @@ module.exports = {
     },
     screens: {
       mobile: '320px',
-      tablet: '786px',
+      tablet: '768px',
       laptop: '1024px'
     },
     fontFamily: {
