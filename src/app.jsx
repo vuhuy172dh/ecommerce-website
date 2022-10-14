@@ -1,5 +1,5 @@
 import React from 'react'
-import { Routes, Route, Outlet } from 'react-router-dom'
+import { Routes, Route, Outlet, useLocation } from 'react-router-dom'
 import AboutPage from './pages/about'
 import HomePage from './pages/home'
 import ProductCartPage from './pages/productCart'
@@ -20,6 +20,7 @@ import Wishlist from './components/user/wishlist'
 import ChangePassword from './components/user/changePassword'
 import DarkModeButton from './components/darkModeButton'
 import CartFloatButton from './components/cartFloatButton'
+import Checkout from './pages/checkout'
 
 const SidebarLayout = () => (
   <div className="laptop:flex">
@@ -29,11 +30,10 @@ const SidebarLayout = () => (
 )
 
 function App() {
-  let path = window.location.pathname
-  console.log(path)
+  const path = useLocation().pathname
   return (
     <div>
-      {path === '/signin' || path === '/signup' || (
+      {path === '/signin' || path === '/signup' || path === '/checkout' || (
         <header>
           <NavMode>
             <Navbar />
@@ -64,9 +64,10 @@ function App() {
           <Route path="/signin" element={<SignIn />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/forgetPassword" element={<ForgetPassword />} />
+          <Route path="/checkout" element={<Checkout />} />
         </Routes>
       </main>
-      {path === '/signin' || path === '/signup' || (
+      {path === '/signin' || path === '/signup' || path === '/checkout' || (
         <footer>
           <Footer />
         </footer>

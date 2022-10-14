@@ -2,6 +2,7 @@ import ProductCartList from '../components/productCartList'
 import img1 from '../assets/images/BlueChair.png'
 import Button from './../components/button'
 import { Helmet } from 'react-helmet-async'
+import { Link } from 'react-router-dom'
 
 function ProductCartPage() {
   //fake API
@@ -49,9 +50,11 @@ function ProductCartPage() {
           Taxes and shipping are calculated at checkout
         </p>
       </div>
-      <div className="w-[100%] flex mt-5 laptop:w-[172px] laptop:float-right">
-        <Button Color="primary" children="Go to checkout" />
-      </div>
+      <Link to="/checkout">
+        <div className="w-[100%] flex mt-5 laptop:w-[172px] laptop:float-right">
+          <Button Color="primary" children="Go to checkout" />
+        </div>
+      </Link>
     </div>
   )
 }

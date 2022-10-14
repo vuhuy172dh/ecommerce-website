@@ -93,17 +93,19 @@ function CartFloatButton() {
               </div>
 
               {/*this is total price and buttons*/}
-              <div className="w-full p-6 fixed bottom-0 bg-light_grey rounded-3xl border-t border-t-black flex flex-col items-center gap-2">
-                <p className="text-h5 font-[600] text-primary text-center w-1/4">
+              <div className="w-full p-6 fixed bottom-0 bg-light_grey rounded-3xl border-t border-t-black flex flex-col tablet:items-center gap-2">
+                <p className="text-h5 font-[600] text-primary text-start tablet:text-center w-full ">
                   TOTAL: 444$ | 4 items
                 </p>
-                <div className="w-1/4 flex flex-col gap-2">
+                <div className="w-full tablet:w-1/4 flex flex-col gap-2">
                   <Link to="/productCart">
                     <Button Color="primary" onClick={handleClick}>
                       YOUR BAG
                     </Button>
                   </Link>
-                  <Button Color="primary">CHECK OUT</Button>
+                  <Link to="/checkout">
+                    <Button Color="primary">CHECK OUT</Button>
+                  </Link>
                 </div>
               </div>
             </motion.div>
