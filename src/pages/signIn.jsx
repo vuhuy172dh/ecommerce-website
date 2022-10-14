@@ -4,10 +4,11 @@ import { Link } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { signinScheme } from '../validations/signin'
+import { Helmet } from 'react-helmet-async'
+import { motion } from 'framer-motion'
 
 // Sample img
 import WhiteRoomImg from '../assets/images/features3.png'
-import { Helmet } from 'react-helmet-async'
 
 function SignIn() {
   const {
@@ -21,13 +22,13 @@ function SignIn() {
   }
 
   return (
-    <div className="flex w-screen h-screen justify-center tablet:justify-start laptop:justify-start relative">
-      {/*background*/}
+    <div className="flex w-screen h-screen justify-center items-center relative">
       {/*Helmet async*/}
       <Helmet>
         <title>Sign In</title>
       </Helmet>
 
+      {/*background*/}
       <section className="w-full h-full hidden tablet:block relative z-10">
         <img
           className="w-full h-full object-cover relative z-10"
@@ -37,11 +38,17 @@ function SignIn() {
         <div className="w-full h-full block bg-black/60 absolute top-0 z-20"></div>
       </section>
 
-      {/*login container*/}
-      <section className="w-full laptop:w-fit laptop:py-12 laptop:absolute z-20 laptop:top-1/2 laptop:-translate-y-1/2 laptop:left-1/2 laptop:-translate-x-1/2 laptop:bg-white/10 laptop:backdrop-blur-lg laptop:shadow-lg laptop:shadow-black/30 laptop:rounded-2xl">
+      {/*animated login container for tablet and laptop*/}
+      <motion.div
+        className="w-full items-center tablet:w-fit tablet:py-12 z-20 tablet:absolute table:bg-white/10 tablet:backdrop-blur-lg tablet:shadow-lg tablet:shadow-black/30 tablet:rounded-2xl"
+        initial={{ y: -400 }}
+        animate={{ y: 0 }}
+        transition={{ type: 'spring', stiffness: 100, duration: 0.5 }}
+      >
         <a href="/">
           <p className="w-full text-h2 text-center">Avion</p>
         </a>
+
         {/* Form Sign In */}
         <form className="mt-5 px-4" onSubmit={handleSubmit(submitForm)}>
           {/* Email */}
@@ -100,7 +107,7 @@ function SignIn() {
         </div>
 
         {/* Sign in with another social media */}
-        <div className="flex w-full flex-col laptop:flex-row laptop:justify-center laptop:items-center laptop:gap-8 mt-5 px-4">
+        <div className="flex w-full flex-col gap-3 laptop:flex-row laptop:justify-center laptop:items-center laptop:gap-8 mt-5 px-4">
           <Button Size="small">
             <span>
               <Icon icon="google_28" />
@@ -124,7 +131,7 @@ function SignIn() {
             <u className="text-dark_primary laptop:text-light_grey">Sign up</u>
           </Link>
         </p>
-      </section>
+      </motion.div>
     </div>
   )
 }
