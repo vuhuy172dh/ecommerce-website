@@ -51,7 +51,12 @@ function Address() {
             </p>
           </div>
           <div className="flex laptop:max-w-sm">
-            <Button Color="primary" onClick={() => setPopupAddress(true)}>
+            <Button
+              Color="primary"
+              Custom={true}
+              Padding="px-6"
+              onClick={() => setPopupAddress(true)}
+            >
               New Address
             </Button>
           </div>

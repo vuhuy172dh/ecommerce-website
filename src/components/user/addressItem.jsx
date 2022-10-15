@@ -49,18 +49,26 @@ function AddressItem({ address }) {
       </div>
 
       {/* control button*/}
-      <div className="flex flex-col">
-        <div className="flex gap-2">
-          <Button Color="secondary" onClick={() => setPopupDelete(true)}>
-            Delete
-          </Button>
-          <Button Color="secondary" onClick={() => setPopupUpdate(true)}>
+      <div className="flex flex-col items-center">
+        <div className="flex gap-2 justify-center">
+          <button
+            className="px-6 border border-primary/70 rounded-lg text-primary/60 hover:text-primary"
+            onClick={() => setPopupUpdate(true)}
+          >
             Update
-          </Button>
+          </button>
+          <button
+            className="px-6 border border-red-500 rounded-lg text-red-500"
+            onClick={() => setPopupDelete(true)}
+          >
+            Delete
+          </button>
         </div>
-        <div className="flex my-2">
+        <div className="my-2">
           <Button
             Color="primary"
+            Custom={true}
+            Padding="px-6 py-1"
             State={address.Default ? 'disable' : 'default'}
             onClick={
               address.Default ? () => {} : () => setPopupDefaultAddress(true)
