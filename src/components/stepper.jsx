@@ -88,27 +88,22 @@ function Stepper() {
       {/*Button*/}
       <div className="w-full flex flex-col gap-2 tablet:flex-row-reverse tablet:justify-between">
         {/*next*/}
-        <div>
-          <Button onClick={handleNext} Color="primary">
-            {currentStep === steps.length
-              ? 'Pay now'
-              : `Continue to ${steps[currentStep]}`}
-          </Button>
-        </div>
+        <Button onClick={handleNext} Color="primary">
+          {currentStep === steps.length
+            ? 'Pay now'
+            : `Continue to ${steps[currentStep]}`}
+        </Button>
 
         {/*Back*/}
-        <div>
-          <button
-            onClick={handleBack}
-            className="w-full py-4 flex-1 flex justify-center items-center text-light_grey/60 hover:text-light_grey bg-transparent"
-          >
-            {currentStep === 1 ? (
-              <Link to="/productCart">Back to Cart</Link>
-            ) : (
-              `Back to ${steps[currentStep - 2]}`
-            )}
-          </button>
-        </div>
+        {currentStep === 1 ? (
+          <Link to="/productCart" className="flex-1">
+            <Button Color="secondary">Back to Cart</Button>
+          </Link>
+        ) : (
+          <Button onClick={handleBack} Color="secondary">
+            Back to {steps[currentStep - 2]}
+          </Button>
+        )}
       </div>
     </div>
   )
