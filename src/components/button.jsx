@@ -50,11 +50,11 @@ function Button({
       className=" min-w-fit min-h-fit flex-1 flex relative"
     >
       <motion.button
-        className={`text-body-md min-w-fit min-h-fit flex-1 flex items-center justify-center gap-4 relative ease-out duration-300 cursor-pointer rounded-lg ${
-          colors[Color][State]
-        } ${Custom ? Padding : sizes[Size]}`}
-        whileHover={{ scale: 1.05 }}
-        whileTap={{ scale: 0.9 }}
+        className={`text-body-md min-w-fit min-h-fit flex-1 flex items-center justify-center gap-4 relative ease-out duration-300 ${
+          State === 'default' ? 'cursor-pointer' : 'cursor-default'
+        } rounded-lg ${colors[Color][State]} ${Custom ? Padding : sizes[Size]}`}
+        whileHover={State === 'default' ? { scale: 1.05 } : { scale: 1 }}
+        whileTap={State === 'dafault' ? { scale: 0.9 } : { scale: 1 }}
         onClick={handleOpen}
       >
         {children}
@@ -89,15 +89,18 @@ function Button({
                 duration: 0.3
               }
             }
-          }
-        }
+          }}
           style={{ pointerEvents: isOpen ? 'auto' : 'none' }}
           className={`w-full max-h-80 rounded-lg flex flex-col gap-10 list-none m-0 mt-5 py-2 absolute -bottom-2 translate-y-full ${colors[Color][State]}`}
         >
           {itemList.map((item, index) => (
-          <motion.li variants={itemVariants} key={index} className="pl-4 cursor-pointer">
-            {item} 
-          </motion.li>
+            <motion.li
+              variants={itemVariants}
+              key={index}
+              className="pl-4 cursor-pointer"
+            >
+              {item}
+            </motion.li>
           ))}
         </motion.ul>
       )}
