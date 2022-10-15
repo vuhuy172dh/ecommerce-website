@@ -4,6 +4,7 @@ import {
   signInWithPopup,
   GoogleAuthProvider
 } from 'firebase/auth'
+import { setWaiting, setActiveUser } from '../../redux/features/userSlice'
 
 import getErrorMessage from '../constant/err'
 import { db } from '../firebase.config'
@@ -11,11 +12,18 @@ import { USERS } from '../constant/firestore'
 import { auth } from '../firebase.config'
 
 // Sign in with Email & Password
-const signInWithEmailAndPassword = async (email, password) => {
+const signInWithEmailAndPassword = async (email, password, dispatch) => {
+  dispatch(setWaiting())
   try {
     // Show loading spinner
     // Dispatch action
-    await signIn(auth, email, password)
+    const userCredential = await signIn(auth, email, password)
+    dispatch(
+      setActiveUser({
+        name: userCredential.user.displayName,
+        email: userCredential.user.email
+      })
+    )
   } catch (error) {
     const { code } = error
     const errMes = getErrorMessage(code)
@@ -56,4 +64,4 @@ const signInWithGoogle = async () => {
 }
 
 export { signInWithEmailAndPassword, signInWithGoogle }
-export default signInWithEmailAndPassword
+//export default SignInWithEmailAndPassword

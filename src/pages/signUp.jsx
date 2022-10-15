@@ -45,9 +45,9 @@ function SignUp() {
         animate={{ y: 0 }}
         transition={{ type: 'spring', stiffness: 100 }}
       >
-        <a href="/">
+        <Link to="/">
           <p className="w-full text-h2 text-center">Avion</p>
-        </a>
+        </Link>
         {/* Form Sign Un */}
         <form className="mt-5 px-4" onSubmit={handleSubmit(submitForm)}>
           {/* Fullname */}

@@ -6,11 +6,25 @@ import BannerCarousel from './bannerCarousel'
 import ButtonIcon from './buttonIcon'
 import LinkButton from './linkButton'
 import SearchField from './searchField'
+import { selectUserEmail } from '../redux/features/userSlice'
+import { useSelector, useDispatch } from 'react-redux'
+import { useState } from 'react'
+import { signOut } from '../services/auth/index'
 
 function Navbar() {
-  const { mode, handleMode } = useNavMode()
+  const handleMode = useNavMode().handleMode
   const { mode: darkMode } = useDarkMode()
   const scrollY = useScrollPosition()
+  const [userHover, setUserHover] = useState(false)
+
+  const dispatch = useDispatch()
+
+  //get user name
+  const userEmail = useSelector(selectUserEmail)
+
+  const handleSignOut = () => {
+    signOut(dispatch)
+  }
 
   return (
     <div className="w-full flex justify-center mb-28 tablet:mb-36 relative z-30">
@@ -67,13 +81,26 @@ function Navbar() {
             </div>
 
             {/*User icon button */}
-            <div className="mobile:hidden tablet:block">
-              <Link to="/user/account/profile">
+            <div
+              className="mobile:hidden tablet:block relative"
+              onMouseEnter={() => setUserHover(true)}
+              onMouseLeave={() => setUserHover(false)}
+            >
+              <Link to={userEmail ? '/user/account/profile' : '/signin'}>
                 <ButtonIcon
                   Icon="user"
                   Color={darkMode === 'light' ? 'light' : 'dark'}
                 />
               </Link>
+
+              <div
+                className={`w-[100px] bg-red-500 px-3 absolute bottom-0 translate-y-full cursor-pointer left-0 ${
+                  userHover && userEmail ? 'block' : 'hidden'
+                }`}
+                onClick={handleSignOut}
+              >
+                Sign Out
+              </div>
             </div>
           </div>
         </div>

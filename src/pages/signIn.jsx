@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 
@@ -7,9 +7,13 @@ import Icon from '../helper/icon'
 import { signinScheme } from '../validations/signin'
 import { Helmet } from 'react-helmet-async'
 import { motion } from 'framer-motion'
+import { signInWithEmailAndPassword } from '../services/auth/index'
+import { useDispatch, useSelector } from 'react-redux'
+import { selectIsLoading, selectUserEmail } from '../redux/features/userSlice'
 
 // Sample img
 import WhiteRoomImg from '../assets/images/features3.png'
+import { useEffect } from 'react'
 
 function SignIn() {
   const {
@@ -18,9 +22,28 @@ function SignIn() {
     formState: { errors }
   } = useForm({ resolver: yupResolver(signinScheme) })
 
+  //declare navigate
+  const navigate = useNavigate()
+
+  //create dispatch
+  const dispatch = useDispatch()
+
+  //get state
+  const isLoading = useSelector(selectIsLoading)
+  const userEmail = useSelector(selectUserEmail)
+
+  //handle submit form
   const submitForm = (data) => {
-    console.log('sign in: ', data)
+    //api to sign in with email and password
+    signInWithEmailAndPassword(data.email, data.password, dispatch)
   }
+
+  useEffect(() => {
+    if (userEmail !== null) {
+      navigate('/')
+    }
+  }, [userEmail])
+
   return (
     <div className="flex w-screen h-screen justify-center items-center relative">
       {/*Helmet async*/}
@@ -45,9 +68,9 @@ function SignIn() {
         animate={{ y: 0 }}
         transition={{ type: 'spring', stiffness: 100, duration: 0.5 }}
       >
-        <a href="/">
+        <Link to="/">
           <p className="w-full text-h2 text-center">Avion</p>
-        </a>
+        </Link>
 
         {/* Form Sign In */}
         <form className="mt-5 px-4" onSubmit={handleSubmit(submitForm)}>
@@ -132,6 +155,10 @@ function SignIn() {
           </Link>
         </p>
       </motion.div>
+
+      {isLoading && (
+        <div className="w-screen h-screen absolute top-0 bg-white/50 z-50"></div>
+      )}
     </div>
   )
 }
