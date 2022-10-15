@@ -1,8 +1,10 @@
-import Button from '../components/button'
-import Icon from '../helper/icon'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
+import { useState } from 'react'
+
+import Button from '../components/button'
+import Icon from '../helper/icon'
 import { signinScheme } from '../validations/signin'
 import { Helmet } from 'react-helmet-async'
 import { motion } from 'framer-motion'
@@ -11,14 +13,43 @@ import { motion } from 'framer-motion'
 import WhiteRoomImg from '../assets/images/features3.png'
 
 function SignIn() {
+  let navigate = useNavigate()
+  // Error from firebase
+  const [error, setError] = useState('')
+
+  // Get some APIs to manage form
   const {
     register,
     handleSubmit,
     formState: { errors }
   } = useForm({ resolver: yupResolver(signinScheme) })
 
-  const submitForm = (data) => {
-    console.log('sign in form', data)
+  // Handle data that get from form
+  const handleDataForm = (data) => {
+    // Get email, password
+    const { email, password } = data
+
+    // Call API at here
+    signInWithEmailAndPassword(email, password)
+      .then(() => {
+        navigate('/')
+      })
+      .catch((err) => {
+        setError(err)
+      })
+
+    // Handle set state global
+  }
+
+  // Handle sign in with Gooole
+  const handleSignInWithGoogle = () => {
+    signInWithGoogle()
+      .then(() => {
+        navigate('/')
+      })
+      .catch((err) => {
+        setError(err)
+      })
   }
 
   return (
