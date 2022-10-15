@@ -9,11 +9,12 @@ import { Helmet } from 'react-helmet-async'
 import { motion } from 'framer-motion'
 import { signInWithEmailAndPassword } from '../services/auth/index'
 import { useDispatch, useSelector } from 'react-redux'
-import { selectIsLoading, selectUserEmail } from '../redux/features/userSlice'
+import { selectUserEmail } from '../redux/features/userSlice'
+import { selectLoading, selectError } from '../redux/features/procedureSlice'
 
 // Sample img
 import WhiteRoomImg from '../assets/images/features3.png'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 
 function SignIn() {
   const {
@@ -29,8 +30,9 @@ function SignIn() {
   const dispatch = useDispatch()
 
   //get state
-  const isLoading = useSelector(selectIsLoading)
   const userEmail = useSelector(selectUserEmail)
+  const loading = useSelector(selectLoading)
+  const error = useSelector(selectError)
 
   //handle submit form
   const submitForm = (data) => {
@@ -98,6 +100,9 @@ function SignIn() {
             </p>
           </div>
 
+          {/*show an error when signing in incorrectly*/}
+          {error && <p className="text-red-500 text-body-md">{error}</p>}
+
           {/* Another */}
           <div className="mt-5 flex justify-between">
             <label className="inline-flex">
@@ -156,7 +161,7 @@ function SignIn() {
         </p>
       </motion.div>
 
-      {isLoading && (
+      {loading && (
         <div className="w-screen h-screen absolute top-0 bg-white/50 z-50"></div>
       )}
     </div>

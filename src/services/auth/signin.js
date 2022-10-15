@@ -5,6 +5,7 @@ import {
   GoogleAuthProvider
 } from 'firebase/auth'
 import { setWaiting, setActiveUser } from '../../redux/features/userSlice'
+import { request, success, fail } from '../../redux/features/procedureSlice'
 
 import getErrorMessage from '../constant/err'
 import { db } from '../firebase.config'
@@ -13,21 +14,23 @@ import { auth } from '../firebase.config'
 
 // Sign in with Email & Password
 const signInWithEmailAndPassword = async (email, password, dispatch) => {
-  dispatch(setWaiting())
+  dispatch(request())
   try {
     // Show loading spinner
     // Dispatch action
     const userCredential = await signIn(auth, email, password)
     dispatch(
       setActiveUser({
-        name: userCredential.user.displayName,
+        fullname: userCredential.user.displayName,
         email: userCredential.user.email
       })
     )
+    dispatch(success())
   } catch (error) {
     const { code } = error
     const errMes = getErrorMessage(code)
-    return Promise.reject(errMes)
+    dispatch(fail({ error: errMes }))
+    //return Promise.reject(errMes)
   } finally {
     // Hide loading spinner
   }
