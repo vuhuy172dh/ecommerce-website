@@ -1,9 +1,7 @@
-import { Link, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
-import { useState } from 'react'
 
-import { signUp } from '../services/auth'
 import Button from '../components/button'
 import { signupScheme } from '../validations/signup'
 import { motion } from 'framer-motion'
@@ -13,32 +11,14 @@ import WhiteRoomImg from '../assets/images/features3.png'
 import { Helmet } from 'react-helmet-async'
 
 function SignUp() {
-  let navigate = useNavigate()
-  // Error from firebase
-  const [error, setError] = useState('')
-
-  // Get some APIs to manage form
   const {
     register,
     handleSubmit,
     formState: { errors }
   } = useForm({ resolver: yupResolver(signupScheme) })
 
-  // Handle data that get from form
-  const handleDataForm = (data) => {
-    // Get fullname, email, password
-    const { fullname, email, password } = data
-
-    // Sign up with email & password
-    signUp(fullname, email, password)
-      .then(() => {
-        navigate('/')
-      })
-      .catch((err) => {
-        setError(err)
-      })
-
-    // Set global state
+  const submitForm = (data) => {
+    console.log('sign up: ', data)
   }
 
   return (
