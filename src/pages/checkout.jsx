@@ -2,9 +2,11 @@ import { Helmet } from 'react-helmet-async'
 import Background from '../assets/images/background.jpg'
 import Stepper from '../components/stepper'
 import { Link } from 'react-router-dom'
+import ProductCheckoutList from '../components/productCheckoutList'
+import ProductCheckoutListButton from '../components/productCheckoutListButton'
 
 import img1 from '../assets/images/BlueChair.png'
-import ProductCheckoutList from '../components/productCheckoutList'
+
 const cartItems = [
   {
     id: 1,
@@ -88,7 +90,7 @@ function Checkout() {
       {/*content*/}
       <section className="w-full flex relative z-30 justify-center items-start laptop:pt-8 pb-16">
         {/*check out*/}
-        <section className="flex-[1.3] w-full flex justify-center laptop:pr-8 laptop:justify-end laptop:border-r laptop:border-r-light_grey/40">
+        <section className="flex-[1.3] w-full flex justify-center laptop:pr-8 laptop:justify-end">
           <div className="flex-1 max-w-[600px] px-4">
             {/*logo*/}
             <Link to="/">
@@ -97,9 +99,17 @@ function Checkout() {
               </div>
             </Link>
 
-            {/*total price*/}
-            <div className="w-full py-4 border-b border-b-border_dark/20">
-              <p className="text-h4 font-[500] text-light_grey">$444</p>
+            {/*total price and products listing*/}
+            <div className="w-full py-4 border-b border-b-border_dark/20 flex justify-between items-start">
+              {/*products list button for mobile*/}
+              <div className="laptop:hidden flex-1 w-full">
+                <ProductCheckoutListButton products={cartItems} />
+              </div>
+
+              {/*total price*/}
+              <p className="text-h4 flex-1 font-[500] text-light_grey text-end">
+                $444
+              </p>
             </div>
 
             {/*stepper*/}
@@ -110,7 +120,7 @@ function Checkout() {
         </section>
 
         {/*product info*/}
-        <section className="flex-1 w-full hidden laptop:flex pl-10">
+        <section className="flex-1 w-full hidden laptop:flex pl-10 border-l border-l-light_grey/30">
           <div className="max-w-[450px] w-full">
             {/*product list*/}
             <ProductCheckoutList productList={cartItems} />

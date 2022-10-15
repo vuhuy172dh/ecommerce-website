@@ -7,6 +7,37 @@ import { Link } from 'react-router-dom'
 
 const steps = ['Information', 'Shipping', 'Payment']
 
+const addressList = [
+  {
+    id: 1,
+    name: 'Hoàng Văn Phúc',
+    phoneNumber: '0123321760',
+    address:
+      'Ktx khu A ĐHQG, Đường Tạ Quang Bửu, Phường Linh Trung Thành Phố Thủ Đức, TP. Hồ Chí Minh, Phường Linh Trung Thành Phố Thủ Đức, TP. Hồ Chí Minh',
+    default: true,
+    province: 'Tỉnh Hà Giang',
+    district: 'Huyện Đồng Văn',
+    ward: 'Xã Lũng Cú',
+    provinceCode: '2',
+    districtCode: '26',
+    wardCode: '715'
+  },
+  {
+    id: 2,
+    name: 'Hoàng Văn Phúc',
+    phoneNumber: '0123321760',
+    address:
+      'Ktx khu A ĐHQG, Đường Tạ Quang Bửu, Phường Linh Trung Thành Phố Thủ Đức, TP. Hồ Chí Minh',
+    default: false,
+    province: 'Tỉnh Hà Giang',
+    district: 'Huyện Đồng Văn',
+    ward: 'Xã Lũng Cú',
+    provinceCode: '2',
+    districtCode: '26',
+    wardCode: '715'
+  }
+]
+
 function Stepper() {
   const [currentStep, setCurrentStep] = useState(1)
 
@@ -44,6 +75,15 @@ function Stepper() {
           </div>
         ))}
       </div>
+
+      {/*information*/}
+      <div className="w-full"></div>
+
+      {/*Shipping*/}
+      <div className="w-full"></div>
+
+      {/*Payment*/}
+      <div className="w-full"></div>
 
       {/*Button*/}
       <div className="w-full flex flex-col gap-2 tablet:flex-row-reverse tablet:justify-between">
