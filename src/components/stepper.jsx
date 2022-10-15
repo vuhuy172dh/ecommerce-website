@@ -4,6 +4,7 @@ import Button from './button'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCheck } from '@fortawesome/free-solid-svg-icons'
 import { Link } from 'react-router-dom'
+import AddressList from './user/addressList'
 
 const steps = ['Information', 'Shipping', 'Payment']
 
@@ -77,7 +78,11 @@ function Stepper() {
       </div>
 
       {/*information*/}
-      <div className="w-full"></div>
+      {currentStep === 1 && (
+        <div className="w-full">
+          <AddressList addressList={addressList} />
+        </div>
+      )}
 
       {/*Shipping*/}
       <div className="w-full"></div>
