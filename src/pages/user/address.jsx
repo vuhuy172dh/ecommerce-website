@@ -39,7 +39,8 @@ function Address() {
 
   return (
     <>
-      <div className="bg-white px-6 w-full">
+      <div className="px-6 my-2 w-full bg-border_grey dark:bg-secondary dark:text-white rounded-tl-lg rounded-bl-lg shadow-md shadow-black/40 dark:shadow-light_grey/30">
+        {/*address page header*/}
         <header className="text-center laptop:text-left laptop:flex laptop:justify-between laptop:items-center laptop:border-b-2 border-primary pb-3">
           <div>
             <h3 className="text-body-lg font-semibold text-dark_primary">
@@ -55,6 +56,8 @@ function Address() {
             </Button>
           </div>
         </header>
+
+        {/*address list*/}
         <div>
           <AddressList addressList={addressList} />
         </div>

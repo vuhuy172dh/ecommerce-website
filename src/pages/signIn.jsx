@@ -40,7 +40,7 @@ function SignIn() {
 
       {/*animated login container for tablet and laptop*/}
       <motion.div
-        className="w-full items-center tablet:w-fit tablet:py-12 z-20 tablet:absolute table:bg-white/10 tablet:backdrop-blur-lg tablet:shadow-lg tablet:shadow-black/30 tablet:rounded-2xl"
+        className="w-full tablet:w-fit tablet:min-w-[25vw] tablet:py-12 tablet:absolute z-20 tablet:bg-white/10 tablet:backdrop-blur-lg tablet:shadow-lg tablet:shadow-black/30 tablet:rounded-2xl"
         initial={{ y: -400 }}
         animate={{ y: 0 }}
         transition={{ type: 'spring', stiffness: 100, duration: 0.5 }}
@@ -84,12 +84,12 @@ function SignIn() {
               </h5>
             </label>
             <span className="text-right">
-              <a
-                href="/forgetPassword"
+              <Link
+                to="/forgetPassword"
                 className="text-h6 font-medium text-primary laptop:text-border_grey"
               >
                 Forgot password
-              </a>
+              </Link>
             </span>
           </div>
           <div className="mt-4">
