@@ -33,16 +33,19 @@ function App() {
   const path = useLocation().pathname
   return (
     <div>
-      {path === '/signin' || path === '/signup' || path === '/checkout' || (
-        <header>
-          <NavMode>
-            <Navbar />
-            <NavDrawer />
-          </NavMode>
-          <DarkModeButton />
-          <CartFloatButton />
-        </header>
-      )}
+      {path === '/signin' ||
+        path === '/signup' ||
+        path === '/forgetPassword' ||
+        path === '/checkout' || (
+          <header>
+            <NavMode>
+              <Navbar />
+              <NavDrawer />
+            </NavMode>
+            <DarkModeButton />
+            <CartFloatButton />
+          </header>
+        )}
       <main>
         <Routes>
           <Route path="/" element={<HomePage />} />
@@ -67,11 +70,14 @@ function App() {
           <Route path="/checkout" element={<Checkout />} />
         </Routes>
       </main>
-      {path === '/signin' || path === '/signup' || path === '/checkout' || (
-        <footer>
-          <Footer />
-        </footer>
-      )}
+      {path === '/signin' ||
+        path === '/signup' ||
+        path === '/forgetPassword' ||
+        path === '/checkout' || (
+          <footer>
+            <Footer />
+          </footer>
+        )}
     </div>
   )
 }
