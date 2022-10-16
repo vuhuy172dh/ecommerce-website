@@ -1,6 +1,3 @@
-import createNewCategory from "./create";
-import showListCategories from "./show";
-import updateOneCategory from "./update";
-import deleteOneCategory from "./delete";
+import showListCategories from './show'
 
-export {createNewCategory, showListCategories, updateOneCategory, deleteOneCategory}
+export { showListCategories }
