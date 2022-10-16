@@ -1,4 +1,4 @@
-import { collection, getDocs } from 'firebase/firestore'
+import { collection, getDocs, doc } from 'firebase/firestore'
 import { db } from '../firebase.config'
 import { PRODUCTS } from '../constant/firestore'
 
@@ -16,7 +16,7 @@ const getListProducts = async () => {
 //show one product by id
 export const getProduct = async (id) => {
   try {
-    const docRef = await doc(db, PRODUCTS, id)
+    const docRef = doc(db, PRODUCTS, id)
     const docSnap = await getDocs(docRef)
     return Promise.resolve(docSnap.data())
   } catch (error) {
