@@ -10,17 +10,17 @@ const getListProducts = async () => {
     listProducts.push(doc.data())
     listProducts[listProducts.length - 1].uuid = doc.id
   })
-  return listProducts
+  return Promise.resolve(listProducts)
 }
 
 //show one product by id
-export const showOneProduct = async (id) => {
+export const getProduct = async (id) => {
   try {
     const docRef = await doc(db, PRODUCTS, id)
-    const docSnap = await getDoc(docRef)
-    return docSnap.data()
+    const docSnap = await getDocs(docRef)
+    return Promise.resolve(docSnap.data())
   } catch (error) {
-    console.log(error)
+    return Promise.reject(error)
   }
 }
 

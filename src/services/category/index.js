@@ -1,3 +1,3 @@
-import showListCategories from './show'
+import getListCategories from './get'
 
-export { showListCategories }
+export { getListCategories }

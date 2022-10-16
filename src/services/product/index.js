@@ -1,3 +1,3 @@
-import getListProducts from './show'
+import getListProducts, { getProduct } from './get'
 
-export { getListProducts }
+export { getListProducts, getProduct }
