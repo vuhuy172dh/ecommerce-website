@@ -1,12 +1,17 @@
-import Button from '../components/button'
-import InfoItem from '../components/infoItem'
 import EmailField from '../components/emailField'
-import Counter from '../components/counter'
+import useScrollPosition from '../hooks/useScrollPosition'
 
 // Sample img
 import DandyChairImg from '../assets/images/DandyChair.png'
+import CeilingLamp from '../assets/images/CeilingLamp.png'
 import WhiteRoomImg from '../assets/images/features3.png'
 import { Helmet } from 'react-helmet-async'
+import InfoItemList from '../components/infoItemList'
+import ProductDesc from '../components/productDesc'
+import ProductCarousel from '../components/productCarousel'
+import ProductScrollView from '../components/productScrollView'
+import Overview from '../components/overview'
+import useClientRect from '../hooks/useClientRect'
 
 const product = {
   name: 'The Dandy Chair',
@@ -18,86 +23,72 @@ const product = {
     width: 75,
     depth: 50
   },
-  quantity: 0
+  quantity: 0,
+  images: [DandyChairImg, CeilingLamp, DandyChairImg, CeilingLamp]
 }
 
 function ProductDetailPage() {
+  // get scroll position
+  const scrollY = useScrollPosition()
+  // get element height
+  const { rect: imgsRect, ref: imgsRef } = useClientRect()
+
+  // scroll to index image when click on image overview
+  const handleScroll = (index) => {
+    window.scrollTo({
+      top: index * (imgsRect?.height / 4) + 144,
+      left: 0,
+      behavior: 'smooth'
+    })
+  }
+
   return (
-    <div className="text-dark_primary mx-6 laptop:mx-20">
+    <div className="mx-2 tablet:mx-6 laptop:mx-20">
       {/*helmet async*/}
       <Helmet>
         <title>{product.name}</title>
       </Helmet>
 
       {/* Product detail */}
-      <section className="grid grid-cols-4 gap-x-5 px-6 -mx-6 bg-light_grey laptop:grid-cols-12 laptop:py-12 laptop:-mx-20 laptop:px-20">
-        <div className="col-span-4 -mx-6 laptop:mx-0 laptop:col-span-6">
-          <img
-            className="w-full h-full object-cover"
-            src={DandyChairImg}
-            alt="a"
+      <section className="flex flex-col w-full tablet:flex-row tablet:gap-4">
+        {/* product image list for mobile*/}
+        <div className="block tablet:hidden mb-8">
+          <ProductCarousel images={product.images} />
+        </div>
+
+        {/* product image list for laptop */}
+        <div className="w-full hidden tablet:block" ref={imgsRef}>
+          <ProductScrollView images={product.images} />
+        </div>
+
+        {/* floating overview */}
+        <div className="hidden tablet:block">
+          <Overview
+            images={product.images}
+            visible={
+              scrollY <= (imgsRect?.height / 4) * 3 + 144 && scrollY > 0
+                ? true
+                : false
+            }
+            onClick={handleScroll}
           />
         </div>
-        <div className="col-span-4 laptop:col-span-6 laptop:ml-9 ">
-          {/* Top Text */}
-          <div className="mt-7 mb-4 laptop:mt-9 laptop:mb-7">
-            <h3 className="text-h3 mb-3 laptop:text-h1 laptop:mb-4">
-              {product.name}
-            </h3>
-            <h4 className="text-h4 laptop:text-h3">£250</h4>
-          </div>
-          <hr />
-          {/* Description */}
-          <div className="mt-7 laptop:mt-6">
-            <h5 className="text-h5 mb-3">Product description</h5>
-            <small className="text-body-sm laptop:text-body-md">
-              {product.description}
-            </small>
-          </div>
-          {/* Dimensions */}
-          <div className="mt-7 laptop:mt-9 laptop:w-80">
-            <h5 className="text-h5 mb-3 laptop:mb-6">Dimensions</h5>
-            <hr className="hidden" />
-            {/* Dimensions Metrics */}
-            <div className="flex justify-between items-center mt-4 ">
-              <div>
-                <h6 className="text-h6 mb-4">Height</h6>
-                <small className="text-body-sm laptop:text-body-md">
-                  {product.dimensions.height}cm
-                </small>
-              </div>
-              <div className="h-11 w-1 bg-border_grey"></div>
-              <div>
-                <h6 className="text-h6 mb-4">Width</h6>
-                <small className="text-body-sm laptop:text-body-md">
-                  {product.dimensions.width}cm
-                </small>
-              </div>
-              <div className="h-11 w-1 bg-border_grey"></div>
-              <div>
-                <h6 className="text-h6 mb-4">Depth</h6>
-                <small className="text-body-sm laptop:text-body-md">
-                  {product.dimensions.depth}cm
-                </small>
-              </div>
-            </div>
-          </div>
-          {/* Stepper */}
-          <div className="mt-7 laptop:w-32 laptop:mt-10">
-            <h5 className="text-h5 mb-3 ">Quantity</h5>
-            <Counter />
-          </div>
-          {/* Group btn */}
-          <div className="gap-4 flex flex-col laptop:items-center mt-8 mb-8 laptop:mt-12 laptop:w-96 laptop:flex-row-reverse">
-            <Button Color="white">Save to favorites</Button>
-            <Button Color="primary">Add to cart</Button>
-          </div>
+
+        {/* Product information  */}
+        <div className="w-full h-full sticky top-20 bg-border_grey dark:bg-secondary rounded-xl shadow-lg shadow-gray-700/40 dark:shadow-gray-300/40">
+          <ProductDesc
+            name={product.name}
+            desc={product.description}
+            price={product.price}
+            dimensions={product.dimensions}
+            quantity={product.quantity}
+          />
         </div>
       </section>
 
       {/* Infor Card List */}
       <div className="w-full py-12 laptop:py-20">
-        <InfoItem />
+        <InfoItemList />
       </div>
 
       {/* Email sign up */}

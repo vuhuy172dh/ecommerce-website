@@ -1,51 +1,43 @@
 import Icon from '../helper/icon'
+import { motion } from 'framer-motion'
+import { useState } from 'react'
+import useClientRect from '../hooks/useClientRect'
 
-function InfoItem() {
-  const featureList = [
-    {
-      icon: 'delivery_24',
-      label: 'Next day as standard',
-      desc: 'Order before 3pm and get your order the next day as standard'
-    },
-    {
-      icon: 'checkmark_24',
-      label: 'Made by true artisans',
-      desc: 'Handmade crafted goods made with real passion and craftmanship'
-    },
-    {
-      icon: 'purchase_24',
-      label: 'Unbeatable prices',
-      desc: 'For our materials and quality you won’t find better prices anywhere'
-    },
-    {
-      icon: 'sprout_24',
-      label: 'Recycled packaging',
-      desc: 'We use 100% recycled to ensure our footprint is more manageable'
-    }
-  ]
+function InfoItem({ icon, label, desc }) {
+  //use useClientRect to get width of element
+  const { rect: infoRect, ref: infoRef } = useClientRect()
+
+  // this is hover
+  const [hover, setHover] = useState(false)
 
   return (
-    // Feature list
-    <section className="w-full">
-      <h4 className="text-h4 mb-9 pr-20 laptop:text-center laptop:text-h3">
-        What makes our brand different
-      </h4>
-      {/* Feature item */}
-      <div className="grid grid-cols-4 gap-x-5 laptop:grid-cols-12 laptop:gap-y-5">
-        {featureList.map((item) => {
-          return (
-            <div
-              key={item.label}
-              className="px-6 py-9 bg-light_grey mt-6 col-span-4 laptop:col-span-3 laptop:mt-0"
-            >
-              <Icon icon={item.icon} />
-              <h4 className="text-h4 mt-4 mb-3">{item.label}</h4>
-              <p className="text-body-sm">{item.desc}</p>
-            </div>
-          )
-        })}
-      </div>
-    </section>
+    <div
+      className="px-6 py-9 bg-border_grey dark:bg-secondary mt-6 col-span-4 tablet:col-span-3 laptop:col-span-3 laptop:mt-0 rounded-xl shadow-lg shadow-gray-600/50 dark:shadow-light_grey/20 dark:text-light_grey"
+      ref={infoRef}
+      onMouseEnter={() => setHover(true)}
+      onMouseLeave={() => setHover(false)}
+    >
+      <motion.div
+        className="w-fit"
+        initial={false}
+        animate={
+          hover
+            ? {
+                x: [0, infoRect?.width / 2, infoRect?.width - 72],
+                rotateY: [0, 0, 0]
+              }
+            : { x: [infoRect?.width - 72, 0], rotateY: [-180, -180] }
+        }
+        transition={{
+          duration: 2,
+          times: [0, 0.7, 1]
+        }}
+      >
+        <Icon icon={icon} />
+      </motion.div>
+      <h4 className="text-h4 mt-4 mb-3">{label}</h4>
+      <p className="text-body-sm">{desc}</p>
+    </div>
   )
 }
 

@@ -32,6 +32,11 @@ body {
   font-family: 'Clash Display', sans-serif;
 }
 
+.dark body {
+  background-color: #1b1b1b;
+  color: #f9f9f9;
+}
+
 h1,
 h2,
 h3,

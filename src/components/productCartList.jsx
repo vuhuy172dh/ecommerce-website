@@ -1,9 +1,14 @@
+/*
+Name: ProductCartList
+Discription: A list of product cart items
+Properties: 
+  - cartItems: array of product item objects
+*/
+
 import React from 'react'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPlus, faMinus } from '@fortawesome/free-solid-svg-icons'
 import Counter from './counter'
 
-const productCartList = ({ cartItems }) => {
+const ProductCartList = ({ cartItems }) => {
   return cartItems.map(({ id, name, detail, price, imgUrl }) => (
     <div key={id} className="flex py-4 laptop:w-[100%] laptop:justify-between">
       {/*Product Cart Item */}
@@ -40,4 +45,4 @@ const productCartList = ({ cartItems }) => {
   ))
 }
 
-export default productCartList
+export default ProductCartList

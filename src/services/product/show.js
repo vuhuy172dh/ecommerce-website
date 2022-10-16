@@ -13,4 +13,15 @@ const getListProducts = async () => {
   return listProducts
 }
 
+//show one product by id
+export const showOneProduct = async (id) => {
+  try {
+    const docRef = await doc(db, PRODUCTS, id)
+    const docSnap = await getDoc(docRef)
+    return docSnap.data()
+  } catch (error) {
+    console.log(error)
+  }
+}
+
 export default getListProducts

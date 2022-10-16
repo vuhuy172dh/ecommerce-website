@@ -13,60 +13,98 @@ Properties:
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCaretDown } from '@fortawesome/free-solid-svg-icons'
+import { motion } from 'framer-motion'
+import { useState } from 'react'
+import { colors, sizes } from '../constant/button'
 
-const sizes = {
-  medium: 'py-4 px-8',
-  small: 'py-3 px-6'
+const itemVariants = {
+  open: {
+    opacity: 1,
+    y: 0,
+    transition: { type: 'spring', stiffness: 300, damping: 24 }
+  },
+  closed: { opacity: 0, y: 20, transition: { duration: 0.2 } }
 }
 
-const colors = {
-  white: {
-    default:
-      'text-dark_primary bg-white hover:bg-light_grey focus:bg-white focus:border-2 focus:border-solid focus:border-primary',
-    disabled: 'text-dark_primary bg-white opacity-50'
-  },
-  ghost: {
-    default:
-      'bg-transparent text-dark_primary hover:bg-border_grey focus:bg-transparent focus:border-2 focus:border-solid focus:border-primary',
-    disabled: 'bg-transparent text-dark_primary opacity-50'
-  },
-  secondary: {
-    default:
-      'bg-light_grey text-dark_primary hover:bg-border_grey focus:bg-light_grey focus:border-2 focus:border-solid focus:border-primary',
-    disabled: 'bg-light_grey text-dark_primary opacity-50'
-  },
-  primary: {
-    default:
-      'bg-dark_primary text-white hover:bg-[#1e193e] focus:bg-dark_primary focus:border focus:border-solid focus:border-primary',
-    disabled: 'bg-dark_primary text-white opacity-50'
-  },
-  opaque: {
-    default:
-      'bg-[rgba(249,249,249,0.15)] hover:bg-[rgba(249,249,249,0.3)] focus:border-2 focus:border-solid focus:border-primary text-white',
-    disabled: 'bg-[rgba(249,249,249,0.15)] text-white opacity-50'
-  }
-}
+const itemList = ['item 1', 'item 2', 'item 3', 'item 4', 'item 5', 'item 6']
 
 function Button({
   Color = 'white',
   Size = 'medium',
   State = 'default',
-  Custom = false,
   IconRight = false,
+  Custom = false,
   onClick = () => {},
-  children = 'Button',
+  children = 'button',
   Padding = ''
 }) {
+  const [isOpen, setIsOpen] = useState(false)
+  const handleOpen = () => {
+    setIsOpen(!isOpen)
+    onClick()
+  }
   return (
-    <button
-      className={`text-body-md min-w-fit min-h-fit flex-1 flex items-center justify-center gap-4 relative ease-out duration-300 ${
-        colors[Color][State]
-      } ${Custom ? Padding : sizes[Size]}`}
-      onClick={onClick}
+    <motion.nav
+      initial={false}
+      animate={isOpen ? 'open' : 'closed'}
+      className=" min-w-fit min-h-fit flex-1 flex relative"
     >
-      {children}
-      {IconRight && <FontAwesomeIcon icon={faCaretDown} />}
-    </button>
+      <motion.button
+        className={`text-body-md min-w-fit min-h-fit flex-1 flex items-center justify-center gap-4 relative ease-out duration-300 ${
+          State === 'default' ? 'cursor-pointer' : 'cursor-default'
+        } rounded-lg ${colors[Color][State]} ${Custom ? Padding : sizes[Size]}`}
+        whileHover={State === 'default' ? { scale: 1.05 } : { scale: 1 }}
+        whileTap={State === 'dafault' ? { scale: 0.9 } : { scale: 1 }}
+        onClick={handleOpen}
+      >
+        {children}
+        {/* this is icon right */}
+        {IconRight && (
+          <motion.div
+            variants={{ open: { rotate: 180 }, closed: { rotate: 0 } }}
+          >
+            <FontAwesomeIcon icon={faCaretDown} />
+          </motion.div>
+        )}
+      </motion.button>
+      {/* this is dropdown button */}
+      {IconRight && (
+        <motion.ul
+          variants={{
+            open: {
+              clipPath: 'inset(0% 0% 0% 0%)',
+              transition: {
+                type: 'spring',
+                bounce: 0,
+                duration: 0.7,
+                delayChildren: 0.3,
+                staggerChildren: 0.05
+              }
+            },
+            closed: {
+              clipPath: 'inset(10% 50% 90% 50%)',
+              transition: {
+                type: 'spring',
+                bounce: 0,
+                duration: 0.3
+              }
+            }
+          }}
+          style={{ pointerEvents: isOpen ? 'auto' : 'none' }}
+          className={`w-full max-h-80 rounded-lg flex flex-col gap-10 list-none m-0 mt-5 py-2 absolute -bottom-2 translate-y-full ${colors[Color][State]}`}
+        >
+          {itemList.map((item, index) => (
+            <motion.li
+              variants={itemVariants}
+              key={index}
+              className="pl-4 cursor-pointer"
+            >
+              {item}
+            </motion.li>
+          ))}
+        </motion.ul>
+      )}
+    </motion.nav>
   )
 }
 
