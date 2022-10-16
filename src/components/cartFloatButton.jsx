@@ -48,7 +48,6 @@ function CartFloatButton() {
     setClick(!click)
   }
 
-  console.log(click)
   return (
     <div>
       {/*this is cart float button*/}

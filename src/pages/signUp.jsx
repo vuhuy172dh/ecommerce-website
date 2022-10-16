@@ -1,7 +1,9 @@
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
-
+import { useDispatch, useSelector } from 'react-redux'
+import { selectUserEmail, signUpUser } from '../redux/features/userSlice'
+import { selectLoading, selectError } from '../redux/features/procedureSlice'
 import Button from '../components/button'
 import { signupScheme } from '../validations/signup'
 import { motion } from 'framer-motion'
@@ -9,17 +11,34 @@ import { motion } from 'framer-motion'
 // Sample img
 import WhiteRoomImg from '../assets/images/features3.png'
 import { Helmet } from 'react-helmet-async'
+import { useEffect } from 'react'
 
 function SignUp() {
+  //declare useForm
   const {
     register,
     handleSubmit,
     formState: { errors }
   } = useForm({ resolver: yupResolver(signupScheme) })
 
+  //select state of user and procedure
+  const dispatch = useDispatch()
+  const userEmail = useSelector(selectUserEmail)
+  const loading = useSelector(selectLoading)
+  const error = useSelector(selectError)
+
+  //declate navigate
+  const navigate = useNavigate()
+
   const submitForm = (data) => {
-    console.log('sign up: ', data)
+    dispatch(signUpUser(data.fullname, data.email, data.password))
   }
+
+  useEffect(() => {
+    if (userEmail !== null) {
+      navigate('/')
+    }
+  }, [userEmail])
 
   return (
     <div className="flex w-screen h-screen justify-center items-center relative">
@@ -86,6 +105,10 @@ function SignUp() {
               {errors.password?.message}
             </p>
           </div>
+
+          {/*show an error when signing in incorrectly*/}
+          {error && <p className="text-red-500 text-body-md">{error}</p>}
+
           <div className="mt-5 flex rounded overflow-hidden">
             <Button Color="primary" Size="small">
               Sign up
@@ -108,6 +131,10 @@ function SignUp() {
           </Link>
         </p>
       </motion.div>
+
+      {loading && (
+        <div className="w-screen h-screen absolute top-0 bg-white/50 z-50"></div>
+      )}
     </div>
   )
 }

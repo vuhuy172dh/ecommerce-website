@@ -4,8 +4,6 @@ import {
   signInWithPopup,
   GoogleAuthProvider
 } from 'firebase/auth'
-import { setWaiting, setActiveUser } from '../../redux/features/userSlice'
-import { request, success, fail } from '../../redux/features/procedureSlice'
 
 import getErrorMessage from '../constant/err'
 import { db } from '../firebase.config'
@@ -13,26 +11,16 @@ import { USERS } from '../constant/firestore'
 import { auth } from '../firebase.config'
 
 // Sign in with Email & Password
-const signInWithEmailAndPassword = async (email, password, dispatch) => {
-  dispatch(request())
+const signInWithEmailAndPassword = async (email, password) => {
   try {
     // Show loading spinner
     // Dispatch action
     const userCredential = await signIn(auth, email, password)
-    dispatch(
-      setActiveUser({
-        fullname: userCredential.user.displayName,
-        email: userCredential.user.email
-      })
-    )
-    dispatch(success())
+    return Promise.resolve(userCredential.user)
   } catch (error) {
     const { code } = error
     const errMes = getErrorMessage(code)
-    dispatch(fail({ error: errMes }))
-    //return Promise.reject(errMes)
-  } finally {
-    // Hide loading spinner
+    return Promise.reject(errMes)
   }
 }
 
@@ -45,7 +33,9 @@ const signInWithGoogle = async () => {
 
     // Successfull login with google provider
     const isNewUser = userCredential['_tokenResponse'].isNewUser
-    if (!isNewUser) return
+    if (!isNewUser) {
+      return Promise.resolve(userCredential.user)
+    }
 
     // If first login, create an user doc & save to firestore
     const user = {
@@ -58,6 +48,7 @@ const signInWithGoogle = async () => {
 
     const docRef = doc(db, USERS, user.uid)
     setDoc(docRef, user)
+    return Promise.resolve(userCredential.user)
   } catch (e) {
     // Fail to login with google provider
     const { code } = e
