@@ -17,12 +17,12 @@ function BannerCarousel({ slides }) {
         modules={[Autoplay]}
         autoplay={{ delay: 3000, disableOnInteraction: false }}
         loop={true}
-        className="bg-dark_primary"
+        className="bg-dark_primary dark:bg-light_grey"
       >
         {slides.map((slide, index) => (
           <SwiperSlide
             key={index}
-            className="text-body-sm text-center text-white cursor-pointer"
+            className="text-body-sm text-center text-white dark:text-dark_secondary cursor-pointer"
           >
             {slide}
           </SwiperSlide>

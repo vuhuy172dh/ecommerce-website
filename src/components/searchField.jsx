@@ -29,7 +29,7 @@ function SearchField({ Direction = 'rtl' }) {
     <div className="relative">
       <FontAwesomeIcon
         icon={faSearch}
-        className={`absolute top-1/2 -translate-y-1/2 cursor-pointer  duration-500 ${
+        className={`absolute top-1/2 -translate-y-1/2 cursor-pointer dark:text-white duration-500 ${
           search ? directions[Direction][2] : directions[Direction][3]
         } z-20`}
         onClick={handleSearch}

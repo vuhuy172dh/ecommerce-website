@@ -1,4 +1,4 @@
-import ProductItemListing from '../productItemListing'
+import ProductItemListing from '../../components/productItemListing'
 
 import img1 from '../../assets/images/ThreeVases.png'
 import img2 from '../../assets/images/CeilingLamp.png'
@@ -64,7 +64,7 @@ const wishlistItems = [
 
 function Wishlist() {
   return (
-    <div className="w-full px-4 h-full overflow-auto">
+    <div className="w-full px-4 pb-14 h-full overflow-auto">
       <ProductItemListing products={wishlistItems} />
     </div>
   )

@@ -10,46 +10,46 @@ import clubImg from '../assets/images/features3.png'
 import ProductItemListing from '../components/productItemListing'
 import { Helmet } from 'react-helmet-async'
 
-function ProductListingPage() {
-  const productItems = [
-    {
-      id: 1,
-      imgUrl: img1,
-      name: 'Rustic Vase Set',
-      price: 155
-    },
-    {
-      id: 2,
-      imgUrl: img2,
-      name: 'The Luccy Lamp',
-      price: 399
-    },
-    {
-      id: 3,
-      imgUrl: img3,
-      name: 'The Silky Vase',
-      price: 125
-    },
-    {
-      id: 4,
-      imgUrl: img4,
-      name: 'The Silky Vase',
-      price: 125
-    },
-    {
-      id: 5,
-      imgUrl: img1,
-      name: 'The Silky Vase',
-      price: 125
-    },
-    {
-      id: 6,
-      imgUrl: img2,
-      name: 'The Silky Vase',
-      price: 125
-    }
-  ]
+const productItems = [
+  {
+    id: 1,
+    imgUrl: img1,
+    name: 'Rustic Vase Set',
+    price: 155
+  },
+  {
+    id: 2,
+    imgUrl: img2,
+    name: 'The Luccy Lamp',
+    price: 399
+  },
+  {
+    id: 3,
+    imgUrl: img3,
+    name: 'The Silky Vase',
+    price: 125
+  },
+  {
+    id: 4,
+    imgUrl: img4,
+    name: 'The Silky Vase',
+    price: 125
+  },
+  {
+    id: 5,
+    imgUrl: img1,
+    name: 'The Silky Vase',
+    price: 125
+  },
+  {
+    id: 6,
+    imgUrl: img2,
+    name: 'The Silky Vase',
+    price: 125
+  }
+]
 
+function ProductListingPage() {
   const limitedValue = 4
   const [products, setProducts] = useState([])
   const [current, setCurrent] = useState(4)
@@ -59,7 +59,7 @@ function ProductListingPage() {
   useEffect(() => {
     // fake fetch API with init page number
     setProducts(productItems.slice(0, current))
-  }, [])
+  }, [current])
 
   const handleLoadMore = () => {
     // fake fetch API with new page number
@@ -78,14 +78,14 @@ function ProductListingPage() {
   }
 
   return (
-    <div>
+    <div className="relative">
       {/*Helmet async*/}
       <Helmet>
         <title>Products</title>
       </Helmet>
 
       {/* this is Header component */}
-      <header className=" bg-light_grey py-8 px-6 laptop:bg-white laptop:pt-20 laptop:pb-3 laptop:px-20">
+      <header className=" bg-light_grey dark:bg-secondary py-8 px-6 laptop:bg-white dark:laptop:bg-dark_secondary laptop:pt-20 laptop:pb-3 laptop:px-20 relative z-30">
         <h2 className="text-center mb-10 text-h2 laptop:mb-8">
           View all products
         </h2>
@@ -124,7 +124,7 @@ function ProductListingPage() {
       </header>
 
       {/* this is list Product component */}
-      <div className="px-6 py-7 laptop:px-20 laptop:pb-10">
+      <div className="px-6 py-7 laptop:px-20 laptop:pb-10 relative z-20">
         {/* Product Item Lists */}
         <ProductItemListing products={products} />
 
