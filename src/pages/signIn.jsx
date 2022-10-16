@@ -7,14 +7,17 @@ import Icon from '../helper/icon'
 import { signinScheme } from '../validations/signin'
 import { Helmet } from 'react-helmet-async'
 import { motion } from 'framer-motion'
-import { signInWithEmailAndPassword } from '../services/auth/index'
 import { useDispatch, useSelector } from 'react-redux'
-import { selectUserEmail } from '../redux/features/userSlice'
+import {
+  selectUserEmail,
+  signInWithEmailAndPass,
+  signInGoogle
+} from '../redux/features/userSlice'
 import { selectLoading, selectError } from '../redux/features/procedureSlice'
 
 // Sample img
 import WhiteRoomImg from '../assets/images/features3.png'
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 
 function SignIn() {
   const {
@@ -36,15 +39,20 @@ function SignIn() {
 
   //handle submit form
   const submitForm = (data) => {
-    //api to sign in with email and password
-    signInWithEmailAndPassword(data.email, data.password, dispatch)
+    dispatch(signInWithEmailAndPass(data.email, data.password))
+  }
+
+  //sign in with google
+  const signInWithGoogle = () => {
+    dispatch(signInGoogle())
   }
 
   useEffect(() => {
     if (userEmail !== null) {
+      console.log(userEmail)
       navigate('/')
     }
-  }, [userEmail])
+  }, [userEmail, navigate])
 
   return (
     <div className="flex w-screen h-screen justify-center items-center relative">
@@ -135,20 +143,13 @@ function SignIn() {
         </div>
 
         {/* Sign in with another social media */}
-        <div className="flex w-full flex-col gap-3 laptop:flex-row laptop:justify-center laptop:items-center laptop:gap-8 mt-5 px-4">
-          <Button Size="small">
+        <div className="flex w-full laptop:flex-row laptop:justify-center laptop:items-center laptop:gap-8 mt-5 px-4">
+          <Button Size="small" onClick={signInWithGoogle}>
             <span>
               <Icon icon="google_28" />
             </span>
             <span className="block laptop:hidden">Sign in with Google</span>
             <span className="hidden laptop:block">Google</span>
-          </Button>
-          <Button Size="small">
-            <span>
-              <Icon icon="facebook_28" />
-            </span>
-            <span className="block laptop:hidden">Sign in with Facebook</span>
-            <span className="hidden laptop:block">Facebook</span>
           </Button>
         </div>
 

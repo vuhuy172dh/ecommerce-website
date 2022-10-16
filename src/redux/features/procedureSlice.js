@@ -15,6 +15,7 @@ const procedureSlice = createSlice({
     },
     success: (state) => {
       state.loading = false
+      state.error = null
     },
     fail: (state, action) => {
       state.loading = false

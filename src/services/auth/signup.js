@@ -29,6 +29,7 @@ const signUp = async (fullname, email, password) => {
     // Create an user document to firestore
     const docRef = doc(db, USERS, userCredential.user.uid)
     setDoc(docRef, user)
+    return Promise.resolve(userCredential.user)
   } catch (error) {
     console.log(error)
     const { code } = error
