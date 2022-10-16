@@ -1,9 +1,11 @@
 import EmailField from '../components/emailField'
 import useScrollPosition from '../hooks/useScrollPosition'
-
-// Sample img
-import DandyChairImg from '../assets/images/DandyChair.png'
-import CeilingLamp from '../assets/images/CeilingLamp.png'
+import { useSelector, useDispatch } from 'react-redux'
+import {
+  getProductDetail,
+  selectProduct,
+  selectStatus
+} from '../redux/features/productSlice'
 import WhiteRoomImg from '../assets/images/features3.png'
 import { Helmet } from 'react-helmet-async'
 import InfoItemList from '../components/infoItemList'
@@ -12,20 +14,8 @@ import ProductCarousel from '../components/productCarousel'
 import ProductScrollView from '../components/productScrollView'
 import Overview from '../components/overview'
 import useClientRect from '../hooks/useClientRect'
-
-const product = {
-  name: 'The Dandy Chair',
-  description:
-    'A timeless design, with premium materials features as one of our most popular and iconic pieces. The Dandy Chair is perfect for any stylish living space with beech legs and lambskin leather upholstery.',
-  price: 250,
-  dimensions: {
-    height: 110,
-    width: 75,
-    depth: 50
-  },
-  quantity: 0,
-  images: [DandyChairImg, CeilingLamp, DandyChairImg, CeilingLamp]
-}
+import { useParams } from 'react-router-dom'
+import { useEffect } from 'react'
 
 function ProductDetailPage() {
   // get scroll position
@@ -42,6 +32,19 @@ function ProductDetailPage() {
     })
   }
 
+  //get product id
+  const { productId } = useParams()
+
+  //declare dispatch
+  const dispatch = useDispatch()
+  const status = useSelector(selectStatus)
+  const product = useSelector(selectProduct)
+
+  useEffect(() => {
+    //fetch Data
+    dispatch(getProductDetail(productId))
+  }, [])
+
   return (
     <div className="mx-2 tablet:mx-6 laptop:mx-20">
       {/*helmet async*/}
@@ -50,41 +53,47 @@ function ProductDetailPage() {
       </Helmet>
 
       {/* Product detail */}
-      <section className="flex flex-col w-full tablet:flex-row tablet:gap-4">
-        {/* product image list for mobile*/}
-        <div className="block tablet:hidden mb-8">
-          <ProductCarousel images={product.images} />
-        </div>
+      {status !== 'loading' ? (
+        <section className="flex flex-col w-full tablet:flex-row tablet:gap-4">
+          {/* product image list for mobile*/}
+          <div className="block tablet:hidden mb-8">
+            <ProductCarousel images={product.arrImg} />
+          </div>
 
-        {/* product image list for laptop */}
-        <div className="w-full hidden tablet:block" ref={imgsRef}>
-          <ProductScrollView images={product.images} />
-        </div>
+          {/* product image list for laptop */}
+          <div className="w-full hidden tablet:block" ref={imgsRef}>
+            <ProductScrollView images={product.arrImg} />
+          </div>
 
-        {/* floating overview */}
-        <div className="hidden tablet:block">
-          <Overview
-            images={product.images}
-            visible={
-              scrollY <= (imgsRect?.height / 4) * 3 + 144 && scrollY > 0
-                ? true
-                : false
-            }
-            onClick={handleScroll}
-          />
-        </div>
+          {/* floating overview */}
+          <div className="hidden tablet:block">
+            <Overview
+              images={product.arrImg}
+              visible={
+                scrollY <= (imgsRect?.height / 4) * 3 + 144 && scrollY > 0
+                  ? true
+                  : false
+              }
+              onClick={handleScroll}
+            />
+          </div>
 
-        {/* Product information  */}
-        <div className="w-full h-full sticky top-20 bg-border_grey dark:bg-secondary rounded-xl shadow-lg shadow-gray-700/40 dark:shadow-gray-300/40">
-          <ProductDesc
-            name={product.name}
-            desc={product.description}
-            price={product.price}
-            dimensions={product.dimensions}
-            quantity={product.quantity}
-          />
-        </div>
-      </section>
+          {/* Product information  */}
+          <div className="w-full h-full sticky top-20 bg-border_grey dark:bg-secondary rounded-xl shadow-lg shadow-gray-700/40 dark:shadow-gray-300/40">
+            <ProductDesc
+              name={product.name}
+              desc={product.description}
+              price={product.price}
+              width={product.width}
+              height={product.height}
+              depth={product.depth}
+              quantity={product.quantity}
+            />
+          </div>
+        </section>
+      ) : (
+        <div>loading....</div>
+      )}
 
       {/* Infor Card List */}
       <div className="w-full py-12 laptop:py-20">

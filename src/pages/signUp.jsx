@@ -2,8 +2,12 @@ import { Link, useNavigate } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useDispatch, useSelector } from 'react-redux'
-import { selectUserEmail, signUpUser } from '../redux/features/userSlice'
-import { selectLoading, selectError } from '../redux/features/procedureSlice'
+import {
+  selectUserEmail,
+  signUpUser,
+  selectStatus,
+  selectError
+} from '../redux/features/userSlice'
 import Button from '../components/button'
 import { signupScheme } from '../validations/signup'
 import { motion } from 'framer-motion'
@@ -24,7 +28,7 @@ function SignUp() {
   //select state of user and procedure
   const dispatch = useDispatch()
   const userEmail = useSelector(selectUserEmail)
-  const loading = useSelector(selectLoading)
+  const status = useSelector(selectStatus)
   const error = useSelector(selectError)
 
   //declate navigate
@@ -107,7 +111,9 @@ function SignUp() {
           </div>
 
           {/*show an error when signing in incorrectly*/}
-          {error && <p className="text-red-500 text-body-md">{error}</p>}
+          {status === 'error' && (
+            <p className="text-red-500 text-body-md">{error}</p>
+          )}
 
           <div className="mt-5 flex rounded overflow-hidden">
             <Button Color="primary" Size="small">
@@ -132,7 +138,7 @@ function SignUp() {
         </p>
       </motion.div>
 
-      {loading && (
+      {status === 'loading' && (
         <div className="w-screen h-screen absolute top-0 bg-white/50 z-50"></div>
       )}
     </div>

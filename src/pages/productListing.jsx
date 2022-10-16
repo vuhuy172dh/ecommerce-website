@@ -1,73 +1,43 @@
 import { useEffect, useState } from 'react'
 import Button from '../components/button'
-import EmailField from '../components/emailField'
-
-import img1 from '../assets/images/ThreeVases.png'
-import img2 from '../assets/images/CeilingLamp.png'
-import img3 from '../assets/images/SingleVase.png'
-import img4 from '../assets/images/DarkChair.png'
 import clubImg from '../assets/images/features3.png'
+import EmailField from '../components/emailField'
 import ProductItemListing from '../components/productItemListing'
 import { Helmet } from 'react-helmet-async'
-
-const productItems = [
-  {
-    id: 1,
-    imgUrl: img1,
-    name: 'Rustic Vase Set',
-    price: 155
-  },
-  {
-    id: 2,
-    imgUrl: img2,
-    name: 'The Luccy Lamp',
-    price: 399
-  },
-  {
-    id: 3,
-    imgUrl: img3,
-    name: 'The Silky Vase',
-    price: 125
-  },
-  {
-    id: 4,
-    imgUrl: img4,
-    name: 'The Silky Vase',
-    price: 125
-  },
-  {
-    id: 5,
-    imgUrl: img1,
-    name: 'The Silky Vase',
-    price: 125
-  },
-  {
-    id: 6,
-    imgUrl: img2,
-    name: 'The Silky Vase',
-    price: 125
-  }
-]
+import {
+  getProducts,
+  selectProducts,
+  selectStatus
+} from '../redux/features/productsSlice'
+import { useSelector, useDispatch } from 'react-redux'
 
 function ProductListingPage() {
   const limitedValue = 4
-  const [products, setProducts] = useState([])
+  const [productsList, setProductsList] = useState([])
   const [current, setCurrent] = useState(4)
-
   const [visible, setVisible] = useState(true)
 
+  //declare dispatch
+  const dispatch = useDispatch()
+  //select state
+  const status = useSelector(selectStatus)
+  const products = useSelector(selectProducts)
+
   useEffect(() => {
-    // fake fetch API with init page number
-    setProducts(productItems.slice(0, current))
-  }, [current])
+    dispatch(getProducts())
+  }, [])
+
+  useEffect(() => {
+    setProductsList(products.slice(0, current))
+  }, [products, current])
 
   const handleLoadMore = () => {
     // fake fetch API with new page number
     // Check data, if fetch has data -> implement, else -> disable button
-    const newlist = productItems.slice(current, current + limitedValue)
+    const newlist = products.slice(current, current + limitedValue)
 
     if (newlist.length > 0) {
-      setProducts((prev) => {
+      setProductsList((prev) => {
         return [...prev, ...newlist]
       })
 
@@ -126,7 +96,11 @@ function ProductListingPage() {
       {/* this is list Product component */}
       <div className="px-6 py-7 laptop:px-20 laptop:pb-10 relative z-20">
         {/* Product Item Lists */}
-        <ProductItemListing products={products} />
+        {status !== 'loading' ? (
+          <ProductItemListing products={productsList} />
+        ) : (
+          <div>loading...</div>
+        )}
 
         {/* Load more Button */}
         {visible ? (

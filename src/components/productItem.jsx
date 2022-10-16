@@ -10,12 +10,12 @@ Properties:
 import { Link } from 'react-router-dom'
 import Button from './button'
 
-function ProductItem({ Img, Name, Price }) {
+function ProductItem({ img, name, price, id }) {
   return (
-    <Link to="/product/ssd">
+    <Link to={`/product/${id}`}>
       <div className="m-w-[200px] flex justify-center w-full rounded-lg overflow-hidden relative group shadow-lg shadow-gray-700/40 cursor-pointer">
         <img
-          src={Img}
+          src={img}
           alt="Product"
           className="w-full object-cover relative z-10"
           onClick={() => {}}
@@ -28,10 +28,10 @@ function ProductItem({ Img, Name, Price }) {
           <hr className="w-[90%] border-t border-t-dark_primary dark:border-t-light_grey" />
           <div className="w-full py-2">
             <p>
-              <strong>Name:</strong> {Name}
+              <strong>Name:</strong> {name}
             </p>
             <p>
-              <strong>Price:</strong> {Price}
+              <strong>Price:</strong> {price}
             </p>
           </div>
           <div className="w-full flex mb-4">

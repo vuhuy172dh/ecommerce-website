@@ -12,7 +12,7 @@ Properties:
 import Button from './button'
 import Counter from '../components/counter'
 
-function ProductDesc({ name, price, desc, dimensions, quantity }) {
+function ProductDesc({ name, price, desc, width, height, depth, quantity }) {
   return (
     <div className="col-span-4 laptop:col-span-6 laptop:ml-9 px-2">
       {/* Top Text */}
@@ -35,21 +35,21 @@ function ProductDesc({ name, price, desc, dimensions, quantity }) {
           <div>
             <h6 className="text-h6 mb-4">Height</h6>
             <small className="text-body-sm laptop:text-body-md">
-              {dimensions.height}cm
+              {height}cm
             </small>
           </div>
           <div className="h-11 w-1 bg-border_grey"></div>
           <div>
             <h6 className="text-h6 mb-4">Width</h6>
             <small className="text-body-sm laptop:text-body-md">
-              {dimensions.width}cm
+              {width}cm
             </small>
           </div>
           <div className="h-11 w-1 bg-border_grey"></div>
           <div>
             <h6 className="text-h6 mb-4">Depth</h6>
             <small className="text-body-sm laptop:text-body-md">
-              {dimensions.depth}cm
+              {depth}cm
             </small>
           </div>
         </div>

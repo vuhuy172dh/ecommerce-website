@@ -1,12 +1,18 @@
 import { configureStore } from '@reduxjs/toolkit'
 import user from '../features/userSlice'
-import procedure from '../features/procedureSlice'
+import products from '../features/productsSlice'
+import product from '../features/productSlice'
 
 const store = configureStore({
   reducer: {
     user: user,
-    procedure: procedure
-  }
+    products: products,
+    product: product
+  },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: false
+    })
 })
 
 export default store
