@@ -1,7 +1,6 @@
 import { Link, useNavigate } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
-
 import Button from '../components/button'
 import Icon from '../helper/icon'
 import { signinScheme } from '../validations/signin'
@@ -11,9 +10,10 @@ import { useDispatch, useSelector } from 'react-redux'
 import {
   selectUserEmail,
   signInWithEmailAndPass,
-  signInGoogle
+  signInGoogle,
+  selectError,
+  selectStatus
 } from '../redux/features/userSlice'
-import { selectLoading, selectError } from '../redux/features/procedureSlice'
 
 // Sample img
 import WhiteRoomImg from '../assets/images/features3.png'
@@ -34,8 +34,8 @@ function SignIn() {
 
   //get state
   const userEmail = useSelector(selectUserEmail)
-  const loading = useSelector(selectLoading)
   const error = useSelector(selectError)
+  const status = useSelector(selectStatus)
 
   //handle submit form
   const submitForm = (data) => {
@@ -162,7 +162,7 @@ function SignIn() {
         </p>
       </motion.div>
 
-      {loading && (
+      {status === 'loading' && (
         <div className="w-screen h-screen absolute top-0 bg-white/50 z-50"></div>
       )}
     </div>
