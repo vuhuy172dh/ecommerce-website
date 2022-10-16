@@ -5,6 +5,7 @@ import { forgetPasswordScheme } from '../validations/forgetPassword'
 import Button from '../components/button'
 import { motion } from 'framer-motion'
 import { Helmet } from 'react-helmet-async'
+import { resetPasswordByEmail } from '../services/auth'
 
 // Sample img
 import WhiteRoomImg from '../assets/images/features3.png'
@@ -15,6 +16,12 @@ function ForgetPassword() {
     handleSubmit,
     formState: { errors }
   } = useForm({ resolver: yupResolver(forgetPasswordScheme) })
+
+  const handleForgetPass = (data) => {
+    resetPasswordByEmail(data.email)
+      .then((notify) => alert(notify))
+      .catch((e) => alert(e))
+  }
 
   return (
     <div className="flex w-screen h-screen justify-center items-center relative">
@@ -67,7 +74,7 @@ function ForgetPassword() {
         )*/}
 
         {/* Form Sign In */}
-        <form className="mt-10 px-4">
+        <form className="mt-10 px-4" onSubmit={handleSubmit(handleForgetPass)}>
           {/* Email */}
           <label className="mt-5 block">
             <input
