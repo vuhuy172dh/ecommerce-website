@@ -2,15 +2,15 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMinus, faPlus } from '@fortawesome/free-solid-svg-icons'
 import { useState } from 'react'
 
-function Counter() {
-  let [count, setCount] = useState(0)
+function Counter({ maxNumber = Infinity, currentNumber = 0 }) {
+  const [count, setCount] = useState(currentNumber)
 
   const increaseCount = () => {
-    setCount(count + 1)
+    if (count < maxNumber) setCount(count + 1)
   }
 
   const decreaseCount = () => {
-    setCount(count - 1)
+    if (count > 0) setCount(count - 1)
   }
 
   return (

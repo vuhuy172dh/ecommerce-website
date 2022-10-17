@@ -5,44 +5,20 @@ import { useState } from 'react'
 import useScrollPosition from '../hooks/useScrollPosition'
 import ProductCartList from './productCartList'
 import Button from './button'
-
-import img1 from '../assets/images/BlueChair.png'
 import { Link } from 'react-router-dom'
-
-const cartItems = [
-  {
-    id: 1,
-    name: 'Graystone vase',
-    detail: 'A time less ceramic vase with a tru color grey glaze.',
-    price: 85,
-    imgUrl: img1
-  },
-  {
-    id: 2,
-    name: 'Basic white vase',
-    detail: 'Beautiful and simple this is one for the classics.',
-    price: 125,
-    imgUrl: img1
-  },
-  {
-    id: 3,
-    name: 'Graystone vase',
-    detail: 'A time less ceramic vase with a tru color grey glaze.',
-    price: 85,
-    imgUrl: img1
-  },
-  {
-    id: 4,
-    name: 'Basic white vase',
-    detail: 'Beautiful and simple this is one for the classics.',
-    price: 125,
-    imgUrl: img1
-  }
-]
+import { useSelector } from 'react-redux'
+import { selectCartItems } from '../redux/features/carts/cartSlice'
 
 function CartFloatButton() {
   const scrollY = useScrollPosition()
   const [click, setClick] = useState(false)
+
+  const cartItems = useSelector(selectCartItems)
+
+  const totalPrice = cartItems?.reduce(
+    (a, b) => a + Number(b.cartItem.price) * b.number,
+    0
+  )
 
   const handleClick = () => {
     setClick(!click)
@@ -94,7 +70,7 @@ function CartFloatButton() {
               {/*this is total price and buttons*/}
               <div className="w-full p-6 fixed bottom-0 bg-light_grey rounded-3xl border-t border-t-black flex flex-col tablet:items-center gap-2">
                 <p className="text-h5 font-[600] text-primary text-start tablet:text-center w-full ">
-                  TOTAL: 444$ | 4 items
+                  TOTAL: {totalPrice}$ | {cartItems.length} items
                 </p>
                 <div className="w-full tablet:w-1/4 flex flex-col gap-2">
                   <Link to="/productCart">

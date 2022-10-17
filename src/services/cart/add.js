@@ -1,28 +1,22 @@
-import {
-  serverTimestamp,
-  writeBatch,
-  addDoc,
-  collection,
-  doc
-} from 'firebase/firestore'
+import { writeBatch, addDoc, collection, doc } from 'firebase/firestore'
 import { db } from '../firebase.config'
-import { CART, PRODUCTS, USERS } from '../constant/firestore'
+import { CART, USERS } from '../constant/firestore'
 
 // Truyền vào hàm này là uid của user
-const addProductToCart = async (uidUser, uidProduct) => {
+const addProductToCart = async (uidUser, product, number) => {
   try {
     // Product ref
-    const productRef = doc(db, `${PRODUCTS}`, uidProduct)
+    //const productRef = doc(db, `${PRODUCTS}`, uidProduct)
 
     // Collection cart ref
     const cartRef = collection(db, `${USERS}/${uidUser}/${CART}`)
 
     // Add data to firestore
     await addDoc(cartRef, {
-      product_ref: productRef,
-      quantity: 1, // default value
-      created_date: serverTimestamp(),
-      updated_date: serverTimestamp()
+      cartItem: product,
+      number: number // default value
+      //created_date: serverTimestamp(),
+      //updated_date: serverTimestamp()
     })
   } catch (e) {
     const { code } = e
@@ -33,18 +27,13 @@ const addProductToCart = async (uidUser, uidProduct) => {
 // Anonymous user => Auth user
 // Chuyển danh sách sp trong giỏ hàng lên firebase
 // Mục đích hàm này là như vậy
-const addListProductToCart = async (uidUser, listUidProduct) => {
-  // listUidProduct: [uid1, uid2, ...]
-  // map [uid1, uid2, ...]
-  // => [{product_ref: a, quantity: 1, created_date: b, updated_date}, ...]
-
-  const listCartItem = listUidProduct.map((value) => {
-    const productRef = doc(db, `${PRODUCTS}`, value)
+const addListProductToCart = async (uidUser, listItem) => {
+  const listCartItem = listItem.map((item) => {
     return {
-      product_ref: productRef,
-      quantity: 1, // default value
-      created_date: serverTimestamp(),
-      updated_date: serverTimestamp()
+      cartItem: item.cartItem,
+      number: item.number // default value
+      //created_date: serverTimestamp(),
+      //updated_date: serverTimestamp()
     }
   })
 
@@ -65,6 +54,7 @@ const addListProductToCart = async (uidUser, listUidProduct) => {
     await batch.commit()
 
     // Do sth, may be with redux
+    return Promise.resolve('Ok')
   } catch (e) {
     const { code } = e
     return Promise.reject(code)

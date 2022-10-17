@@ -6,6 +6,8 @@ import {
   selectProduct,
   selectStatus
 } from '../redux/features/productSlice'
+import { addToCart, addItemToUserCart } from '../redux/features/carts/cartSlice'
+import { selectUserUid } from '../redux/features/userSlice'
 import WhiteRoomImg from '../assets/images/features3.png'
 import { Helmet } from 'react-helmet-async'
 import InfoItemList from '../components/infoItemList'
@@ -39,11 +41,20 @@ function ProductDetailPage() {
   const dispatch = useDispatch()
   const status = useSelector(selectStatus)
   const product = useSelector(selectProduct)
+  const userUid = useSelector(selectUserUid)
 
+  //fetch Data
   useEffect(() => {
-    //fetch Data
     dispatch(getProductDetail(productId))
   }, [])
+
+  const handleAddToCart = (number = 0) => {
+    if (userUid) {
+      dispatch(addItemToUserCart(userUid, product, number))
+    } else {
+      dispatch(addToCart({ cartItem: product, number: number }))
+    }
+  }
 
   return (
     <div className="mx-2 tablet:mx-6 laptop:mx-20">
@@ -87,7 +98,8 @@ function ProductDetailPage() {
               width={product.width}
               height={product.height}
               depth={product.depth}
-              quantity={product.quantity}
+              quantity={product.remain}
+              onClick={(number) => handleAddToCart(number)}
             />
           </div>
         </section>
