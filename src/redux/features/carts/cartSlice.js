@@ -170,7 +170,7 @@ export const addItemToUserCart =
       //delete old data on firebase
       for (let item of selectUserCartItems(getState())) {
         await deleteOneProductFromCart(userUid, item.uid)
-          .then((res) => console.log(res))
+          .then()
           .catch((e) => console.log(e))
       }
 
@@ -209,6 +209,7 @@ export const removeFromUserFirebase = (userUid, cartItemUid) => (dispatch) => {
   remove()
 }
 
+//update number of product when user is singing in
 export const updateUserCartFirebase =
   (userUid, cartItemUid, number) => (dispatch) => {
     const update = async () => {

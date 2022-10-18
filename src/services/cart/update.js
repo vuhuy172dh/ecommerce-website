@@ -9,7 +9,7 @@ const updateFieldNumberCartItem = async (uidUser, uidCartItem, number) => {
     updateDoc(cartItemRef, {
       number
     })
-    return Promise.resolve('ok')
+    return Promise.resolve('successfully update number')
   } catch (e) {
     const { code } = e
     return Promise.reject(code)

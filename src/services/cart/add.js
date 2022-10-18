@@ -54,7 +54,7 @@ const addListProductToCart = async (uidUser, listItem) => {
     await batch.commit()
 
     // Do sth, may be with redux
-    return Promise.resolve('Ok')
+    return Promise.resolve('Successfully add item to cart')
   } catch (e) {
     const { code } = e
     return Promise.reject(code)

@@ -48,6 +48,7 @@ function ProductDetailPage() {
     dispatch(getProductDetail(productId))
   }, [])
 
+  //handle Add to cart
   const handleAddToCart = (number = 0) => {
     if (userUid) {
       dispatch(addItemToUserCart(userUid, product, number))

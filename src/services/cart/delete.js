@@ -6,7 +6,7 @@ const deleteOneProductFromCart = async (uidUser, uidCart) => {
   try {
     const cartItemRef = doc(db, `${USERS}/${uidUser}/${CART}`, uidCart)
     await deleteDoc(cartItemRef)
-    return Promise.reject('ok')
+    return Promise.reject('successfully delete item')
   } catch (e) {
     const { code } = e
     return Promise.reject(code)
