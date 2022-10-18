@@ -4,69 +4,16 @@ import Stepper from '../components/stepper'
 import { Link } from 'react-router-dom'
 import ProductCheckoutList from '../components/productCheckoutList'
 import ProductCheckoutListButton from '../components/productCheckoutListButton'
-
-import img1 from '../assets/images/BlueChair.png'
-
-const cartItems = [
-  {
-    id: 1,
-    name: 'Graystone vase',
-    detail: 'A time less ceramic vase with a tru color grey glaze.',
-    price: 85,
-    imgUrl: img1
-  },
-  {
-    id: 2,
-    name: 'Basic white vase',
-    detail: 'Beautiful and simple this is one for the classics.',
-    price: 125,
-    imgUrl: img1
-  },
-  {
-    id: 3,
-    name: 'Graystone vase',
-    detail: 'A time less ceramic vase with a tru color grey glaze.',
-    price: 85,
-    imgUrl: img1
-  },
-  {
-    id: 4,
-    name: 'Basic white vase',
-    detail: 'Beautiful and simple this is one for the classics.',
-    price: 125,
-    imgUrl: img1
-  },
-  {
-    id: 5,
-    name: 'Graystone vase',
-    detail: 'A time less ceramic vase with a tru color grey glaze.',
-    price: 85,
-    imgUrl: img1
-  },
-  {
-    id: 6,
-    name: 'Basic white vase',
-    detail: 'Beautiful and simple this is one for the classics.',
-    price: 125,
-    imgUrl: img1
-  },
-  {
-    id: 5,
-    name: 'Graystone vase',
-    detail: 'A time less ceramic vase with a tru color grey glaze.',
-    price: 85,
-    imgUrl: img1
-  },
-  {
-    id: 6,
-    name: 'Basic white vase',
-    detail: 'Beautiful and simple this is one for the classics.',
-    price: 125,
-    imgUrl: img1
-  }
-]
+import { useSelector } from 'react-redux'
+import { selectCartItems } from '../redux/features/carts/cartSlice'
 
 function Checkout() {
+  const cartItems = useSelector(selectCartItems)
+
+  const cartTotalPrice = cartItems.reduce(
+    (a, b) => a + Number(b.cartItem.price) * b.number,
+    0
+  )
   return (
     <div className="w-screen h-screen relative">
       {/*helmet async*/}
@@ -108,7 +55,7 @@ function Checkout() {
 
               {/*total price*/}
               <p className="text-h4 flex-1 font-[500] text-light_grey text-end">
-                $444
+                ${cartTotalPrice}
               </p>
             </div>
 
@@ -133,7 +80,7 @@ function Checkout() {
               {/*subtotal*/}
               <div className="w-full flex justify-between text-light_grey">
                 <p className="text-h4">Subtotal</p>
-                <p className="font-[500]">$444.75</p>
+                <p className="font-[500]">${cartTotalPrice}</p>
               </div>
 
               {/*shipping*/}
@@ -148,7 +95,7 @@ function Checkout() {
               {/*total*/}
               <div className="w-full flex justify-between text-light_grey">
                 <p className="text-h3 font-[600]">Total</p>
-                <p className="text-h3 font-[600]">$444.75</p>
+                <p className="text-h3 font-[600]">${cartTotalPrice}</p>
               </div>
             </div>
           </div>
