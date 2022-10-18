@@ -22,8 +22,6 @@ const ProductCartList = ({ cartItems }) => {
   //handle remove from cart
   const handleRemoveFromCart = (product) => {
     if (userUid) {
-      console.log(product)
-      alert(product.uid)
       dispatch(removeFromUserFirebase(userUid, product.uid))
       return
     }
@@ -59,6 +57,8 @@ const ProductCartList = ({ cartItems }) => {
             <Counter
               maxNumber={cart.cartItem.remain}
               currentNumber={cart.number}
+              userUid={userUid ? userUid : null}
+              cartUid={userUid ? cart.uid : cart.cartItem.uuid}
             />
             <ButtonIcon
               Icon="trash"
@@ -70,7 +70,12 @@ const ProductCartList = ({ cartItems }) => {
       </div>
       <div className="hidden laptop:flex gap-2 items-center">
         {/* counter */}
-        <Counter maxNumber={cart.cartItem.remain} currentNumber={cart.number} />
+        <Counter
+          maxNumber={cart.cartItem.remain}
+          currentNumber={cart.number}
+          userUid={userUid ? userUid : null}
+          cartUid={userUid ? cart.uid : cart.cartItem.uuid}
+        />
         <div className="w-fit h-fit flex">
           <ButtonIcon
             Icon="trash"

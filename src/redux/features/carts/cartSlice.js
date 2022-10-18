@@ -2,7 +2,8 @@ import { createSlice } from '@reduxjs/toolkit'
 import {
   listingProductInCart,
   addListProductToCart,
-  deleteOneProductFromCart
+  deleteOneProductFromCart,
+  updateFieldNumberCartItem
 } from '../../../services/cart'
 
 const initialState = {
@@ -102,6 +103,33 @@ const cartSlice = createSlice({
       )
       state.cartItems = cartItems
       localStorage.setItem('cartItems', JSON.stringify(state.cartItems))
+    },
+    //for local
+    updateNumberCartItem: (state, action) => {
+      const newNumber = action.payload.number
+
+      for (let item of state.cartItems) {
+        if (item.cartItem.uuid === action.payload.uuid) {
+          item.number = newNumber
+        }
+      }
+      console.log(action.payload.uuid, newNumber)
+      //save to local storage
+      localStorage.setItem('cartItems', JSON.stringify(state.cartItems))
+    },
+    //for user
+    updateNumberUserCartItem: (state, action) => {
+      const newNumber = action.payload.number
+
+      for (let item of state.userCartItems) {
+        if (item.uid === action.payload.cartUid) {
+          item.number = newNumber
+        }
+      }
+
+      //merge with local
+      state.cartItems = state.userCartItems
+      localStorage.setItem('cartItems', JSON.stringify(state.cartItems))
     }
   }
 })
@@ -168,6 +196,7 @@ export const addItemToUserCart =
     addItem()
   }
 
+//remove cart item when user is logging in
 export const removeFromUserFirebase = (userUid, cartItemUid) => (dispatch) => {
   const remove = async () => {
     await deleteOneProductFromCart(userUid, cartItemUid)
@@ -180,6 +209,21 @@ export const removeFromUserFirebase = (userUid, cartItemUid) => (dispatch) => {
   remove()
 }
 
+export const updateUserCartFirebase =
+  (userUid, cartItemUid, number) => (dispatch) => {
+    const update = async () => {
+      await updateFieldNumberCartItem(userUid, cartItemUid, number)
+        .then((res) => console.log(res))
+        .catch((e) => alert(e))
+
+      dispatch(
+        updateNumberUserCartItem({ number: number, cartUid: cartItemUid })
+      )
+    }
+
+    update()
+  }
+
 //export action
 export const {
   addToCart,
@@ -187,7 +231,9 @@ export const {
   addNewItemToUserCart,
   removeItemFromUserCart,
   mergeCart,
-  removeFromCart
+  removeFromCart,
+  updateNumberCartItem,
+  updateNumberUserCartItem
 } = cartSlice.actions
 
 //export selection
