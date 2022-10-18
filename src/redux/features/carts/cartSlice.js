@@ -10,7 +10,10 @@ const initialState = {
   cartItems: localStorage.getItem('cartItems')
     ? JSON.parse(localStorage.getItem('cartItems'))
     : [],
-  userCartItems: []
+  userCartItems: [],
+  userCartStatus: 'idle',
+  userCartError: null,
+  userCartNotify: null
 }
 
 const cartSlice = createSlice({
@@ -113,7 +116,6 @@ const cartSlice = createSlice({
           item.number = newNumber
         }
       }
-      console.log(action.payload.uuid, newNumber)
       //save to local storage
       localStorage.setItem('cartItems', JSON.stringify(state.cartItems))
     },
@@ -130,6 +132,22 @@ const cartSlice = createSlice({
       //merge with local
       state.cartItems = state.userCartItems
       localStorage.setItem('cartItems', JSON.stringify(state.cartItems))
+    },
+    setUserCartRequest: (state) => {
+      state.userCartStatus = 'loading'
+    },
+    setUserCartSuccess: (state) => {
+      state.userCartStatus = 'idle'
+      state.userCartNotify = null
+      state.userCartError = null
+    },
+    setUserCartError: (state, action) => {
+      state.userCartStatus = 'error'
+      state.userCartError = action.payload
+    },
+    setUserCartNotify: (state, action) => {
+      state.userCartStatus = 'idle'
+      state.userCartNotify = action.payload
     }
   }
 })
@@ -137,14 +155,17 @@ const cartSlice = createSlice({
 //when first login and getUserCart. This is merge userCart to anonymous cart and update firestore
 export const getUserCart = (userUid) => (dispatch, getState) => {
   const getData = async () => {
+    //request API
+    dispatch(setUserCartRequest())
+
     await listingProductInCart(userUid)
       .then((cart) => dispatch(addToUserCart(cart)))
-      .catch((e) => alert(e))
+      .catch((e) => dispatch(setUserCartError(e)))
 
     for (let item of selectUserCartItems(getState())) {
       await deleteOneProductFromCart(userUid, item.uid)
         .then((res) => console.log(res))
-        .catch((e) => console.log(e))
+        .catch((e) => dispatch(setUserCartError(e)))
     }
 
     dispatch(mergeCart())
@@ -152,15 +173,19 @@ export const getUserCart = (userUid) => (dispatch, getState) => {
     const userCartItem = selectUserCartItems(getState())
 
     await addListProductToCart(userUid, userCartItem)
-      .then((res) => alert(res))
-      .catch((e) => alert(e))
+      .then((res) => console.log(res))
+      .catch((e) => dispatch(setUserCartError(e)))
 
     //get again data to get uid of CartItem
     await listingProductInCart(userUid)
       .then((cart) => dispatch(addToUserCart(cart)))
-      .catch((e) => alert(e))
+      .catch((e) => dispatch(setUserCartError(e)))
+
+    //success
+    dispatch(setUserCartSuccess())
   }
 
+  //get Data and merge user cart and local cart
   getData()
 }
 
@@ -234,11 +259,18 @@ export const {
   mergeCart,
   removeFromCart,
   updateNumberCartItem,
-  updateNumberUserCartItem
+  updateNumberUserCartItem,
+  setUserCartRequest,
+  setUserCartSuccess,
+  setUserCartNotify,
+  setUserCartError
 } = cartSlice.actions
 
 //export selection
 export const selectCartItems = (state) => state.cart.cartItems
 export const selectUserCartItems = (state) => state.cart.userCartItems
+export const selectUserCartStatus = (state) => state.cart.userCartStatus
+export const selectUserCartError = (state) => state.cart.userCartError
+export const selectUserCartNotify = (state) => state.cart.userCartNotify
 
 export default cartSlice.reducer
