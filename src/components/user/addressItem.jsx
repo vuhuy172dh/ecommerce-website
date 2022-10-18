@@ -22,7 +22,7 @@ function AddressItem({ address }) {
   }
 
   return (
-    <div className="my-5 mx-2 px-2 flex flex-col justify-start gap-3 laptop:flex-row laptop:justify-between laptop:py-5 laptop:px-0 border-2 border-primary/30 rounded-lg laptop:border-0 laptop:border-b-2 laptop:border-border_dark ">
+    <div className="mx-2 px-2 flex flex-col justify-start gap-3 laptop:flex-row laptop:justify-between laptop:py-5 laptop:px-0 border-2 border-primary/30 rounded-lg laptop:border-0 laptop:border-b-2 laptop:border-border_dark ">
       {/*info container*/}
       <div className="w-full flex flex-col gap-1">
         {/* info contact*/}

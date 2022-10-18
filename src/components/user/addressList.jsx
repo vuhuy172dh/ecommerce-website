@@ -2,7 +2,7 @@ import AddressItem from './addressItem'
 
 function AddressList({ addressList = [] }) {
   return (
-    <>
+    <div className="flex flex-col gap-2 laptop:gap-0">
       {addressList.map((item) => (
         <AddressItem
           key={item.id}
@@ -21,7 +21,7 @@ function AddressList({ addressList = [] }) {
           }}
         />
       ))}
-    </>
+    </div>
   )
 }
 
