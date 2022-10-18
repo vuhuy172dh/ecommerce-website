@@ -34,19 +34,19 @@ function Footer() {
           <p className="text-h3 tablet:text-h5">Menu</p>
           <ul className="flex flex-col items-center gap-2 text-body-lg tablet:text-body-sm tablet:items-start">
             <li>
-              <LinkButton>New arrivals</LinkButton>
+              <LinkButton path="/products">New arrivals</LinkButton>
             </li>
             <li>
-              <LinkButton>Best sellers</LinkButton>
+              <LinkButton path="/products">Best sellers</LinkButton>
             </li>
             <li>
-              <LinkButton>Recently viewed</LinkButton>
+              <LinkButton path="/products">Recently viewed</LinkButton>
             </li>
             <li>
-              <LinkButton>Popular this week</LinkButton>
+              <LinkButton path="/products">Popular this week</LinkButton>
             </li>
             <li>
-              <LinkButton>All products</LinkButton>
+              <LinkButton path="/products">All products</LinkButton>
             </li>
           </ul>
         </div>
@@ -56,10 +56,10 @@ function Footer() {
           <p className="text-h3 tablet:text-h5">Our company</p>
           <ul className="flex flex-col items-center gap-2 text-body-lg tablet:text-body-sm tablet:items-start">
             <li>
-              <LinkButton>About us</LinkButton>
+              <LinkButton path="/about">About us</LinkButton>
             </li>
             <li>
-              <LinkButton>Vacancies</LinkButton>
+              <LinkButton path="/vacancies">Vacancies</LinkButton>
             </li>
             <li>
               <LinkButton>Contact us</LinkButton>
