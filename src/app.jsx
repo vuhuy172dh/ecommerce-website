@@ -21,6 +21,7 @@ import ChangePassword from './pages/user/changePassword'
 import DarkModeButton from './components/darkModeButton'
 import CartFloatButton from './components/cartFloatButton'
 import Checkout from './pages/checkout'
+import Vacancies from './pages/vacancies'
 
 const SidebarLayout = () => (
   <div className="laptop:flex">
@@ -68,6 +69,7 @@ function App() {
           <Route path="/signup" element={<SignUp />} />
           <Route path="/forgetPassword" element={<ForgetPassword />} />
           <Route path="/checkout" element={<Checkout />} />
+          <Route path="/vacancies" element={<Vacancies/>} />
         </Routes>
       </main>
       {path === '/signin' ||
