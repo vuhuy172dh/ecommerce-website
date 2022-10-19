@@ -60,7 +60,7 @@ function Checkout() {
             </div>
 
             {/*stepper*/}
-            <div className="w-full py-4 border-b border-b-border_dark/20">
+            <div className="w-full py-4">
               <Stepper />
             </div>
           </div>

@@ -24,6 +24,8 @@ import Checkout from './pages/checkout/checkout'
 import Vacancies from './pages/vacancies'
 import Category from './pages/category'
 import CheckoutInformation from './pages/checkout/information'
+import CheckoutShipping from './pages/checkout/shipping'
+import CheckoutPayment from './pages/checkout/payment'
 
 const SidebarLayout = () => (
   <div className="laptop:flex">
@@ -69,6 +71,14 @@ function App() {
             <Route
               path="/user/checkout/information"
               element={<CheckoutInformation />}
+            />
+            <Route
+              path="/user/checkout/shipping"
+              element={<CheckoutShipping />}
+            />
+            <Route
+              path="/user/checkout/payment"
+              element={<CheckoutPayment />}
             />
           </Route>
           <Route path="/productCart" element={<ProductCartPage />} />

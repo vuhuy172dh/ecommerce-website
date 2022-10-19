@@ -12,6 +12,7 @@ import {
   selectUserCartItems
 } from '../redux/features/carts/cartSlice'
 import { selectUserUid } from '../redux/features/userSlice'
+import { selectCurrentStep } from '../redux/features/stepper/stepperSlice'
 
 function CartFloatButton() {
   const scrollY = useScrollPosition()
@@ -20,6 +21,7 @@ function CartFloatButton() {
   const cartItems = useSelector(selectCartItems)
   const userCartItems = useSelector(selectUserCartItems)
   const userUid = useSelector(selectUserUid)
+  const currentStep = useSelector(selectCurrentStep)
 
   const totalPrice = cartItems?.reduce(
     (a, b) => a + Number(b.cartItem.price) * b.number,
@@ -91,7 +93,15 @@ function CartFloatButton() {
                       YOUR BAG
                     </Button>
                   </Link>
-                  <Link to="/user/checkout/information">
+                  <Link
+                    to={`${
+                      currentStep === 1
+                        ? '/user/checkout/information'
+                        : currentStep === 2
+                        ? '/user/checkout/shipping'
+                        : '/user/checkout/payment'
+                    }`}
+                  >
                     <Button Color="primary">CHECK OUT</Button>
                   </Link>
                 </div>

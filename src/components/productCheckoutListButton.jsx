@@ -48,7 +48,7 @@ function ProductCheckoutListButton({ products }) {
       >
         {products.map((item) => (
           <motion.li
-            key={item.uuid}
+            key={item.uid}
             variants={{
               open: {
                 opacity: 1,

@@ -6,6 +6,7 @@ import cart from '../features/carts/cartSlice'
 import bill from '../features/bills/billSlice'
 import address from '../features/address/addressSlice'
 import category from '../features/category/categorySlice'
+import stepper from '../features/stepper/stepperSlice'
 
 const store = configureStore({
   reducer: {
@@ -15,7 +16,8 @@ const store = configureStore({
     cart: cart,
     bill: bill,
     address: address,
-    category: category
+    category: category,
+    stepper: stepper
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
