@@ -39,6 +39,8 @@ function NavDrawer() {
               <li>
                 <LinkButton
                   size="small"
+                  path="/products"
+                  onClick={handleMode}
                   color={darkMode === 'light' ? 'dark' : 'light'}
                 >
                   All products
@@ -47,6 +49,8 @@ function NavDrawer() {
               <li>
                 <LinkButton
                   size="small"
+                  path="/products/plant-pots"
+                  onClick={handleMode}
                   color={darkMode === 'light' ? 'dark' : 'light'}
                 >
                   Plant pots
@@ -55,6 +59,8 @@ function NavDrawer() {
               <li>
                 <LinkButton
                   size="small"
+                  onClick={handleMode}
+                  path="/products/ceramics"
                   color={darkMode === 'light' ? 'dark' : 'light'}
                 >
                   Ceramics
@@ -63,6 +69,8 @@ function NavDrawer() {
               <li>
                 <LinkButton
                   size="small"
+                  path="/products/tables"
+                  onClick={handleMode}
                   color={darkMode === 'light' ? 'dark' : 'light'}
                 >
                   Tables
@@ -73,6 +81,8 @@ function NavDrawer() {
               <li>
                 <LinkButton
                   size="small"
+                  onClick={handleMode}
+                  path="/products/chairs"
                   color={darkMode === 'light' ? 'dark' : 'light'}
                 >
                   Chairs
@@ -81,6 +91,8 @@ function NavDrawer() {
               <li>
                 <LinkButton
                   size="small"
+                  path="/products/crockery"
+                  onClick={handleMode}
                   color={darkMode === 'light' ? 'dark' : 'light'}
                 >
                   Crockery
@@ -89,6 +101,8 @@ function NavDrawer() {
               <li>
                 <LinkButton
                   size="small"
+                  path="/products/tableware"
+                  onClick={handleMode}
                   color={darkMode === 'light' ? 'dark' : 'light'}
                 >
                   Tableware
@@ -97,6 +111,8 @@ function NavDrawer() {
               <li>
                 <LinkButton
                   size="small"
+                  onClick={handleMode}
+                  path="/products/cutlery"
                   color={darkMode === 'light' ? 'dark' : 'light'}
                 >
                   Cutlery
@@ -119,6 +135,8 @@ function NavDrawer() {
               <li>
                 <LinkButton
                   size="small"
+                  path="/products"
+                  onClick={handleMode}
                   color={darkMode === 'light' ? 'dark' : 'light'}
                 >
                   New Arrivals
@@ -127,6 +145,8 @@ function NavDrawer() {
               <li>
                 <LinkButton
                   size="small"
+                  path="/products"
+                  onClick={handleMode}
                   color={darkMode === 'light' ? 'dark' : 'light'}
                 >
                   Best Sellers
@@ -137,6 +157,8 @@ function NavDrawer() {
               <li>
                 <LinkButton
                   size="small"
+                  path="/products"
+                  onClick={handleMode}
                   color={darkMode === 'light' ? 'dark' : 'light'}
                 >
                   Recently viewed
@@ -145,6 +167,8 @@ function NavDrawer() {
               <li>
                 <LinkButton
                   size="small"
+                  onClick={handleMode}
+                  path="/products"
                   color={darkMode === 'light' ? 'dark' : 'light'}
                 >
                   Popular this week
@@ -167,6 +191,7 @@ function NavDrawer() {
               <li>
                 <LinkButton
                   size="small"
+                  path="/about"
                   color={darkMode === 'light' ? 'dark' : 'light'}
                 >
                   About us
@@ -174,6 +199,7 @@ function NavDrawer() {
               </li>
               <li>
                 <LinkButton
+                  path="/vacancies"
                   size="small"
                   color={darkMode === 'light' ? 'dark' : 'light'}
                 >

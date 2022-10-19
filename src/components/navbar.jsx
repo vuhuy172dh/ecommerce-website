@@ -113,6 +113,7 @@ function Navbar() {
           <ul className=" flex">
             <li className="text-body-md">
               <LinkButton
+                path="/products/plant-pots"
                 size="large"
                 color={darkMode === 'light' ? 'dark' : 'light'}
               >
@@ -122,6 +123,7 @@ function Navbar() {
             <li className="text-body-md">
               <LinkButton
                 size="large"
+                path="/products/ceramics"
                 color={darkMode === 'light' ? 'dark' : 'light'}
               >
                 Ceramics
@@ -129,6 +131,7 @@ function Navbar() {
             </li>
             <li className="text-body-md">
               <LinkButton
+                path="/products/tables"
                 size="large"
                 color={darkMode === 'light' ? 'dark' : 'light'}
               >
@@ -137,6 +140,7 @@ function Navbar() {
             </li>
             <li className="text-body-md">
               <LinkButton
+                path="/products/chairs"
                 size="large"
                 color={darkMode === 'light' ? 'dark' : 'light'}
               >
@@ -145,6 +149,7 @@ function Navbar() {
             </li>
             <li className="text-body-md">
               <LinkButton
+                path="/products/crockery"
                 size="large"
                 color={darkMode === 'light' ? 'dark' : 'light'}
               >
@@ -153,6 +158,7 @@ function Navbar() {
             </li>
             <li className="text-body-md">
               <LinkButton
+                path="/products/tableware"
                 size="large"
                 color={darkMode === 'light' ? 'dark' : 'light'}
               >
@@ -161,6 +167,7 @@ function Navbar() {
             </li>
             <li className="text-body-md">
               <LinkButton
+                path="/products/cutlery"
                 size="large"
                 color={darkMode === 'light' ? 'dark' : 'light'}
               >
