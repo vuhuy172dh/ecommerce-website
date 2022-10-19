@@ -22,7 +22,7 @@ function ProductCheckoutListButton({ products }) {
         Products
       </motion.button>
       <motion.ul
-        className="w-[200%]"
+        className="w-[200%] flex flex-col gap-2 mt-2"
         variants={{
           open: {
             opacity: 1,
@@ -48,8 +48,7 @@ function ProductCheckoutListButton({ products }) {
       >
         {products.map((item) => (
           <motion.li
-            key={item.id}
-            className="my-3"
+            key={item.uuid}
             variants={{
               open: {
                 opacity: 1,
@@ -68,9 +67,9 @@ function ProductCheckoutListButton({ products }) {
             }}
           >
             <ProductCheckout
-              img={item.imgUrl}
-              name={item.name}
-              price={item.price}
+              img={item.cartItem.arrImg[0]}
+              name={item.cartItem.name}
+              price={item.cartItem.price}
             />
           </motion.li>
         ))}

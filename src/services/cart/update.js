@@ -1,19 +1,19 @@
-import { doc, updateDoc, serverTimestamp } from 'firebase/firestore'
+import { doc, updateDoc } from 'firebase/firestore'
 import { USERS, CART } from '../constant/firestore'
 import { db } from '../firebase.config'
 
-const updateFieldQuantiyCartItem = async (uidUser, uidCartItem, quantity) => {
+const updateFieldNumberCartItem = async (uidUser, uidCartItem, number) => {
   try {
     const cartItemRef = doc(db, `${USERS}/${uidUser}/${CART}`, uidCartItem)
 
     updateDoc(cartItemRef, {
-      quantity,
-      updated_date: serverTimestamp()
+      number
     })
+    return Promise.resolve('successfully update number')
   } catch (e) {
     const { code } = e
     return Promise.reject(code)
   }
 }
 
-export default updateFieldQuantiyCartItem
+export default updateFieldNumberCartItem

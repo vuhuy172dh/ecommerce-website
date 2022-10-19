@@ -5,44 +5,28 @@ import { useState } from 'react'
 import useScrollPosition from '../hooks/useScrollPosition'
 import ProductCartList from './productCartList'
 import Button from './button'
-
-import img1 from '../assets/images/BlueChair.png'
 import { Link } from 'react-router-dom'
-
-const cartItems = [
-  {
-    id: 1,
-    name: 'Graystone vase',
-    detail: 'A time less ceramic vase with a tru color grey glaze.',
-    price: 85,
-    imgUrl: img1
-  },
-  {
-    id: 2,
-    name: 'Basic white vase',
-    detail: 'Beautiful and simple this is one for the classics.',
-    price: 125,
-    imgUrl: img1
-  },
-  {
-    id: 3,
-    name: 'Graystone vase',
-    detail: 'A time less ceramic vase with a tru color grey glaze.',
-    price: 85,
-    imgUrl: img1
-  },
-  {
-    id: 4,
-    name: 'Basic white vase',
-    detail: 'Beautiful and simple this is one for the classics.',
-    price: 125,
-    imgUrl: img1
-  }
-]
+import { useSelector } from 'react-redux'
+import {
+  selectCartItems,
+  selectUserCartItems
+} from '../redux/features/carts/cartSlice'
+import { selectUserUid } from '../redux/features/userSlice'
 
 function CartFloatButton() {
   const scrollY = useScrollPosition()
   const [click, setClick] = useState(false)
+
+  const cartItems = useSelector(selectCartItems)
+  const userCartItems = useSelector(selectUserCartItems)
+  const userUid = useSelector(selectUserUid)
+
+  const totalPrice = cartItems?.reduce(
+    (a, b) => a + Number(b.cartItem.price) * b.number,
+    0
+  )
+
+  const cartItemFloatNumber = cartItems.length
 
   const handleClick = () => {
     setClick(!click)
@@ -52,7 +36,7 @@ function CartFloatButton() {
     <div>
       {/*this is cart float button*/}
       <div
-        className={`fixed top-2 right-[calc(5%-20px)] w-10 h-10 bg-primary dark:bg-border_dark shadow-lg shadow-gray-600/40 justify-center items-center rounded-full hidden tablet:flex ${
+        className={`fixed top-2 right-[calc(5%-20px)] w-10 h-10 bg-primary dark:bg-border_dark shadow-lg shadow-gray-600/40 justify-center items-center rounded-xl hidden tablet:flex ${
           scrollY === 0 ? '-translate-y-[calc(100%+1rem)]' : 'translate-y-0'
         } transition-all duration-300 cursor-pointer z-40`}
         onClick={handleClick}
@@ -61,6 +45,9 @@ function CartFloatButton() {
           icon={faShoppingCart}
           className="text-white text-h5 dark:text-secondary"
         />
+        <div className="text-light_grey bg-red-500 w-fit h-fit min-w-[20px] min-h-[20px] flex justify-center items-center text-body-sm font-bold rounded-full absolute top-0 right-0 -translate-y-1/4 translate-x-1/2">
+          {cartItemFloatNumber}
+        </div>
       </div>
 
       {/*this is a component that showed when the cart button is clicked*/}
@@ -88,13 +75,15 @@ function CartFloatButton() {
             >
               {/*this is product cart item list*/}
               <div className="w-full px-3">
-                <ProductCartList cartItems={cartItems} />
+                <ProductCartList
+                  cartItems={userUid ? userCartItems : cartItems}
+                />
               </div>
 
               {/*this is total price and buttons*/}
               <div className="w-full p-6 fixed bottom-0 bg-light_grey rounded-3xl border-t border-t-black flex flex-col tablet:items-center gap-2">
                 <p className="text-h5 font-[600] text-primary text-start tablet:text-center w-full ">
-                  TOTAL: 444$ | 4 items
+                  TOTAL: {totalPrice}$ | {cartItems.length} items
                 </p>
                 <div className="w-full tablet:w-1/4 flex flex-col gap-2">
                   <Link to="/productCart">

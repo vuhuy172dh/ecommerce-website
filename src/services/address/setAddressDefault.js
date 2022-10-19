@@ -9,6 +9,8 @@ const setAddressDefault = async (uidUser, uidAddr) => {
     await updateDoc(userRef, {
       addr_default: uidAddr
     })
+
+    return Promise.resolve('set default successfully')
   } catch (e) {
     const { code } = e
     return Promise.reject(code)

@@ -12,10 +12,10 @@ import {
   signInWithEmailAndPass,
   signInGoogle,
   selectError,
-  selectStatus
+  selectStatus,
+  selectUserUid
 } from '../redux/features/userSlice'
-
-// Sample img
+import { getUserCart } from '../redux/features/carts/cartSlice'
 import WhiteRoomImg from '../assets/images/features3.png'
 import { useEffect } from 'react'
 
@@ -36,6 +36,7 @@ function SignIn() {
   const userEmail = useSelector(selectUserEmail)
   const error = useSelector(selectError)
   const status = useSelector(selectStatus)
+  const userUid = useSelector(selectUserUid)
 
   //handle submit form
   const submitForm = (data) => {
@@ -49,7 +50,8 @@ function SignIn() {
 
   useEffect(() => {
     if (userEmail !== null) {
-      console.log(userEmail)
+      //when sign in succesfully, get userCart and merge to localCart
+      dispatch(getUserCart(userUid))
       navigate('/')
     }
   }, [userEmail, navigate])

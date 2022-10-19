@@ -9,6 +9,8 @@ const initialState = {
   status: 'idle',
   fullname: null,
   email: null,
+  uid: null,
+  addr_default: null,
   error: null
 }
 
@@ -24,12 +26,16 @@ const userSlice = createSlice({
       state.status = 'idle'
       state.fullname = action.payload.fullname
       state.email = action.payload.email
+      state.uid = action.payload.uid
+      state.addr_default = action.payload.addr_default
       state.error = null
     },
     setLogOutUser: (state) => {
       state.status = 'idle'
       state.fullname = null
       state.email = null
+      state.uid = null
+      state.addr_default = null
     },
     setUserError: (state, action) => {
       state.status = 'error'
@@ -44,7 +50,14 @@ export const signInWithEmailAndPass = (email, password) => (dispatch) => {
   //call signInWithEmailAndPassword API from services/auth
   signInWithEmailAndPassword(email, password)
     .then((user) => {
-      dispatch(setActiveUser({ fullname: user.displayName, email: user.email }))
+      dispatch(
+        setActiveUser({
+          fullname: user.displayName,
+          email: user.email,
+          uid: user.uid,
+          addr_default: user.addr_default
+        })
+      )
     })
     .catch((e) => {
       dispatch(setUserError(e))
@@ -57,7 +70,14 @@ export const signInGoogle = () => (dispatch) => {
   //call signInWithGoogle API from services/auth
   signInWithGoogle()
     .then((user) => {
-      dispatch(setActiveUser({ fullname: user.displayName, email: user.email }))
+      dispatch(
+        setActiveUser({
+          fullname: user.displayName,
+          email: user.email,
+          uid: user.uid,
+          addr_default: user.addr_default
+        })
+      )
     })
     .catch((e) => {
       dispatch(setUserError(e))
@@ -86,5 +106,7 @@ export const selectUserName = (state) => state.user.fullname
 export const selectUserEmail = (state) => state.user.email
 export const selectError = (state) => state.user.error
 export const selectStatus = (state) => state.user.status
+export const selectUserUid = (state) => state.user.uid
+export const selectUserAddressDefault = (state) => state.user.addr_default
 
 export default userSlice.reducer
