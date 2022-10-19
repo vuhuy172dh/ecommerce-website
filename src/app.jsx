@@ -20,9 +20,10 @@ import Wishlist from './pages/user/wishlist'
 import ChangePassword from './pages/user/changePassword'
 import DarkModeButton from './components/darkModeButton'
 import CartFloatButton from './components/cartFloatButton'
-import Checkout from './pages/checkout'
+import Checkout from './pages/checkout/checkout'
 import Vacancies from './pages/vacancies'
 import Category from './pages/category'
+import CheckoutInformation from './pages/checkout/information'
 
 const SidebarLayout = () => (
   <div className="laptop:flex">
@@ -38,7 +39,9 @@ function App() {
       {path === '/signin' ||
         path === '/signup' ||
         path === '/forgetPassword' ||
-        path === '/checkout' || (
+        path === '/user/checkout/information' ||
+        path === '/user/checkout/shipping' ||
+        path === '/user/checkout/payment' || (
           <header>
             <NavMode>
               <Navbar />
@@ -62,6 +65,12 @@ function App() {
               element={<ChangePassword />}
             />
           </Route>
+          <Route element={<Checkout />}>
+            <Route
+              path="/user/checkout/information"
+              element={<CheckoutInformation />}
+            />
+          </Route>
           <Route path="/productCart" element={<ProductCartPage />} />
           <Route path="/products" element={<ProductListingPage />} />
           <Route path="/product/:productId" element={<ProductDetailPage />} />
@@ -69,14 +78,15 @@ function App() {
           <Route path="/signin" element={<SignIn />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/forgetPassword" element={<ForgetPassword />} />
-          <Route path="/checkout" element={<Checkout />} />
           <Route path="/vacancies" element={<Vacancies />} />
         </Routes>
       </main>
       {path === '/signin' ||
         path === '/signup' ||
         path === '/forgetPassword' ||
-        path === '/checkout' || (
+        path === '/user/checkout/information' ||
+        path === '/user/checkout/shipping' ||
+        path === '/user/checkout/payment' || (
           <footer>
             <Footer />
           </footer>

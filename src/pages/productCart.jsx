@@ -51,7 +51,7 @@ function ProductCartPage() {
               Taxes and shipping are calculated at checkout
             </p>
           </div>
-          <Link to="/checkout">
+          <Link to="/user/checkout/information">
             <div className="w-[100%] flex mt-5 laptop:w-[172px] laptop:float-right">
               <Button Color="primary" children="Go to checkout" />
             </div>

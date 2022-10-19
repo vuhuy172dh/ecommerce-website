@@ -91,7 +91,7 @@ function CartFloatButton() {
                       YOUR BAG
                     </Button>
                   </Link>
-                  <Link to="/checkout">
+                  <Link to="/user/checkout/information">
                     <Button Color="primary">CHECK OUT</Button>
                   </Link>
                 </div>

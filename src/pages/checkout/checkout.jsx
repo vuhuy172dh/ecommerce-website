@@ -1,11 +1,11 @@
 import { Helmet } from 'react-helmet-async'
-import Background from '../assets/images/background.jpg'
-import Stepper from '../components/stepper'
+import Background from '../../assets/images/background.jpg'
+import Stepper from '../../components/stepper'
 import { Link } from 'react-router-dom'
-import ProductCheckoutList from '../components/productCheckoutList'
-import ProductCheckoutListButton from '../components/productCheckoutListButton'
+import ProductCheckoutList from '../../components/productCheckoutList'
+import ProductCheckoutListButton from '../../components/productCheckoutListButton'
 import { useSelector } from 'react-redux'
-import { selectCartItems } from '../redux/features/carts/cartSlice'
+import { selectCartItems } from '../../redux/features/carts/cartSlice'
 
 function Checkout() {
   const cartItems = useSelector(selectCartItems)
