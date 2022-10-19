@@ -29,7 +29,7 @@ function ProductItem({ product }) {
     <div className="m-w-[200px] flex justify-center w-full rounded-lg overflow-hidden relative group shadow-lg shadow-gray-700/40 cursor-pointer">
       <Link to={`/product/${product.uuid}`}>
         <img
-          src={product.arrImg[0]}
+          src={product.arrImg?.[0]}
           alt="Product"
           className="w-full object-cover relative z-10"
         />

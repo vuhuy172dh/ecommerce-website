@@ -3,10 +3,28 @@ import { useNavMode } from '../hooks/useNavMode'
 import EmailField from './emailField'
 import LinkButton from './linkButton'
 import SocialMedia from './socialMedia'
+import { useDispatch, useSelector } from 'react-redux'
+import {
+  selectCategoryStatus,
+  selectCategories,
+  getCategories
+} from '../redux/features/category/categorySlice'
+import { useEffect } from 'react'
 
 function NavDrawer() {
   const { mode, handleMode } = useNavMode()
   const { mode: darkMode } = useDarkMode()
+
+  //declare react-redux and state
+  const dispatch = useDispatch()
+  const categories = useSelector(selectCategories)
+  const status = useSelector(selectCategoryStatus)
+
+  useEffect(() => {
+    if (categories.length !== 0) {
+      dispatch(getCategories())
+    }
+  }, [])
 
   return (
     <div
@@ -34,74 +52,40 @@ function NavDrawer() {
           <hr className="border-t border-t-border_dark dark:border-t-border_dark/40" />
 
           {/* '' */}
-          <div className="mt-4 flex columns-2 gap-28">
-            <ul className="flex-1 flex flex-col gap-4">
+          <div className="mt-3 w-full">
+            <ul className="columns-2">
               <li>
-                <LinkButton
-                  size="small"
-                  color={darkMode === 'light' ? 'dark' : 'light'}
-                >
-                  All products
-                </LinkButton>
+                <div className="w-fit">
+                  <LinkButton
+                    size="small"
+                    path="/products"
+                    onClick={handleMode}
+                    color={darkMode === 'light' ? 'dark' : 'light'}
+                  >
+                    All products
+                  </LinkButton>
+                </div>
               </li>
-              <li>
-                <LinkButton
-                  size="small"
-                  color={darkMode === 'light' ? 'dark' : 'light'}
-                >
-                  Plant pots
-                </LinkButton>
-              </li>
-              <li>
-                <LinkButton
-                  size="small"
-                  color={darkMode === 'light' ? 'dark' : 'light'}
-                >
-                  Ceramics
-                </LinkButton>
-              </li>
-              <li>
-                <LinkButton
-                  size="small"
-                  color={darkMode === 'light' ? 'dark' : 'light'}
-                >
-                  Tables
-                </LinkButton>
-              </li>
-            </ul>
-            <ul className="flex-1 flex flex-col gap-4">
-              <li>
-                <LinkButton
-                  size="small"
-                  color={darkMode === 'light' ? 'dark' : 'light'}
-                >
-                  Chairs
-                </LinkButton>
-              </li>
-              <li>
-                <LinkButton
-                  size="small"
-                  color={darkMode === 'light' ? 'dark' : 'light'}
-                >
-                  Crockery
-                </LinkButton>
-              </li>
-              <li>
-                <LinkButton
-                  size="small"
-                  color={darkMode === 'light' ? 'dark' : 'light'}
-                >
-                  Tableware
-                </LinkButton>
-              </li>
-              <li>
-                <LinkButton
-                  size="small"
-                  color={darkMode === 'light' ? 'dark' : 'light'}
-                >
-                  Cutlery
-                </LinkButton>
-              </li>
+              {status === 'idle' ? (
+                categories.map((category) => (
+                  <li key={category.uuid}>
+                    <div className="w-fit my-5">
+                      <LinkButton
+                        size="small"
+                        path={`/products/${category.name
+                          .replace(' ', '-')
+                          .toLowerCase()}`}
+                        onClick={handleMode}
+                        color={darkMode === 'light' ? 'dark' : 'light'}
+                      >
+                        {category.name}
+                      </LinkButton>
+                    </div>
+                  </li>
+                ))
+              ) : (
+                <div>Loading</div>
+              )}
             </ul>
           </div>
         </div>
@@ -114,41 +98,55 @@ function NavDrawer() {
           <hr className="border-t border-t-border_dark" />
 
           {/* Menu list */}
-          <div className="mt-4 flex columns-2 gap-28">
-            <ul className="flex-1 flex flex-col gap-4">
+          <div className="mt-4">
+            <ul className="columns-2">
               <li>
-                <LinkButton
-                  size="small"
-                  color={darkMode === 'light' ? 'dark' : 'light'}
-                >
-                  New Arrivals
-                </LinkButton>
+                <div className="w-fit">
+                  <LinkButton
+                    size="small"
+                    path="/products"
+                    onClick={handleMode}
+                    color={darkMode === 'light' ? 'dark' : 'light'}
+                  >
+                    New Arrivals
+                  </LinkButton>
+                </div>
               </li>
-              <li>
-                <LinkButton
-                  size="small"
-                  color={darkMode === 'light' ? 'dark' : 'light'}
-                >
-                  Best Sellers
-                </LinkButton>
+              <li className="my-2">
+                <div className="w-fit my-5">
+                  <LinkButton
+                    size="small"
+                    path="/products"
+                    onClick={handleMode}
+                    color={darkMode === 'light' ? 'dark' : 'light'}
+                  >
+                    Best Sellers
+                  </LinkButton>
+                </div>
               </li>
-            </ul>
-            <ul className="flex-1 flex flex-col gap-4">
-              <li>
-                <LinkButton
-                  size="small"
-                  color={darkMode === 'light' ? 'dark' : 'light'}
-                >
-                  Recently viewed
-                </LinkButton>
+              <li className="my-2">
+                <div className="w-fit my-5">
+                  <LinkButton
+                    size="small"
+                    path="/products"
+                    onClick={handleMode}
+                    color={darkMode === 'light' ? 'dark' : 'light'}
+                  >
+                    Recently viewed
+                  </LinkButton>
+                </div>
               </li>
-              <li>
-                <LinkButton
-                  size="small"
-                  color={darkMode === 'light' ? 'dark' : 'light'}
-                >
-                  Popular this week
-                </LinkButton>
+              <li className="my-2">
+                <div className="w-fit my-5">
+                  <LinkButton
+                    size="small"
+                    onClick={handleMode}
+                    path="/products"
+                    color={darkMode === 'light' ? 'dark' : 'light'}
+                  >
+                    Popular this week
+                  </LinkButton>
+                </div>
               </li>
             </ul>
           </div>
@@ -162,49 +160,64 @@ function NavDrawer() {
           <hr className="border-t border-t-border_dark" />
 
           {/* Menu list */}
-          <div className="mt-4 flex columns-2 gap-28">
-            <ul className="flex-1 flex flex-col gap-4">
+          <div className="mt-4">
+            <ul className="columns-2">
               <li>
-                <LinkButton
-                  size="small"
-                  color={darkMode === 'light' ? 'dark' : 'light'}
-                >
-                  About us
-                </LinkButton>
+                <div className="w-fit">
+                  <LinkButton
+                    size="small"
+                    path="/about"
+                    onClick={handleMode}
+                    color={darkMode === 'light' ? 'dark' : 'light'}
+                  >
+                    About us
+                  </LinkButton>
+                </div>
               </li>
               <li>
-                <LinkButton
-                  size="small"
-                  color={darkMode === 'light' ? 'dark' : 'light'}
-                >
-                  Vacancies
-                </LinkButton>
-              </li>
-            </ul>
-            <ul className="flex-1 flex flex-col gap-4">
-              <li>
-                <LinkButton
-                  size="small"
-                  color={darkMode === 'light' ? 'dark' : 'light'}
-                >
-                  Contact Us
-                </LinkButton>
+                <div className="w-fit my-5">
+                  <LinkButton
+                    path="/vacancies"
+                    onClick={handleMode}
+                    size="small"
+                    color={darkMode === 'light' ? 'dark' : 'light'}
+                  >
+                    Vacancies
+                  </LinkButton>
+                </div>
               </li>
               <li>
-                <LinkButton
-                  size="small"
-                  color={darkMode === 'light' ? 'dark' : 'light'}
-                >
-                  Privacy
-                </LinkButton>
+                <div className="w-fit my-5">
+                  <LinkButton
+                    size="small"
+                    onClick={handleMode}
+                    color={darkMode === 'light' ? 'dark' : 'light'}
+                  >
+                    Contact Us
+                  </LinkButton>
+                </div>
               </li>
               <li>
-                <LinkButton
-                  size="small"
-                  color={darkMode === 'light' ? 'dark' : 'light'}
-                >
-                  Returns Policy
-                </LinkButton>
+                <div className="w-fit my-5">
+                  <LinkButton
+                    size="small"
+                    onClick={handleMode}
+                    color={darkMode === 'light' ? 'dark' : 'light'}
+                  >
+                    Privacy
+                  </LinkButton>
+                </div>
+              </li>
+              <li>
+                <div className="w-fit my-5">
+                  <LinkButton
+                    size="small"
+                    onClick={handleMode}
+                    color={darkMode === 'light' ? 'dark' : 'light'}
+                  >
+                    Returns Policy
+                  </LinkButton>
+                </div>
               </li>
             </ul>
           </div>
