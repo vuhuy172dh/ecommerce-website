@@ -6,6 +6,7 @@ import { faCheck } from '@fortawesome/free-solid-svg-icons'
 import { Link } from 'react-router-dom'
 import AddressList from './user/addressList'
 import ShippingList from './shipping/shippingList'
+import PopupAddress from './popup/popupAddress'
 import { useSelector, useDispatch } from 'react-redux'
 import { selectUserEmail } from '../redux/features/userSlice'
 import {
@@ -15,6 +16,7 @@ import {
   selectPayment,
   selectShipTo
 } from '../redux/features/bills/billSlice'
+import { selectAddressList } from '../redux/features/address/addressSlice'
 
 const steps = ['Information', 'Shipping', 'Payment']
 
@@ -29,7 +31,7 @@ const shipping = [
   }
 ]
 
-const addressList = [
+/*const addressList = [
   {
     id: 1,
     name: 'Hoàng Văn Phúc',
@@ -58,10 +60,11 @@ const addressList = [
     districtCode: '26',
     wardCode: '715'
   }
-]
+]*/
 
 function Stepper() {
   const [currentStep, setCurrentStep] = useState(1)
+  const [popupAddress, setPopupAddress] = useState(false)
 
   const handleNext = () => {
     if (currentStep < steps.length) setCurrentStep((prev) => prev + 1)
@@ -78,6 +81,7 @@ function Stepper() {
   const billShipTo = useSelector(selectShipTo)
   const billMethod = useSelector(selectMethod)
   const billPayment = useSelector(selectPayment)
+  const addressList = useSelector(selectAddressList)
 
   if (billContact === null) {
     dispatch(addContact(userEmail))
@@ -181,7 +185,19 @@ function Stepper() {
             />
           </div>
           <div className="flex flex-col w-full">
-            <p className="text-light_grey text-h4">Shipping Address</p>
+            <div className="w-full flex justify-between">
+              <p className="text-light_grey text-h4">Shipping Address</p>
+              <div>
+                <Button
+                  Color="primary"
+                  Custom={true}
+                  Padding="px-6"
+                  onClick={() => setPopupAddress(true)}
+                >
+                  New Address
+                </Button>
+              </div>
+            </div>
             <AddressList addressList={addressList} />
           </div>
         </div>
@@ -218,6 +234,8 @@ function Stepper() {
           </Button>
         )}
       </div>
+
+      {popupAddress && <PopupAddress onBack={() => setPopupAddress(false)} />}
     </div>
   )
 }
