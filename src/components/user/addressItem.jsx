@@ -1,8 +1,11 @@
 import { useState } from 'react'
-
 import Button from '../button'
 import PopupConfirm from '../popup/popupConfirm'
 import PopupAddress from '../popup/popupAddress'
+import { useSelector, useDispatch } from 'react-redux'
+import { selectUserUid } from '../../redux/features/userSlice'
+import { deleteAddress } from '../../redux/features/address/addressSlice'
+import { setAddressDefault } from '../../services/address'
 
 function AddressItem({ address }) {
   const [popupDelete, setPopupDelete] = useState(false)
@@ -11,14 +14,25 @@ function AddressItem({ address }) {
 
   const addressDefault = `${address.Ward}, ${address.District}, ${address.Province}`
 
+  //declare redux and state
+  const dispatch = useDispatch()
+  const userUid = useSelector(selectUserUid)
+
+  //handle set address default
   const handleConfirmAddressDefault = () => {
-    // hanlde set default address here
-    console.log('confirm default address')
+    const setDefaul = async () => {
+      await setAddressDefault(userUid, address.Id)
+        .then((res) => alert(res))
+        .catch((e) => alert(e))
+    }
+
+    setDefaul()
   }
 
+  //handle delete address
   const handleDeleteAddress = () => {
     // handle delete address
-    console.log('delete address')
+    dispatch(deleteAddress(userUid, address.Id))
   }
 
   return (

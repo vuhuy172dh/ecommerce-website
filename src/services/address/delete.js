@@ -8,6 +8,7 @@ const deleteOneAddress = async (uidUser, uidAddr) => {
     const addrRef = doc(db, path, uidAddr)
 
     await deleteDoc(addrRef)
+    return Promise.resolve('delete address successfully')
   } catch (e) {
     const { code } = e
     return Promise.reject(code)
