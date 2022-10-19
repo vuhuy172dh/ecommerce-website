@@ -23,7 +23,9 @@ const categorySlice = createSlice({
 export const getCategories = () => (dispatch) => {
   const getCate = async () => {
     dispatch(setRequest())
-    await getListCategories().then((res) => dispatch(setCategory(res)))
+    await getListCategories()
+      .then((res) => dispatch(setCategory(res)))
+      .catch((e) => alert(e))
   }
 
   getCate()
@@ -31,7 +33,7 @@ export const getCategories = () => (dispatch) => {
 
 export const { setRequest, setCategory } = categorySlice.actions
 
-export const selectCategoryStatus = (state) => state.status
-export const selectCategories = (state) => state.categories
+export const selectCategoryStatus = (state) => state.category.status
+export const selectCategories = (state) => state.category.categories
 
 export default categorySlice.reducer

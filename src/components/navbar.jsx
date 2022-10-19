@@ -8,8 +8,13 @@ import LinkButton from './linkButton'
 import SearchField from './searchField'
 import { selectUserEmail } from '../redux/features/userSlice'
 import { useSelector, useDispatch } from 'react-redux'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { signOut } from '../services/auth/index'
+import {
+  selectCategories,
+  selectCategoryStatus,
+  getCategories
+} from '../redux/features/category/categorySlice'
 
 function Navbar() {
   const handleMode = useNavMode().handleMode
@@ -21,10 +26,16 @@ function Navbar() {
 
   //get user name
   const userEmail = useSelector(selectUserEmail)
+  const categories = useSelector(selectCategories)
+  const categoryStatus = useSelector(selectCategoryStatus)
 
   const handleSignOut = () => {
     signOut(dispatch)
   }
+
+  useEffect(() => {
+    dispatch(getCategories())
+  }, [])
 
   return (
     <div className="w-full flex justify-center mb-28 tablet:mb-36 relative z-30">
@@ -110,70 +121,25 @@ function Navbar() {
 
         {/* navbar bottom */}
         <div className="justify-center h-10 hidden tablet:flex">
+          {/*categories*/}
           <ul className=" flex">
-            <li className="text-body-md">
-              <LinkButton
-                path="/products/plant-pots"
-                size="large"
-                color={darkMode === 'light' ? 'dark' : 'light'}
-              >
-                Plant pots
-              </LinkButton>
-            </li>
-            <li className="text-body-md">
-              <LinkButton
-                size="large"
-                path="/products/ceramics"
-                color={darkMode === 'light' ? 'dark' : 'light'}
-              >
-                Ceramics
-              </LinkButton>
-            </li>
-            <li className="text-body-md">
-              <LinkButton
-                path="/products/tables"
-                size="large"
-                color={darkMode === 'light' ? 'dark' : 'light'}
-              >
-                Tables
-              </LinkButton>
-            </li>
-            <li className="text-body-md">
-              <LinkButton
-                path="/products/chairs"
-                size="large"
-                color={darkMode === 'light' ? 'dark' : 'light'}
-              >
-                Chairs
-              </LinkButton>
-            </li>
-            <li className="text-body-md">
-              <LinkButton
-                path="/products/crockery"
-                size="large"
-                color={darkMode === 'light' ? 'dark' : 'light'}
-              >
-                Crockery
-              </LinkButton>
-            </li>
-            <li className="text-body-md">
-              <LinkButton
-                path="/products/tableware"
-                size="large"
-                color={darkMode === 'light' ? 'dark' : 'light'}
-              >
-                Tableware
-              </LinkButton>
-            </li>
-            <li className="text-body-md">
-              <LinkButton
-                path="/products/cutlery"
-                size="large"
-                color={darkMode === 'light' ? 'dark' : 'light'}
-              >
-                Cutlery
-              </LinkButton>
-            </li>
+            {categoryStatus === 'idle' ? (
+              categories.map((category) => (
+                <li className="text-body-md" key={category.uuid}>
+                  <LinkButton
+                    path={`/products/${category.name
+                      .replace(' ', '-')
+                      .toLowerCase()}`}
+                    size="large"
+                    color={darkMode === 'light' ? 'dark' : 'light'}
+                  >
+                    {category.name}
+                  </LinkButton>
+                </li>
+              ))
+            ) : (
+              <div>Loading</div>
+            )}
           </ul>
         </div>
       </div>
