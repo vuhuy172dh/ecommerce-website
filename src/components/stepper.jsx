@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import styles from '../styles/stepper.module.css'
 import Button from './button'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -8,7 +8,7 @@ import AddressList from './user/addressList'
 import ShippingList from './shipping/shippingList'
 import PopupAddress from './popup/popupAddress'
 import { useSelector, useDispatch } from 'react-redux'
-import { selectUserEmail } from '../redux/features/userSlice'
+import { selectUserEmail, selectUserUid } from '../redux/features/userSlice'
 import {
   addContact,
   selectContact,
@@ -16,7 +16,10 @@ import {
   selectPayment,
   selectShipTo
 } from '../redux/features/bills/billSlice'
-import { selectAddressList } from '../redux/features/address/addressSlice'
+import {
+  selectAddressList,
+  getAddressList
+} from '../redux/features/address/addressSlice'
 
 const steps = ['Information', 'Shipping', 'Payment']
 
@@ -30,37 +33,6 @@ const shipping = [
     price: 'free'
   }
 ]
-
-/*const addressList = [
-  {
-    id: 1,
-    name: 'Hoàng Văn Phúc',
-    phoneNumber: '0123321760',
-    address:
-      'Ktx khu A ĐHQG, Đường Tạ Quang Bửu, Phường Linh Trung Thành Phố Thủ Đức, TP. Hồ Chí Minh, Phường Linh Trung Thành Phố Thủ Đức, TP. Hồ Chí Minh',
-    default: true,
-    province: 'Tỉnh Hà Giang',
-    district: 'Huyện Đồng Văn',
-    ward: 'Xã Lũng Cú',
-    provinceCode: '2',
-    districtCode: '26',
-    wardCode: '715'
-  },
-  {
-    id: 2,
-    name: 'Hoàng Văn Phúc',
-    phoneNumber: '0123321760',
-    address:
-      'Ktx khu A ĐHQG, Đường Tạ Quang Bửu, Phường Linh Trung Thành Phố Thủ Đức, TP. Hồ Chí Minh',
-    default: false,
-    province: 'Tỉnh Hà Giang',
-    district: 'Huyện Đồng Văn',
-    ward: 'Xã Lũng Cú',
-    provinceCode: '2',
-    districtCode: '26',
-    wardCode: '715'
-  }
-]*/
 
 function Stepper() {
   const [currentStep, setCurrentStep] = useState(1)
@@ -82,6 +54,12 @@ function Stepper() {
   const billMethod = useSelector(selectMethod)
   const billPayment = useSelector(selectPayment)
   const addressList = useSelector(selectAddressList)
+  const userUid = useSelector(selectUserUid)
+
+  //get address List
+  useEffect(() => {
+    dispatch(getAddressList(userUid))
+  }, [])
 
   if (billContact === null) {
     dispatch(addContact(userEmail))
