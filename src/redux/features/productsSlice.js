@@ -63,7 +63,7 @@ export const getProducts = (startPoint) => (dispatch) => {
 
 //get products by category
 export const getCategoryProducts = (startPoint, category) => (dispatch) => {
-  dispatch(setProductsResquest())
+  dispatch(setProductsCategoryResquest())
   //call API
   getListProductsByCategory(startPoint, category)
     .then(([products, lastVisible]) => {
