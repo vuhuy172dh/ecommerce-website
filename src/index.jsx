@@ -11,8 +11,6 @@ import showOneUser from './services/user/show'
 
 const root = ReactDOM.createRoot(document.getElementById('root'))
 
-console.log(showOneUser('srMoizlppNaF3eMXL4xnwVHNCUF3'))
-
 root.render(
   <BrowserRouter>
     <HelmetProvider>
