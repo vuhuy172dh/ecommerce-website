@@ -17,10 +17,9 @@ function ProductCartPage() {
   const userUid = useSelector(selectUserUid)
   const currentStep = useSelector(selectCurrentStep)
 
-  const cartTotalPrice = cartItems.reduce(
-    (a, b) => a + Number(b.cartItem.price) * b.number,
-    0
-  )
+  const cartTotalPrice = cartItems
+    .reduce((a, b) => a + Number(b.cartItem.price) * b.number, 0)
+    .toFixed(2)
 
   return (
     <div className="w-[100%] mb-12 p-6 laptop:px-[180px] laptop:py-16">

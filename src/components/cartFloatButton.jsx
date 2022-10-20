@@ -23,10 +23,9 @@ function CartFloatButton() {
   const userUid = useSelector(selectUserUid)
   const currentStep = useSelector(selectCurrentStep)
 
-  const totalPrice = cartItems?.reduce(
-    (a, b) => a + Number(b.cartItem.price) * b.number,
-    0
-  )
+  const totalPrice = cartItems
+    ?.reduce((a, b) => a + Number(b.cartItem.price) * b.number, 0)
+    .toFixed(2)
 
   const cartItemFloatNumber = cartItems.length
 
@@ -70,7 +69,7 @@ function CartFloatButton() {
 
             {/*this is cart item*/}
             <motion.div
-              className="w-full h-[85vh] pb-52 flex flex-col items-stretch bg-light_grey rounded-xl border-t border-t-black overflow-auto no-scrollbar relative"
+              className="w-full h-[85vh] pb-52 flex flex-col items-stretch bg-light_grey dark:bg-secondary rounded-xl border-t border-t-black dark:border-t-light_grey overflow-auto no-scrollbar relative"
               initial={{ y: 400 }}
               animate={{ y: 0 }}
               exit={{ y: 400 }}
@@ -83,8 +82,8 @@ function CartFloatButton() {
               </div>
 
               {/*this is total price and buttons*/}
-              <div className="w-full p-6 fixed bottom-0 bg-light_grey rounded-3xl border-t border-t-black flex flex-col tablet:items-center gap-2">
-                <p className="text-h5 font-[600] text-primary text-start tablet:text-center w-full ">
+              <div className="w-full p-6 fixed bottom-0 bg-light_grey dark:bg-secondary rounded-3xl border-t border-t-black dark:border-t-white flex flex-col tablet:items-center gap-2">
+                <p className="text-h5 font-[600] text-primary dark:text-white text-start tablet:text-center w-full ">
                   TOTAL: {totalPrice}$ | {cartItems.length} items
                 </p>
                 <div className="w-full tablet:w-1/4 flex flex-col gap-2">

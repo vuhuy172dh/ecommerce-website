@@ -85,7 +85,7 @@ const ProductCartList = ({ cartItems }) => {
         </div>
       </div>
       <div className="hidden laptop:flex items-center">
-        <p>${Number(cart.cartItem.price) * cart.number}</p>
+        <p>${(Number(cart.cartItem.price) * cart.number).toFixed(2)}</p>
       </div>
     </div>
   ))

@@ -19,7 +19,6 @@ import { Link } from 'react-router-dom'
 import { Helmet } from 'react-helmet-async'
 import InfoItemList from '../components/infoItemList'
 import { useDarkMode } from '../hooks/useDarkMode'
-import userEvent from '@testing-library/user-event'
 
 const limitedValue = 4
 
