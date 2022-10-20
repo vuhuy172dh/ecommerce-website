@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit'
 import { getProduct } from '../../services/product'
 
 const initialState = {
-  status: 'loading',
+  status: 'idle',
   product: {},
   error: null
 }
@@ -26,11 +26,15 @@ const productSlice = createSlice({
 })
 
 export const getProductDetail = (id) => (dispatch) => {
-  dispatch(setRequest())
-  //call API
-  getProduct(id)
-    .then((productDetail) => dispatch(setProduct(productDetail)))
-    .catch((e) => dispatch(setError(e)))
+  const get = async () => {
+    dispatch(setRequest())
+
+    await getProduct(id)
+      .then((productDetail) => dispatch(setProduct(productDetail)))
+      .catch((e) => dispatch(setError(e)))
+  }
+
+  get()
 }
 
 //export action

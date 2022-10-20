@@ -9,20 +9,27 @@ import { db } from '../firebase.config'
 import { WISHLIST, PRODUCTS, USERS } from '../constant/firestore'
 
 // Truyền vào hàm này là uid của user
-const addProductToWishlist = async (uidUser, uidProduct) => {
+const addProductToWishlist = async (uidUser, product) => {
   try {
     // Product ref
-    const productRef = doc(db, `${PRODUCTS}`, uidProduct)
+    //const productRef = doc(db, `${PRODUCTS}`, uidProduct)
 
     // Collection wishlist ref
     const wishlistRef = collection(db, `${USERS}/${uidUser}/${WISHLIST}`)
 
     // Add data to firestore
-    await addDoc(wishlistRef, {
-      product_ref: productRef,
+    const doc = await addDoc(wishlistRef, {
+      product: product,
       created_date: serverTimestamp(),
       updated_date: serverTimestamp()
     })
+
+    const doc_uid = doc.id
+    const newWishlistItem = {
+      product: product,
+      uid: doc_uid
+    }
+    return Promise.resolve(newWishlistItem)
   } catch (e) {
     const { code } = e
     return Promise.reject(code)

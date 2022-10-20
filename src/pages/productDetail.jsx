@@ -18,6 +18,7 @@ import Overview from '../components/overview'
 import useClientRect from '../hooks/useClientRect'
 import { useParams } from 'react-router-dom'
 import { useEffect } from 'react'
+import { addNewItemToWishlist } from '../redux/features/wishlist/wishlistSlice'
 
 function ProductDetailPage() {
   // get scroll position
@@ -57,6 +58,14 @@ function ProductDetailPage() {
     }
   }
 
+  const handleAddToWishlist = () => {
+    if (userUid) {
+      dispatch(addNewItemToWishlist(userUid, product))
+    } else {
+      alert('cant add')
+    }
+  }
+
   return (
     <div className="mx-2 tablet:mx-6 laptop:mx-20">
       {/*helmet async*/}
@@ -65,7 +74,7 @@ function ProductDetailPage() {
       </Helmet>
 
       {/* Product detail */}
-      {status !== 'loading' ? (
+      {status === 'idle' && product.uuid !== undefined ? (
         <section className="flex flex-col w-full tablet:flex-row tablet:gap-4">
           {/* product image list for mobile*/}
           <div className="block tablet:hidden mb-8">
@@ -100,7 +109,8 @@ function ProductDetailPage() {
               height={product.height}
               depth={product.depth}
               quantity={product.remain}
-              onClick={(number) => handleAddToCart(number)}
+              handleAddToCart={(number) => handleAddToCart(number)}
+              handleAddToWishlist={() => handleAddToWishlist()}
             />
           </div>
         </section>

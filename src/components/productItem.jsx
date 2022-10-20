@@ -7,7 +7,7 @@ Properties:
   Price: string
 */
 
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import Button from './button'
 import { useDispatch, useSelector } from 'react-redux'
 import { selectUserUid } from '../redux/features/userSlice'

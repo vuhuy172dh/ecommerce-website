@@ -22,7 +22,8 @@ function ProductDesc({
   height,
   depth,
   quantity,
-  onClick
+  handleAddToCart,
+  handleAddToWishlist
 }) {
   //
   const [count, setCount] = useState(0)
@@ -77,7 +78,7 @@ function ProductDesc({
         </div>
       </div>
       {/* Stepper */}
-      <div className="mt-7 laptop:w-32 laptop:mt-10">
+      <div className="mt-7 laptop:w-fit laptop:mt-10">
         <h5 className="text-h5 mb-3 ">Quantity</h5>
         <div className="flex items-center gap-2">
           {/*Counter*/}
@@ -101,13 +102,15 @@ function ProductDesc({
             </div>
           </div>
           {/*remain on stock*/}
-          <div>{quantity}</div>
+          <div>{quantity} items</div>
         </div>
       </div>
       {/* Group btn */}
       <div className="gap-4 flex flex-col laptop:items-center mt-8 mb-8 laptop:mt-12 laptop:w-96 laptop:flex-row-reverse">
-        <Button Color="white">Save to favorites</Button>
-        <Button Color="primary" onClick={() => onClick(count)}>
+        <Button Color="white" onClick={() => handleAddToWishlist()}>
+          Save to favorites
+        </Button>
+        <Button Color="primary" onClick={() => handleAddToCart(count)}>
           Add to cart
         </Button>
       </div>
