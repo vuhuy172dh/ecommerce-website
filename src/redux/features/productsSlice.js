@@ -26,11 +26,29 @@ const productsSlice = createSlice({
   }
 })
 
+//get all products
 export const getProducts = () => (dispatch) => {
   dispatch(setProductsResquest())
   // call API
   getListProducts()
     .then((products) => dispatch(setProducts(products)))
+    .catch((e) => dispatch(setProductsError(e)))
+}
+
+//get products by category
+export const getCategoryProducts = (category) => (dispatch) => {
+  console.log('hello world')
+  dispatch(setProductsResquest())
+  //call API
+  getListProducts()
+    .then((products) => {
+      const categoryProducts = products.filter(
+        (item) => item.category.toLowerCase() === category
+      )
+      console.log(category)
+      console.log(categoryProducts)
+      dispatch(setProducts(categoryProducts))
+    })
     .catch((e) => dispatch(setProductsError(e)))
 }
 

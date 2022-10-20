@@ -8,29 +8,29 @@ import { ADDRESS, USERS } from '../constant/firestore'
 const createNewAddr = async (
   uid,
   {
-    name,
-    phoneNum,
-    province,
-    district,
-    ward,
-    detail,
-    provinceCode,
-    districtCode,
-    wardCode
+    Name,
+    PhoneNumber,
+    Address,
+    Province,
+    District,
+    Ward,
+    ProvinceCode,
+    DistrictCode,
+    WardCode
   }
 ) => {
   try {
     // Chuẩn hóa data truyền vào
     const data = {
-      name,
-      phone_num: phoneNum,
-      province,
-      district,
-      ward,
-      detail,
-      province_code: provinceCode,
-      district_code: districtCode,
-      wardCode: wardCode,
+      name: Name,
+      phone_num: PhoneNumber,
+      province: Province,
+      district: District,
+      ward: Ward,
+      detail: Address,
+      province_code: ProvinceCode,
+      district_code: DistrictCode,
+      wardCode: WardCode,
       created_date: serverTimestamp(),
       updated_date: serverTimestamp()
     }
@@ -40,7 +40,8 @@ const createNewAddr = async (
     // Lấy được collection ref
     const collectionRef = collection(db, path)
     // Thêm 1 document với uid ngẫu nhiên đưa vào ADDRESS collection
-    addDoc(collectionRef, data)
+    const docRef = await addDoc(collectionRef, data)
+    return Promise.resolve(docRef.id)
   } catch (e) {
     const { code } = e
     return Promise.reject(code)

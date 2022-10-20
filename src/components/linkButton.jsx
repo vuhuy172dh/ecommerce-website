@@ -19,11 +19,18 @@ const colors = {
   dark: 'text-dark_primary after:bg-dark_primary'
 }
 
-function LinkButton({ children, path = '/', size = 'small', color = 'light' }) {
+function LinkButton({
+  children,
+  path = '/',
+  size = 'small',
+  color = 'light',
+  onClick
+}) {
   return (
     <Link to={path}>
       <div
         className={`min-w-fit h-full flex-1 ${sizes[size]} flex items-center relative after:block after:h-[2px] after:w-full ${colors[color]} after:absolute after:bottom-0 after:left-0 after:scale-x-0 after:scale-y-100 after:origin-top-right after:transition-transform after:duration-300 after:ease-linear hover:after:scale-x-100 hover:scale-y-100 hover:after:origin-bottom-left`}
+        onClick={onClick}
       >
         {children}
       </div>

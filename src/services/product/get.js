@@ -18,7 +18,9 @@ export const getProduct = async (id) => {
   try {
     const docRef = doc(db, PRODUCTS, id)
     const docSnap = await getDoc(docRef)
-    return Promise.resolve(docSnap.data())
+    const product = structuredClone(docSnap.data())
+    product.uuid = docSnap.id
+    return Promise.resolve(product)
   } catch (error) {
     return Promise.reject(error)
   }

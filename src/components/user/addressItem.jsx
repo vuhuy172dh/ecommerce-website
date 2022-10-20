@@ -1,8 +1,11 @@
 import { useState } from 'react'
-
 import Button from '../button'
 import PopupConfirm from '../popup/popupConfirm'
 import PopupAddress from '../popup/popupAddress'
+import { useSelector, useDispatch } from 'react-redux'
+import { selectUserUid } from '../../redux/features/userSlice'
+import { deleteAddress } from '../../redux/features/address/addressSlice'
+import { setAddressDefault } from '../../services/address'
 
 function AddressItem({ address }) {
   const [popupDelete, setPopupDelete] = useState(false)
@@ -11,18 +14,29 @@ function AddressItem({ address }) {
 
   const addressDefault = `${address.Ward}, ${address.District}, ${address.Province}`
 
+  //declare redux and state
+  const dispatch = useDispatch()
+  const userUid = useSelector(selectUserUid)
+
+  //handle set address default
   const handleConfirmAddressDefault = () => {
-    // hanlde set default address here
-    console.log('confirm default address')
+    const setDefaul = async () => {
+      await setAddressDefault(userUid, address.Id)
+        .then((res) => alert(res))
+        .catch((e) => alert(e))
+    }
+
+    setDefaul()
   }
 
+  //handle delete address
   const handleDeleteAddress = () => {
     // handle delete address
-    console.log('delete address')
+    dispatch(deleteAddress(userUid, address.Id))
   }
 
   return (
-    <div className="my-5 mx-2 px-2 flex flex-col justify-start gap-3 laptop:flex-row laptop:justify-between laptop:py-5 laptop:px-0 border-2 border-primary/30 rounded-lg laptop:border-0 laptop:border-b-2 laptop:border-border_dark ">
+    <div className="mx-2 px-2 flex flex-col justify-start gap-3 laptop:flex-row laptop:justify-between laptop:py-5 laptop:px-0 border-2 border-primary/30 rounded-lg laptop:rounded-none laptop:border-0 laptop:border-b-2 laptop:border-border_dark/50">
       {/*info container*/}
       <div className="w-full flex flex-col gap-1">
         {/* info contact*/}

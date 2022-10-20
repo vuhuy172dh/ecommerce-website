@@ -4,29 +4,29 @@ import { db } from '../firebase.config'
 
 const updateOneAddress = async (uidUser, uidAddr, dataInput) => {
   const {
-    name,
-    phoneNum,
-    province,
-    district,
-    ward,
-    detail,
-    provinceCode,
-    districtCode,
-    wardCode
+    Name,
+    PhoneNumber,
+    Province,
+    District,
+    Ward,
+    Address,
+    ProvinceCode,
+    DistrictCode,
+    WardCode
   } = dataInput
 
   try {
     // Chuẩn hóa data truyền vào
     const data = {
-      name,
-      phone_num: phoneNum,
-      province,
-      district,
-      ward,
-      detail,
-      province_code: provinceCode,
-      district_code: districtCode,
-      wardCode: wardCode,
+      name: Name,
+      phone_num: PhoneNumber,
+      province: Province,
+      district: District,
+      ward: Ward,
+      detail: Address,
+      province_code: ProvinceCode,
+      district_code: DistrictCode,
+      wardCode: WardCode,
       updated_date: serverTimestamp()
     }
 
@@ -36,6 +36,7 @@ const updateOneAddress = async (uidUser, uidAddr, dataInput) => {
     const addrRef = doc(db, path)
     // Update doc
     updateDoc(addrRef, data)
+    return Promise.resolve('update address successfully')
   } catch (e) {
     const { code } = e
     return Promise.reject(code)

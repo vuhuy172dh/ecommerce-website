@@ -7,6 +7,12 @@ import { yupResolver } from '@hookform/resolvers/yup'
 import Input from './input'
 import Select from './select'
 import { PopupAddressSchema } from '../../validations/popupAddress'
+import { useSelector, useDispatch } from 'react-redux'
+import { selectUserUid } from '../../redux/features/userSlice'
+import {
+  addNewAddress,
+  updateAddr
+} from '../../redux/features/address/addressSlice'
 
 function PopupAddress({ type = 'create', address, onBack = () => {} }) {
   const provinceAPI = 'https://provinces.open-api.vn/api/'
@@ -15,6 +21,10 @@ function PopupAddress({ type = 'create', address, onBack = () => {} }) {
   const [province, setProvince] = useState([])
   const [district, setDistrict] = useState([])
   const [ward, setWard] = useState([])
+
+  //daclare redux and state
+  const dispatch = useDispatch()
+  const userUid = useSelector(selectUserUid)
 
   const [newAddress, setNewAddress] = useState({
     Name: '',
@@ -169,6 +179,14 @@ function PopupAddress({ type = 'create', address, onBack = () => {} }) {
   // handle update Address
   const handleUpdateAddress = (data) => {
     // HANDLE HERE
+    //create new address
+    if (type === 'create') {
+      dispatch(addNewAddress(userUid, newAddress))
+    }
+    if (type === 'update') {
+      dispatch(updateAddr(userUid, address.Id, newAddress))
+    }
+
     console.log('data save to DB: ')
     console.log(data)
     console.log(newAddress)

@@ -32,8 +32,6 @@ function ProductListingPage() {
   }, [products, current])
 
   const handleLoadMore = () => {
-    // fake fetch API with new page number
-    // Check data, if fetch has data -> implement, else -> disable button
     const newlist = products.slice(current, current + limitedValue)
 
     if (newlist.length > 0) {
