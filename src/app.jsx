@@ -22,6 +22,7 @@ import DarkModeButton from './components/darkModeButton'
 import CartFloatButton from './components/cartFloatButton'
 import Checkout from './pages/checkout/checkout'
 import Vacancies from './pages/vacancies'
+import ContactUs from './pages/contactUs'
 import Category from './pages/category'
 import CheckoutInformation from './pages/checkout/information'
 import CheckoutShipping from './pages/checkout/shipping'
@@ -89,6 +90,7 @@ function App() {
           <Route path="/signup" element={<SignUp />} />
           <Route path="/forgetPassword" element={<ForgetPassword />} />
           <Route path="/vacancies" element={<Vacancies />} />
+          <Route path="/contactUs" element={<ContactUs />} />
         </Routes>
       </main>
       {path === '/signin' ||
