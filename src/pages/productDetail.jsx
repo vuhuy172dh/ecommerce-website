@@ -62,7 +62,7 @@ function ProductDetailPage() {
     if (userUid) {
       dispatch(addNewItemToWishlist(userUid, product))
     } else {
-      alert('cant add')
+      alert('please sign in before add to wishlist')
     }
   }
 

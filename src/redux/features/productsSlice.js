@@ -1,9 +1,16 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { getListProducts } from '../../services/product'
+import {
+  getListProducts,
+  getListProductsByCategory
+} from '../../services/product'
 
 const initialState = {
   status: 'loading',
   products: [],
+  lastVisible: null,
+  statusCategory: 'loading',
+  productsCategory: [],
+  lastVisibleCatergory: null,
   error: null
 }
 
@@ -13,11 +20,27 @@ const productsSlice = createSlice({
   reducers: {
     setProductsResquest: (state) => {
       state.status = 'loading'
-      state.products.length = 0
+    },
+    setProductsCategoryResquest: (state) => {
+      state.statusCategory = 'loading'
     },
     setProducts: (state, action) => {
       state.status = 'idle'
-      state.products = action.payload
+      state.products = state.products.concat(action.payload)
+    },
+    setProductsCategory: (state, action) => {
+      state.statusCategory = 'idle'
+      state.productsCategory = state.productsCategory.concat(action.payload)
+    },
+    setLastVisibleCategory: (state, action) => {
+      state.lastVisibleCatergory = action.payload
+    },
+    setClearCategory: (state) => {
+      state.productsCategory.length = 0
+      state.lastVisibleCatergory = null
+    },
+    setLastVisible: (state, action) => {
+      state.lastVisible = action.payload
     },
     setProductsError: (state, action) => {
       state.status = 'error'
@@ -27,38 +50,49 @@ const productsSlice = createSlice({
 })
 
 //get all products
-export const getProducts = () => (dispatch) => {
+export const getProducts = (startPoint) => (dispatch) => {
   dispatch(setProductsResquest())
   // call API
-  getListProducts()
-    .then((products) => dispatch(setProducts(products)))
+  getListProducts(startPoint)
+    .then(([products, lastVisible]) => {
+      dispatch(setProducts(products))
+      dispatch(setLastVisible(lastVisible))
+    })
     .catch((e) => dispatch(setProductsError(e)))
 }
 
 //get products by category
-export const getCategoryProducts = (category) => (dispatch) => {
-  console.log('hello world')
+export const getCategoryProducts = (startPoint, category) => (dispatch) => {
   dispatch(setProductsResquest())
   //call API
-  getListProducts()
-    .then((products) => {
-      const categoryProducts = products.filter(
-        (item) => item.category.toLowerCase() === category
-      )
-      console.log(category)
-      console.log(categoryProducts)
-      dispatch(setProducts(categoryProducts))
+  getListProductsByCategory(startPoint, category)
+    .then(([products, lastVisible]) => {
+      dispatch(setProductsCategory(products))
+      dispatch(setLastVisibleCategory(lastVisible))
     })
     .catch((e) => dispatch(setProductsError(e)))
 }
 
 //get action
-export const { setProducts, setProductsResquest, setProductsError } =
-  productsSlice.actions
+export const {
+  setProducts,
+  setProductsResquest,
+  setProductsCategoryResquest,
+  setLastVisible,
+  setProductsError,
+  setProductsCategory,
+  setLastVisibleCategory,
+  setClearCategory
+} = productsSlice.actions
 
 //get state
 export const selectProducts = (state) => state.products.products
 export const selectStatus = (state) => state.products.status
 export const selectError = (state) => state.products.error
+export const selectLastVisible = (state) => state.products.lastVisible
+export const selectProductsCategory = (state) => state.products.productsCategory
+export const selectLastVisibleCategory = (state) =>
+  state.products.lastVisibleCatergory
+export const selectStatusCategory = (state) => state.products.statusCategory
 
 export default productsSlice.reducer

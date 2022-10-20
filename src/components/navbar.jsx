@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useDarkMode } from '../hooks/useDarkMode'
 import { useNavMode } from '../hooks/useNavMode'
 import useScrollPosition from '../hooks/useScrollPosition'
@@ -103,14 +103,13 @@ function Navbar() {
                   Color={darkMode === 'light' ? 'light' : 'dark'}
                 />
               </Link>
-
+              {/*show when signed in*/}
               <div
                 className={`w-[100px] bg-red-500 px-3 absolute bottom-0 translate-y-full cursor-pointer left-0 ${
                   userHover && userEmail ? 'block' : 'hidden'
                 }`}
-                onClick={handleSignOut}
               >
-                Sign Out
+                <div onClick={handleSignOut}>Sign Out</div>
               </div>
             </div>
           </div>

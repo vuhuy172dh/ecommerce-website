@@ -10,10 +10,9 @@ import { selectCartItems } from '../../redux/features/carts/cartSlice'
 function Checkout() {
   const cartItems = useSelector(selectCartItems)
 
-  const cartTotalPrice = cartItems.reduce(
-    (a, b) => a + Number(b.cartItem.price) * b.number,
-    0
-  )
+  const cartTotalPrice = cartItems
+    .reduce((a, b) => a + Number(b.cartItem.price) * b.number, 0)
+    .toFixed(2)
   return (
     <div className="w-screen h-screen relative">
       {/*helmet async*/}
