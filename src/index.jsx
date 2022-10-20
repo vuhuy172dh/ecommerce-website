@@ -7,8 +7,11 @@ import ScrollToTop from './helper/scrollToTop'
 import DarkMode from './hooks/useDarkMode'
 import { Provider } from 'react-redux'
 import store from './redux/stores/store'
+import showOneUser from './services/user/show'
 
 const root = ReactDOM.createRoot(document.getElementById('root'))
+
+console.log(showOneUser('srMoizlppNaF3eMXL4xnwVHNCUF3'))
 
 root.render(
   <BrowserRouter>
