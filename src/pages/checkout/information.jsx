@@ -7,6 +7,7 @@ import {
   selectStatus,
   getAddressList
 } from '../../redux/features/address/addressSlice'
+import { addContact } from '../../redux/features/bills/billSlice'
 import { setStep } from '../../redux/features/stepper/stepperSlice'
 import Controller from '../../components/popup/controller'
 import Input from '../../components/popup/input'
@@ -14,7 +15,7 @@ import EmailSchema from '../../validations/email'
 import AddressList from '../../components/user/addressList'
 import { useEffect } from 'react'
 import Button from '../../components/button'
-import { Link, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 function CheckoutInformation() {
   const userEmail = useSelector(selectUserEmail)
@@ -38,8 +39,12 @@ function CheckoutInformation() {
     resolver: yupResolver(EmailSchema)
   })
 
+  //handle email field and address
   const onSubmit = (data) => {
-    console.log(data.email)
+    //add email to bill
+    dispatch(addContact(data.email))
+    //add address to bill
+
     dispatch(setStep(2))
     navigate('/user/checkout/shipping')
   }

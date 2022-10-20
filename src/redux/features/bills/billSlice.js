@@ -2,10 +2,9 @@ import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
   user: null,
-  address: null,
   contact: null,
   shipTo: null,
-  method: null,
+  shippingMethod: null,
   payment: null
 }
 
@@ -16,14 +15,11 @@ const billSlice = createSlice({
     addContact: (state, action) => {
       state.contact = action.payload
     },
-    addAddress: (state, action) => {
-      state.address = action.payload
-    },
     addShipTo: (state, action) => {
       state.shipTo = action.payload
     },
-    addMethod: (state, action) => {
-      state.method = action.payload
+    addShippingMethod: (state, action) => {
+      state.shippingMethod = action.payload
     },
     addPaymen: (state, action) => {
       state.payment = action.payload
@@ -31,13 +27,13 @@ const billSlice = createSlice({
   }
 })
 
-export const { addContact, addShipTo, addMethod, addPaymen } = billSlice.actions
+export const { addContact, addShipTo, addShippingMethod, addPaymen } =
+  billSlice.actions
 
 export const selectUser = (state) => state.bill.user
-export const selectAddress = (state) => state.bill.address
 export const selectContact = (state) => state.bill.contact
 export const selectShipTo = (state) => state.bill.shipTo
-export const selectMethod = (state) => state.bill.method
+export const selectShippingMethod = (state) => state.bill.shippingMethod
 export const selectPayment = (state) => state.bill.payment
 
 export default billSlice.reducer

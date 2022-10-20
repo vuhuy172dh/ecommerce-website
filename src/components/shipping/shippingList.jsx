@@ -1,12 +1,26 @@
 import ShippingItem from './shippingItem'
+import { useForm } from 'react-hook-form'
+import { yupResolver } from '@hookform/resolvers/yup'
+import ShippingMethodSchema from '../../validations/shippingMethod'
 
-function ShippingList({ shippingList }) {
+function ShippingList({ shippingList, onSubmit }) {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors }
+  } = useForm({ resolver: yupResolver(ShippingMethodSchema) })
+
   return (
-    <div className="w-full flex flex-col gap-2">
+    <form
+      className="w-full flex flex-col gap-2"
+      onSubmit={handleSubmit((data) => onSubmit(data))}
+      id="shipping-radio-form"
+    >
       {shippingList.map((item, index) => (
-        <ShippingItem key={index} name={item.name} price={item.price} />
+        <ShippingItem key={index} shippingMethod={item} register={register} />
       ))}
-    </div>
+      <p className="text-red-500">{errors.shipping?.message}</p>
+    </form>
   )
 }
 
