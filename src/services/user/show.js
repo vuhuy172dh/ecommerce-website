@@ -11,4 +11,5 @@ const showOneUser = async (uuid) => {
     return Promise.reject(error)
   }
 }
+
 export default showOneUser

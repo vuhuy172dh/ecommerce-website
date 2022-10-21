@@ -6,6 +6,7 @@ import getErrorMessage from '../constant/err'
 
 const updatePasswordByEmail = async (newPassword) => {
   try {
+    console.log(auth.currentUser.providerData[0].uid)
     await updatePassword(auth.currentUser, newPassword)
     return Promise.resolve(PASSWORD_CHANGE)
   } catch (e) {
