@@ -1,72 +1,34 @@
 import ProductItemListing from '../../components/productItemListing'
-
-import img1 from '../../assets/images/ThreeVases.png'
-import img2 from '../../assets/images/CeilingLamp.png'
-import img3 from '../../assets/images/SingleVase.png'
-import img4 from '../../assets/images/DarkChair.png'
-
-const wishlistItems = [
-  {
-    id: 1,
-    imgUrl: img1,
-    name: 'Rustic Vase Set',
-    price: 155
-  },
-  {
-    id: 2,
-    imgUrl: img2,
-    name: 'The Luccy Lamp',
-    price: 399
-  },
-  {
-    id: 3,
-    imgUrl: img3,
-    name: 'The Silky Vase',
-    price: 125
-  },
-  {
-    id: 4,
-    imgUrl: img4,
-    name: 'The Silky Vase',
-    price: 125
-  },
-  {
-    id: 5,
-    imgUrl: img1,
-    name: 'The Silky Vase',
-    price: 125
-  },
-  {
-    id: 6,
-    imgUrl: img2,
-    name: 'The Silky Vase',
-    price: 125
-  },
-  {
-    id: 4,
-    imgUrl: img4,
-    name: 'The Silky Vase',
-    price: 125
-  },
-  {
-    id: 5,
-    imgUrl: img1,
-    name: 'The Silky Vase',
-    price: 125
-  },
-  {
-    id: 6,
-    imgUrl: img2,
-    name: 'The Silky Vase',
-    price: 125
-  }
-]
+import {
+  getWishlist,
+  selectWishlistList,
+  selectWishlistStatus
+} from '../../redux/features/wishlist/wishlistSlice'
+import { useDispatch, useSelector } from 'react-redux'
+import { useEffect } from 'react'
+import { selectUserUid } from '../../redux/features/userSlice'
 
 function Wishlist() {
-  return (
+  const dispatch = useDispatch()
+  const wishlistList = useSelector(selectWishlistList)
+  const wishlistStatus = useSelector(selectWishlistStatus)
+  const userUid = useSelector(selectUserUid)
+
+  useEffect(() => {
+    if (wishlistList.length === 0) {
+      dispatch(getWishlist(userUid))
+    }
+  }, [])
+
+  let itemList = []
+  wishlistList.map((item) => itemList.push(item.product))
+
+  return wishlistStatus === 'idle' && wishlistList.length !== 0 ? (
     <div className="w-full px-4 pb-14 h-full overflow-auto">
-      <ProductItemListing products={wishlistItems} />
+      <ProductItemListing products={itemList} />
     </div>
+  ) : (
+    <div>Loading...</div>
   )
 }
 

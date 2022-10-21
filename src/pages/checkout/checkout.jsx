@@ -1,19 +1,18 @@
 import { Helmet } from 'react-helmet-async'
-import Background from '../assets/images/background.jpg'
-import Stepper from '../components/stepper'
+import Background from '../../assets/images/background.jpg'
+import Stepper from '../../components/stepper'
 import { Link } from 'react-router-dom'
-import ProductCheckoutList from '../components/productCheckoutList'
-import ProductCheckoutListButton from '../components/productCheckoutListButton'
+import ProductCheckoutList from '../../components/productCheckoutList'
+import ProductCheckoutListButton from '../../components/productCheckoutListButton'
 import { useSelector } from 'react-redux'
-import { selectCartItems } from '../redux/features/carts/cartSlice'
+import { selectCartItems } from '../../redux/features/carts/cartSlice'
 
 function Checkout() {
   const cartItems = useSelector(selectCartItems)
 
-  const cartTotalPrice = cartItems.reduce(
-    (a, b) => a + Number(b.cartItem.price) * b.number,
-    0
-  )
+  const cartTotalPrice = cartItems
+    .reduce((a, b) => a + Number(b.cartItem.price) * b.number, 0)
+    .toFixed(2)
   return (
     <div className="w-screen h-screen relative">
       {/*helmet async*/}
@@ -60,7 +59,7 @@ function Checkout() {
             </div>
 
             {/*stepper*/}
-            <div className="w-full py-4 border-b border-b-border_dark/20">
+            <div className="w-full py-4">
               <Stepper />
             </div>
           </div>

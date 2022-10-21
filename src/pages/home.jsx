@@ -4,39 +4,37 @@ import Button from '../components/button'
 import LinkButton from '../components/linkButton'
 import EmailSignUp from '../components/emailSignUp'
 import ProductItemListing from '../components/productItemListing'
-import { useState, useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import {
   selectStatus,
   selectProducts,
   getProducts
 } from '../redux/features/productsSlice'
-import {
-  selectUserCartStatus,
-  selectUserCartError
-} from '../redux/features/carts/cartSlice'
+import { selectUserCartStatus } from '../redux/features/carts/cartSlice'
 import { Link } from 'react-router-dom'
 import { Helmet } from 'react-helmet-async'
 import InfoItemList from '../components/infoItemList'
 import { useDarkMode } from '../hooks/useDarkMode'
-import userEvent from '@testing-library/user-event'
-
-const limitedValue = 4
 
 function HomePage() {
-  const [productList, setProductList] = useState([])
   const { mode: darkMode } = useDarkMode()
+  const [productList, setProductList] = useState([])
 
+  const limitedValue = 4
   const dispatch = useDispatch()
   const status = useSelector(selectStatus)
   const products = useSelector(selectProducts)
   const userCartStatus = useSelector(selectUserCartStatus)
+
+  //fetch data
   useEffect(() => {
-    dispatch(getProducts())
+    if (products.length === 0) {
+      dispatch(getProducts(null))
+    }
   }, [])
 
   useEffect(() => {
-    // fake fetch API with init page number
     setProductList(products.slice(0, limitedValue))
   }, [products])
 

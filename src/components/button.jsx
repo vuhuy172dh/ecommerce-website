@@ -36,7 +36,8 @@ function Button({
   Custom = false,
   onClick = () => {},
   children = 'button',
-  Padding = ''
+  Padding = '',
+  Form = null
 }) {
   const [isOpen, setIsOpen] = useState(false)
   const handleOpen = () => {
@@ -56,6 +57,8 @@ function Button({
         whileHover={State === 'default' ? { scale: 1.05 } : { scale: 1 }}
         whileTap={State === 'dafault' ? { scale: 0.9 } : { scale: 1 }}
         onClick={handleOpen}
+        form={Form}
+        type="submit"
       >
         {children}
         {/* this is icon right */}

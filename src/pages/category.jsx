@@ -2,11 +2,14 @@ import { useEffect } from 'react'
 import clubImg from '../assets/images/features3.png'
 import EmailField from '../components/emailField'
 import ProductItemListing from '../components/productItemListing'
+import Button from '../components/button'
 import { Helmet } from 'react-helmet-async'
 import {
-  selectProducts,
+  selectProductsCategory,
   getCategoryProducts,
-  selectStatus
+  selectLastVisibleCategory,
+  selectStatusCategory,
+  setClearCategory
 } from '../redux/features/productsSlice'
 import { useSelector, useDispatch } from 'react-redux'
 import { useParams } from 'react-router-dom'
@@ -15,15 +18,23 @@ function Category() {
   //declare dispatch
   const dispatch = useDispatch()
   //select state
-  const products = useSelector(selectProducts)
-  const status = useSelector(selectStatus)
+  const categoryStatus = useSelector(selectStatusCategory)
+  const productsCategory = useSelector(selectProductsCategory)
+  const lastVisibleCategory = useSelector(selectLastVisibleCategory)
   //catogory
   let { category } = useParams()
   category = category.replace('-', ' ')
+  category = category.charAt(0).toUpperCase() + category.slice(1)
 
+  //fetch data
   useEffect(() => {
-    dispatch(getCategoryProducts(category))
+    dispatch(setClearCategory())
+    dispatch(getCategoryProducts(null, category))
   }, [category])
+
+  const handleLoadMore = () => {
+    dispatch(getCategoryProducts(lastVisibleCategory, category))
+  }
 
   return (
     <div className="relative">
@@ -42,11 +53,18 @@ function Category() {
       {/* this is list Product component */}
       <div className="px-6 py-7 laptop:px-20 laptop:pb-10 relative z-20">
         {/* Product Item Lists */}
-        {status === 'idle' ? (
-          <ProductItemListing products={products} />
+        {categoryStatus === 'idle' ? (
+          <ProductItemListing products={productsCategory} />
         ) : (
           <div>Loading</div>
         )}
+
+        {/* Load more Button */}
+        <div className="flex mt-8 laptop:max-w-[180px] laptop:mx-auto">
+          <Button Color="secondary" onClick={handleLoadMore}>
+            View collection
+          </Button>
+        </div>
       </div>
 
       {/* this is Contact component */}

@@ -233,7 +233,7 @@ function NavDrawer() {
 
           {/*footer social media*/}
           <div className="block">
-            <SocialMedia Color={darkMode === 'light' ? 'dark' : 'light'} />
+            <SocialMedia Color={darkMode} />
           </div>
         </div>
       </div>

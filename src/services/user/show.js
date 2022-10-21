@@ -6,10 +6,9 @@ import { USERS } from '../constant/firestore'
 const showOneUser = async (uuid) => {
   try {
     const querySnapshot = await getDoc(doc(db, USERS, uuid))
-    return querySnapshot.data()
+    return Promise.resolve(querySnapshot.data())
   } catch (error) {
-    console.log(error)
-    return false
+    return Promise.reject(error)
   }
 }
 export default showOneUser

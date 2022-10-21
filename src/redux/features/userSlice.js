@@ -4,13 +4,17 @@ import {
   signInWithGoogle,
   signUp
 } from '../../services/auth'
+import { showOneUser } from '../../services/user'
 
 const initialState = {
   status: 'idle',
   fullname: null,
   email: null,
+  phone: null,
+  gender: null,
   uid: null,
   addr_default: null,
+  birth: null,
   error: null
 }
 
@@ -24,17 +28,24 @@ const userSlice = createSlice({
     },
     setActiveUser: (state, action) => {
       state.status = 'idle'
-      state.fullname = action.payload.fullname
-      state.email = action.payload.email
-      state.uid = action.payload.uid
-      state.addr_default = action.payload.addr_default
+      if (action.payload.fullname) state.fullname = action.payload.fullname
+      if (action.payload.phone) state.phone = action.payload.phone
+      if (action.payload.gender) state.gender = action.payload.gender
+      if (action.payload.email) state.email = action.payload.email
+      if (action.payload.uid) state.uid = action.payload.uid
+      if (action.payload.addr_default)
+        state.addr_default = action.payload.addr_default
+      if (action.payload.birth) state.birth = action.payload.birth
       state.error = null
     },
     setLogOutUser: (state) => {
       state.status = 'idle'
       state.fullname = null
-      state.email = null
       state.uid = null
+      state.email = null
+      state.phone = null
+      state.gender = null
+      state.birth = null
       state.addr_default = null
     },
     setUserError: (state, action) => {
@@ -97,6 +108,31 @@ export const signUpUser = (fullname, email, password) => (dispatch) => {
     })
 }
 
+//get user information
+export const getInformation = (userUid) => (dispatch) => {
+  const get = async () => {
+    dispatch(setUserRequest())
+    //call api
+    await showOneUser(userUid)
+      .then((user) => {
+        console.log(user)
+        dispatch(
+          setActiveUser({
+            fullname: user.fullname,
+            gender: user.gender,
+            phone: user.phone,
+            email: user.email,
+            birth: user.dob,
+            addr_default: user.addr_default
+          })
+        )
+      })
+      .catch((e) => dispatch(setUserError(e)))
+  }
+
+  get()
+}
+
 //get action
 export const { setActiveUser, setLogOutUser, setUserRequest, setUserError } =
   userSlice.actions
@@ -108,5 +144,8 @@ export const selectError = (state) => state.user.error
 export const selectStatus = (state) => state.user.status
 export const selectUserUid = (state) => state.user.uid
 export const selectUserAddressDefault = (state) => state.user.addr_default
+export const selectUserPhone = (state) => state.user.phone
+export const selectUserGender = (state) => state.user.gender
+export const selectUserBirth = (state) => state.user.birth
 
 export default userSlice.reducer

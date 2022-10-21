@@ -3,8 +3,15 @@ import Button from '../button'
 import PopupConfirm from '../popup/popupConfirm'
 import PopupAddress from '../popup/popupAddress'
 import { useSelector, useDispatch } from 'react-redux'
-import { selectUserUid } from '../../redux/features/userSlice'
-import { deleteAddress } from '../../redux/features/address/addressSlice'
+import {
+  selectUserAddressDefault,
+  selectUserUid,
+  setActiveUser
+} from '../../redux/features/userSlice'
+import {
+  deleteAddress,
+  getAddressDefault
+} from '../../redux/features/address/addressSlice'
 import { setAddressDefault } from '../../services/address'
 
 function AddressItem({ address }) {
@@ -17,12 +24,17 @@ function AddressItem({ address }) {
   //declare redux and state
   const dispatch = useDispatch()
   const userUid = useSelector(selectUserUid)
+  const userAddressDefault = useSelector(selectUserAddressDefault)
 
   //handle set address default
   const handleConfirmAddressDefault = () => {
     const setDefaul = async () => {
       await setAddressDefault(userUid, address.Id)
-        .then((res) => alert(res))
+        .then((res) => {
+          dispatch(setActiveUser({ addr_default: address.Id }))
+          dispatch(getAddressDefault(address.Id))
+          alert(res)
+        })
         .catch((e) => alert(e))
     }
 
@@ -32,7 +44,11 @@ function AddressItem({ address }) {
   //handle delete address
   const handleDeleteAddress = () => {
     // handle delete address
-    dispatch(deleteAddress(userUid, address.Id))
+    if (userAddressDefault === address.Id) {
+      alert('this is address defaul, cant delete')
+    } else {
+      dispatch(deleteAddress(userUid, address.Id))
+    }
   }
 
   return (
@@ -41,19 +57,23 @@ function AddressItem({ address }) {
       <div className="w-full flex flex-col gap-1">
         {/* info contact*/}
         <div className="flex w-full gap-4">
-          <p className="mt-2 font-semibold laptop:mt-0 text-primary">
+          <p className="mt-2 font-semibold laptop:mt-0 text-primary dark:text-light_grey">
             {address.Name}
           </p>
 
-          <p className="mt-2 font-normal laptop:mt-0 text-primary/70">
+          <p className="mt-2 font-normal laptop:mt-0 text-primary/70 dark:text-border_grey/70">
             {address.PhoneNumber}
           </p>
         </div>
 
         {/* address */}
         <div className="flex w-full flex-col gap-1">
-          <p className="text-primary text-h6">{address.Address}</p>
-          <p className="text-primary text-h6">{addressDefault}</p>
+          <p className="text-primary dark:text-light_grey text-h6">
+            {address.Address}
+          </p>
+          <p className="text-primary dark:text-light_grey text-h6">
+            {addressDefault}
+          </p>
         </div>
         {address.Default && (
           <div className="px-2 w-fit text-red-600 border border-red-600">
@@ -66,7 +86,7 @@ function AddressItem({ address }) {
       <div className="flex flex-col items-center">
         <div className="flex gap-2 justify-center">
           <button
-            className="px-6 border border-primary/70 rounded-lg text-primary/60 hover:text-primary"
+            className="px-6 border border-primary/70 dark:border-light_grey/70 rounded-lg text-primary/60 dark:text-light_grey/60 hover:text-primary dark:hover:text-light_grey"
             onClick={() => setPopupUpdate(true)}
           >
             Update

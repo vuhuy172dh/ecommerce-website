@@ -5,7 +5,6 @@ import useScrollPosition from '../hooks/useScrollPosition'
 import BannerCarousel from './bannerCarousel'
 import ButtonIcon from './buttonIcon'
 import LinkButton from './linkButton'
-import SearchField from './searchField'
 import { selectUserEmail } from '../redux/features/userSlice'
 import { useSelector, useDispatch } from 'react-redux'
 import { useEffect, useState } from 'react'
@@ -15,10 +14,13 @@ import {
   selectCategoryStatus,
   getCategories
 } from '../redux/features/category/categorySlice'
+import { useSearchMode } from '../hooks/useSearchMode'
+import { setEmptyWishlist } from '../redux/features/wishlist/wishlistSlice'
 
 function Navbar() {
   const handleMode = useNavMode().handleMode
   const { mode: darkMode } = useDarkMode()
+  const handleSearchMode = useSearchMode().handleSearchMode
   const scrollY = useScrollPosition()
   const [userHover, setUserHover] = useState(false)
 
@@ -31,6 +33,7 @@ function Navbar() {
 
   const handleSignOut = () => {
     signOut(dispatch)
+    dispatch(setEmptyWishlist())
   }
 
   useEffect(() => {
@@ -60,19 +63,22 @@ function Navbar() {
         {/* navbar top */}
         <div className="w-full py-1 px-8 flex justify-between items-center">
           {/* Search field */}
-          <div className="mobile:hidden tablet:block relative">
-            <SearchField Direction="ltr" />
+          <div
+            className="mobile:hidden tablet:block relative"
+            onClick={handleSearchMode}
+          >
+            <ButtonIcon Icon="search" Color={darkMode} />
           </div>
 
           {/* Avion Logo */}
-          <div className="text-h3 tablet:-translate-x-full dark:text-white">
+          <div className="text-h3 dark:text-white">
             <Link to="/">Avion</Link>
           </div>
 
           <div className="flex gap-2 items-center">
             {/* search field */}
-            <div className="tablet:hidden">
-              <SearchField />
+            <div className="tablet:hidden" onClick={handleSearchMode}>
+              <ButtonIcon Color={darkMode} Icon="search" />
             </div>
 
             {/* cart icon button */}
@@ -103,14 +109,13 @@ function Navbar() {
                   Color={darkMode === 'light' ? 'light' : 'dark'}
                 />
               </Link>
-
+              {/*show when signed in*/}
               <div
                 className={`w-[100px] bg-red-500 px-3 absolute bottom-0 translate-y-full cursor-pointer left-0 ${
                   userHover && userEmail ? 'block' : 'hidden'
                 }`}
-                onClick={handleSignOut}
               >
-                Sign Out
+                <div onClick={handleSignOut}>Sign Out</div>
               </div>
             </div>
           </div>

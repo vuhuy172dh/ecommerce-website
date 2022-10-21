@@ -8,17 +8,18 @@ import {
   selectUserCartItems
 } from '../redux/features/carts/cartSlice'
 import { selectUserUid } from '../redux/features/userSlice'
+import { selectCurrentStep } from '../redux/features/stepper/stepperSlice'
 
 function ProductCartPage() {
   //call cart state
   const cartItems = useSelector(selectCartItems)
   const userCartItems = useSelector(selectUserCartItems)
   const userUid = useSelector(selectUserUid)
+  const currentStep = useSelector(selectCurrentStep)
 
-  const cartTotalPrice = cartItems.reduce(
-    (a, b) => a + Number(b.cartItem.price) * b.number,
-    0
-  )
+  const cartTotalPrice = cartItems
+    .reduce((a, b) => a + Number(b.cartItem.price) * b.number, 0)
+    .toFixed(2)
 
   return (
     <div className="w-[100%] mb-12 p-6 laptop:px-[180px] laptop:py-16">
@@ -51,7 +52,15 @@ function ProductCartPage() {
               Taxes and shipping are calculated at checkout
             </p>
           </div>
-          <Link to="/checkout">
+          <Link
+            to={`${
+              currentStep === 1
+                ? '/user/checkout/information'
+                : currentStep === 2
+                ? '/user/checkout/shipping'
+                : '/user/checkout/payment'
+            }`}
+          >
             <div className="w-[100%] flex mt-5 laptop:w-[172px] laptop:float-right">
               <Button Color="primary" children="Go to checkout" />
             </div>

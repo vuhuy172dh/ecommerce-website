@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import Button from '../components/button'
 import clubImg from '../assets/images/features3.png'
 import EmailField from '../components/emailField'
@@ -7,42 +7,28 @@ import { Helmet } from 'react-helmet-async'
 import {
   getProducts,
   selectProducts,
-  selectStatus
+  selectStatus,
+  selectLastVisible
 } from '../redux/features/productsSlice'
 import { useSelector, useDispatch } from 'react-redux'
 
 function ProductListingPage() {
-  const limitedValue = 4
-  const [productsList, setProductsList] = useState([])
-  const [current, setCurrent] = useState(4)
-  const [visible, setVisible] = useState(true)
-
   //declare dispatch
   const dispatch = useDispatch()
   //select state
   const status = useSelector(selectStatus)
   const products = useSelector(selectProducts)
+  const lastVisible = useSelector(selectLastVisible)
 
+  //fetch data
   useEffect(() => {
-    dispatch(getProducts())
+    if (products.length === 0) {
+      dispatch(getProducts(null))
+    }
   }, [])
 
-  useEffect(() => {
-    setProductsList(products.slice(0, current))
-  }, [products, current])
-
   const handleLoadMore = () => {
-    const newlist = products.slice(current, current + limitedValue)
-
-    if (newlist.length > 0) {
-      setProductsList((prev) => {
-        return [...prev, ...newlist]
-      })
-
-      setCurrent(current + limitedValue)
-    } else {
-      setVisible(!visible)
-    }
+    dispatch(getProducts(lastVisible))
   }
 
   return (
@@ -95,21 +81,17 @@ function ProductListingPage() {
       <div className="px-6 py-7 laptop:px-20 laptop:pb-10 relative z-20">
         {/* Product Item Lists */}
         {status !== 'loading' ? (
-          <ProductItemListing products={productsList} />
+          <ProductItemListing products={products} />
         ) : (
           <div>loading...</div>
         )}
 
         {/* Load more Button */}
-        {visible ? (
-          <div className="flex mt-8 laptop:max-w-[180px] laptop:mx-auto">
-            <Button Color="secondary" onClick={handleLoadMore}>
-              View collection
-            </Button>
-          </div>
-        ) : (
-          ''
-        )}
+        <div className="flex mt-8 laptop:max-w-[180px] laptop:mx-auto">
+          <Button Color="secondary" onClick={handleLoadMore}>
+            View collection
+          </Button>
+        </div>
       </div>
 
       {/* this is Contact component */}
