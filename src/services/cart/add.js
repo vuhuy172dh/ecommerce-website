@@ -5,19 +5,16 @@ import { CART, USERS } from '../constant/firestore'
 // Truyền vào hàm này là uid của user
 const addProductToCart = async (uidUser, product, number) => {
   try {
-    // Product ref
-    //const productRef = doc(db, `${PRODUCTS}`, uidProduct)
-
-    // Collection cart ref
     const cartRef = collection(db, `${USERS}/${uidUser}/${CART}`)
 
-    // Add data to firestore
-    await addDoc(cartRef, {
+    const cart = {
       cartItem: product,
-      number: number // default value
-      //created_date: serverTimestamp(),
-      //updated_date: serverTimestamp()
-    })
+      number: number
+    }
+    // Add data to firestore
+    const doc = await addDoc(cartRef, cart)
+    cart.uid = doc.id
+    return Promise.resolve(cart)
   } catch (e) {
     const { code } = e
     return Promise.reject(code)

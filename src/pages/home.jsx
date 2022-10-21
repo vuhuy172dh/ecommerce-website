@@ -11,7 +11,7 @@ import {
   selectProducts,
   getProducts
 } from '../redux/features/productsSlice'
-import { selectUserCartStatus } from '../redux/features/carts/cartSlice'
+import { selectCartStatus } from '../redux/features/carts/cartSlice'
 import { Link } from 'react-router-dom'
 import { Helmet } from 'react-helmet-async'
 import InfoItemList from '../components/infoItemList'
@@ -25,7 +25,7 @@ function HomePage() {
   const dispatch = useDispatch()
   const status = useSelector(selectStatus)
   const products = useSelector(selectProducts)
-  const userCartStatus = useSelector(selectUserCartStatus)
+  const cartStatus = useSelector(selectCartStatus)
 
   //fetch data
   useEffect(() => {
@@ -145,7 +145,7 @@ function HomePage() {
         <EmailSignUp />
       </div>
 
-      {userCartStatus === 'loading' && (
+      {cartStatus === 'loading' && (
         <div className="w-screen h-screen absolute top-0 bg-white/50 z-50"></div>
       )}
     </div>

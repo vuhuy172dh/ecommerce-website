@@ -22,10 +22,10 @@ const ProductCartList = ({ cartItems }) => {
   //handle remove from cart
   const handleRemoveFromCart = (product) => {
     if (userUid) {
-      dispatch(removeFromUserFirebase(userUid, product.uid))
+      dispatch(removeFromUserFirebase(userUid, product))
       return
     }
-    dispatch(removeFromCart(product.cartItem))
+    dispatch(removeFromCart(product.cartItem.uuid))
   }
 
   return cartItems.map((cart) => (
@@ -58,7 +58,7 @@ const ProductCartList = ({ cartItems }) => {
               maxNumber={cart.cartItem.remain}
               currentNumber={cart.number}
               userUid={userUid ? userUid : null}
-              cartUid={userUid ? cart.uid : cart.cartItem.uuid}
+              cart={cart}
             />
             <ButtonIcon
               Icon="trash"
@@ -74,7 +74,7 @@ const ProductCartList = ({ cartItems }) => {
           maxNumber={cart.cartItem.remain}
           currentNumber={cart.number}
           userUid={userUid ? userUid : null}
-          cartUid={userUid ? cart.uid : cart.cartItem.uuid}
+          cart={cart}
         />
         <div className="w-fit h-fit flex">
           <ButtonIcon

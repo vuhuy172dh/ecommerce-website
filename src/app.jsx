@@ -46,7 +46,7 @@ function App() {
   const dispatch = useDispatch()
 
   const path = useLocation().pathname
-  useEffect(() => {
+  /*useEffect(() => {
     auth.onAuthStateChanged((user) => {
       if (user) {
         dispatch(
@@ -57,12 +57,13 @@ function App() {
             addr_default: user.addr_default
           })
         )
+        console.log('this is auth')
         dispatch(getUserCart(user.uid))
         dispatch(getInformation(user.uid))
         dispatch(getWishlist(user.uid))
       }
     })
-  }, [])
+  }, [])*/
   return (
     <div>
       {path === '/signin' ||
