@@ -214,7 +214,7 @@ function PopupAddress({ type = 'create', address, onBack = () => {} }) {
                   type: 'text',
                   placeholder: 'your name',
                   className:
-                    'border border-1 border-primary border-solid w-1/2 h-9 px-2 outline-none',
+                    'border border-1 rounded-lg border-border_grey w-1/2 h-9 px-2 outline-primary/60',
                   handleChange: (e) => handleChange(e),
                   render: (props) => <Input {...props} />
                 }}
@@ -230,7 +230,7 @@ function PopupAddress({ type = 'create', address, onBack = () => {} }) {
                   type: 'text',
                   placeholder: 'your phone',
                   className:
-                    'border border-1 border-primary border-solid w-1/2 h-9 px-2 outline-none',
+                    'border border-1 rounded-lg border-border_grey w-1/2 h-9 px-2 outline-primary/60',
                   handleChange: (e) => handleChange(e),
                   render: (props) => <Input {...props} />
                 }}
@@ -261,7 +261,7 @@ function PopupAddress({ type = 'create', address, onBack = () => {} }) {
                 type: '',
                 placeholder: 'Choose province/ city ',
                 className:
-                  'border border-1 border-primary border-solid w-full h-9 px-2 outline-none',
+                  'border border-1 rounded-lg border-border_grey w-full h-9 px-2 outline-primary/60',
                 handleChange: (e) => handleChange(e),
                 options: province,
                 render: (props) => <Select {...props} />
@@ -285,7 +285,7 @@ function PopupAddress({ type = 'create', address, onBack = () => {} }) {
                 type: '',
                 placeholder: 'Choose district',
                 className:
-                  'border border-1 border-primary border-solid w-full h-9 px-2 outline-none',
+                  'border border-1 rounded-lg border-border_grey w-full h-9 px-2 outline-primary/60',
                 handleChange: (e) => handleChange(e),
                 options: district,
                 render: (props) => <Select {...props} />
@@ -309,7 +309,7 @@ function PopupAddress({ type = 'create', address, onBack = () => {} }) {
                 type: '',
                 placeholder: 'Choose ward/ commune',
                 className:
-                  'border border-1 border-primary border-solid w-full h-9 px-2 outline-none',
+                  'border border-1 rounded-lg border-border_grey w-full h-9 px-2 outline-primary/60',
                 handleChange: (e) => handleChange(e),
                 options: ward,
                 render: (props) => <Select {...props} />
@@ -332,7 +332,7 @@ function PopupAddress({ type = 'create', address, onBack = () => {} }) {
                 type: 'text',
                 placeholder: 'Street/ apartment number',
                 className:
-                  'border border-1 border-primary border-solid w-full h-9 px-2 outline-none',
+                  'border border-1 rounded-lg border-border_grey w-full h-9 px-2 outline-primary/60',
                 handleChange: (e) => handleChange(e),
                 render: (props) => <Input {...props} />
               }}
@@ -347,20 +347,29 @@ function PopupAddress({ type = 'create', address, onBack = () => {} }) {
 
             <div className="flex justify-center laptop:justify-end gap-3">
               <div className="">
-                <Button Color="secondary" onClick={() => onBack()}>
+                <Button
+                  Color="ghost"
+                  Custom={true}
+                  Padding="px-8 py-1"
+                  onClick={() => onBack()}
+                >
                   Back
                 </Button>
               </div>
               {type === 'create' ? (
                 <div>
-                  <Button Color="primary">Create address</Button>
+                  <Button Color="primary" Custom={true} Padding="px-8 py-1">
+                    Create address
+                  </Button>
                 </div>
               ) : (
                 ''
               )}
               {type === 'update' ? (
                 <div>
-                  <Button Color="primary">Save address</Button>
+                  <Button Color="primary" Custom={true} Padding="px-8 py-1">
+                    Save address
+                  </Button>
                 </div>
               ) : (
                 ''

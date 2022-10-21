@@ -1,11 +1,10 @@
-import { Link, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { useDarkMode } from '../hooks/useDarkMode'
 import { useNavMode } from '../hooks/useNavMode'
 import useScrollPosition from '../hooks/useScrollPosition'
 import BannerCarousel from './bannerCarousel'
 import ButtonIcon from './buttonIcon'
 import LinkButton from './linkButton'
-import SearchField from './searchField'
 import { selectUserEmail } from '../redux/features/userSlice'
 import { useSelector, useDispatch } from 'react-redux'
 import { useEffect, useState } from 'react'
@@ -15,10 +14,12 @@ import {
   selectCategoryStatus,
   getCategories
 } from '../redux/features/category/categorySlice'
+import { useSearchMode } from '../hooks/useSearchMode'
 
 function Navbar() {
   const handleMode = useNavMode().handleMode
   const { mode: darkMode } = useDarkMode()
+  const handleSearchMode = useSearchMode().handleSearchMode
   const scrollY = useScrollPosition()
   const [userHover, setUserHover] = useState(false)
 
@@ -60,19 +61,22 @@ function Navbar() {
         {/* navbar top */}
         <div className="w-full py-1 px-8 flex justify-between items-center">
           {/* Search field */}
-          <div className="mobile:hidden tablet:block relative">
-            <SearchField Direction="ltr" />
+          <div
+            className="mobile:hidden tablet:block relative"
+            onClick={handleSearchMode}
+          >
+            <ButtonIcon Icon="search" Color={darkMode} />
           </div>
 
           {/* Avion Logo */}
-          <div className="text-h3 tablet:-translate-x-full dark:text-white">
+          <div className="text-h3 dark:text-white">
             <Link to="/">Avion</Link>
           </div>
 
           <div className="flex gap-2 items-center">
             {/* search field */}
-            <div className="tablet:hidden">
-              <SearchField />
+            <div className="tablet:hidden" onClick={handleSearchMode}>
+              <ButtonIcon Color={darkMode} Icon="search" />
             </div>
 
             {/* cart icon button */}

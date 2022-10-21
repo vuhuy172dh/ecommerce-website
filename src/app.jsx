@@ -27,6 +27,8 @@ import Category from './pages/category'
 import CheckoutInformation from './pages/checkout/information'
 import CheckoutShipping from './pages/checkout/shipping'
 import CheckoutPayment from './pages/checkout/payment'
+import SearchMode from './hooks/useSearchMode'
+import SearchDrawer from './components/search/searchDrawer'
 
 const SidebarLayout = () => (
   <div className="laptop:flex">
@@ -46,10 +48,13 @@ function App() {
         path === '/user/checkout/shipping' ||
         path === '/user/checkout/payment' || (
           <header>
-            <NavMode>
-              <Navbar />
-              <NavDrawer />
-            </NavMode>
+            <SearchMode>
+              <NavMode>
+                <Navbar />
+                <NavDrawer />
+              </NavMode>
+              <SearchDrawer />
+            </SearchMode>
             <DarkModeButton />
             <CartFloatButton />
           </header>

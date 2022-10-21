@@ -57,19 +57,23 @@ function AddressItem({ address }) {
       <div className="w-full flex flex-col gap-1">
         {/* info contact*/}
         <div className="flex w-full gap-4">
-          <p className="mt-2 font-semibold laptop:mt-0 text-primary">
+          <p className="mt-2 font-semibold laptop:mt-0 text-primary dark:text-light_grey">
             {address.Name}
           </p>
 
-          <p className="mt-2 font-normal laptop:mt-0 text-primary/70">
+          <p className="mt-2 font-normal laptop:mt-0 text-primary/70 dark:text-border_grey/70">
             {address.PhoneNumber}
           </p>
         </div>
 
         {/* address */}
         <div className="flex w-full flex-col gap-1">
-          <p className="text-primary text-h6">{address.Address}</p>
-          <p className="text-primary text-h6">{addressDefault}</p>
+          <p className="text-primary dark:text-light_grey text-h6">
+            {address.Address}
+          </p>
+          <p className="text-primary dark:text-light_grey text-h6">
+            {addressDefault}
+          </p>
         </div>
         {address.Default && (
           <div className="px-2 w-fit text-red-600 border border-red-600">
@@ -82,7 +86,7 @@ function AddressItem({ address }) {
       <div className="flex flex-col items-center">
         <div className="flex gap-2 justify-center">
           <button
-            className="px-6 border border-primary/70 rounded-lg text-primary/60 hover:text-primary"
+            className="px-6 border border-primary/70 dark:border-light_grey/70 rounded-lg text-primary/60 dark:text-light_grey/60 hover:text-primary dark:hover:text-light_grey"
             onClick={() => setPopupUpdate(true)}
           >
             Update

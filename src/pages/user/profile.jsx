@@ -124,7 +124,7 @@ function Profile() {
                 name: 'fullname',
                 type: 'text',
                 placeholder: 'username',
-                className: 'py-2 px-2',
+                className: 'py-2 px-2 dark:bg-light_grey/40 rounded-md',
                 handleChange: () => {},
                 render: (props) => <Input {...props} />
               }}
@@ -142,7 +142,7 @@ function Profile() {
                 name: 'email',
                 type: 'email',
                 placeholder: 'email',
-                className: 'py-2 px-2',
+                className: 'py-2 px-2 dark:bg-light_grey/40 rounded-md',
                 handleChange: () => {},
                 render: (props) => <Input {...props} />
               }}
@@ -160,7 +160,7 @@ function Profile() {
                 name: 'phone',
                 type: 'text',
                 placeholder: 'phone',
-                className: 'py-2 px-2',
+                className: 'py-2 px-2 dark:bg-light_grey/40 rounded-md',
                 handleChange: () => {},
                 render: (props) => <Input {...props} />
               }}
@@ -230,7 +230,7 @@ function Profile() {
                 register,
                 name: 'birth',
                 type: 'date',
-                className: 'py-2 px-2',
+                className: 'py-2 px-2 dark:bg-light_grey/40 rounded-md',
                 handleChange: () => {},
                 render: (props) => <Input {...props} />
               }}

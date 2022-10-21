@@ -34,7 +34,7 @@ function Address() {
           {/*address page header*/}
           <header className="text-center laptop:text-left laptop:flex laptop:justify-between laptop:items-center laptop:border-b-2 border-primary pb-3">
             <div>
-              <h3 className="text-body-lg font-semibold text-dark_primary">
+              <h3 className="text-body-lg font-semibold text-dark_primary dark:text-light_grey">
                 Delivery Address
               </h3>
               <p className="mb-3 laptop:mb-0 text-body-md text-border_dark">

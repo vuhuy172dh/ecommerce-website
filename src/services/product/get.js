@@ -16,9 +16,9 @@ const getListProducts = async (startPoint) => {
   try {
     let start
     if (startPoint !== null) {
-      start = query(collection(db, PRODUCTS), startAfter(startPoint), limit(2))
+      start = query(collection(db, PRODUCTS), startAfter(startPoint), limit(4))
     } else {
-      start = query(collection(db, PRODUCTS), limit(2))
+      start = query(collection(db, PRODUCTS), limit(4))
     }
 
     const querySnapshot = await getDocs(start)

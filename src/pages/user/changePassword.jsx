@@ -40,7 +40,7 @@ function ChangePassword() {
           <p>Current Password</p>
           <input
             type="password"
-            className="block w-full mt-2 px-4 py-3 rounded border border-solid border-border_dark"
+            className="block w-full mt-2 px-4 py-3 rounded border border-solid border-border_dark dark:bg-light_grey/40"
             {...register('currentPassword')}
           />
           <p>{errors.currentPassword?.message}</p>
@@ -50,7 +50,7 @@ function ChangePassword() {
           <p>New Password</p>
           <input
             type="password"
-            className="block w-full mt-2 px-4 py-3 rounded border border-solid border-border_dark"
+            className="block w-full mt-2 px-4 py-3 rounded border border-solid border-border_dark dark:bg-light_grey/40"
             {...register('newPassword')}
           />
           <p>{errors.newPassword?.message}</p>
@@ -60,7 +60,7 @@ function ChangePassword() {
           <p>New Password</p>
           <input
             type="password"
-            className="block w-full mt-2 px-4 py-3 rounded border border-solid border-border_dark"
+            className="block w-full mt-2 px-4 py-3 rounded border border-solid border-border_dark dark:bg-light_grey/40"
             {...register('confirmPassword')}
           />
           <p>{errors.confirmPassword?.message}</p>
