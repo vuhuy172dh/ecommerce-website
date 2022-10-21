@@ -12,19 +12,29 @@ function Footer() {
           <p className="text-h3 tablet:text-h5">Categories</p>
           <ul className="flex flex-col items-center gap-2 text-body-lg tablet:text-body-sm tablet:items-start">
             <li>
-              <LinkButton size="small">Crockery</LinkButton>
+              <LinkButton size="small" path="/products/crockery">
+                Crockery
+              </LinkButton>
             </li>
             <li>
-              <LinkButton size="small">Furniture</LinkButton>
+              <LinkButton size="small" path="/products/tableware">
+                Tableware
+              </LinkButton>
             </li>
             <li>
-              <LinkButton size="small">Homeware</LinkButton>
+              <LinkButton size="small" path="/products/ceramics">
+                Ceramics
+              </LinkButton>
             </li>
             <li>
-              <LinkButton size="small">Plant pots</LinkButton>
+              <LinkButton size="small" path="/products/plant-pots">
+                Plant pots
+              </LinkButton>
             </li>
             <li>
-              <LinkButton size="small">Chairs</LinkButton>
+              <LinkButton size="small" path="/products/chairs">
+                Chairs
+              </LinkButton>
             </li>
           </ul>
         </div>
@@ -62,7 +72,7 @@ function Footer() {
               <LinkButton path="/vacancies">Vacancies</LinkButton>
             </li>
             <li>
-              <LinkButton>Contact us</LinkButton>
+              <LinkButton path="/contactUs">Contact us</LinkButton>
             </li>
             <li>
               <LinkButton>Privacy</LinkButton>
