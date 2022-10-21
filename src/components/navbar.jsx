@@ -15,6 +15,7 @@ import {
   getCategories
 } from '../redux/features/category/categorySlice'
 import { useSearchMode } from '../hooks/useSearchMode'
+import { setEmptyWishlist } from '../redux/features/wishlist/wishlistSlice'
 
 function Navbar() {
   const handleMode = useNavMode().handleMode
@@ -32,6 +33,7 @@ function Navbar() {
 
   const handleSignOut = () => {
     signOut(dispatch)
+    dispatch(setEmptyWishlist())
   }
 
   useEffect(() => {

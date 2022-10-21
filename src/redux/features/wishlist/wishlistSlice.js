@@ -28,6 +28,10 @@ const wishlistSlice = createSlice({
     setWishlistError: (state, action) => {
       state.status = 'error'
       state.error = action.payload
+    },
+    setEmptyWishlist: (state) => {
+      state.status = 'idle'
+      state.wishlistList.length = 0
     }
   }
 })
@@ -43,22 +47,31 @@ export const getWishlist = (userUid) => (dispatch) => {
   get()
 }
 
-export const addNewItemToWishlist = (userUid, product) => (dispatch) => {
-  const add = async () => {
-    dispatch(setWishlistRequest())
-    await addProductToWishlist(userUid, product)
-      .then((res) => dispatch(addWishlist(res)))
-      .catch((e) => dispatch(setWishlistError(e)))
-  }
+export const addNewItemToWishlist =
+  (userUid, product) => (dispatch, getState) => {
+    const add = async () => {
+      const currentWishlist = selectWishlistList(getState())
+      const existItem = currentWishlist.find(
+        (i) => i.product.uuid === product.uuid
+      )
+      if (existItem) return
+      dispatch(setWishlistRequest())
+      await addProductToWishlist(userUid, product)
+        .then((res) => {
+          dispatch(addWishlist(res))
+        })
+        .catch((e) => dispatch(setWishlistError(e)))
+    }
 
-  add()
-}
+    add()
+  }
 
 export const {
   setWishlistRequest,
   setWishlistList,
   setWishlistError,
-  addWishlist
+  addWishlist,
+  setEmptyWishlist
 } = wishlistSlice.actions
 
 export const selectWishlistStatus = (state) => state.wishlist.status

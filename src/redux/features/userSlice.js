@@ -118,7 +118,7 @@ export const getInformation = (userUid) => (dispatch) => {
         console.log(user)
         dispatch(
           setActiveUser({
-            fullname: user.fullName,
+            fullname: user.fullname,
             gender: user.gender,
             phone: user.phone,
             email: user.email,

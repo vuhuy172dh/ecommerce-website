@@ -17,6 +17,7 @@ import {
   getInformation
 } from '../redux/features/userSlice'
 import { getUserCart } from '../redux/features/carts/cartSlice'
+import { getWishlist } from '../redux/features/wishlist/wishlistSlice'
 import WhiteRoomImg from '../assets/images/features3.png'
 import { useEffect } from 'react'
 
@@ -54,6 +55,7 @@ function SignIn() {
       //when sign in succesfully, get userCart and merge to localCart
       dispatch(getUserCart(userUid))
       dispatch(getInformation(userUid))
+      dispatch(getWishlist(userUid))
       navigate('/')
     }
   }, [userEmail, navigate])
