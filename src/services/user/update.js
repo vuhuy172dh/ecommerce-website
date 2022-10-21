@@ -11,7 +11,7 @@ const updateOneUser = async (item) => {
       uuid: item?.uuid,
       addr_default: item?.addr_default,
       email: item?.email,
-      fullName: item?.fullname,
+      fullname: item?.fullname,
       type: 1,
       phone: item?.phone,
       dob: item?.birth,
