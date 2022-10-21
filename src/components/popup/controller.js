@@ -20,7 +20,7 @@ const Controller = ({
   })
 
   return render({
-    value: type !== 'radio' ? value : radioValue,
+    value: value,
     onChange: (e) =>
       props.onChange({
         target: {
@@ -28,6 +28,7 @@ const Controller = ({
           value: e.target.value
         }
       }),
+    radioValue,
     onBlur: props.onBlur,
     name: props.name,
     handleChange,

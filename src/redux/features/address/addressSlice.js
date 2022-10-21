@@ -7,7 +7,7 @@ import {
 } from '../../../services/address'
 
 const initialState = {
-  status: 'loading',
+  status: 'idle',
   addressList: [],
   error: null
 }
