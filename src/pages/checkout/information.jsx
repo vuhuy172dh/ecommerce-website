@@ -1,7 +1,11 @@
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useForm } from 'react-hook-form'
 import { useSelector, useDispatch } from 'react-redux'
-import { selectUserEmail, selectUserUid } from '../../redux/features/userSlice'
+import {
+  selectUserAddressDefault,
+  selectUserEmail,
+  selectUserUid
+} from '../../redux/features/userSlice'
 import {
   selectAddressList,
   selectStatus,
@@ -22,12 +26,13 @@ function CheckoutInformation() {
   const addressList = useSelector(selectAddressList)
   const addressStatus = useSelector(selectStatus)
   const userUid = useSelector(selectUserUid)
+  const userAddressDefault = useSelector(selectUserAddressDefault)
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
   useEffect(() => {
     dispatch(getAddressList(userUid))
-  }, [addressList])
+  }, [])
 
   const {
     register,
@@ -42,6 +47,7 @@ function CheckoutInformation() {
   //handle email field and address
   const onSubmit = (data) => {
     //add email to bill
+    console.log(data.email)
     dispatch(addContact(data.email))
     //add address to bill
 
@@ -85,7 +91,10 @@ function CheckoutInformation() {
         <p className="text-h4">Shipping Address</p>
 
         {addressStatus === 'idle' ? (
-          <AddressList addressList={addressList} />
+          <AddressList
+            addressList={addressList}
+            addressDefault={userAddressDefault}
+          />
         ) : (
           <div>Loading....</div>
         )}

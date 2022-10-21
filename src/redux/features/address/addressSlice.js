@@ -9,6 +9,7 @@ import {
 const initialState = {
   status: 'idle',
   addressList: [],
+  addressDefault: null,
   error: null
 }
 
@@ -22,6 +23,9 @@ const addressSlice = createSlice({
     setAddress: (state, action) => {
       state.status = 'idle'
       state.addressList = action.payload
+    },
+    setAddressDefault: (state, action) => {
+      state.addressDefault = action.payload
     },
     delAddress: (state, action) => {
       const newAddressList = state.addressList.filter(
@@ -56,6 +60,15 @@ export const getAddressList = (userUid) => (dispatch) => {
 
   get()
 }
+
+//get address default when signed in
+export const getAddressDefault =
+  (userAddrDefaultUid) => (dispatch, getState) => {
+    const addressDefault = selectAddressList(getState()).find(
+      (a) => a.uid === userAddrDefaultUid
+    )
+    dispatch(setAddressDefault(addressDefault))
+  }
 
 //delete address
 export const deleteAddress = (userUid, addressUid) => (dispatch) => {
@@ -125,6 +138,7 @@ export const updateAddr = (userUid, addressUid, updateAddr) => (dispatch) => {
 export const {
   setRequest,
   setAddress,
+  setAddressDefault,
   delAddress,
   updateAddress,
   setError,
@@ -134,5 +148,6 @@ export const {
 export const selectStatus = (state) => state.address.status
 export const selectAddressList = (state) => state.address.addressList
 export const selectError = (state) => state.address.error
+export const selectAddressDefault = (state) => state.address.addressDefault
 
 export default addressSlice.reducer

@@ -3,6 +3,7 @@ import { yupResolver } from '@hookform/resolvers/yup'
 import PaymentMethodSchema from '../../validations/paymentMethod'
 import { useState } from 'react'
 import Controller from '../popup/controller'
+import RadioInput from '../popup/radio'
 import Input from '../popup/input'
 
 function PaymentForm({ onSubmit }) {
@@ -47,7 +48,7 @@ function PaymentForm({ onSubmit }) {
               type: 'radio',
               radioValue: 'Payment on delivery',
               handleChange: (e) => handleChange(e),
-              render: (props) => <Input {...props} />
+              render: (props) => <RadioInput {...props} />
             }}
           />
           <p>Payment on delivery</p>
@@ -64,7 +65,7 @@ function PaymentForm({ onSubmit }) {
               type: 'radio',
               radioValue: 'credit cart',
               handleChange: (e) => handleChange(e),
-              render: (props) => <Input {...props} />
+              render: (props) => <RadioInput {...props} />
             }}
           />
           <p>Credit card</p>

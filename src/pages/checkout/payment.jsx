@@ -1,13 +1,30 @@
 import PaymentForm from '../../components/payment/paymentForm'
 import Button from '../../components/button'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { setStep } from '../../redux/features/stepper/stepperSlice'
 import { useNavigate } from 'react-router-dom'
-import { addPaymen } from '../../redux/features/bills/billSlice'
+import {
+  addPaymen,
+  addProducts,
+  addShipTo,
+  addTotolPrice,
+  addUser
+} from '../../redux/features/bills/billSlice'
+import { selectUserUid } from '../../redux/features/userSlice'
+import { selectCartItems } from '../../redux/features/carts/cartSlice'
+import { selectAddressDefault } from '../../redux/features/address/addressSlice'
 
 function CheckoutPayment() {
   const dispatch = useDispatch()
   const navigate = useNavigate()
+
+  //call state
+  const userUid = useSelector(selectUserUid)
+  const addressDefault = useSelector(selectAddressDefault)
+  const cartItems = useSelector(selectCartItems)
+  const cartTotalPrice = +cartItems
+    .reduce((a, b) => a + Number(b.cartItem.price) * b.number, 0)
+    .toFixed(2)
 
   const onSubmit = (data) => {
     const payment = {
@@ -18,6 +35,10 @@ function CheckoutPayment() {
       securityCode: data.securityCode
     }
     dispatch(addPaymen(payment))
+    dispatch(addUser(userUid))
+    dispatch(addShipTo(addressDefault))
+    dispatch(addProducts(cartItems))
+    dispatch(addTotolPrice(cartTotalPrice))
   }
 
   const backTo = () => {

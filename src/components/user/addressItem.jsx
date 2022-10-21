@@ -8,7 +8,10 @@ import {
   selectUserUid,
   setActiveUser
 } from '../../redux/features/userSlice'
-import { deleteAddress } from '../../redux/features/address/addressSlice'
+import {
+  deleteAddress,
+  getAddressDefault
+} from '../../redux/features/address/addressSlice'
 import { setAddressDefault } from '../../services/address'
 
 function AddressItem({ address }) {
@@ -29,6 +32,7 @@ function AddressItem({ address }) {
       await setAddressDefault(userUid, address.Id)
         .then((res) => {
           dispatch(setActiveUser({ addr_default: address.Id }))
+          dispatch(getAddressDefault(address.Id))
           alert(res)
         })
         .catch((e) => alert(e))

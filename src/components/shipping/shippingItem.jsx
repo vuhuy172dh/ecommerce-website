@@ -11,7 +11,7 @@ function ShippingItem({ shippingMethod, register }) {
         />
         <p>{shippingMethod.name}</p>
       </div>
-      <p>{shippingMethod.price}</p>
+      <p>{shippingMethod.price !== 0 || 'free'}</p>
     </label>
   )
 }

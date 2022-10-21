@@ -12,7 +12,7 @@ const shipping = [
   },
   {
     name: 'Standard Shipping',
-    price: 'free'
+    price: 0
   }
 ]
 
