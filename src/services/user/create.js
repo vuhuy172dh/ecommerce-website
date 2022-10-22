@@ -9,10 +9,9 @@ const createUserImg = async (File) => {
     const imgRef = ref(storage, `users/${userId}/avatar`)
     const snap = await uploadBytes(imgRef, File)
     const imgUrl = await getDownloadURL(ref(storage, snap.ref.fullPath))
-    return imgUrl
+    return Promise.resolve(imgUrl)
   } catch (error) {
-    console.log(error)
-    return false
+    return Promise.reject(error)
   }
 }
 

@@ -22,7 +22,7 @@ const createOneTransaction = async (
       ship_to: shipTo,
       shipping_method: shippingMethod,
       payment: payment,
-      status: 'In progress', // Lần đầu tạo bill sẽ ở trạng thái này
+      status: 'Waiting', // Lần đầu tạo bill sẽ ở trạng thái này
       products: products,
       total: totalPrice,
       created_date: serverTimestamp(),

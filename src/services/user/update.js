@@ -12,9 +12,9 @@ import {
 // item: Data user need to update
 const updateOneUser = async (item) => {
   try {
-    const productItem = doc(db, USERS, item.uuid)
+    const productItem = doc(db, USERS, item.uid)
     await updateDoc(productItem, {
-      uuid: item?.uuid,
+      uid: item?.uid,
       addr_default: item?.addr_default,
       email: item?.email,
       fullname: item?.fullname,
@@ -22,7 +22,7 @@ const updateOneUser = async (item) => {
       phone: item?.phone,
       dob: item?.birth,
       gender: item?.gender,
-      //img: item.img,
+      avatar: item?.avatar,
       //created_date: item.created_date,
       updated_date: serverTimestamp()
     })
@@ -34,6 +34,7 @@ const updateOneUser = async (item) => {
 
 //function update userImage in storage
 //return is new link avatar image
+//don't use
 export const updateUserImg = async (newFile) => {
   const userId = auth.currentUser.providerData[0].uid
 

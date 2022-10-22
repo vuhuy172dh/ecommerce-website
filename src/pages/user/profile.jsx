@@ -6,7 +6,7 @@ import Input from '../../components/popup/input'
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import UserInformationSchema from '../../validations/userInformation'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import {
   getInformation,
@@ -18,10 +18,12 @@ import {
   selectUserUid,
   selectUserBirth,
   setActiveUser,
-  selectUserAddressDefault
+  selectUserAddressDefault,
+  selectUserAvatar
 } from '../../redux/features/userSlice'
 import { updateOneUser } from '../../services/user'
 import RadioInput from '../../components/popup/radio'
+import createUserImg from '../../services/user/create'
 
 function Profile() {
   //create form hook
@@ -50,6 +52,8 @@ function Profile() {
   const userGender = useSelector(selectUserGender)
   const userBirth = useSelector(selectUserBirth)
   const userAddressDefault = useSelector(selectUserAddressDefault)
+  const userAvatar = useSelector(selectUserAvatar)
+  const [img, setImg] = useState(null)
 
   useEffect(() => {
     if (userUid) {
@@ -73,23 +77,45 @@ function Profile() {
         fullname: data.fullname,
         phone: data.phone,
         gender: data.gender,
-        email: data.email
+        email: data.email,
+        avatar: img
       })
     )
 
-    console.log(userUid)
     await updateOneUser({
-      uuid: userUid,
+      uid: userUid,
       email: data.email,
       phone: data.phone,
       fullname: data.fullname,
       birth: data.birth,
       gender: data.gender,
-      addr_default: userAddressDefault
+      addr_default: userAddressDefault,
+      avatar: img
     })
       .then((res) => alert(res))
       .catch((e) => console.log(e))
   }
+
+  const fileSelectedHandler = () => {
+    let input = document.createElement('input')
+    const create = async (img) => {
+      await createUserImg(img)
+        .then((res) => {
+          setImg(res)
+          dispatch(setActiveUser({ avatar: res }))
+        })
+        .catch((e) => console.log(e))
+    }
+    input.type = 'file'
+
+    input.onchange = () => {
+      setImg(input.files[0])
+      create(input.files[0])
+    }
+
+    input.click()
+  }
+
   return (
     <div className="flex-row px-6 pb-14 mb-8 laptop:w-full bg-border_grey dark:bg-secondary dark:text-white rounded-tl-lg rounded-bl-lg shadow-md shadow-black/40 dark:shadow-light_grey/30">
       {/*Helmet async*/}
@@ -246,11 +272,22 @@ function Profile() {
         {/*Change Avatar*/}
         <div className="flex-col flex-1 hidden laptop:flex items-center justify-center gap-6">
           <div className="w-32 h-32 rounded-full overflow-hidden">
-            <img src={CeilingLamp} alt="avatar" className="w-full h-full" />
+            <img
+              src={img || userAvatar || CeilingLamp}
+              alt="avatar"
+              className="w-full h-full"
+            />
           </div>
 
           <div className="w-fit h-fit">
-            <Button>Browse</Button>
+            <Button
+              onClick={() => fileSelectedHandler()}
+              Color="primary"
+              Custom={true}
+              Padding="py-2 px-4"
+            >
+              Browse
+            </Button>
           </div>
         </div>
       </div>

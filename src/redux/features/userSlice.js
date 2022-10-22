@@ -15,6 +15,7 @@ const initialState = {
   uid: null,
   addr_default: null,
   birth: null,
+  avatar: null,
   error: null
 }
 
@@ -36,6 +37,7 @@ const userSlice = createSlice({
       if (action.payload.addr_default)
         state.addr_default = action.payload.addr_default
       if (action.payload.birth) state.birth = action.payload.birth
+      if (action.payload.avatar) state.avatar = action.payload.avatar
       state.error = null
     },
     setLogOutUser: (state) => {
@@ -123,7 +125,8 @@ export const getInformation = (userUid) => (dispatch) => {
             phone: user.phone,
             email: user.email,
             birth: user.dob,
-            addr_default: user.addr_default
+            addr_default: user.addr_default,
+            avatar: user.avatar
           })
         )
       })
@@ -147,5 +150,6 @@ export const selectUserAddressDefault = (state) => state.user.addr_default
 export const selectUserPhone = (state) => state.user.phone
 export const selectUserGender = (state) => state.user.gender
 export const selectUserBirth = (state) => state.user.birth
+export const selectUserAvatar = (state) => state.user.avatar
 
 export default userSlice.reducer
