@@ -1,5 +1,5 @@
 import React from 'react'
-import { Routes, Route, Outlet, useLocation } from 'react-router-dom'
+import { Routes, Route, Outlet, useLocation, Navigate } from 'react-router-dom'
 import AboutPage from './pages/about'
 import HomePage from './pages/home'
 import ProductCartPage from './pages/productCart'
@@ -29,6 +29,7 @@ import CheckoutShipping from './pages/checkout/shipping'
 import CheckoutPayment from './pages/checkout/payment'
 import SearchMode from './hooks/useSearchMode'
 import SearchDrawer from './components/search/searchDrawer'
+import { auth } from './services/firebase.config'
 /*import { useDispatch } from 'react-redux'
 import { setActiveUser, getInformation } from './redux/features/userSlice'
 import { auth } from './services/firebase.config'
@@ -43,7 +44,8 @@ const SidebarLayout = () => (
 )
 
 function App() {
-  //const dispatch = useDispatch()
+  const userUid = auth.currentUser?.uid
+  console.log(userUid)
 
   const path = useLocation().pathname
   /*useEffect(() => {
@@ -89,27 +91,45 @@ function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/about" element={<AboutPage />} />
           <Route element={<SidebarLayout />}>
-            <Route path="/user/account/profile" element={<Profile />} />
-            <Route path="/user/account/address" element={<Address />} />
-            <Route path="/user/account/purchases" element={<Purchase />} />
-            <Route path="/user/account/wishlist" element={<Wishlist />} />
+            <Route
+              path="/user/account/profile"
+              element={userUid ? <Profile /> : <Navigate to="/signin" />}
+            />
+            <Route
+              path="/user/account/address"
+              element={userUid ? <Address /> : <Navigate to="/signin" />}
+            />
+            <Route
+              path="/user/account/purchases"
+              element={userUid ? <Purchase /> : <Navigate to="/signin" />}
+            />
+            <Route
+              path="/user/account/wishlist"
+              element={userUid ? <Wishlist /> : <Navigate to="/signin" />}
+            />
             <Route
               path="/user/account/changePassword"
-              element={<ChangePassword />}
+              element={userUid ? <ChangePassword /> : <Navigate to="/signin" />}
             />
           </Route>
           <Route element={<Checkout />}>
             <Route
               path="/user/checkout/information"
-              element={<CheckoutInformation />}
+              element={
+                userUid ? <CheckoutInformation /> : <Navigate to="/signin" />
+              }
             />
             <Route
               path="/user/checkout/shipping"
-              element={<CheckoutShipping />}
+              element={
+                userUid ? <CheckoutShipping /> : <Navigate to="/signin" />
+              }
             />
             <Route
               path="/user/checkout/payment"
-              element={<CheckoutPayment />}
+              element={
+                userUid ? <CheckoutPayment /> : <Navigate to="/signin" />
+              }
             />
           </Route>
           <Route path="/productCart" element={<ProductCartPage />} />
