@@ -16,6 +16,7 @@ import { Link } from 'react-router-dom'
 import { Helmet } from 'react-helmet-async'
 import InfoItemList from '../components/infoItemList'
 import { useDarkMode } from '../hooks/useDarkMode'
+import PagePreloader from '../components/preloader/pagePreloader'
 
 function HomePage() {
   const { mode: darkMode } = useDarkMode()
@@ -144,9 +145,7 @@ function HomePage() {
         <EmailSignUp />
       </div>
 
-      {cartStatus === 'loading' && (
-        <div className="w-screen h-screen absolute top-0 bg-white/50 z-50"></div>
-      )}
+      {cartStatus === 'loading' && <PagePreloader />}
     </div>
   )
 }

@@ -6,12 +6,26 @@ Properties:
 */
 
 import ProductItem from './productItem'
+import { motion } from 'framer-motion'
 
 function ProductItemListing({ products }) {
   return (
     <div className="grid grid-cols-2 gap-4 laptop:grid-cols-4 laptop:gap-x-5 laptop:gap-y-7">
-      {products.map((item) => (
-        <ProductItem key={item.uuid} product={item} />
+      {products.map((item, index) => (
+        <motion.div
+          key={item.uuid}
+          initial={{ opacity: 0, y: -20 }}
+          animate={{
+            opacity: 1,
+            y: 20,
+            transition: {
+              duration: 0.2,
+              delay: 0.1 * index
+            }
+          }}
+        >
+          <ProductItem key={item.uuid} product={item} />
+        </motion.div>
       ))}
     </div>
   )

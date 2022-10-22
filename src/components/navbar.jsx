@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useDarkMode } from '../hooks/useDarkMode'
 import { useNavMode } from '../hooks/useNavMode'
 import useScrollPosition from '../hooks/useScrollPosition'
@@ -17,6 +17,7 @@ import {
 import { useSearchMode } from '../hooks/useSearchMode'
 import { setEmptyWishlist } from '../redux/features/wishlist/wishlistSlice'
 import { setEmptyCart } from '../redux/features/carts/cartSlice'
+import { motion } from 'framer-motion'
 
 function Navbar() {
   const handleMode = useNavMode().handleMode
@@ -24,6 +25,7 @@ function Navbar() {
   const handleSearchMode = useSearchMode().handleSearchMode
   const scrollY = useScrollPosition()
   const [userHover, setUserHover] = useState(false)
+  const navigate = useNavigate()
 
   const dispatch = useDispatch()
 
@@ -36,6 +38,7 @@ function Navbar() {
     signOut(dispatch)
     dispatch(setEmptyWishlist())
     dispatch(setEmptyCart())
+    navigate('/')
   }
 
   useEffect(() => {
@@ -113,11 +116,38 @@ function Navbar() {
               </Link>
               {/*show when signed in*/}
               <div
-                className={`w-[100px] bg-red-500 px-3 absolute bottom-0 translate-y-full cursor-pointer left-0 ${
-                  userHover && userEmail ? 'block' : 'hidden'
-                }`}
+                className={`w-[200px] py-6 absolute z-40 bottom-0 right-0 bg-border_dark dark:bg-secondary translate-y-full cursor-pointer ${
+                  userHover && userEmail ? 'flex' : 'hidden'
+                } rounded-md shadow-md shadow-gray-600/40 dark:shadow-light_grey/30 flex-col gap-3`}
               >
-                <div onClick={handleSignOut}>Sign Out</div>
+                <motion.div
+                  initial={{ opacity: 0.6, x: 0 }}
+                  whileHover={{ opacity: 1, x: -20 }}
+                  className="text-h5 px-6 flex justify-end"
+                  onClick={() => {
+                    navigate('/user/account/purchases')
+                  }}
+                >
+                  Purchase
+                </motion.div>
+                <motion.div
+                  initial={{ opacity: 0.6, x: 0 }}
+                  whileHover={{ opacity: 1, x: -20 }}
+                  className="text-h5 px-6 flex justify-end"
+                  onClick={() => {
+                    navigate('/user/account/wishlist')
+                  }}
+                >
+                  Wishlist
+                </motion.div>
+                <motion.div
+                  initial={{ opacity: 0.6, x: 0 }}
+                  whileHover={{ opacity: 1, x: -20 }}
+                  className="text-h5 px-6 flex justify-end"
+                  onClick={handleSignOut}
+                >
+                  Sign Out
+                </motion.div>
               </div>
             </div>
           </div>

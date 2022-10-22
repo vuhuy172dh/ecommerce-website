@@ -43,7 +43,7 @@ function ProductDesc({
       {/* Top Text */}
       <div className="mt-7 mb-4 laptop:mt-9 laptop:mb-7">
         <h3 className="text-h3 mb-3 laptop:text-h1 laptop:mb-4">{name}</h3>
-        <h4 className="text-h4 laptop:text-h3">£{price}</h4>
+        <h4 className="text-h4 laptop:text-h3">${price}</h4>
       </div>
       <hr />
       {/* Description */}

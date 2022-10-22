@@ -19,6 +19,9 @@ export const colors = {
     default:
       'bg-[rgba(249,249,249,0.15)] hover:bg-[rgba(249,249,249,0.3)] text-white',
     disabled: 'bg-[rgba(249,249,249,0.15)] text-white opacity-50'
+  },
+  red: {
+    default: 'bg-transparent border border-red-500 rounded-lg text-red-500'
   }
 }
 
