@@ -39,6 +39,10 @@ const productsSlice = createSlice({
       state.productsCategory.length = 0
       state.lastVisibleCatergory = null
     },
+    setClearProducts: (state) => {
+      state.products.length = 0
+      state.lastVisible = null
+    },
     setLastVisible: (state, action) => {
       state.lastVisible = action.payload
     },
@@ -50,10 +54,10 @@ const productsSlice = createSlice({
 })
 
 //get all products
-export const getProducts = (startPoint) => (dispatch) => {
-  dispatch(setProductsResquest())
+export const getProducts = (startPoint, order, sort) => (dispatch) => {
+  //dispatch(setProductsResquest())
   // call API
-  getListProducts(startPoint)
+  getListProducts(startPoint, order, sort)
     .then(([products, lastVisible]) => {
       dispatch(setProducts(products))
       dispatch(setLastVisible(lastVisible))
@@ -63,7 +67,7 @@ export const getProducts = (startPoint) => (dispatch) => {
 
 //get products by category
 export const getCategoryProducts = (startPoint, category) => (dispatch) => {
-  dispatch(setProductsCategoryResquest())
+  //dispatch(setProductsCategoryResquest())
   //call API
   getListProductsByCategory(startPoint, category)
     .then(([products, lastVisible]) => {
@@ -82,7 +86,8 @@ export const {
   setProductsError,
   setProductsCategory,
   setLastVisibleCategory,
-  setClearCategory
+  setClearCategory,
+  setClearProducts
 } = productsSlice.actions
 
 //get state

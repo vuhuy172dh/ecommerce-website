@@ -6,19 +6,25 @@ import {
   query,
   limit,
   startAfter,
-  where
+  where,
+  orderBy
 } from 'firebase/firestore'
 import { db } from '../firebase.config'
 import { PRODUCTS } from '../constant/firestore'
 
 // Listing array object category
-const getListProducts = async (startPoint) => {
+const getListProducts = async (startPoint, order, sort) => {
   try {
     let start
     if (startPoint !== null) {
-      start = query(collection(db, PRODUCTS), startAfter(startPoint), limit(4))
+      start = query(
+        collection(db, PRODUCTS),
+        orderBy(order, sort),
+        startAfter(startPoint),
+        limit(4)
+      )
     } else {
-      start = query(collection(db, PRODUCTS), limit(4))
+      start = query(collection(db, PRODUCTS), orderBy(order, sort), limit(4))
     }
 
     const querySnapshot = await getDocs(start)
@@ -45,12 +51,12 @@ export const getListProductsByCategory = async (startPoint, category) => {
         collection(db, PRODUCTS),
         startAfter(startPoint),
         where('category', '==', category),
-        limit(2)
+        limit(4)
       )
     } else {
       start = query(
         collection(db, PRODUCTS),
-        limit(2),
+        limit(4),
         where('category', '==', category)
       )
     }

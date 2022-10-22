@@ -29,9 +29,8 @@ function HomePage() {
 
   //fetch data
   useEffect(() => {
-    if (products.length === 0) {
-      dispatch(getProducts(null))
-    }
+    if (products.length === 0)
+      dispatch(getProducts(null, 'create_date', 'desc'))
   }, [])
 
   useEffect(() => {
