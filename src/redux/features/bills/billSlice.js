@@ -1,7 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { createOneTransaction } from '../../../services/transaction'
+import {
+  createOneTransaction,
+  showListTransactions
+} from '../../../services/transaction'
 
 const initialState = {
+  status: 'idle',
   bills: [],
   user: null,
   contact: null,
@@ -16,6 +20,9 @@ const billSlice = createSlice({
   name: 'bill',
   initialState: initialState,
   reducers: {
+    setRequest: (state) => {
+      state.status = 'loading'
+    },
     addUser: (state, action) => {
       state.user = action.payload
     },
@@ -47,6 +54,7 @@ const billSlice = createSlice({
       state.products = []
     },
     addBills: (state, action) => {
+      state.status = 'idle'
       state.bills = action.payload
     },
     addOneBillToBills: (state, action) => {
@@ -54,7 +62,19 @@ const billSlice = createSlice({
     }
   }
 })
+//get bills
+export const getBills = (status) => (dispatch) => {
+  const get = async () => {
+    dispatch(setRequest())
+    await showListTransactions(status)
+      .then((res) => dispatch(addBills(res)))
+      .catch((e) => console.log(e))
+  }
 
+  get()
+}
+
+//create a bill and update state
 export const createBill = () => (dispatch, getState) => {
   const create = async () => {
     const userUid = selectUser(getState())
@@ -86,6 +106,7 @@ export const createBill = () => (dispatch, getState) => {
 }
 
 export const {
+  setRequest,
   addUser,
   addContact,
   addShipTo,
@@ -106,5 +127,6 @@ export const selectPayment = (state) => state.bill.payment
 export const selectTotalPrice = (state) => state.bill.totalPrice
 export const selectBillProducts = (state) => state.bill.products
 export const selectBills = (state) => state.bill.bills
+export const selectStatus = (state) => state.bill.status
 
 export default billSlice.reducer

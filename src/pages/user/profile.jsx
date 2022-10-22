@@ -6,7 +6,7 @@ import Input from '../../components/popup/input'
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import UserInformationSchema from '../../validations/userInformation'
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import {
   getInformation,
@@ -53,7 +53,6 @@ function Profile() {
   const userBirth = useSelector(selectUserBirth)
   const userAddressDefault = useSelector(selectUserAddressDefault)
   const userAvatar = useSelector(selectUserAvatar)
-  const [img, setImg] = useState(null)
 
   useEffect(() => {
     if (userUid) {
@@ -77,8 +76,7 @@ function Profile() {
         fullname: data.fullname,
         phone: data.phone,
         gender: data.gender,
-        email: data.email,
-        avatar: img
+        email: data.email
       })
     )
 
@@ -89,8 +87,7 @@ function Profile() {
       fullname: data.fullname,
       birth: data.birth,
       gender: data.gender,
-      addr_default: userAddressDefault,
-      avatar: img
+      addr_default: userAddressDefault
     })
       .then((res) => alert(res))
       .catch((e) => console.log(e))
@@ -101,7 +98,6 @@ function Profile() {
     const create = async (img) => {
       await createUserImg(img)
         .then((res) => {
-          setImg(res)
           dispatch(setActiveUser({ avatar: res }))
         })
         .catch((e) => console.log(e))
@@ -109,7 +105,6 @@ function Profile() {
     input.type = 'file'
 
     input.onchange = () => {
-      setImg(input.files[0])
       create(input.files[0])
     }
 
@@ -273,7 +268,7 @@ function Profile() {
         <div className="flex-col flex-1 hidden laptop:flex items-center justify-center gap-6">
           <div className="w-32 h-32 rounded-full overflow-hidden">
             <img
-              src={img || userAvatar || CeilingLamp}
+              src={userAvatar || CeilingLamp}
               alt="avatar"
               className="w-full h-full"
             />

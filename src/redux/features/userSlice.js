@@ -49,6 +49,7 @@ const userSlice = createSlice({
       state.gender = null
       state.birth = null
       state.addr_default = null
+      state.avatar = null
     },
     setUserError: (state, action) => {
       state.status = 'error'
