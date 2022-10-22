@@ -94,7 +94,7 @@ function SignIn() {
           {/* Email */}
           <div>
             <input
-              className="block w-full mt-2 px-4 py-3 rounded border border-border_dark"
+              className="block w-full mt-2 px-4 py-3 rounded border border-border_dark text-secondary"
               type="email"
               placeholder="Enter your email"
               {...register('email')}
@@ -105,7 +105,7 @@ function SignIn() {
           {/* Password */}
           <div>
             <input
-              className="block w-full mt-2 px-4 py-3 rounded border border-border_dark"
+              className="block w-full mt-2 px-4 py-3 rounded border border-border_dark text-secondary"
               type="password"
               placeholder="Enter your password"
               {...register('password')}
@@ -120,12 +120,12 @@ function SignIn() {
 
           {/* Another */}
           <div className="mt-5 flex justify-between">
-            <label className="inline-flex">
+            {/*<label className="inline-flex">
               <input type="checkbox" name="" id="" />
               <h5 className="text-h6 font-medium self-center ml-2">
                 Remember me
               </h5>
-            </label>
+            </label>*/}
             <span className="text-right">
               <Link
                 to="/forgetPassword"

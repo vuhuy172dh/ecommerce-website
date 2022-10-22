@@ -76,7 +76,7 @@ function SignUp() {
           {/* Fullname */}
           <div>
             <input
-              className="block w-full mt-2 px-4 py-3 rounded border border-solid border-border_dark"
+              className="block w-full mt-2 px-4 py-3 rounded border border-solid border-border_dark text-secondary"
               type="text"
               placeholder="Enter your fullname*"
               {...register('fullname')}
@@ -89,7 +89,7 @@ function SignUp() {
           {/* Email */}
           <div>
             <input
-              className="block w-full mt-2 px-4 py-3 rounded border border-solid border-border_dark"
+              className="block w-full mt-2 px-4 py-3 rounded border border-solid border-border_dark text-secondary"
               type="email"
               placeholder="Enter your email*"
               {...register('email')}
@@ -100,7 +100,7 @@ function SignUp() {
           {/* Password */}
           <div>
             <input
-              className="block w-full mt-2 px-4 py-3 rounded border border-solid border-border_dark"
+              className="block w-full mt-2 px-4 py-3 rounded border border-solid border-border_dark text-secondary"
               type="password"
               placeholder="Create password*"
               {...register('password')}

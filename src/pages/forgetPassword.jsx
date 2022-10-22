@@ -78,7 +78,7 @@ function ForgetPassword() {
           {/* Email */}
           <label className="mt-5 block">
             <input
-              className="block w-full mt-2 px-4 py-3 rounded border border-solid border-border_dark"
+              className="block w-full mt-2 px-4 py-3 rounded border border-solid border-border_dark text-secondary"
               type="text"
               placeholder="Enter your email*"
               {...register('email')}
