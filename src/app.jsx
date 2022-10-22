@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Routes, Route, Outlet, useLocation } from 'react-router-dom'
 import AboutPage from './pages/about'
 import HomePage from './pages/home'
@@ -29,6 +29,11 @@ import CheckoutShipping from './pages/checkout/shipping'
 import CheckoutPayment from './pages/checkout/payment'
 import SearchMode from './hooks/useSearchMode'
 import SearchDrawer from './components/search/searchDrawer'
+import { useDispatch } from 'react-redux'
+import { setActiveUser, getInformation } from './redux/features/userSlice'
+import { auth } from './services/firebase.config'
+import { getUserCart } from './redux/features/carts/cartSlice'
+import { getWishlist } from './redux/features/wishlist/wishlistSlice'
 
 const SidebarLayout = () => (
   <div className="laptop:flex">
@@ -38,7 +43,27 @@ const SidebarLayout = () => (
 )
 
 function App() {
+  const dispatch = useDispatch()
+
   const path = useLocation().pathname
+  /*useEffect(() => {
+    auth.onAuthStateChanged((user) => {
+      if (user) {
+        dispatch(
+          setActiveUser({
+            fullname: user.displayName,
+            email: user.email,
+            uid: user.uid,
+            addr_default: user.addr_default
+          })
+        )
+        console.log('this is auth')
+        dispatch(getUserCart(user.uid))
+        dispatch(getInformation(user.uid))
+        dispatch(getWishlist(user.uid))
+      }
+    })
+  }, [])*/
   return (
     <div>
       {path === '/signin' ||

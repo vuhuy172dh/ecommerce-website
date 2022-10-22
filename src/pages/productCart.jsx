@@ -3,18 +3,12 @@ import Button from './../components/button'
 import { Helmet } from 'react-helmet-async'
 import { Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
-import {
-  selectCartItems,
-  selectUserCartItems
-} from '../redux/features/carts/cartSlice'
-import { selectUserUid } from '../redux/features/userSlice'
+import { selectCartItems } from '../redux/features/carts/cartSlice'
 import { selectCurrentStep } from '../redux/features/stepper/stepperSlice'
 
 function ProductCartPage() {
   //call cart state
   const cartItems = useSelector(selectCartItems)
-  const userCartItems = useSelector(selectUserCartItems)
-  const userUid = useSelector(selectUserUid)
   const currentStep = useSelector(selectCurrentStep)
 
   const cartTotalPrice = cartItems
@@ -39,7 +33,7 @@ function ProductCartPage() {
               <p>Total</p>
             </div>
             {/*Product Cart List*/}
-            <ProductCartList cartItems={userUid ? userCartItems : cartItems} />
+            <ProductCartList cartItems={cartItems} />
           </div>
           <div className="flex flex-row-reverse my-4">
             <p className="text-[20px] text-primary dark:text-light_grey">

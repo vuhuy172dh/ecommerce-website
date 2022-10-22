@@ -7,11 +7,7 @@ import ProductCartList from './productCartList'
 import Button from './button'
 import { Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
-import {
-  selectCartItems,
-  selectUserCartItems
-} from '../redux/features/carts/cartSlice'
-import { selectUserUid } from '../redux/features/userSlice'
+import { selectCartItems } from '../redux/features/carts/cartSlice'
 import { selectCurrentStep } from '../redux/features/stepper/stepperSlice'
 
 function CartFloatButton() {
@@ -19,8 +15,6 @@ function CartFloatButton() {
   const [click, setClick] = useState(false)
 
   const cartItems = useSelector(selectCartItems)
-  const userCartItems = useSelector(selectUserCartItems)
-  const userUid = useSelector(selectUserUid)
   const currentStep = useSelector(selectCurrentStep)
 
   const totalPrice = cartItems
@@ -76,9 +70,7 @@ function CartFloatButton() {
             >
               {/*this is product cart item list*/}
               <div className="w-full px-3">
-                <ProductCartList
-                  cartItems={userUid ? userCartItems : cartItems}
-                />
+                <ProductCartList cartItems={cartItems} />
               </div>
 
               {/*this is total price and buttons*/}

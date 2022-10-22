@@ -12,12 +12,12 @@ import {
 // item: Data user need to update
 const updateOneUser = async (item) => {
   try {
-    const userItem = doc(db, USERS, item.uuid)
-    await updateDoc(userItem, {
-      uuid: item.uuid,
-      addr_default: item.addr_default,
-      email: item.email,
-      fullname: item.fullname,
+    const productItem = doc(db, USERS, item.uuid)
+    await updateDoc(productItem, {
+      uuid: item?.uuid,
+      addr_default: item?.addr_default,
+      email: item?.email,
+      fullname: item?.fullname,
       type: 1,
       phone: item.phone,
       dob: item.dob,

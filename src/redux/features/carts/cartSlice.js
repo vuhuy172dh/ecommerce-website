@@ -1,31 +1,31 @@
 import { createSlice } from '@reduxjs/toolkit'
 import {
   listingProductInCart,
-  addListProductToCart,
   deleteOneProductFromCart,
-  updateFieldNumberCartItem
+  updateFieldNumberCartItem,
+  addProductToCart
 } from '../../../services/cart'
 
 const initialState = {
+  cartStatus: 'idle',
   cartItems: localStorage.getItem('cartItems')
     ? JSON.parse(localStorage.getItem('cartItems'))
     : [],
-  userCartItems: [],
-  userCartStatus: 'idle',
-  userCartError: null,
-  userCartNotify: null
+  cartError: null,
+  cartNotify: null
 }
 
 const cartSlice = createSlice({
   name: 'cart',
   initialState: initialState,
   reducers: {
+    setRequest: (state) => {
+      state.cartStatus = 'loading'
+    },
+    setIdle: (state) => {
+      state.cartStatus = 'idle'
+    },
     addToCart: (state, action) => {
-      if (!Array.isArray(state.cartItems)) {
-        state.cartItems = []
-        localStorage.removeItem('cartItems')
-      }
-
       //new cart item
       const newCartItem = action.payload.cartItem
       //new number
@@ -38,213 +38,142 @@ const cartSlice = createSlice({
 
       //add new number to current number if existing
       if (existCart) {
-        for (let item of state.cartItems) {
-          if (item.cartItem.uuid === existCart.cartItem.uuid) {
-            item.number += newNumber
-          }
-        }
+        existCart.number += newNumber
       } else {
-        state.cartItems.push({ cartItem: newCartItem, number: newNumber })
+        state.cartItems.push(action.payload)
       }
 
+      state.cartStatus = 'idle'
       //save to local storage
       localStorage.setItem('cartItems', JSON.stringify(state.cartItems))
     },
-    //to use when sign in and get user cart from firebase
-    addToUserCart: (state, action) => {
-      state.userCartItems = action.payload
+    addToCartForMerge: (state, action) => {
+      state.cartStatus = 'idle'
+      state.cartItems = action.payload
     },
-    //to add item to user cart when signing in
-    addNewItemToUserCart: (state, action) => {
-      //new cart item
-      const newCartItem = action.payload.cartItem
-      //new number
-      const newNumber = action.payload.number
-
-      //exist cart item
-      const existCart = state.userCartItems.find(
-        (item) => item.cartItem.uuid === newCartItem.uuid
+    replaceCartItem: (state, action) => {
+      //remove cartItem input exist in current cart
+      const newCartItems = state.cartItems.filter(
+        (item) => item.cartItem.uuid !== action.payload.cartItem.uuid
       )
 
-      //add new number to current number if existing
-      if (existCart) {
-        for (let item of state.userCartItems) {
-          if (item.cartItem.uuid === existCart.cartItem.uuid) {
-            item.number += newNumber
-          }
-        }
-      } else {
-        state.userCartItems.push({ cartItem: newCartItem, number: newNumber })
-      }
-      state.cartItems = state.userCartItems
-    },
-    removeItemFromUserCart: (state, action) => {
-      const cartItems = state.userCartItems.filter(
-        (item) => item.uid !== action.payload.uid
-      )
-      state.userCartItems = cartItems
-      state.cartItems = cartItems
-      localStorage.setItem('cartItems', JSON.stringify(state.userCartItems))
-    },
-    mergeCart: (state) => {
-      //merge userCart to localCart.
-      for (let item of state.userCartItems) {
-        const existItem = state.cartItems.find(
-          (userItem) => userItem.cartItem.uuid === item.cartItem.uuid
-        )
-
-        if (!existItem) {
-          state.cartItems.push(item)
-        }
-      }
-      state.userCartItems = state.cartItems
+      //replace by new cartItem
+      newCartItems.push(action.payload)
+      state.cartItems = newCartItems
+      state.cartStatus = 'idle'
       localStorage.setItem('cartItems', JSON.stringify(state.cartItems))
     },
     removeFromCart: (state, action) => {
-      const cartItems = state.cartItems.filter(
-        (item) => item.cartItem.uuid !== action.payload.uuid
+      const newCartItems = state.cartItems.filter(
+        (item) => item.cartItem.uuid !== action.payload
       )
-      state.cartItems = cartItems
+      state.cartItems = newCartItems
+      state.cartStatus = 'idle'
       localStorage.setItem('cartItems', JSON.stringify(state.cartItems))
     },
-    //for local
-    updateNumberCartItem: (state, action) => {
-      const newNumber = action.payload.number
-
-      for (let item of state.cartItems) {
-        if (item.cartItem.uuid === action.payload.uuid) {
-          item.number = newNumber
-        }
-      }
-      //save to local storage
+    updateNumber: (state, action) => {
+      const existItem = state.cartItems.find(
+        (i) => i.cartItem.uuid === action.payload.cartItem.cartItem.uuid
+      )
+      existItem.number = action.payload.number
+      state.cartStatus = 'idle'
       localStorage.setItem('cartItems', JSON.stringify(state.cartItems))
     },
-    //for user
-    updateNumberUserCartItem: (state, action) => {
-      const newNumber = action.payload.number
-
-      for (let item of state.userCartItems) {
-        if (item.uid === action.payload.cartUid) {
-          item.number = newNumber
-        }
-      }
-
-      //merge with local
-      state.cartItems = state.userCartItems
-      localStorage.setItem('cartItems', JSON.stringify(state.cartItems))
-    },
-    setUserCartRequest: (state) => {
-      state.userCartStatus = 'loading'
-    },
-    setUserCartSuccess: (state) => {
-      state.userCartStatus = 'idle'
-      state.userCartNotify = null
-      state.userCartError = null
-    },
-    setUserCartError: (state, action) => {
-      state.userCartStatus = 'error'
-      state.userCartError = action.payload
-    },
-    setUserCartNotify: (state, action) => {
-      state.userCartStatus = 'idle'
-      state.userCartNotify = action.payload
+    setEmptyCart: (state) => {
+      state.cartStatus = 'idle'
+      state.cartItems.length = 0
+      localStorage.removeItem('cartItems')
     }
   }
 })
 
-//when first login and getUserCart. This is merge userCart to anonymous cart and update firestore
+//when first login and getUserCart. This is merge userCart to anonymous cart and update firestore (ok)
 export const getUserCart = (userUid) => (dispatch, getState) => {
   const getData = async () => {
     //request API
-    dispatch(setUserCartRequest())
+    dispatch(setRequest())
 
     await listingProductInCart(userUid)
-      .then((cart) => dispatch(addToUserCart(cart)))
-      .catch((e) => dispatch(setUserCartError(e)))
-
-    for (let item of selectUserCartItems(getState())) {
-      await deleteOneProductFromCart(userUid, item.uid)
-        .then((res) => console.log(res))
-        .catch((e) => dispatch(setUserCartError(e)))
-    }
-
-    dispatch(mergeCart())
-
-    const userCartItem = selectUserCartItems(getState())
-
-    await addListProductToCart(userUid, userCartItem)
-      .then((res) => console.log(res))
-      .catch((e) => dispatch(setUserCartError(e)))
-
-    //get again data to get uid of CartItem
-    await listingProductInCart(userUid)
-      .then((cart) => dispatch(addToUserCart(cart)))
-      .catch((e) => dispatch(setUserCartError(e)))
-
-    //success
-    dispatch(setUserCartSuccess())
+      .then((cart) => {
+        const cartItems = selectCartItems(getState())
+        dispatch(addToCartForMerge(cart))
+        //const resultCartItems = cart
+        for (let item of cartItems) {
+          const existCart = cart.find(
+            (i) => i.cartItem.uuid === item.cartItem.uuid
+          )
+          if (!existCart) {
+            //add new item to firebase and update uid for local cart
+            addProductToCart(userUid, item.cartItem, item.number)
+              .then((res) => {
+                dispatch(addToCart(res))
+              })
+              .catch((e) => console.log(e))
+          }
+        }
+      })
+      .catch((e) => alert(e))
   }
 
-  //get Data and merge user cart and local cart
+  //get user cart item and merge with local
   getData()
 }
 
+//handle add to cart and add to firebase (ok)
 export const addItemToUserCart =
-  (userUid, cartItem, number) => (dispatch, getState) => {
-    const addItem = async () => {
-      //delete old data on firebase
-      for (let item of selectUserCartItems(getState())) {
-        await deleteOneProductFromCart(userUid, item.uid)
-          .then()
+  (userUid, product, number) => (dispatch, getState) => {
+    const add = async () => {
+      dispatch(setRequest())
+      //check exist item
+      const existItem = selectCartItems(getState()).find(
+        (i) => i.cartItem.uuid === product.uuid
+      )
+
+      if (existItem) {
+        //update number of user cart
+        const newNumber = existItem.number + number
+        console.log(existItem)
+        await updateFieldNumberCartItem(userUid, existItem.uid, newNumber)
+          .then((res) => {
+            dispatch(updateNumber({ cartItem: existItem, number: newNumber }))
+            console.log(res)
+          })
+          .catch((e) => console.log(e))
+      } else {
+        //add new item to cart on firebase and add to local cart
+        await addProductToCart(userUid, product, number)
+          .then((res) => dispatch(addToCart(res)))
           .catch((e) => console.log(e))
       }
-
-      //add new item or update number on userCartItems local
-      dispatch(addNewItemToUserCart({ cartItem: cartItem, number: number }))
-
-      //add new userCartItems to firebase
-      await addListProductToCart(userUid, selectUserCartItems(getState()))
-        .then((res) => alert(res))
-        .catch((e) => alert(e))
-
-      //get data from firebase again to get uid of cartItem
-      await listingProductInCart(userUid)
-        .then((cart) => dispatch(addToUserCart(cart)))
-        .catch((e) => alert(e))
-
-      localStorage.setItem(
-        'cartItems',
-        JSON.stringify(selectUserCartItems(getState()))
-      )
     }
 
-    addItem()
+    add()
   }
 
-//remove cart item when user is logging in
-export const removeFromUserFirebase = (userUid, cartItemUid) => (dispatch) => {
+//remove cart item when user is logging in (ok)
+export const removeFromUserFirebase = (userUid, cartItem) => (dispatch) => {
   const remove = async () => {
-    await deleteOneProductFromCart(userUid, cartItemUid)
+    //remove from firebase
+    await deleteOneProductFromCart(userUid, cartItem.uid)
       .then((res) => alert(res))
       .catch((e) => alert(e))
 
-    dispatch(removeItemFromUserCart({ uid: cartItemUid }))
+    //remove from local
+    dispatch(removeFromCart(cartItem.cartItem.uuid))
   }
 
   remove()
 }
 
-//update number of product when user is singing in
+//update number of product when user is singing in (ok)
 export const updateUserCartFirebase =
-  (userUid, cartItemUid, number) => (dispatch) => {
+  (userUid, cartItem, number) => (dispatch) => {
     const update = async () => {
-      await updateFieldNumberCartItem(userUid, cartItemUid, number)
+      await updateFieldNumberCartItem(userUid, cartItem.uid, number)
         .then((res) => console.log(res))
         .catch((e) => alert(e))
 
-      dispatch(
-        updateNumberUserCartItem({ number: number, cartUid: cartItemUid })
-      )
+      dispatch(updateNumber({ number: number, cartItem: cartItem }))
     }
 
     update()
@@ -252,25 +181,19 @@ export const updateUserCartFirebase =
 
 //export action
 export const {
+  setRequest,
+  setIdle,
   addToCart,
-  addToUserCart,
-  addNewItemToUserCart,
-  removeItemFromUserCart,
-  mergeCart,
+  addToCartForMerge,
+  replaceCartItem,
   removeFromCart,
-  updateNumberCartItem,
-  updateNumberUserCartItem,
-  setUserCartRequest,
-  setUserCartSuccess,
-  setUserCartNotify,
-  setUserCartError
+  updateNumber,
+  setEmptyCart
 } = cartSlice.actions
 
 //export selection
 export const selectCartItems = (state) => state.cart.cartItems
-export const selectUserCartItems = (state) => state.cart.userCartItems
-export const selectUserCartStatus = (state) => state.cart.userCartStatus
-export const selectUserCartError = (state) => state.cart.userCartError
-export const selectUserCartNotify = (state) => state.cart.userCartNotify
+export const selectCartStatus = (state) => state.cart.cartStatus
+export const selectCartErrors = (state) => state.cart.cartError
 
 export default cartSlice.reducer
