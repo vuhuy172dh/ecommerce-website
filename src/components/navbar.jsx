@@ -105,7 +105,7 @@ function Navbar() {
               onMouseEnter={() => setUserHover(true)}
               onMouseLeave={() => setUserHover(false)}
             >
-              <Link to={userEmail ? '/user/account/profile' : '/signin'}>
+              <Link to="/user/account/profile">
                 <ButtonIcon
                   Icon="user"
                   Color={darkMode === 'light' ? 'light' : 'dark'}
