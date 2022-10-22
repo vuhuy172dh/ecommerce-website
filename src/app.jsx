@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { Routes, Route, Outlet, useLocation } from 'react-router-dom'
 import AboutPage from './pages/about'
 import HomePage from './pages/home'
@@ -29,11 +29,11 @@ import CheckoutShipping from './pages/checkout/shipping'
 import CheckoutPayment from './pages/checkout/payment'
 import SearchMode from './hooks/useSearchMode'
 import SearchDrawer from './components/search/searchDrawer'
-import { useDispatch } from 'react-redux'
+/*import { useDispatch } from 'react-redux'
 import { setActiveUser, getInformation } from './redux/features/userSlice'
 import { auth } from './services/firebase.config'
 import { getUserCart } from './redux/features/carts/cartSlice'
-import { getWishlist } from './redux/features/wishlist/wishlistSlice'
+import { getWishlist } from './redux/features/wishlist/wishlistSlice'*/
 
 const SidebarLayout = () => (
   <div className="laptop:flex">
@@ -43,7 +43,7 @@ const SidebarLayout = () => (
 )
 
 function App() {
-  const dispatch = useDispatch()
+  //const dispatch = useDispatch()
 
   const path = useLocation().pathname
   /*useEffect(() => {

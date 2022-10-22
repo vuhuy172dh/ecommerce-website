@@ -18,10 +18,12 @@ import {
   selectUserUid,
   selectUserBirth,
   setActiveUser,
-  selectUserAddressDefault
+  selectUserAddressDefault,
+  selectUserAvatar
 } from '../../redux/features/userSlice'
 import { updateOneUser } from '../../services/user'
 import RadioInput from '../../components/popup/radio'
+import createUserImg from '../../services/user/create'
 
 function Profile() {
   //create form hook
@@ -50,6 +52,7 @@ function Profile() {
   const userGender = useSelector(selectUserGender)
   const userBirth = useSelector(selectUserBirth)
   const userAddressDefault = useSelector(selectUserAddressDefault)
+  const userAvatar = useSelector(selectUserAvatar)
 
   useEffect(() => {
     if (userUid) {
@@ -77,9 +80,8 @@ function Profile() {
       })
     )
 
-    console.log(userUid)
     await updateOneUser({
-      uuid: userUid,
+      uid: userUid,
       email: data.email,
       phone: data.phone,
       fullname: data.fullname,
@@ -90,6 +92,25 @@ function Profile() {
       .then((res) => alert(res))
       .catch((e) => console.log(e))
   }
+
+  const fileSelectedHandler = () => {
+    let input = document.createElement('input')
+    const create = async (img) => {
+      await createUserImg(img)
+        .then((res) => {
+          dispatch(setActiveUser({ avatar: res }))
+        })
+        .catch((e) => console.log(e))
+    }
+    input.type = 'file'
+
+    input.onchange = () => {
+      create(input.files[0])
+    }
+
+    input.click()
+  }
+
   return (
     <div className="flex-row px-6 pb-14 mb-8 laptop:w-full bg-border_grey dark:bg-secondary dark:text-white rounded-tl-lg rounded-bl-lg shadow-md shadow-black/40 dark:shadow-light_grey/30">
       {/*Helmet async*/}
@@ -246,11 +267,22 @@ function Profile() {
         {/*Change Avatar*/}
         <div className="flex-col flex-1 hidden laptop:flex items-center justify-center gap-6">
           <div className="w-32 h-32 rounded-full overflow-hidden">
-            <img src={CeilingLamp} alt="avatar" className="w-full h-full" />
+            <img
+              src={userAvatar || CeilingLamp}
+              alt="avatar"
+              className="w-full h-full"
+            />
           </div>
 
           <div className="w-fit h-fit">
-            <Button>Browse</Button>
+            <Button
+              onClick={() => fileSelectedHandler()}
+              Color="primary"
+              Custom={true}
+              Padding="py-2 px-4"
+            >
+              Browse
+            </Button>
           </div>
         </div>
       </div>

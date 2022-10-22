@@ -1,9 +1,16 @@
 import LinkButton from '../linkButton'
 import CeilingLamp from '../../assets/images/CeilingLamp.png'
 import { useDarkMode } from '../../hooks/useDarkMode'
+import { useSelector } from 'react-redux'
+import {
+  selectUserAvatar,
+  selectUserName
+} from '../../redux/features/userSlice'
 
 function Sidebar() {
   const { mode: darkMode } = useDarkMode()
+  const userAvatar = useSelector(selectUserAvatar)
+  const userName = useSelector(selectUserName)
   return (
     <nav className="w-full h-10 bg-border_grey dark:bg-secondary mb-4 flex justify-start tablet:justify-center overflow-auto no-scrollbar items-center laptop:w-1/5 laptop:h-full laptop:flex-col laptop:justify-start laptop:rounded-tr-lg laptop:rounded-br-lg laptop:mr-8 laptop:sticky laptop:top-[143px] laptop:left-0 laptop:overflow-visible laptop:mt-14 laptop:shadow-md laptop:shadow-black/50 dark:laptop:shadow-white/50">
       {/*user avatar and name*/}
@@ -11,7 +18,7 @@ function Sidebar() {
         {/*user avatar*/}
         <div className="w-20 h-20 rounded-full border-2 border-border_dark overflow-hidden absolute top-0 -translate-y-1/2">
           <img
-            src={CeilingLamp}
+            src={userAvatar || CeilingLamp}
             alt="user"
             className="w-full h-full object-cover"
           />
@@ -19,7 +26,7 @@ function Sidebar() {
 
         {/*user name*/}
         <div>
-          <p className="text-h5 font-[500]">User Name</p>
+          <p className="text-h5 font-[500]">{userName || 'user name'}</p>
         </div>
       </div>
 
