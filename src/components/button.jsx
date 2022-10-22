@@ -34,20 +34,29 @@ function Button({
   State = 'default',
   IconRight = false,
   Custom = false,
-  onClick = () => {},
   children = 'button',
   Padding = '',
+  IsOpen = null,
+  HandleOpen = () => {},
+  HandleItemClick = () => {},
+  onClick = () => {},
+  DropItem = [],
   Form = null
 }) {
-  const [isOpen, setIsOpen] = useState(false)
-  const handleOpen = () => {
+  //const [isOpen, setIsOpen] = useState(false)
+  /*const handleOpen = () => {
     setIsOpen(!isOpen)
     onClick()
+  }*/
+
+  const handleItemClick = (index) => {
+    HandleOpen()
+    HandleItemClick(index)
   }
   return (
     <motion.nav
       initial={false}
-      animate={isOpen ? 'open' : 'closed'}
+      animate={IsOpen ? 'open' : 'closed'}
       className=" min-w-fit min-h-fit flex-1 flex relative"
     >
       <motion.button
@@ -56,7 +65,7 @@ function Button({
         } rounded-lg ${colors[Color][State]} ${Custom ? Padding : sizes[Size]}`}
         whileHover={State === 'default' ? { scale: 1.05 } : { scale: 1 }}
         whileTap={State === 'dafault' ? { scale: 0.9 } : { scale: 1 }}
-        onClick={handleOpen}
+        onClick={IconRight ? HandleOpen : onClick}
         form={Form}
         type="submit"
       >
@@ -93,14 +102,15 @@ function Button({
               }
             }
           }}
-          style={{ pointerEvents: isOpen ? 'auto' : 'none' }}
+          style={{ pointerEvents: IsOpen ? 'auto' : 'none' }}
           className={`w-full max-h-80 rounded-lg flex flex-col gap-10 list-none m-0 mt-5 py-2 absolute -bottom-2 translate-y-full ${colors[Color][State]}`}
         >
-          {itemList.map((item, index) => (
+          {DropItem.map((item, index) => (
             <motion.li
               variants={itemVariants}
               key={index}
               className="pl-4 cursor-pointer"
+              onClick={() => handleItemClick(index)}
             >
               {item}
             </motion.li>

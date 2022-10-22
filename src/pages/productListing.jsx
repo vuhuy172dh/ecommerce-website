@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import Button from '../components/button'
 import clubImg from '../assets/images/features3.png'
 import EmailField from '../components/emailField'
@@ -8,7 +8,8 @@ import {
   getProducts,
   selectProducts,
   selectStatus,
-  selectLastVisible
+  selectLastVisible,
+  setClearProducts
 } from '../redux/features/productsSlice'
 import { useSelector, useDispatch } from 'react-redux'
 
@@ -19,16 +20,21 @@ function ProductListingPage() {
   const status = useSelector(selectStatus)
   const products = useSelector(selectProducts)
   const lastVisible = useSelector(selectLastVisible)
+  const [order, setOrder] = useState('price')
+  const [sort, setSort] = useState('asc')
+  const [priceIsOpen, setPriceIsOpen] = useState(false)
+  const [dateIsOpen, setDateIsOpen] = useState(false)
+  const priceItemButton = ['Low to High', 'High to Low']
+  const dateItemButton = ['Oldest', 'Newest']
 
   //fetch data
   useEffect(() => {
-    if (products.length === 0) {
-      dispatch(getProducts(null))
-    }
-  }, [])
+    dispatch(setClearProducts())
+    dispatch(getProducts(null, order, sort))
+  }, [order, sort])
 
   const handleLoadMore = () => {
-    dispatch(getProducts(lastVisible))
+    dispatch(getProducts(lastVisible, order, sort))
   }
 
   return (
@@ -44,33 +50,84 @@ function ProductListingPage() {
           View all products
         </h2>
         <div className="flex gap-3 laptop:hidden">
-          <Button Size="small" Color="white" IconRight>
-            Sorting
+          <Button
+            Size="small"
+            Color="white"
+            IsOpen={priceIsOpen}
+            HandleOpen={() => {
+              setPriceIsOpen(!priceIsOpen)
+              setDateIsOpen(false)
+            }}
+            HandleItemClick={(index) => {
+              setOrder('price')
+              if (index === 0) setSort('asc')
+              if (index === 1) setSort('desc')
+            }}
+            DropItem={priceItemButton}
+            IconRight
+          >
+            Price
           </Button>
-          <Button Size="small" Color="white" IconRight>
-            Filtering
+          <Button
+            Size="small"
+            Color="white"
+            IsOpen={dateIsOpen}
+            HandleOpen={() => {
+              setDateIsOpen(!dateIsOpen)
+              setPriceIsOpen(false)
+            }}
+            HandleItemClick={(index) => {
+              setOrder('create_date')
+              if (index === 0) setSort('asc')
+              if (index === 1) setSort('desc')
+            }}
+            DropItem={dateItemButton}
+            IconRight
+          >
+            Date added
           </Button>
         </div>
 
         {/* this is Navigation component */}
         <nav className="hidden laptop:flex justify-between items-center px-6">
           <div className="flex items-center gap-3">
-            <Button Size="small" Color="white" IconRight>
-              Category
-            </Button>
-            <Button Size="small" Color="white" IconRight>
-              Product type
-            </Button>
-            <Button Size="small" Color="white" IconRight>
+            <Button
+              Size="small"
+              IsOpen={priceIsOpen}
+              HandleOpen={() => {
+                setPriceIsOpen(!priceIsOpen)
+                setDateIsOpen(false)
+              }}
+              HandleItemClick={(index) => {
+                setOrder('price')
+                if (index === 0) setSort('asc')
+                if (index === 1) setSort('desc')
+              }}
+              Color="white"
+              DropItem={priceItemButton}
+              IconRight
+            >
               Price
-            </Button>
-            <Button Size="small" Color="white" IconRight>
-              Brand
             </Button>
           </div>
           <div className="flex items-center">
             <p className="mr-4 text-body-sm">Sorting by:</p>
-            <Button Size="small" Color="white" IconRight>
+            <Button
+              Size="small"
+              IsOpen={dateIsOpen}
+              HandleOpen={() => {
+                setDateIsOpen(!dateIsOpen)
+                setPriceIsOpen(false)
+              }}
+              HandleItemClick={(index) => {
+                setOrder('create_date')
+                if (index === 0) setSort('asc')
+                if (index === 1) setSort('desc')
+              }}
+              Color="white"
+              DropItem={dateItemButton}
+              IconRight
+            >
               Date added
             </Button>
           </div>

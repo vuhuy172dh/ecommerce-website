@@ -7,7 +7,7 @@ Properties:
   Price: string
 */
 
-import { Link, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import Button from './button'
 import { useDispatch, useSelector } from 'react-redux'
 import { selectUserUid } from '../redux/features/userSlice'
@@ -45,7 +45,7 @@ function ProductItem({ product }) {
             <strong>Name:</strong> {product.name}
           </p>
           <p>
-            <strong>Price:</strong> {product.price}
+            <strong>Price:</strong> {product.price}$
           </p>
         </div>
         <div className="w-full flex mb-4">
