@@ -20,6 +20,7 @@ import { getUserCart } from '../redux/features/carts/cartSlice'
 import { getWishlist } from '../redux/features/wishlist/wishlistSlice'
 import WhiteRoomImg from '../assets/images/features3.png'
 import { useEffect } from 'react'
+import PagePreloader from '../components/preloader/pagePreloader'
 
 function SignIn() {
   const {
@@ -168,9 +169,7 @@ function SignIn() {
         </p>
       </motion.div>
 
-      {status === 'loading' && (
-        <div className="w-screen h-screen absolute top-0 bg-white/50 z-50"></div>
-      )}
+      {status === 'loading' && <PagePreloader />}
     </div>
   )
 }
