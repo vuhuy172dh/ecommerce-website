@@ -2,13 +2,36 @@
 function Privacy() {
     return(
         <div>
-            <div className="bg-dark_primary pt-16 pb-20">
-                <h2 className="text-white text-h3 text-center">Avion  Privacy Policy</h2>
-                <p className="text-h6 text-gray-500 text-center mt-8">Last update: February 14, 2022</p>
+            <div className="bg-dark_primary pt-16 pb-20 laptop:pl-24">
+                <h2 className="text-white text-h3 text-center laptop:text-left">Avion  Privacy Policy</h2>
+                <p className="text-h6 text-gray-500 text-center mt-8 laptop:text-left">Last update: February 14, 2022</p>
             </div>
-            <div className="mb-20">
-                <div className="mx-6 mt-20">
-                    <div>
+            <div className="mb-20 laptop:mx-40 laptop:flex laptop:gap-10">
+                <div className="hidden mt-20 laptop:block w-4/12 border-r-2 border-border_dark">
+                    <ul>
+                        <li className="hover:font-bold">
+                            <a className="text-h4 text-dark_primary transition-all" href="#protectPrivacy">
+                                How we protect your privacy
+                            </a>
+                        </li>
+                        <li className="mt-5 hover:font-bold">
+                            <a className="text-h4 text-dark_primary transition-all" href="#collectInfo">
+                                Information we collect
+                            </a>
+                        </li>
+                        <li className="mt-5 hover:font-bold">
+                            <a className="text-h4 text-dark_primary transition-all" href="#security">Security</a>
+                        </li>
+                        <li className="mt-5 hover:font-bold">
+                            <a className="text-h4 text-dark_primary transition-all" href="#policyUpdate">Policy Updates</a>
+                        </li>
+                        <li className="mt-5 hover:font-bold">
+                            <a className="text-h4 text-dark_primary transition-all" href="#contactUs">Contacting Us</a>
+                        </li>
+                    </ul>
+                </div>
+                <div className="mx-6 laptop:mx-0 mt-20 laptop:w-8/12">
+                    <div id="protectPrivacy">
                         <h3 className="text-h3 font-medium text-dark_primary text-center">How we protect your privacy</h3>
                         <p className="mt-10">
                             Avion offer services to help you run your business, including a platform to host your own Avion database. 
@@ -17,7 +40,7 @@ function Privacy() {
                             explains what information is collected, why it is collected, and how we use it.
                         </p>
                     </div>
-                    <div className="mt-20">
+                    <div id="collectInfo" className="mt-20">
                         <h3 className="text-h3 font-medium text-dark_primary text-center">Information we collect</h3>
                         <p className="mt-10">
                             Most of the personal data we collect is directly provided by our users when they register and use our services. 
@@ -52,7 +75,7 @@ function Privacy() {
                             any information or content you submit or upload into your database is your own, and you control it fully.
                         </p>
                     </div>
-                    <div className="mt-20">
+                    <div id="security" className="mt-20">
                         <h3 className="text-h3 font-medium text-dark_primary text-center">Security</h3>
                         <p className="mt-10">
                             We realize how important and sensitive your personal data is, and we take a great number of measures to ensure that this 
@@ -60,7 +83,7 @@ function Privacy() {
                             and organizational security measures are described in details in our Security Policy.
                         </p>
                     </div>
-                    <div className="mt-20">
+                    <div id="policyUpdate" className="mt-20">
                         <h3 className="text-h3 font-medium text-dark_primary text-center">Policy Updates</h3>
                         <p className="mt-10">
                             We may update this Privacy Policy from time to time, in order to clarify it, to reflect any changes to our website, or to 
@@ -68,7 +91,7 @@ function Privacy() {
                             also the effective date of those changes. We give you access to archived versions of this policy, so you can review the changes.
                         </p>
                     </div>
-                    <div className="mt-20">
+                    <div id="contactUs" className="mt-20 transition-all">
                         <h3 className="text-h3 font-medium text-dark_primary text-center">Contacting Us</h3>
                         <p className="mt-10">
                             If you have are any question regarding this Privacy Policy, or any enquiry about your personal data,please reach out to the 
