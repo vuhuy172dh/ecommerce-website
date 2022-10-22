@@ -11,7 +11,7 @@ const signUp = async (fullname, email, password) => {
   let user = {
     fullname,
     email,
-    date_created: serverTimestamp(),
+    created_date: serverTimestamp(),
     type: 1
   }
 

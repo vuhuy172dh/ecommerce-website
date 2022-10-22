@@ -19,41 +19,17 @@ const updateOneUser = async (item) => {
       email: item?.email,
       fullname: item?.fullname,
       type: 1,
-      phone: item.phone,
-      dob: item.dob,
-      gender: item.gender,
-      img: item.img,
-      created_date: item.created_date,
+      phone: item?.phone,
+      dob: item?.birth,
+      gender: item?.gender,
+      //img: item.img,
+      //created_date: item.created_date,
       updated_date: serverTimestamp()
     })
+    return Promise.resolve('update successfully')
   } catch (error) {
-    console.log(error)
-    return false
+    return Promise.resolve(error)
   }
-  return true
-}
-
-export const updateUserPassword = async (item) => {
-  try {
-    const userItem = doc(db, USERS, item.uuid)
-    await updateDoc(userItem, {
-      uuid: item.uuid,
-      addr_default: item.addr_default,
-      email: item.email,
-      fullname: item.fullname,
-      type: 1,
-      phone: item.phone,
-      dob: item.dob,
-      gender: item.gender,
-      img: item.img,
-      created_date: item.created_date,
-      updated_date: serverTimestamp()
-    })
-  } catch (error) {
-    console.log(error)
-    return false
-  }
-  return true
 }
 
 //function update userImage in storage
