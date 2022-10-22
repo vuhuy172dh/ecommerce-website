@@ -16,7 +16,6 @@ function PagePreloader() {
             opacity: [1, 0],
             fontWeight: [600, 600],
             color: '#002366',
-            border: 10,
             borderColor: ['#cac6da', '#002366'],
             transition: {
               duration: 0.2 * 4,
