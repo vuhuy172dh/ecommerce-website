@@ -204,6 +204,7 @@ function NavDrawer() {
                     size="small"
                     onClick={handleMode}
                     color={darkMode === 'light' ? 'dark' : 'light'}
+                    path="/privacy"
                   >
                     Privacy
                   </LinkButton>
@@ -215,6 +216,7 @@ function NavDrawer() {
                     size="small"
                     onClick={handleMode}
                     color={darkMode === 'light' ? 'dark' : 'light'}
+                    path="/returnPolicy"
                   >
                     Returns Policy
                   </LinkButton>

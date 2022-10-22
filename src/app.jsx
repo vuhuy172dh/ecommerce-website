@@ -23,6 +23,8 @@ import CartFloatButton from './components/cartFloatButton'
 import Checkout from './pages/checkout/checkout'
 import Vacancies from './pages/vacancies'
 import ContactUs from './pages/contactUs'
+import ReturnPolicy from './pages/returnPolicy'
+import Privacy from './pages/Privacy'
 import Category from './pages/category'
 import CheckoutInformation from './pages/checkout/information'
 import CheckoutShipping from './pages/checkout/shipping'
@@ -141,6 +143,8 @@ function App() {
           <Route path="/forgetPassword" element={<ForgetPassword />} />
           <Route path="/vacancies" element={<Vacancies />} />
           <Route path="/contactUs" element={<ContactUs />} />
+          <Route path='/returnPolicy' element={<ReturnPolicy/>}/>
+          <Route path='/privacy' element={<Privacy/>}/>
         </Routes>
       </main>
       {path === '/signin' ||

@@ -75,10 +75,10 @@ function Footer() {
               <LinkButton path="/contactUs">Contact us</LinkButton>
             </li>
             <li>
-              <LinkButton>Privacy</LinkButton>
+              <LinkButton path="/privacy">Privacy</LinkButton>
             </li>
             <li>
-              <LinkButton>Returns Policy</LinkButton>
+              <LinkButton path="/returnPolicy">Returns Policy</LinkButton>
             </li>
           </ul>
         </div>
