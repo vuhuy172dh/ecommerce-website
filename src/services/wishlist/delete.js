@@ -1,15 +1,17 @@
 import { doc, deleteDoc } from 'firebase/firestore'
 import { USERS, WISHLIST } from '../constant/firestore'
-import { db } from '../firebase.config'
+import { auth, db } from '../firebase.config'
 
-const deleteOneProductFromWishlist = async (uidUser, uidWishlist) => {
+const deleteOneProductFromWishlist = async (uidWishlist) => {
   try {
+    const userUid = auth.currentUser.uid
     const wishlistItemRef = doc(
       db,
-      `${USERS}/${uidUser}/${WISHLIST}`,
+      `${USERS}/${userUid}/${WISHLIST}`,
       uidWishlist
     )
     await deleteDoc(wishlistItemRef)
+    return Promise.resolve('remove wishlist item successfully')
   } catch (e) {
     const { code } = e
     return Promise.reject(code)

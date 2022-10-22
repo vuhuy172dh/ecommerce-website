@@ -1,7 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit'
 import {
   listingProductInWishlist,
-  addProductToWishlist
+  addProductToWishlist,
+  deleteOneProductFromWishlist
 } from '../../../services/wishlist'
 
 const initialState = {
@@ -25,6 +26,11 @@ const wishlistSlice = createSlice({
       state.status = 'idle'
       state.wishlistList.push(action.payload)
     },
+    removeWishlist: (state, action) => {
+      state.wishlistList = state.wishlistList.filter(
+        (item) => item.uid !== action.payload
+      )
+    },
     setWishlistError: (state, action) => {
       state.status = 'error'
       state.error = action.payload
@@ -36,6 +42,7 @@ const wishlistSlice = createSlice({
   }
 })
 
+//get user wishlist(ok)
 export const getWishlist = (userUid) => (dispatch) => {
   const get = async () => {
     dispatch(setWishlistRequest())
@@ -47,6 +54,7 @@ export const getWishlist = (userUid) => (dispatch) => {
   get()
 }
 
+//add new wishlist (ok)
 export const addNewItemToWishlist =
   (userUid, product) => (dispatch, getState) => {
     const add = async () => {
@@ -66,12 +74,26 @@ export const addNewItemToWishlist =
     add()
   }
 
+export const removeItemFromWishlist = (wishlistUid) => (dispatch) => {
+  const remove = async () => {
+    await deleteOneProductFromWishlist(wishlistUid)
+      .then((res) => {
+        dispatch(removeWishlist(wishlistUid))
+        console.log(res)
+      })
+      .catch((e) => console.log(e))
+  }
+
+  remove()
+}
+
 export const {
   setWishlistRequest,
   setWishlistList,
   setWishlistError,
   addWishlist,
-  setEmptyWishlist
+  setEmptyWishlist,
+  removeWishlist
 } = wishlistSlice.actions
 
 export const selectWishlistStatus = (state) => state.wishlist.status

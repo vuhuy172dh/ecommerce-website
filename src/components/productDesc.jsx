@@ -22,8 +22,10 @@ function ProductDesc({
   height,
   depth,
   quantity,
+  saved,
   handleAddToCart,
-  handleAddToWishlist
+  handleAddToWishlist,
+  removeFromWishlist
 }) {
   //
   const [count, setCount] = useState(0)
@@ -107,8 +109,11 @@ function ProductDesc({
       </div>
       {/* Group btn */}
       <div className="gap-4 flex flex-col laptop:items-center mt-8 mb-8 laptop:mt-12 laptop:w-96 laptop:flex-row-reverse">
-        <Button Color="white" onClick={() => handleAddToWishlist()}>
-          Save to favorites
+        <Button
+          Color="white"
+          onClick={saved ? removeFromWishlist : handleAddToWishlist}
+        >
+          {saved ? 'Saved to favorites' : 'Save to favorites'}
         </Button>
         <Button Color="primary" onClick={() => handleAddToCart(count)}>
           Add to cart

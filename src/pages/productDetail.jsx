@@ -18,7 +18,11 @@ import Overview from '../components/overview'
 import useClientRect from '../hooks/useClientRect'
 import { useParams } from 'react-router-dom'
 import { useEffect } from 'react'
-import { addNewItemToWishlist } from '../redux/features/wishlist/wishlistSlice'
+import {
+  addNewItemToWishlist,
+  removeItemFromWishlist,
+  selectWishlistList
+} from '../redux/features/wishlist/wishlistSlice'
 
 function ProductDetailPage() {
   // get scroll position
@@ -43,6 +47,7 @@ function ProductDetailPage() {
   const status = useSelector(selectStatus)
   const product = useSelector(selectProduct)
   const userUid = useSelector(selectUserUid)
+  const wishlist = useSelector(selectWishlistList)
 
   //fetch Data
   useEffect(() => {
@@ -64,6 +69,10 @@ function ProductDetailPage() {
     } else {
       alert('please sign in before add to wishlist')
     }
+  }
+
+  const handleRemoveFromWishlist = (wishlistUid) => {
+    dispatch(removeItemFromWishlist(wishlistUid))
   }
 
   return (
@@ -108,9 +117,18 @@ function ProductDetailPage() {
               width={product.width}
               height={product.height}
               depth={product.depth}
+              saved={wishlist.find(
+                (item) => item.product.uuid === product.uuid
+              )}
               quantity={product.remain}
               handleAddToCart={(number) => handleAddToCart(number)}
               handleAddToWishlist={() => handleAddToWishlist()}
+              removeFromWishlist={() =>
+                handleRemoveFromWishlist(
+                  wishlist.find((item) => item.product.uuid === product.uuid)
+                    ?.uid
+                )
+              }
             />
           </div>
         </section>
