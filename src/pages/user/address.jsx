@@ -7,7 +7,8 @@ import {
   getAddressList,
   selectError,
   selectStatus,
-  selectAddressList
+  selectAddressList,
+  getAddressDefault
 } from '../../redux/features/address/addressSlice'
 import {
   selectUserUid,
@@ -25,6 +26,7 @@ function Address() {
 
   useEffect(() => {
     dispatch(getAddressList(userUid))
+    if (userAddressDefault) dispatch(getAddressDefault(userAddressDefault))
   }, [])
 
   return (

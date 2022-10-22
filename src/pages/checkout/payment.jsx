@@ -8,7 +8,8 @@ import {
   addProducts,
   addShipTo,
   addTotolPrice,
-  addUser
+  addUser,
+  createBill
 } from '../../redux/features/bills/billSlice'
 import { selectUserUid } from '../../redux/features/userSlice'
 import { selectCartItems } from '../../redux/features/carts/cartSlice'
@@ -39,6 +40,8 @@ function CheckoutPayment() {
     dispatch(addShipTo(addressDefault))
     dispatch(addProducts(cartItems))
     dispatch(addTotolPrice(cartTotalPrice))
+
+    dispatch(createBill())
   }
 
   const backTo = () => {

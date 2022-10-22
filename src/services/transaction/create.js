@@ -24,8 +24,9 @@ const createOneTransaction = async (
       payment: payment,
       status: 'In progress', // Lần đầu tạo bill sẽ ở trạng thái này
       products: products,
-      total_price: totalPrice,
-      created_date: serverTimestamp()
+      total: totalPrice,
+      created_date: serverTimestamp(),
+      updated_date: serverTimestamp()
     }
 
     // Sau khi thêm thành công một doc, trả về một docRef

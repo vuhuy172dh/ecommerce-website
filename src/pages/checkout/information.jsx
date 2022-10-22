@@ -9,7 +9,8 @@ import {
 import {
   selectAddressList,
   selectStatus,
-  getAddressList
+  getAddressList,
+  getAddressDefault
 } from '../../redux/features/address/addressSlice'
 import { addContact } from '../../redux/features/bills/billSlice'
 import { setStep } from '../../redux/features/stepper/stepperSlice'
@@ -32,7 +33,12 @@ function CheckoutInformation() {
 
   useEffect(() => {
     dispatch(getAddressList(userUid))
+    if (userAddressDefault) dispatch(getAddressDefault(userAddressDefault))
   }, [])
+
+  useEffect(() => {
+    if (userAddressDefault) dispatch(getAddressDefault(userAddressDefault))
+  }, [addressList])
 
   const {
     register,

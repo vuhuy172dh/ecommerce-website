@@ -1,6 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit'
+import { createOneTransaction } from '../../../services/transaction'
 
 const initialState = {
+  bills: [],
   user: null,
   contact: null,
   shipTo: null,
@@ -34,9 +36,54 @@ const billSlice = createSlice({
     },
     addProducts: (state, action) => {
       state.products = action.payload
+    },
+    clearBill: (state) => {
+      state.user = null
+      state.contact = null
+      state.shipTo = null
+      state.shippingMethod = null
+      state.payment = null
+      state.totalPrice = null
+      state.products = []
+    },
+    addBills: (state, action) => {
+      state.bills = action.payload
+    },
+    addOneBillToBills: (state, action) => {
+      state.bills.push(action.payload)
     }
   }
 })
+
+export const createBill = () => (dispatch, getState) => {
+  const create = async () => {
+    const userUid = selectUser(getState())
+    const contact = selectContact(getState())
+    const shipto = selectShipTo(getState())
+    const shipMethod = selectShippingMethod(getState())
+    const payment = selectPayment(getState())
+    const totalPrice = selectTotalPrice(getState())
+    const products = selectBillProducts(getState())
+    await createOneTransaction(
+      userUid,
+      contact,
+      shipto,
+      shipMethod,
+      payment,
+      totalPrice,
+      products
+    )
+      .then((res) => {
+        //add bill to bills
+        dispatch(addOneBillToBills(res))
+        //clear all information in bill that created
+        dispatch(clearBill())
+      })
+      .catch((e) => console.log(e))
+  }
+
+  create()
+}
 
 export const {
   addUser,
@@ -45,7 +92,10 @@ export const {
   addShippingMethod,
   addPaymen,
   addTotolPrice,
-  addProducts
+  addProducts,
+  clearBill,
+  addBills,
+  addOneBillToBills
 } = billSlice.actions
 
 export const selectUser = (state) => state.bill.user
@@ -55,5 +105,6 @@ export const selectShippingMethod = (state) => state.bill.shippingMethod
 export const selectPayment = (state) => state.bill.payment
 export const selectTotalPrice = (state) => state.bill.totalPrice
 export const selectBillProducts = (state) => state.bill.products
+export const selectBills = (state) => state.bill.bills
 
 export default billSlice.reducer
