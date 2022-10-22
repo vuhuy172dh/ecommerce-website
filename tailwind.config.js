@@ -32,7 +32,7 @@ module.exports = {
       spacing: {
         1: '1px'
       },
-      keyframes: {  
+      keyframes: {
         growth: {
           from: {
             transform: 'scale(0.7)'
@@ -60,5 +60,5 @@ module.exports = {
       }
     }
   },
-  plugins: []
+  plugins: [require('@tailwindcss/line-clamp')]
 }

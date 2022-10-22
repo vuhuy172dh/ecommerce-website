@@ -41,7 +41,7 @@ function ProductItem({ product }) {
         </p>
         <hr className="w-[90%] border-t border-t-dark_primary dark:border-t-light_grey" />
         <div className="w-full py-2">
-          <p>
+          <p className="line-clamp-2">
             <strong>Name:</strong> {product.name}
           </p>
           <p>

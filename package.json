@@ -51,6 +51,7 @@
     ]
   },
   "devDependencies": {
+    "@tailwindcss/line-clamp": "^0.4.2",
     "autoprefixer": "^10.4.12",
     "eslint-config-prettier": "^8.5.0",
     "postcss": "^8.4.17",
