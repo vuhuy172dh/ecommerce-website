@@ -7,12 +7,17 @@ import {
   selectBills,
   selectStatus
 } from '../../redux/features/bills/billSlice'
+import { useDarkMode } from '../../hooks/useDarkMode'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faBarsProgress } from '@fortawesome/free-solid-svg-icons'
+import ButtonIcon from '../../components/buttonIcon'
 
 function Purchase() {
   const [click, setClick] = useState('Waiting')
   const bills = useSelector(selectBills)
   const dispatch = useDispatch()
   const billStatus = useSelector(selectStatus)
+  const mode = useDarkMode().mode
 
   const handleWaitingClick = () => {
     setClick('Waiting')
@@ -39,31 +44,21 @@ function Purchase() {
   }, [])
 
   return (
-    <div className="w-full laptop:px-6">
+    <div className="w-full laptop:px-6 flex flex-row-reverse relative">
       {/*Purchase navigation*/}
-      <nav className="w-full bg-border_grey dark:bg-secondary rounded-lg mb-4 mt-2 shadow-md shadow-gray-600/50 dark:shadow-light_grey/50 laptop:mt-0">
-        <ul className="flex w-full justify-start tablet:justify-center items-center overflow-auto no-scrollbar gap-4">
-          <li>
-            <Button Color="ghost" onClick={handleWaitingClick}>
-              Waiting
-            </Button>
-          </li>
-          <li>
-            <Button Color="ghost" onClick={handleDeliveringClick}>
-              Delivering
-            </Button>
-          </li>
-          <li>
-            <Button Color="ghost" onClick={handleCompletedClick}>
-              Completed
-            </Button>
-          </li>
-          <li>
-            <Button Color="ghost" onClick={handleCanceledClick}>
-              Canceled
-            </Button>
-          </li>
-        </ul>
+      <nav className="w-fit h-fit flex flex-col py-2 px-1 mx-4 gap-2 sticky top-36 bg-border_dark rounded-lg shadow-md shadow-gray-500/40">
+        <div>
+          <ButtonIcon Icon="waiting" onClick={handleWaitingClick} />
+        </div>
+        <div>
+          <ButtonIcon Icon="delivering" onClick={handleDeliveringClick} />
+        </div>
+        <div>
+          <ButtonIcon Icon="completed" onClick={handleCompletedClick} />
+        </div>
+        <div>
+          <ButtonIcon Icon="canceled" onClick={handleCanceledClick} />
+        </div>
       </nav>
 
       {/*Puchase container*/}

@@ -6,7 +6,7 @@ function PurchaseItem({ purchaseItem }) {
     <div className="w-full py-2 px-8 bg-border_grey rounded-lg shadow-md shadow-gray-600/50">
       <div className="w-full flex justify-end">
         <p className="text-h4 text-primary">
-          <strong>Waiting</strong>
+          <strong>{purchaseItem.status}</strong>
         </p>
       </div>
 
@@ -17,11 +17,14 @@ function PurchaseItem({ purchaseItem }) {
 
       {/*detail*/}
       <div className="w-full flex flex-col items-end">
-        <p>
+        <p className="my-5">
           <strong>Total Price:</strong> {purchaseItem.total}$
         </p>
-        <div>
-          <Button Color="primary" Custom={true} Padding="py-2 px-8">
+        <div className="flex gap-2">
+          <Button Color="red" Custom={true} Padding="px-4">
+            Cancel
+          </Button>
+          <Button Color="primary" Custom={true} Padding="px-8">
             Detail
           </Button>
         </div>

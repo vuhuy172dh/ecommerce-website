@@ -13,7 +13,11 @@ import {
   faCartShopping,
   faCircleUser,
   faSearch,
-  faTrash
+  faTrash,
+  faBarsProgress,
+  faTruck,
+  faCircleCheck,
+  faRectangleXmark
 } from '@fortawesome/free-solid-svg-icons'
 import {
   faFacebook,
@@ -35,7 +39,11 @@ const icons = {
   skype: faSkype,
   twitter: faTwitter,
   pinterest: faPinterest,
-  trash: faTrash
+  trash: faTrash,
+  waiting: faBarsProgress,
+  delivering: faTruck,
+  completed: faCircleCheck,
+  canceled: faRectangleXmark
 }
 
 const colors = {
