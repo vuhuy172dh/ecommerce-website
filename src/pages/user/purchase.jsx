@@ -16,7 +16,7 @@ function Purchase() {
   const bills = useSelector(selectBills)
   const dispatch = useDispatch()
   const billStatus = useSelector(selectStatus)
-  const mode = useDarkMode().mode
+  //const mode = useDarkMode().mode
   const cancelStatus = useSelector(selectCancelStatus)
   const reorderStatus = useSelector(selectReorderStatus)
 
@@ -42,7 +42,8 @@ function Purchase() {
 
   useEffect(() => {
     if (click === 'Waiting') dispatch(getBills('Waiting'))
-    if (click === 'Canceled') dispatch(getBills('Canceled'))
+    else if (click === 'Canceled') dispatch(getBills('Canceled'))
+    console.log(click)
   }, [cancelStatus, reorderStatus])
 
   return (

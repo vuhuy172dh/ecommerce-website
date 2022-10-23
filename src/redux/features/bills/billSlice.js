@@ -76,19 +76,13 @@ const billSlice = createSlice({
     },
     updateBillStatus: (state, action) => {
       state.cancelStatus = 'success'
-      const bill = state.bills.find((item) => item.uid === action.payload)
-      const bills = state.bills.filter((item) => item.uid !== action.payload)
-      bill.status = 'Canceled'
-      bills.push(bill)
-      state.bills = bills
+      //const bill = state.bills.find((item) => item.uid === action.payload)
+      //bill.status = 'Canceled'
     },
     updateBillReorder: (state, action) => {
       state.reorderStatus = 'success'
-      const bill = state.bills.find((item) => item.uid === action.payload)
-      const bills = state.bills.filter((item) => item.uid !== action.payload)
-      bill.status = 'Waiting'
-      bills.push(bill)
-      state.bills = bills
+      //const bill = state.bills.find((item) => item.uid === action.payload)
+      //bill.status = 'Waiting'
     },
     addBills: (state, action) => {
       state.status = 'idle'
