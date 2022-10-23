@@ -2,8 +2,8 @@ import { runTransaction, doc } from 'firebase/firestore'
 import { TRANSACTIONS } from '../constant/firestore'
 import { db } from '../firebase.config'
 
-// Hàm hủy đơn hàng
-const cancelOrder = async (uidTransaction) => {
+// Hàm re-order
+const reOrder = async (uidTransaction) => {
   // Get doc ref
   const transactionRef = doc(db, `${TRANSACTIONS}/${uidTransaction}`)
 
@@ -24,21 +24,21 @@ const cancelOrder = async (uidTransaction) => {
       const statusCurrent = transactionDoc.data().status
 
       // Nếu không ở trạng thái 'In progress' thì không được hủy đơn hàng
-      if (statusCurrent !== 'Waiting') {
+      if (statusCurrent !== 'Canceled') {
         return {
           status: 'error',
-          mes: 'cannot cancel order'
+          mes: 'cannot re-order'
         }
       }
 
       // Update lại trạng thái đơn hàng
       transaction.update(transactionRef, {
-        status: 'Canceled'
+        status: 'Waiting'
       })
 
       return {
         status: 'success',
-        mes: 'Canceled order successfully'
+        mes: 'Re-order successfully'
       }
     })
 
@@ -50,4 +50,4 @@ const cancelOrder = async (uidTransaction) => {
   }
 }
 
-export default cancelOrder
+export default reOrder

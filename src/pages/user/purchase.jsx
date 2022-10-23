@@ -4,6 +4,8 @@ import { useSelector, useDispatch } from 'react-redux'
 import {
   getBills,
   selectBills,
+  selectCancelStatus,
+  selectReorderStatus,
   selectStatus
 } from '../../redux/features/bills/billSlice'
 import { useDarkMode } from '../../hooks/useDarkMode'
@@ -15,6 +17,8 @@ function Purchase() {
   const dispatch = useDispatch()
   const billStatus = useSelector(selectStatus)
   const mode = useDarkMode().mode
+  const cancelStatus = useSelector(selectCancelStatus)
+  const reorderStatus = useSelector(selectReorderStatus)
 
   const handleWaitingClick = () => {
     setClick('Waiting')
@@ -37,8 +41,9 @@ function Purchase() {
   }
 
   useEffect(() => {
-    dispatch(getBills('Waiting'))
-  }, [])
+    if (click === 'Waiting') dispatch(getBills('Waiting'))
+    if (click === 'Canceled') dispatch(getBills('Canceled'))
+  }, [cancelStatus, reorderStatus])
 
   return (
     <div className="w-full laptop:px-6 flex flex-row-reverse relative">

@@ -87,6 +87,7 @@ function Profile() {
       fullname: data.fullname,
       birth: data.birth,
       gender: data.gender,
+      avatar: userAvatar,
       addr_default: userAddressDefault
     })
       .then((res) => alert(res))

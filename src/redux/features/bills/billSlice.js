@@ -1,6 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit'
 import {
+  cancelOrder,
   createOneTransaction,
+  reOrder,
   showListTransactions,
   showOneTransaction
 } from '../../../services/transaction'
@@ -8,6 +10,8 @@ import {
 const initialState = {
   status: 'idle',
   createStatus: 'idle',
+  cancelStatus: 'idle',
+  reorderStatus: 'idle',
   createErrors: null,
   bills: [],
   bill: null,
@@ -29,6 +33,12 @@ const billSlice = createSlice({
     },
     setCreateRequest: (state) => {
       state.createStatus = 'loading'
+    },
+    setCancelRequest: (state) => {
+      state.cancelStatus = 'loading'
+    },
+    setReorderRequest: (state) => {
+      state.reorderStatus = 'loading'
     },
     setCreateErrors: (state, action) => {
       state.createStatus = 'error'
@@ -64,6 +74,22 @@ const billSlice = createSlice({
       state.totalPrice = null
       state.products = []
     },
+    updateBillStatus: (state, action) => {
+      state.cancelStatus = 'success'
+      const bill = state.bills.find((item) => item.uid === action.payload)
+      const bills = state.bills.filter((item) => item.uid !== action.payload)
+      bill.status = 'Canceled'
+      bills.push(bill)
+      state.bills = bills
+    },
+    updateBillReorder: (state, action) => {
+      state.reorderStatus = 'success'
+      const bill = state.bills.find((item) => item.uid === action.payload)
+      const bills = state.bills.filter((item) => item.uid !== action.payload)
+      bill.status = 'Waiting'
+      bills.push(bill)
+      state.bills = bills
+    },
     addBills: (state, action) => {
       state.status = 'idle'
       state.bills = action.payload
@@ -78,6 +104,7 @@ const billSlice = createSlice({
     }
   }
 })
+
 //get bills
 export const getBills = (status) => (dispatch) => {
   const get = async () => {
@@ -90,6 +117,7 @@ export const getBills = (status) => (dispatch) => {
   get()
 }
 
+//get bill detail
 export const getBillDetail = (billUid) => (dispatch) => {
   const detail = async () => {
     dispatch(setRequest())
@@ -99,6 +127,36 @@ export const getBillDetail = (billUid) => (dispatch) => {
   }
 
   detail()
+}
+
+//cancel bill
+export const cancelBill = (uidTransaction) => (dispatch) => {
+  const cancel = async () => {
+    dispatch(setCancelRequest())
+    await cancelOrder(uidTransaction)
+      .then((res) => {
+        dispatch(updateBillStatus(uidTransaction))
+        console.log(res.mes)
+      })
+      .catch((e) => console.log(e))
+  }
+
+  cancel()
+}
+
+//reorder canceled bill
+export const reorderBill = (uidTransaction) => (dispatch) => {
+  const reorder = async () => {
+    dispatch(setReorderRequest())
+    await reOrder(uidTransaction)
+      .then((res) => {
+        dispatch(updateBillReorder(uidTransaction))
+        console.log(res.mes)
+      })
+      .catch((e) => console.log(e))
+  }
+
+  reorder()
 }
 
 //create a bill and update state
@@ -133,6 +191,8 @@ export const createBill = () => (dispatch, getState) => {
 export const {
   setRequest,
   setCreateRequest,
+  setCancelRequest,
+  setReorderRequest,
   setCreateErrors,
   addUser,
   addContact,
@@ -142,6 +202,8 @@ export const {
   addTotolPrice,
   addProducts,
   clearBill,
+  updateBillStatus,
+  updateBillReorder,
   addBills,
   addOneBillToBills,
   addBillDetail
@@ -159,5 +221,7 @@ export const selectStatus = (state) => state.bill.status
 export const selectBillDetail = (state) => state.bill.bill
 export const selectCreateStatus = (state) => state.bill.createStatus
 export const selectCreateErrors = (state) => state.bill.createErrors
+export const selectCancelStatus = (state) => state.bill.cancelStatus
+export const selectReorderStatus = (state) => state.bill.reorderStatus
 
 export default billSlice.reducer

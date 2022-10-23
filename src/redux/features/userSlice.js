@@ -104,7 +104,13 @@ export const signUpUser = (fullname, email, password) => (dispatch) => {
   //call signUp API from services/auth
   signUp(fullname, email, password)
     .then((user) => {
-      dispatch(setActiveUser({ fullname: user.displayName, email: user.email }))
+      dispatch(
+        setActiveUser({
+          fullname: user.fullname,
+          email: user.email,
+          uid: user.uid
+        })
+      )
     })
     .catch((e) => {
       dispatch(setUserError(e))
