@@ -25,7 +25,8 @@ function ProductDesc({
   saved,
   handleAddToCart,
   handleAddToWishlist,
-  removeFromWishlist
+  removeFromWishlist,
+  handleComment
 }) {
   //
   const [count, setCount] = useState(0)
@@ -37,6 +38,8 @@ function ProductDesc({
   const decreaseCount = () => {
     if (count > 0) setCount(count - 1)
   }
+
+  const [commentOpen, setCommentOpen] = useState(false)
 
   return (
     <div className="col-span-4 laptop:col-span-6 laptop:ml-9 px-2">
@@ -105,6 +108,10 @@ function ProductDesc({
           </div>
           {/*remain on stock*/}
           <div>{quantity} items</div>
+          {/**/}
+          <div className="cursor-pointer" onClick={handleComment}>
+            Comment
+          </div>
         </div>
       </div>
       {/* Group btn */}

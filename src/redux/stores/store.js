@@ -8,6 +8,7 @@ import address from '../features/address/addressSlice'
 import category from '../features/category/categorySlice'
 import stepper from '../features/stepper/stepperSlice'
 import wishlist from '../features/wishlist/wishlistSlice'
+import comment from '../features/comment/commentSlice'
 
 const store = configureStore({
   reducer: {
@@ -19,7 +20,8 @@ const store = configureStore({
     address: address,
     category: category,
     stepper: stepper,
-    wishlist: wishlist
+    wishlist: wishlist,
+    comment: comment
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
