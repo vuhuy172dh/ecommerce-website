@@ -32,6 +32,7 @@ import CheckoutPayment from './pages/checkout/payment'
 import SearchMode from './hooks/useSearchMode'
 import SearchDrawer from './components/search/searchDrawer'
 import { auth } from './services/firebase.config'
+import PurchaseDetail from './pages/user/purchaseDetail'
 /*import { useDispatch } from 'react-redux'
 import { setActiveUser, getInformation } from './redux/features/userSlice'
 import { auth } from './services/firebase.config'
@@ -112,6 +113,10 @@ function App() {
               path="/user/account/changePassword"
               element={userUid ? <ChangePassword /> : <Navigate to="/signin" />}
             />
+            <Route
+              path="/user/account/purchase/:purchaseId"
+              element={userUid ? <PurchaseDetail /> : <Navigate to="/signin" />}
+            />
           </Route>
           <Route element={<Checkout />}>
             <Route
@@ -142,8 +147,8 @@ function App() {
           <Route path="/forgetPassword" element={<ForgetPassword />} />
           <Route path="/vacancies" element={<Vacancies />} />
           <Route path="/contactUs" element={<ContactUs />} />
-          <Route path='/returnPolicy' element={<ReturnPolicy/>}/>
-          <Route path='/privacy' element={<Privacy/>}/>
+          <Route path="/returnPolicy" element={<ReturnPolicy />} />
+          <Route path="/privacy" element={<Privacy />} />
         </Routes>
       </main>
       {path === '/signin' ||

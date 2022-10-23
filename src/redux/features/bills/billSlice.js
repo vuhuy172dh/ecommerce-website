@@ -1,12 +1,14 @@
 import { createSlice } from '@reduxjs/toolkit'
 import {
   createOneTransaction,
-  showListTransactions
+  showListTransactions,
+  showOneTransaction
 } from '../../../services/transaction'
 
 const initialState = {
   status: 'idle',
   bills: [],
+  bill: null,
   user: null,
   contact: null,
   shipTo: null,
@@ -59,6 +61,10 @@ const billSlice = createSlice({
     },
     addOneBillToBills: (state, action) => {
       state.bills.push(action.payload)
+    },
+    addBillDetail: (state, action) => {
+      state.status = 'idle'
+      state.bill = action.payload
     }
   }
 })
@@ -72,6 +78,17 @@ export const getBills = (status) => (dispatch) => {
   }
 
   get()
+}
+
+export const getBillDetail = (billUid) => (dispatch) => {
+  const detail = async () => {
+    dispatch(setRequest())
+    await showOneTransaction(billUid)
+      .then((res) => dispatch(addBillDetail(res)))
+      .catch((e) => console.log(e))
+  }
+
+  detail()
 }
 
 //create a bill and update state
@@ -116,7 +133,8 @@ export const {
   addProducts,
   clearBill,
   addBills,
-  addOneBillToBills
+  addOneBillToBills,
+  addBillDetail
 } = billSlice.actions
 
 export const selectUser = (state) => state.bill.user
@@ -128,5 +146,6 @@ export const selectTotalPrice = (state) => state.bill.totalPrice
 export const selectBillProducts = (state) => state.bill.products
 export const selectBills = (state) => state.bill.bills
 export const selectStatus = (state) => state.bill.status
+export const selectBillDetail = (state) => state.bill.bill
 
 export default billSlice.reducer

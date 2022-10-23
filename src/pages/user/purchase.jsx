@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react'
-import Button from '../../components/button'
 import PurchaseItemList from '../../components/purchase/purchaseItemList'
 import { useSelector, useDispatch } from 'react-redux'
 import {
@@ -8,8 +7,6 @@ import {
   selectStatus
 } from '../../redux/features/bills/billSlice'
 import { useDarkMode } from '../../hooks/useDarkMode'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faBarsProgress } from '@fortawesome/free-solid-svg-icons'
 import ButtonIcon from '../../components/buttonIcon'
 
 function Purchase() {
