@@ -18,8 +18,8 @@ function PurchaseDetail() {
   const billDetailStatus = useSelector(selectStatus)
   const dispatch = useDispatch()
 
-  const subTotal = billDetail.products
-    .reduce((a, b) => a + Number(b.cartItem.price) * b.number, 0)
+  const subTotal = billDetail?.products
+    ?.reduce((a, b) => a + Number(b.cartItem.price) * b.number, 0)
     .toFixed(2)
 
   useEffect(() => {
@@ -28,7 +28,7 @@ function PurchaseDetail() {
 
   return (
     <div className="w-full laptop:py-6">
-      {billDetailStatus === 'idle' && billDetail.products !== undefined ? (
+      {billDetailStatus === 'idle' && billDetail?.products ? (
         <div className="mr-4 py-6 px-4 flex flex-col bg-border_grey rounded-md shadow-lg shadow-gray-600/50">
           {/*status and back button*/}
           <div className="w-full flex justify-between">

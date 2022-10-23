@@ -270,7 +270,7 @@ function Profile() {
             <img
               src={userAvatar || CeilingLamp}
               alt="avatar"
-              className="w-full h-full"
+              className="w-full h-full object-cover"
             />
           </div>
 

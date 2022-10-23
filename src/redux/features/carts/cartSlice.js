@@ -165,6 +165,21 @@ export const removeFromUserFirebase = (userUid, cartItem) => (dispatch) => {
   remove()
 }
 
+export const removeAllProductCart = (userUid) => (dispatch, getState) => {
+  const remove = async () => {
+    for (let item of selectCartItems(getState())) {
+      await deleteOneProductFromCart(userUid, item.uid)
+        .then((res) => {
+          console.log(res)
+        })
+        .catch((e) => console.log(e))
+    }
+    dispatch(setEmptyCart())
+  }
+
+  remove()
+}
+
 //update number of product when user is singing in (ok)
 export const updateUserCartFirebase =
   (userUid, cartItem, number) => (dispatch) => {

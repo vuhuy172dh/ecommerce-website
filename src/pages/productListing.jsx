@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import Button from '../components/button'
 import clubImg from '../assets/images/features3.png'
 import EmailField from '../components/emailField'
@@ -38,7 +38,7 @@ function ProductListingPage() {
   }
 
   return (
-    <div className="relative">
+    <div className="relative z-20">
       {/*Helmet async*/}
       <Helmet>
         <title>Products</title>

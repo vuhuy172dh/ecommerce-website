@@ -16,8 +16,8 @@ import {
 } from '../../redux/features/bills/billSlice'
 import { selectUserUid } from '../../redux/features/userSlice'
 import {
-  selectCartItems,
-  setEmptyCart
+  removeAllProductCart,
+  selectCartItems
 } from '../../redux/features/carts/cartSlice'
 import { selectAddressDefault } from '../../redux/features/address/addressSlice'
 import { useEffect } from 'react'
@@ -57,7 +57,7 @@ function CheckoutPayment() {
   useEffect(() => {
     if (createStatus === 'success') {
       dispatch(clearBill())
-      dispatch(setEmptyCart())
+      dispatch(removeAllProductCart(userUid))
       navigate('/user/account/purchases')
     } else if (createStatus === 'error') {
       alert(createErrors)

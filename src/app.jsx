@@ -48,7 +48,6 @@ const SidebarLayout = () => (
 
 function App() {
   const userUid = auth.currentUser?.uid
-
   const path = useLocation().pathname
   /*useEffect(() => {
     auth.onAuthStateChanged((user) => {

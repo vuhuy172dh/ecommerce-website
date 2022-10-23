@@ -46,7 +46,7 @@ function Navbar() {
   }, [])
 
   return (
-    <div className="w-full flex justify-center mb-28 tablet:mb-36 relative z-30">
+    <div className="w-full flex justify-center mb-28 tablet:mb-36 relative z-40">
       <div
         className={`w-full tablet:w-4/5 mb-8 ${
           scrollY === 0
