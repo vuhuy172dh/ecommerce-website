@@ -8,16 +8,12 @@ import { Helmet } from 'react-helmet-async'
 import { motion } from 'framer-motion'
 import { useDispatch, useSelector } from 'react-redux'
 import {
-  selectUserEmail,
   signInWithEmailAndPass,
   signInGoogle,
   selectError,
   selectStatus,
-  selectUserUid,
-  getInformation
+  selectUserUid
 } from '../redux/features/userSlice'
-import { getUserCart } from '../redux/features/carts/cartSlice'
-import { getWishlist } from '../redux/features/wishlist/wishlistSlice'
 import WhiteRoomImg from '../assets/images/features3.png'
 import { useEffect } from 'react'
 import PagePreloader from '../components/preloader/pagePreloader'
@@ -36,7 +32,6 @@ function SignIn() {
   const dispatch = useDispatch()
 
   //get state
-  const userEmail = useSelector(selectUserEmail)
   const error = useSelector(selectError)
   const status = useSelector(selectStatus)
   const userUid = useSelector(selectUserUid)
@@ -52,14 +47,11 @@ function SignIn() {
   }
 
   useEffect(() => {
-    if (userEmail !== null) {
+    if (userUid !== null) {
       //when sign in succesfully, get userCart and merge to localCart
-      dispatch(getUserCart(userUid))
-      dispatch(getInformation(userUid))
-      dispatch(getWishlist(userUid))
       navigate('/')
     }
-  }, [userEmail, navigate])
+  }, [userUid])
 
   return (
     <div className="flex w-screen h-screen justify-center items-center relative">

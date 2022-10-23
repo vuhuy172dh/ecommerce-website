@@ -24,7 +24,7 @@ function ProductItemListing({ products }) {
             }
           }}
         >
-          <ProductItem key={item.uuid} product={item} />
+          <ProductItem product={item} />
         </motion.div>
       ))}
     </div>

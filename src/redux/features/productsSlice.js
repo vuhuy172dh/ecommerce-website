@@ -40,7 +40,7 @@ const productsSlice = createSlice({
       state.lastVisibleCatergory = null
     },
     setClearProducts: (state) => {
-      state.products.length = 0
+      state.products = []
       state.lastVisible = null
     },
     setLastVisible: (state, action) => {
