@@ -56,7 +56,7 @@ const ProductCartList = ({ cartItems }) => {
                   <p className="text-[16px] laptop:text-[20px]">
                     {cart.cartItem.name}
                   </p>
-                  <p className="text-[14px] py-2">
+                  <p className="text-[14px] line-clamp-3">
                     {cart.cartItem.description}
                   </p>
                   <p className="text-[16px]">${cart.cartItem.price}</p>

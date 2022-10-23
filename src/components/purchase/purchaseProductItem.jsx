@@ -17,7 +17,7 @@ function PurchaseProductItem({ product }) {
       {/*info*/}
       <div className="w-[80%] pl-2 flex flex-col justify-start">
         <p className="text-h4 text-black">{product.cartItem.name}</p>
-        <p className="text-body-md text-black/70">
+        <p className="text-body-md text-black/70 line-clamp-3">
           {product.cartItem.description}
         </p>
         <p className="text-body-md text-black/70">x{product.number}</p>
