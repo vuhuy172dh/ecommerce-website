@@ -7,6 +7,8 @@ import {
 
 const initialState = {
   status: 'idle',
+  createStatus: 'idle',
+  createErrors: null,
   bills: [],
   bill: null,
   user: null,
@@ -24,6 +26,13 @@ const billSlice = createSlice({
   reducers: {
     setRequest: (state) => {
       state.status = 'loading'
+    },
+    setCreateRequest: (state) => {
+      state.createStatus = 'loading'
+    },
+    setCreateErrors: (state, action) => {
+      state.createStatus = 'error'
+      state.createErrors = action.payload
     },
     addUser: (state, action) => {
       state.user = action.payload
@@ -60,6 +69,7 @@ const billSlice = createSlice({
       state.bills = action.payload
     },
     addOneBillToBills: (state, action) => {
+      state.createStatus = 'success'
       state.bills.push(action.payload)
     },
     addBillDetail: (state, action) => {
@@ -113,10 +123,8 @@ export const createBill = () => (dispatch, getState) => {
       .then((res) => {
         //add bill to bills
         dispatch(addOneBillToBills(res))
-        //clear all information in bill that created
-        dispatch(clearBill())
       })
-      .catch((e) => console.log(e))
+      .catch((e) => dispatch(setCreateErrors(e)))
   }
 
   create()
@@ -124,6 +132,8 @@ export const createBill = () => (dispatch, getState) => {
 
 export const {
   setRequest,
+  setCreateRequest,
+  setCreateErrors,
   addUser,
   addContact,
   addShipTo,
@@ -147,5 +157,7 @@ export const selectBillProducts = (state) => state.bill.products
 export const selectBills = (state) => state.bill.bills
 export const selectStatus = (state) => state.bill.status
 export const selectBillDetail = (state) => state.bill.bill
+export const selectCreateStatus = (state) => state.bill.createStatus
+export const selectCreateErrors = (state) => state.bill.createErrors
 
 export default billSlice.reducer

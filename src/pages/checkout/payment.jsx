@@ -9,11 +9,19 @@ import {
   addShipTo,
   addTotolPrice,
   addUser,
-  createBill
+  clearBill,
+  createBill,
+  selectCreateErrors,
+  selectCreateStatus
 } from '../../redux/features/bills/billSlice'
 import { selectUserUid } from '../../redux/features/userSlice'
-import { selectCartItems } from '../../redux/features/carts/cartSlice'
+import {
+  selectCartItems,
+  setEmptyCart
+} from '../../redux/features/carts/cartSlice'
 import { selectAddressDefault } from '../../redux/features/address/addressSlice'
+import { useEffect } from 'react'
+import PagePreloader from '../../components/preloader/pagePreloader'
 
 function CheckoutPayment() {
   const dispatch = useDispatch()
@@ -23,6 +31,8 @@ function CheckoutPayment() {
   const userUid = useSelector(selectUserUid)
   const addressDefault = useSelector(selectAddressDefault)
   const cartItems = useSelector(selectCartItems)
+  const createStatus = useSelector(selectCreateStatus)
+  const createErrors = useSelector(selectCreateErrors)
   const cartTotalPrice = +cartItems
     .reduce((a, b) => a + Number(b.cartItem.price) * b.number, 0)
     .toFixed(2)
@@ -43,6 +53,16 @@ function CheckoutPayment() {
 
     dispatch(createBill())
   }
+
+  useEffect(() => {
+    if (createStatus === 'success') {
+      dispatch(clearBill())
+      dispatch(setEmptyCart())
+      navigate('/user/account/purchases')
+    } else if (createStatus === 'error') {
+      alert(createErrors)
+    }
+  }, [createStatus])
 
   const backTo = () => {
     dispatch(setStep(2))
@@ -70,6 +90,8 @@ function CheckoutPayment() {
           Payment now
         </Button>
       </div>
+
+      {createStatus === 'loading' && <PagePreloader />}
     </div>
   )
 }

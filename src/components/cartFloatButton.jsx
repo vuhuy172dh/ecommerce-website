@@ -5,7 +5,7 @@ import { useState } from 'react'
 import useScrollPosition from '../hooks/useScrollPosition'
 import ProductCartList from './productCartList'
 import Button from './button'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { selectCartItems } from '../redux/features/carts/cartSlice'
 import { selectCurrentStep } from '../redux/features/stepper/stepperSlice'
@@ -16,6 +16,7 @@ function CartFloatButton() {
 
   const cartItems = useSelector(selectCartItems)
   const currentStep = useSelector(selectCurrentStep)
+  const navigate = useNavigate()
 
   const totalPrice = cartItems
     ?.reduce((a, b) => a + Number(b.cartItem.price) * b.number, 0)
@@ -25,6 +26,16 @@ function CartFloatButton() {
 
   const handleClick = () => {
     setClick(!click)
+  }
+
+  const handleCartCheckout = () => {
+    if (currentStep === 1) {
+      navigate('/user/checkout/information')
+    } else if (currentStep === 2) {
+      navigate('/user/checkout/shipping')
+    } else if (currentStep === 3) {
+      navigate('/user/checkout/payment')
+    }
   }
 
   return (
@@ -84,17 +95,15 @@ function CartFloatButton() {
                       YOUR BAG
                     </Button>
                   </Link>
-                  <Link
-                    to={`${
-                      currentStep === 1
-                        ? '/user/checkout/information'
-                        : currentStep === 2
-                        ? '/user/checkout/shipping'
-                        : '/user/checkout/payment'
-                    }`}
-                  >
-                    <Button Color="primary">CHECK OUT</Button>
-                  </Link>
+                  {cartItemFloatNumber === 0 ? (
+                    <Button Color="red" State="disable">
+                      NO PRODUCTS
+                    </Button>
+                  ) : (
+                    <Button Color="primary" onClick={handleCartCheckout}>
+                      CHECK OUT
+                    </Button>
+                  )}
                 </div>
               </div>
             </motion.div>

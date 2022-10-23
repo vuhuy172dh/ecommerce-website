@@ -14,7 +14,6 @@ Properties:
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCaretDown } from '@fortawesome/free-solid-svg-icons'
 import { motion } from 'framer-motion'
-import { useState } from 'react'
 import { colors, sizes } from '../constant/button'
 
 const itemVariants = {
@@ -25,8 +24,6 @@ const itemVariants = {
   },
   closed: { opacity: 0, y: 20, transition: { duration: 0.2 } }
 }
-
-const itemList = ['item 1', 'item 2', 'item 3', 'item 4', 'item 5', 'item 6']
 
 function Button({
   Color = 'white',
