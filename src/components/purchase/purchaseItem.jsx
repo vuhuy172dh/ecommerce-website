@@ -52,7 +52,7 @@ function PurchaseItem({ purchaseItem }) {
         <div className={`flex gap-2`}>
           <div
             className={`${
-              purchaseItem.status === 'Canceled' ? 'hidden' : 'block'
+              purchaseItem.status === 'Waiting' ? 'block' : 'hidden'
             }`}
           >
             <Button
