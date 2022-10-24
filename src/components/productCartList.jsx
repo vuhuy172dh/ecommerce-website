@@ -24,9 +24,9 @@ const ProductCartList = ({ cartItems }) => {
   const handleRemoveFromCart = (product) => {
     if (userUid) {
       dispatch(removeFromUserFirebase(userUid, product))
-      return
+    } else {
+      dispatch(removeFromCart(product.cartItem.uuid))
     }
-    dispatch(removeFromCart(product.cartItem.uuid))
   }
 
   return (
