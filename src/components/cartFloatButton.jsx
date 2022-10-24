@@ -81,7 +81,10 @@ function CartFloatButton() {
             >
               {/*this is product cart item list*/}
               <div className="w-full px-3">
-                <ProductCartList cartItems={cartItems} />
+                <ProductCartList
+                  cartItems={cartItems}
+                  handleCartFloatClick={handleClick}
+                />
               </div>
 
               {/*this is total price and buttons*/}
