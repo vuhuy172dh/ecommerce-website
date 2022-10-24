@@ -48,9 +48,9 @@ function Purchase() {
   }, [cancelStatus, reorderStatus])
 
   return (
-    <div className="w-full laptop:px-6 flex flex-row-reverse relative">
+    <div className="w-full laptop:px-6 flex laptop:flex-row-reverse flex-col relative">
       {/*Purchase navigation*/}
-      <nav className="w-fit h-fit flex flex-col py-2 px-1 mx-4 gap-2 sticky top-36 bg-border_dark rounded-lg shadow-md shadow-gray-500/40">
+      <nav className="w-fit h-fit flex laptop:flex-col py-2 px-1 mx-4 mb-4 gap-2 laptop:sticky laptop:top-36 bg-border_dark rounded-lg shadow-md shadow-gray-500/40">
         <div>
           <ButtonIcon Icon="waiting" onClick={handleWaitingClick} />
         </div>

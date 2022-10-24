@@ -25,7 +25,7 @@ function PurchaseItem({ purchaseItem }) {
   }
 
   return (
-    <div className="w-full py-2 px-8 bg-border_grey dark:bg-secondary rounded-lg shadow-md shadow-gray-600/50 dark:shadow-border_dark/50">
+    <div className="w-full py-2 px-2 laptop:px-8 bg-border_grey dark:bg-secondary rounded-lg shadow-md shadow-gray-600/50 dark:shadow-border_dark/50">
       <div className="w-full flex justify-end">
         <p className="text-h4 text-primary dark:text-light_grey">
           <strong>{purchaseItem.status}</strong>
@@ -53,7 +53,7 @@ function PurchaseItem({ purchaseItem }) {
           <Button
             Color="red"
             Custom={true}
-            Padding="px-4"
+            Padding="px-2 laptop:px-4"
             onClick={() => handleCancel(purchaseItem.uid)}
           >
             Cancel
@@ -66,7 +66,7 @@ function PurchaseItem({ purchaseItem }) {
             <Button
               Color="primary"
               Custom={true}
-              Padding="px-8"
+              Padding="laptop:px-8 px-2"
               onClick={() => handleReorder(purchaseItem.uid)}
             >
               Re-Order
@@ -75,7 +75,7 @@ function PurchaseItem({ purchaseItem }) {
           <Button
             Color="primary"
             Custom={true}
-            Padding="px-8"
+            Padding="laptop:px-8 px-4"
             onClick={() => {
               navigate(`/user/account/purchase/${purchaseItem.uid}`)
             }}

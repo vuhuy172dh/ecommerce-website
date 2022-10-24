@@ -27,7 +27,7 @@ function PurchaseDetail() {
   }, [])
 
   return (
-    <div className="w-full laptop:py-6">
+    <div className="w-full laptop:py-6 mb-3">
       {billDetailStatus === 'idle' && billDetail?.products ? (
         <div className="mr-4 py-6 px-4 flex flex-col bg-border_grey dark:bg-secondary rounded-md shadow-md shadow-gray-600/50 dark:shadow-light_grey/50">
           {/*status and back button*/}
@@ -51,7 +51,7 @@ function PurchaseDetail() {
           {/*address*/}
           <div className="w-full flex flex-col">
             <div className="w-full flex justify-between mb-3">
-              <p className="text-h3">Delivery Address</p>
+              <p className="laptop:text-h3 text-h5">Delivery Address</p>
               <p className="text-body-sm">{billDetail.shipping_method.name}</p>
             </div>
             <div className="w-full flex gap-3">
