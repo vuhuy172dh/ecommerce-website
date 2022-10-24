@@ -24,7 +24,6 @@ import {
 import { updateOneUser } from '../../services/user'
 import RadioInput from '../../components/popup/radio'
 import createUserImg from '../../services/user/create'
-import { data } from 'autoprefixer'
 
 function Profile() {
   //create form hook
