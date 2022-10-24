@@ -10,10 +10,12 @@ import {
   getCategories
 } from '../redux/features/category/categorySlice'
 import { useEffect } from 'react'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faToggleOff, faToggleOn } from '@fortawesome/free-solid-svg-icons'
 
 function NavDrawer() {
   const { mode, handleMode } = useNavMode()
-  const { mode: darkMode } = useDarkMode()
+  const { mode: darkMode, handleDarkMode } = useDarkMode()
 
   //declare react-redux and state
   const dispatch = useDispatch()
@@ -235,8 +237,21 @@ function NavDrawer() {
           <EmailField Color={darkMode} />
 
           {/*footer social media*/}
-          <div className="block">
+          <div className="flex items-center">
             <SocialMedia Color={darkMode} />
+            <div onClick={handleDarkMode}>
+              {darkMode === 'light' ? (
+                <FontAwesomeIcon
+                  icon={faToggleOn}
+                  className="text-h2 cursor-pointer"
+                />
+              ) : (
+                <FontAwesomeIcon
+                  icon={faToggleOff}
+                  className="text-h1 cursor-pointer"
+                />
+              )}
+            </div>
           </div>
         </div>
       </div>
