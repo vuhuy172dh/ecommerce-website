@@ -6,13 +6,18 @@ import ProductCheckoutList from '../../components/productCheckoutList'
 import ProductCheckoutListButton from '../../components/productCheckoutListButton'
 import { useSelector } from 'react-redux'
 import { selectCartItems } from '../../redux/features/carts/cartSlice'
+import { selectShippingMethod } from '../../redux/features/bills/billSlice'
 
 function Checkout() {
   const cartItems = useSelector(selectCartItems)
+  const shippingMethod = useSelector(selectShippingMethod)
 
-  const cartTotalPrice = cartItems
+  const cartSubtotalPrice = +cartItems
     .reduce((a, b) => a + Number(b.cartItem.price) * b.number, 0)
     .toFixed(2)
+
+  const cartTotalPrice = cartSubtotalPrice + shippingMethod?.price
+
   return (
     <div className="w-screen h-screen relative">
       {/*helmet async*/}
@@ -79,13 +84,13 @@ function Checkout() {
               {/*subtotal*/}
               <div className="w-full flex justify-between text-light_grey">
                 <p className="text-h4">Subtotal</p>
-                <p className="font-[500]">${cartTotalPrice}</p>
+                <p className="font-[500]">${cartSubtotalPrice}</p>
               </div>
 
               {/*shipping*/}
               <div className="w-full flex justify-between text-light_grey">
                 <p className="text-h6">Shipping</p>
-                <p className="text-h6">Free</p>
+                <p className="text-h6">${shippingMethod?.price}</p>
               </div>
 
               {/*divider*/}

@@ -18,9 +18,10 @@ import Controller from '../../components/popup/controller'
 import Input from '../../components/popup/input'
 import EmailSchema from '../../validations/email'
 import AddressList from '../../components/user/addressList'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import Button from '../../components/button'
 import { useNavigate } from 'react-router-dom'
+import PopupAddress from '../../components/popup/popupAddress'
 
 function CheckoutInformation() {
   const userEmail = useSelector(selectUserEmail)
@@ -30,6 +31,7 @@ function CheckoutInformation() {
   const userAddressDefault = useSelector(selectUserAddressDefault)
   const dispatch = useDispatch()
   const navigate = useNavigate()
+  const [popupAddress, setPopupAddress] = useState(false)
 
   useEffect(() => {
     dispatch(getAddressList(userUid))
@@ -38,7 +40,7 @@ function CheckoutInformation() {
 
   useEffect(() => {
     if (userAddressDefault) dispatch(getAddressDefault(userAddressDefault))
-  }, [addressList])
+  }, [addressList, userAddressDefault])
 
   const {
     register,
@@ -94,7 +96,19 @@ function CheckoutInformation() {
 
       {/*Shipping Address*/}
       <div className="text-light_grey flex flex-col">
-        <p className="text-h4">Shipping Address</p>
+        <div className="w-full flex justify-between">
+          <p className="text-h4">Shipping Address</p>
+          <div>
+            <Button
+              Color="primary"
+              Custom={true}
+              Padding="px-6"
+              onClick={() => setPopupAddress(true)}
+            >
+              New Address
+            </Button>
+          </div>
+        </div>
 
         {addressStatus === 'idle' ? (
           <AddressList
@@ -117,6 +131,7 @@ function CheckoutInformation() {
           Continue to Shipping
         </Button>
       </div>
+      {popupAddress && <PopupAddress onBack={() => setPopupAddress(false)} />}
     </div>
   )
 }

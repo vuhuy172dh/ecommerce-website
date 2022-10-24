@@ -17,12 +17,14 @@ import ProductScrollView from '../components/productScrollView'
 import Overview from '../components/overview'
 import useClientRect from '../hooks/useClientRect'
 import { useParams } from 'react-router-dom'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import {
   addNewItemToWishlist,
   removeItemFromWishlist,
   selectWishlistList
 } from '../redux/features/wishlist/wishlistSlice'
+import CommentDrawer from '../components/comments/commentDrawer'
+import { getCommentByProductId } from '../redux/features/comment/commentSlice'
 
 function ProductDetailPage() {
   // get scroll position
@@ -48,11 +50,12 @@ function ProductDetailPage() {
   const product = useSelector(selectProduct)
   const userUid = useSelector(selectUserUid)
   const wishlist = useSelector(selectWishlistList)
+  const [commentOpen, setCommentOpen] = useState(false)
 
   //fetch Data
   useEffect(() => {
     dispatch(getProductDetail(productId))
-  }, [])
+  }, [productId])
 
   //handle Add to cart
   const handleAddToCart = (number = 0) => {
@@ -129,6 +132,10 @@ function ProductDetailPage() {
                     ?.uid
                 )
               }
+              handleComment={() => {
+                setCommentOpen(!commentOpen)
+                dispatch(getCommentByProductId(product.uuid))
+              }}
             />
           </div>
         </section>
@@ -162,6 +169,16 @@ function ProductDetailPage() {
           </div>
         </div>
       </section>
+
+      {/*comment*/}
+      <CommentDrawer
+        commentOpen={commentOpen}
+        handleOpen={(setValue) => {
+          setCommentOpen(!commentOpen)
+          setValue()
+        }}
+        productUid={product.uuid}
+      />
     </div>
   )
 }

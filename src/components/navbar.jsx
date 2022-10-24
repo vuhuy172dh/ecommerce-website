@@ -18,6 +18,7 @@ import { useSearchMode } from '../hooks/useSearchMode'
 import { setEmptyWishlist } from '../redux/features/wishlist/wishlistSlice'
 import { setEmptyCart } from '../redux/features/carts/cartSlice'
 import { motion } from 'framer-motion'
+import { setLogOutUser } from '../redux/features/userSlice'
 
 function Navbar() {
   const handleMode = useNavMode().handleMode
@@ -36,6 +37,7 @@ function Navbar() {
 
   const handleSignOut = () => {
     signOut(dispatch)
+    dispatch(setLogOutUser())
     dispatch(setEmptyWishlist())
     dispatch(setEmptyCart())
     navigate('/')

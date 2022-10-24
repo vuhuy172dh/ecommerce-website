@@ -25,7 +25,8 @@ function ProductDesc({
   saved,
   handleAddToCart,
   handleAddToWishlist,
-  removeFromWishlist
+  removeFromWishlist,
+  handleComment
 }) {
   //
   const [count, setCount] = useState(0)
@@ -105,6 +106,10 @@ function ProductDesc({
           </div>
           {/*remain on stock*/}
           <div>{quantity} items</div>
+          {/**/}
+          <div className="cursor-pointer" onClick={handleComment}>
+            Comment
+          </div>
         </div>
       </div>
       {/* Group btn */}

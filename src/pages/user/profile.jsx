@@ -97,11 +97,26 @@ function Profile() {
   const fileSelectedHandler = () => {
     let input = document.createElement('input')
     const create = async (img) => {
+      //upload user avatar to firestore but still not update user avatar in profile
       await createUserImg(img)
         .then((res) => {
           dispatch(setActiveUser({ avatar: res }))
         })
         .catch((e) => console.log(e))
+
+      //update avatar to user profile after upload image
+      await updateOneUser({
+        uid: userUid,
+        email: userEmail,
+        phone: userPhone,
+        fullname: userFullname,
+        birth: userBirth,
+        gender: userGender,
+        avatar: userAvatar,
+        addr_default: userAddressDefault
+      })
+        .then((res) => alert('update image successfully'))
+        .catch((e) => alert(e))
     }
     input.type = 'file'
 
