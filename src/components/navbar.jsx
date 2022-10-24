@@ -5,7 +5,7 @@ import useScrollPosition from '../hooks/useScrollPosition'
 import BannerCarousel from './bannerCarousel'
 import ButtonIcon from './buttonIcon'
 import LinkButton from './linkButton'
-import { selectUserEmail } from '../redux/features/userSlice'
+import { selectUserUid } from '../redux/features/userSlice'
 import { useSelector, useDispatch } from 'react-redux'
 import { useEffect, useState } from 'react'
 import { signOut } from '../services/auth/index'
@@ -17,7 +17,7 @@ import {
 import { useSearchMode } from '../hooks/useSearchMode'
 import { setEmptyWishlist } from '../redux/features/wishlist/wishlistSlice'
 import { setEmptyCart } from '../redux/features/carts/cartSlice'
-import { motion } from 'framer-motion'
+import { AnimatePresence, motion } from 'framer-motion'
 import { setLogOutUser } from '../redux/features/userSlice'
 
 function Navbar() {
@@ -31,7 +31,7 @@ function Navbar() {
   const dispatch = useDispatch()
 
   //get user name
-  const userEmail = useSelector(selectUserEmail)
+  const userUid = useSelector(selectUserUid)
   const categories = useSelector(selectCategories)
   const categoryStatus = useSelector(selectCategoryStatus)
 
@@ -117,40 +117,45 @@ function Navbar() {
                 />
               </Link>
               {/*show when signed in*/}
-              <div
-                className={`w-[200px] py-6 absolute z-40 bottom-0 right-0 bg-border_dark dark:bg-secondary translate-y-full cursor-pointer ${
-                  userHover && userEmail ? 'flex' : 'hidden'
-                } rounded-md shadow-md shadow-gray-600/40 dark:shadow-light_grey/30 flex-col gap-3`}
-              >
-                <motion.div
-                  initial={{ opacity: 0.6, x: 0 }}
-                  whileHover={{ opacity: 1, x: -20 }}
-                  className="text-h5 px-6 flex justify-end"
-                  onClick={() => {
-                    navigate('/user/account/purchases')
-                  }}
-                >
-                  Purchase
-                </motion.div>
-                <motion.div
-                  initial={{ opacity: 0.6, x: 0 }}
-                  whileHover={{ opacity: 1, x: -20 }}
-                  className="text-h5 px-6 flex justify-end"
-                  onClick={() => {
-                    navigate('/user/account/wishlist')
-                  }}
-                >
-                  Wishlist
-                </motion.div>
-                <motion.div
-                  initial={{ opacity: 0.6, x: 0 }}
-                  whileHover={{ opacity: 1, x: -20 }}
-                  className="text-h5 px-6 flex justify-end"
-                  onClick={handleSignOut}
-                >
-                  Sign Out
-                </motion.div>
-              </div>
+              <AnimatePresence>
+                {userHover && userUid && (
+                  <motion.div
+                    className="w-[200px] py-6 absolute z-40 bottom-0 right-0 bg-border_dark dark:bg-secondary translate-y-full cursor-pointer flex rounded-md shadow-md shadow-gray-600/40 dark:shadow-light_grey/30 flex-col gap-3"
+                    initial={{ y: '200%', opacity: 0 }}
+                    animate={{ y: '100%', opacity: 1 }}
+                    exit={{ y: '150%', opacity: 0 }}
+                  >
+                    <motion.div
+                      initial={{ opacity: 0.6, x: 0 }}
+                      whileHover={{ opacity: 1, x: -20 }}
+                      className="text-h5 px-6 flex justify-end"
+                      onClick={() => {
+                        navigate('/user/account/purchases')
+                      }}
+                    >
+                      Purchase
+                    </motion.div>
+                    <motion.div
+                      initial={{ opacity: 0.6, x: 0 }}
+                      whileHover={{ opacity: 1, x: -20 }}
+                      className="text-h5 px-6 flex justify-end"
+                      onClick={() => {
+                        navigate('/user/account/wishlist')
+                      }}
+                    >
+                      Wishlist
+                    </motion.div>
+                    <motion.div
+                      initial={{ opacity: 0.6, x: 0 }}
+                      whileHover={{ opacity: 1, x: -20 }}
+                      className="text-h5 px-6 flex justify-end"
+                      onClick={handleSignOut}
+                    >
+                      Sign Out
+                    </motion.div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </div>
           </div>
         </div>
