@@ -34,7 +34,10 @@ function PopupConfirm({
               Color="primary"
               Custom={true}
               Padding="px-8"
-              onClick={onConfirm}
+              onClick={() => {
+                onConfirm()
+                onBack()
+              }}
             >
               Confirm
             </Button>
