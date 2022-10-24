@@ -1,12 +1,15 @@
-import { collection, getDocs } from 'firebase/firestore'
+import { collection, getDocs, orderBy, query } from 'firebase/firestore'
 import { db } from '../firebase.config'
 import { PRODUCTS } from '../constant/firestore'
 
 const showListComments = async (idProduct) => {
   try {
-    const commentSnap = await getDocs(
-      collection(db, PRODUCTS, idProduct, 'comments')
+    const q = query(
+      collection(db, PRODUCTS, idProduct, 'comments'),
+      orderBy('create_date', 'asc')
     )
+
+    const commentSnap = await getDocs(q)
 
     const listComments = []
     commentSnap.forEach((doc) => {
