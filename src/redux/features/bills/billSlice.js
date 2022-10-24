@@ -35,6 +35,9 @@ const billSlice = createSlice({
     setCreateRequest: (state) => {
       state.createStatus = 'loading'
     },
+    setCreateIdle: (state) => {
+      state.createStatus = 'idle'
+    },
     setCancelRequest: (state) => {
       state.cancelStatus = 'loading'
     },
@@ -86,16 +89,16 @@ const billSlice = createSlice({
       //bill.status = 'Waiting'
     },
     addBills: (state, action) => {
-      state.status = 'success'
       state.bills = action.payload
+      state.status = 'success'
     },
     addOneBillToBills: (state, action) => {
-      state.createStatus = 'success'
       state.bills.push(action.payload)
+      state.createStatus = 'success'
     },
     addBillDetail: (state, action) => {
-      state.status = 'idle'
       state.bill = action.payload
+      state.status = 'idle'
     }
   }
 })
@@ -189,6 +192,7 @@ export const {
   setCancelRequest,
   setReorderRequest,
   setCreateErrors,
+  setCreateIdle,
   addUser,
   addContact,
   addShipTo,

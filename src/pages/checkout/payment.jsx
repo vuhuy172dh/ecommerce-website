@@ -12,7 +12,8 @@ import {
   clearBill,
   createBill,
   selectCreateErrors,
-  selectCreateStatus
+  selectCreateStatus,
+  setCreateIdle
 } from '../../redux/features/bills/billSlice'
 import { selectUserUid } from '../../redux/features/userSlice'
 import {
@@ -65,6 +66,8 @@ function CheckoutPayment() {
     if (createStatus === 'success') {
       dispatch(clearBill())
       dispatch(removeAllProductCart(userUid))
+      dispatch(setStep(1))
+      dispatch(setCreateIdle())
       navigate('/user/account/purchases')
     } else if (createStatus === 'error') {
       alert(createErrors)
