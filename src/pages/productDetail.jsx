@@ -55,7 +55,7 @@ function ProductDetailPage() {
   //fetch Data
   useEffect(() => {
     dispatch(getProductDetail(productId))
-  }, [])
+  }, [productId])
 
   //handle Add to cart
   const handleAddToCart = (number = 0) => {
