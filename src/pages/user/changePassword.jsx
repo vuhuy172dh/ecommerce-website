@@ -3,6 +3,10 @@ import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { changePasswordScheme } from '../../validations/changePassword'
 import { Helmet } from 'react-helmet-async'
+// import updatePasswordByEmail from '../../services/auth/updatePassword'
+import { toast } from 'react-toastify'
+import { updatePassword } from 'firebase/auth'
+import { auth } from '../../services/firebase.config'
 
 function ChangePassword() {
   const {
@@ -14,7 +18,9 @@ function ChangePassword() {
   })
 
   const submit = (data) => {
-    console.log(data)
+    updatePassword(auth.currentUser, data.newPassword)
+      .then(() => toast.success('change password successfully'))
+      .catch((e) => toast.error(e))
   }
   return (
     <div className="w-full px-6 pb-14 flex flex-col">
@@ -37,16 +43,6 @@ function ChangePassword() {
         onSubmit={handleSubmit(submit)}
       >
         <label>
-          <p>Current Password</p>
-          <input
-            type="password"
-            className="block w-full mt-2 px-4 py-3 rounded border border-solid border-border_dark dark:bg-light_grey/40"
-            {...register('currentPassword')}
-          />
-          <p>{errors.currentPassword?.message}</p>
-        </label>
-
-        <label>
           <p>New Password</p>
           <input
             type="password"
@@ -63,8 +59,8 @@ function ChangePassword() {
             className="block w-full mt-2 px-4 py-3 rounded border border-solid border-border_dark dark:bg-light_grey/40"
             {...register('confirmPassword')}
           />
-          <p>{errors.confirmPassword?.message}</p>
         </label>
+        <p className="text-red-600">{errors.confirmPassword?.message}</p>
 
         <Button Color="primary">Change</Button>
       </form>
