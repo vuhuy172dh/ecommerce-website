@@ -19,12 +19,12 @@ const wishlistSlice = createSlice({
       state.status = 'loading'
     },
     setWishlistList: (state, action) => {
-      state.status = 'idle'
       state.wishlistList = action.payload
+      state.status = 'success'
     },
     addWishlist: (state, action) => {
-      state.status = 'idle'
       state.wishlistList.push(action.payload)
+      state.status = 'success'
     },
     removeWishlist: (state, action) => {
       state.wishlistList = state.wishlistList.filter(
@@ -37,7 +37,7 @@ const wishlistSlice = createSlice({
     },
     setEmptyWishlist: (state) => {
       state.status = 'idle'
-      state.wishlistList.length = 0
+      state.wishlistList = []
     }
   }
 })

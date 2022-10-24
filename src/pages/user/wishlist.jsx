@@ -7,6 +7,7 @@ import {
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect } from 'react'
 import { selectUserUid } from '../../redux/features/userSlice'
+import PagePreloader from '../../components/preloader/pagePreloader'
 
 function Wishlist() {
   const dispatch = useDispatch()
@@ -23,12 +24,14 @@ function Wishlist() {
   let itemList = []
   wishlistList.map((item) => itemList.push(item.product))
 
-  return wishlistStatus === 'idle' && wishlistList.length !== 0 ? (
+  return wishlistStatus === 'success' && wishlistList.length !== 0 ? (
     <div className="w-full px-4 pb-14 h-full overflow-auto">
       <ProductItemListing products={itemList} />
     </div>
+  ) : wishlistList.length === 0 && wishlistStatus !== 'loading' ? (
+    <div>No wishlist</div>
   ) : (
-    <div>Loading...</div>
+    <PagePreloader />
   )
 }
 
