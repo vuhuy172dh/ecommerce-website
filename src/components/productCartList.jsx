@@ -41,14 +41,16 @@ const ProductCartList = ({ cartItems, handleCartFloatClick = () => {} }) => {
             animate={{ x: 0, opacity: 1 }}
             exit={{ x: 400, opacity: 0 }}
             transition={{ type: 'spring', duration: 0.5 }}
-            onClick={() => {
-              navigate(`/product/${cart.cartItem.uuid}`)
-              handleCartFloatClick()
-            }}
           >
             {/*Product Cart Item */}
             <div className="laptop:w-[45%] flex">
-              <div className="w-[134px] laptop:w-[110px] h-[166px] laptop:h-[134px] ">
+              <div
+                className="w-[134px] laptop:w-[110px] h-[166px] laptop:h-[134px] "
+                onClick={() => {
+                  navigate(`/product/${cart.cartItem.uuid}`)
+                  handleCartFloatClick()
+                }}
+              >
                 {/*Image product */}
                 <img
                   src={cart.cartItem.arrImg[0]}
