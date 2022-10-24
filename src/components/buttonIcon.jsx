@@ -12,7 +12,12 @@ import {
   faBars,
   faCartShopping,
   faCircleUser,
-  faSearch
+  faSearch,
+  faTrash,
+  faBarsProgress,
+  faTruck,
+  faCircleCheck,
+  faRectangleXmark
 } from '@fortawesome/free-solid-svg-icons'
 import {
   faFacebook,
@@ -33,12 +38,18 @@ const icons = {
   instagram: faInstagram,
   skype: faSkype,
   twitter: faTwitter,
-  pinterest: faPinterest
+  pinterest: faPinterest,
+  trash: faTrash,
+  waiting: faBarsProgress,
+  delivering: faTruck,
+  completed: faCircleCheck,
+  canceled: faRectangleXmark
 }
 
 const colors = {
   light: 'text-dark_primary hover:bg-border_grey',
-  dark: 'text-white hover:bg-primary'
+  dark: 'text-white hover:bg-primary',
+  red: 'text-red-500 hover:border hover:border-red-500 hover:rounded-full'
 }
 
 function ButtonIcon({ Icon, Color = 'light', onClick }) {

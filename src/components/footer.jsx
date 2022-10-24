@@ -4,71 +4,81 @@ import SocialMedia from './socialMedia'
 
 function Footer() {
   return (
-    <div className="w-full flex flex-col items-center bg-dark_primary">
+    <div className="w-full flex flex-col items-center bg-dark_primary dark:bg-secondary">
       {/* top footer */}
       <div className="w-full flex flex-col px-10 py-10 gap-10 text-white tablet:flex-row tablet:gap-0 tablet:items-start">
         {/* "categories" component */}
-        <div className="flex flex-col gap-5 items-center py-5 border border-primary rounded-xl tablet:border-none tablet:items-start tablet:grow">
+        <div className="flex flex-col gap-5 items-center py-5 border border-primary dark:border-light_grey/30 rounded-xl tablet:border-none tablet:items-start tablet:grow">
           <p className="text-h3 tablet:text-h5">Categories</p>
           <ul className="flex flex-col items-center gap-2 text-body-lg tablet:text-body-sm tablet:items-start">
             <li>
-              <LinkButton size="small">Crockery</LinkButton>
+              <LinkButton size="small" path="/products/crockery">
+                Crockery
+              </LinkButton>
             </li>
             <li>
-              <LinkButton size="small">Furniture</LinkButton>
+              <LinkButton size="small" path="/products/tableware">
+                Tableware
+              </LinkButton>
             </li>
             <li>
-              <LinkButton size="small">Homeware</LinkButton>
+              <LinkButton size="small" path="/products/ceramics">
+                Ceramics
+              </LinkButton>
             </li>
             <li>
-              <LinkButton size="small">Plant pots</LinkButton>
+              <LinkButton size="small" path="/products/plant-pots">
+                Plant pots
+              </LinkButton>
             </li>
             <li>
-              <LinkButton size="small">Chairs</LinkButton>
+              <LinkButton size="small" path="/products/chairs">
+                Chairs
+              </LinkButton>
             </li>
           </ul>
         </div>
 
         {/* 'menu' component */}
-        <div className="flex flex-col gap-5 items-center py-5 border border-primary rounded-xl tablet:border-none tablet:items-start tablet:grow">
+        <div className="flex flex-col gap-5 items-center py-5 border border-primary dark:border-light_grey/30 rounded-xl tablet:border-none tablet:items-start tablet:grow">
           <p className="text-h3 tablet:text-h5">Menu</p>
           <ul className="flex flex-col items-center gap-2 text-body-lg tablet:text-body-sm tablet:items-start">
             <li>
-              <LinkButton>New arrivals</LinkButton>
+              <LinkButton path="/products">New arrivals</LinkButton>
             </li>
             <li>
-              <LinkButton>Best sellers</LinkButton>
+              <LinkButton path="/products">Best sellers</LinkButton>
             </li>
             <li>
-              <LinkButton>Recently viewed</LinkButton>
+              <LinkButton path="/products">Recently viewed</LinkButton>
             </li>
             <li>
-              <LinkButton>Popular this week</LinkButton>
+              <LinkButton path="/products">Popular this week</LinkButton>
             </li>
             <li>
-              <LinkButton>All products</LinkButton>
+              <LinkButton path="/products">All products</LinkButton>
             </li>
           </ul>
         </div>
 
         {/* 'our company' conponent */}
-        <div className="flex flex-col gap-5 items-center py-5 border border-primary rounded-xl tablet:border-none tablet:items-start tablet:grow">
+        <div className="flex flex-col gap-5 items-center py-5 border border-primary dark:border-light_grey/30 rounded-xl tablet:border-none tablet:items-start tablet:grow">
           <p className="text-h3 tablet:text-h5">Our company</p>
           <ul className="flex flex-col items-center gap-2 text-body-lg tablet:text-body-sm tablet:items-start">
             <li>
-              <LinkButton>About us</LinkButton>
+              <LinkButton path="/about">About us</LinkButton>
             </li>
             <li>
-              <LinkButton>Vacancies</LinkButton>
+              <LinkButton path="/vacancies">Vacancies</LinkButton>
             </li>
             <li>
-              <LinkButton>Contact us</LinkButton>
+              <LinkButton path="/contactUs">Contact us</LinkButton>
             </li>
             <li>
-              <LinkButton>Privacy</LinkButton>
+              <LinkButton path="/privacy">Privacy</LinkButton>
             </li>
             <li>
-              <LinkButton>Returns Policy</LinkButton>
+              <LinkButton path="/returnPolicy">Returns Policy</LinkButton>
             </li>
           </ul>
         </div>
@@ -84,7 +94,7 @@ function Footer() {
       </div>
 
       {/* divider */}
-      <hr className="w-[calc(100%-4rem)] border-t border-t-primary" />
+      <hr className="w-[calc(100%-4rem)] border-t border-t-primary dark:border-t-light_grey" />
 
       {/* footer bottom */}
       <div className="w-full py-5 tablet:px-8 tablet:flex tablet:flex-row tablet:items-center">

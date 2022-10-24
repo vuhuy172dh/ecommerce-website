@@ -10,14 +10,19 @@ function PopupConfirm({
   return (
     <Popup>
       <div className="w-full laptop:w-[450px]">
-        <h3 className="text-center laptop:text-left text-body-lg font-semibold mb-5">
+        <h3 className="text-center laptop:text-left text-primary text-body-lg font-semibold mb-1">
           {Title}
         </h3>
-        <p className="text-body-md text-primary mb-5">{Content}</p>
+        <p className="text-body-md text-primary mb-2">{Content}</p>
         <div className="flex justify-center laptop:justify-end gap-3">
           {onBack ? (
             <div className="">
-              <Button Color="secondary" onClick={onBack}>
+              <Button
+                Color="ghost"
+                Custom={true}
+                Padding="px-8"
+                onClick={onBack}
+              >
                 Back
               </Button>
             </div>
@@ -25,7 +30,15 @@ function PopupConfirm({
             ''
           )}
           <div className="">
-            <Button Color="primary" onClick={onConfirm}>
+            <Button
+              Color="primary"
+              Custom={true}
+              Padding="px-8"
+              onClick={() => {
+                onConfirm()
+                onBack()
+              }}
+            >
               Confirm
             </Button>
           </div>

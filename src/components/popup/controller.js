@@ -4,10 +4,11 @@ const Controller = ({
   control,
   register,
   name,
-  rules,
   render,
   handleChange,
   type,
+  radioValue,
+  disabled = false,
   placeholder,
   className,
   options
@@ -20,7 +21,7 @@ const Controller = ({
   })
 
   return render({
-    value,
+    value: value,
     onChange: (e) =>
       props.onChange({
         target: {
@@ -28,12 +29,14 @@ const Controller = ({
           value: e.target.value
         }
       }),
+    radioValue,
     onBlur: props.onBlur,
     name: props.name,
     handleChange,
     type,
     placeholder,
     className,
+    disabled,
     options
   })
 }

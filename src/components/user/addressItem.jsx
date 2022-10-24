@@ -1,8 +1,19 @@
 import { useState } from 'react'
-
 import Button from '../button'
 import PopupConfirm from '../popup/popupConfirm'
 import PopupAddress from '../popup/popupAddress'
+import { useSelector, useDispatch } from 'react-redux'
+import {
+  selectUserAddressDefault,
+  selectUserUid,
+  setActiveUser
+} from '../../redux/features/userSlice'
+import {
+  deleteAddress,
+  getAddressDefault
+} from '../../redux/features/address/addressSlice'
+import { setAddressDefault } from '../../services/address'
+import { toast } from 'react-toastify'
 
 function AddressItem({ address }) {
   const [popupDelete, setPopupDelete] = useState(false)
@@ -11,96 +22,96 @@ function AddressItem({ address }) {
 
   const addressDefault = `${address.Ward}, ${address.District}, ${address.Province}`
 
+  //declare redux and state
+  const dispatch = useDispatch()
+  const userUid = useSelector(selectUserUid)
+  const userAddressDefault = useSelector(selectUserAddressDefault)
+
+  //handle set address default
   const handleConfirmAddressDefault = () => {
-    // hanlde set default address here
-    console.log('confirm default address')
+    const setDefaul = async () => {
+      await setAddressDefault(userUid, address.Id)
+        .then((res) => {
+          dispatch(setActiveUser({ addr_default: address.Id }))
+          dispatch(getAddressDefault(address.Id))
+          toast.success(res)
+        })
+        .catch((e) => alert(e))
+    }
+
+    setDefaul()
   }
 
+  //handle delete address
   const handleDeleteAddress = () => {
     // handle delete address
-    console.log('delete address')
+    if (userAddressDefault === address.Id) {
+      toast.error('This is address defaul, cant delete')
+    } else {
+      dispatch(deleteAddress(userUid, address.Id))
+    }
   }
 
   return (
-    <div className="my-5 mx-2 px-2 laptop:py-5 laptop:px-0 border-2 border-primary laptop:border-0 laptop:border-b-2 laptop:border-border_dark ">
-      <div className="flex justify-between items-center">
+    <div className="mx-2 px-2 flex flex-col justify-start gap-3 laptop:flex-row laptop:justify-between laptop:py-5 laptop:px-0 border-2 border-primary/30 rounded-lg laptop:rounded-none laptop:border-0 laptop:border-b-2 laptop:border-border_dark/50">
+      {/*info container*/}
+      <div className="w-full flex flex-col gap-1">
         {/* info contact*/}
-        <div>
-          <div className="laptop:flex items-center laptop:min-h-[56px]">
-            <p className="hidden laptop:block laptop:min-w-[200px] text-right mr-8 text-border_dark">
-              Full name:
-            </p>
-            <p className="mt-2 font-semibold laptop:font-normal laptop:mt-0 text-primary tracking-widest">
-              {address.Name}
-            </p>
-            {address.Default && (
-              <div className="hidden laptop:block ml-8">
-                <Button Color="primary">Default address</Button>
-              </div>
-            )}
-          </div>
-          <div className="flex items-center laptop:min-h-[56px]">
-            <p className="hidden laptop:block laptop:min-w-[200px] text-right mr-8 text-border_dark">
-              Phone number:
-            </p>
-            <p className="mt-2 font-semibold laptop:font-normal laptop:mt-0 text-primary tracking-widest">
-              {address.PhoneNumber}
-            </p>
-          </div>
+        <div className="flex w-full gap-4">
+          <p className="mt-2 font-semibold laptop:mt-0 text-primary dark:text-light_grey">
+            {address.Name}
+          </p>
+
+          <p className="mt-2 font-normal laptop:mt-0 text-primary/70 dark:text-border_grey/70">
+            {address.PhoneNumber}
+          </p>
         </div>
-        {/* control button laptop*/}
-        <div className="hidden laptop:block">
-          <Button onClick={() => setPopupDelete(true)}>Delete</Button>
-          <Button onClick={() => setPopupUpdate(true)}>Edit</Button>
+
+        {/* address */}
+        <div className="flex w-full flex-col gap-1">
+          <p className="text-primary dark:text-light_grey text-h6">
+            {address.Address}
+          </p>
+          <p className="text-primary dark:text-light_grey text-h6">
+            {addressDefault}
+          </p>
         </div>
+        {address.Default && (
+          <div className="px-2 w-fit text-red-600 border border-red-600">
+            default
+          </div>
+        )}
       </div>
-      {/* info address */}
-      <div className="flex items-center laptop:min-h-[56px]">
-        <p className="hidden laptop:block min-w-[200px] text-right mr-8 text-border_dark">
-          Address:
-        </p>
-        <p className="mt-2 laptop:mt-0 laptop:max-w-[50%] text-primary tracking-widest">
-          {addressDefault}
-        </p>
-      </div>
-      <div className="flex items-center">
-        <p className="hidden laptop:block min-w-[200px] text-right mr-8 text-border_dark">
-          Detail address:
-        </p>
-        <p className="my-2 laptop:my-0 laptop:max-w-[50%] text-primary tracking-widest">
-          {address.Address}
-        </p>
-        <div className="hidden laptop:block ml-auto">
+
+      {/* control button*/}
+      <div className="flex flex-col items-center">
+        <div className="flex gap-2 justify-center">
+          <button
+            className="px-6 border border-primary/70 dark:border-light_grey/70 rounded-lg text-primary/60 dark:text-light_grey/60 hover:text-primary dark:hover:text-light_grey"
+            onClick={() => setPopupUpdate(true)}
+          >
+            Update
+          </button>
+          <button
+            className="px-6 border border-red-500 rounded-lg text-red-500"
+            onClick={() => setPopupDelete(true)}
+          >
+            Delete
+          </button>
+        </div>
+        <div className="my-2">
           <Button
             Color="primary"
+            Custom={true}
+            Padding="px-6 py-1"
             State={address.Default ? 'disable' : 'default'}
             onClick={
               address.Default ? () => {} : () => setPopupDefaultAddress(true)
             }
           >
-            Choose as default
+            Set default
           </Button>
         </div>
-      </div>
-      {/* control button mobile*/}
-      <div className="flex gap-2 laptop:hidden">
-        <Button Color="secondary" onClick={() => setPopupDelete(true)}>
-          Xóa
-        </Button>
-        <Button Color="secondary" onClick={() => setPopupUpdate(true)}>
-          Sửa
-        </Button>
-      </div>
-      <div className="flex my-2 laptop:hidden">
-        <Button
-          Color="primary"
-          State={address.Default ? 'disable' : 'default'}
-          onClick={
-            address.Default ? () => {} : () => setPopupDefaultAddress(true)
-          }
-        >
-          Chọn làm mặc định
-        </Button>
       </div>
 
       {/* Popup confirm delete */}

@@ -1,5 +1,6 @@
 module.exports = {
   content: ['./src/**/*.{js,jsx}'],
+  darkMode: 'class',
   theme: {
     fontSize: {
       h1: '36px',
@@ -11,7 +12,7 @@ module.exports = {
     },
     screens: {
       mobile: '320px',
-      tablet: '786px',
+      tablet: '768px',
       laptop: '1024px'
     },
     fontFamily: {
@@ -22,6 +23,8 @@ module.exports = {
       colors: {
         primary: '#4e4d93',
         dark_primary: '#2a254b',
+        secondary: '#424242',
+        dark_secondary: '#1b1b1b',
         light_grey: '#f9f9f9',
         border_grey: '#ebe8f4',
         border_dark: '#cac6da'
@@ -29,7 +32,7 @@ module.exports = {
       spacing: {
         1: '1px'
       },
-      keyframes: {  
+      keyframes: {
         growth: {
           from: {
             transform: 'scale(0.7)'
@@ -57,5 +60,5 @@ module.exports = {
       }
     }
   },
-  plugins: []
+  plugins: [require('@tailwindcss/line-clamp')]
 }

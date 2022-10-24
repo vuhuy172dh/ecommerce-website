@@ -1,26 +1,48 @@
+import { useDarkMode } from '../hooks/useDarkMode'
 import { useNavMode } from '../hooks/useNavMode'
 import EmailField from './emailField'
 import LinkButton from './linkButton'
 import SocialMedia from './socialMedia'
+import { useDispatch, useSelector } from 'react-redux'
+import {
+  selectCategoryStatus,
+  selectCategories,
+  getCategories
+} from '../redux/features/category/categorySlice'
+import { useEffect } from 'react'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faToggleOff, faToggleOn } from '@fortawesome/free-solid-svg-icons'
 
 function NavDrawer() {
   const { mode, handleMode } = useNavMode()
+  const { mode: darkMode, handleDarkMode } = useDarkMode()
+
+  //declare react-redux and state
+  const dispatch = useDispatch()
+  const categories = useSelector(selectCategories)
+  const status = useSelector(selectCategoryStatus)
+
+  useEffect(() => {
+    if (categories.length !== 0) {
+      dispatch(getCategories())
+    }
+  }, [])
 
   return (
     <div
-      className={`w-full h-screen tablet:hidden fixed bottom-0 z-20 ${
-        mode ? 'visible z-10' : 'invisible -z-10'
+      className={`w-full h-screen tablet:hidden fixed bottom-0 ${
+        mode ? 'visible z-50 ' : 'invisible -z-10'
       } transition-all duration-300`}
     >
       {/* navdrawer's backdrop */}
       <div
-        className="w-full h-screen fixed top-0 left-0 opacity-100 backdrop-blur-sm z-10 cursor-pointer"
+        className="w-full h-screen fixed top-0 left-0 bg-white/50 dark:bg-secondary/50 backdrop-blur-sm z-10 cursor-pointer"
         onClick={handleMode}
       ></div>
 
       {/* navdrawer's content */}
       <div
-        className={`w-full h-[90vh] fixed bottom-0 left-0 z-20 bg-white border-t rounded-t-[2rem] transition-all duration-300 ${
+        className={`w-full h-[90vh] fixed bottom-0 left-0 z-20 bg-white dark:bg-secondary border-dark_secondary border-t rounded-t-[2rem] transition-all duration-300 ${
           mode ? 'translate-y-0 opacity-100' : 'translate-y-full opacity-0'
         } overflow-auto`}
       >
@@ -29,37 +51,43 @@ function NavDrawer() {
           {/* Menu title */}
           <p className="text-center text-h3">CATEGORIES</p>
           {/* Divider */}
-          <hr className="border-t border-t-border_dark" />
+          <hr className="border-t border-t-border_dark dark:border-t-border_dark/40" />
 
           {/* '' */}
-          <div className="mt-4 flex columns-2 gap-28">
-            <ul className="flex-1 flex flex-col gap-4">
+          <div className="mt-3 w-full">
+            <ul className="columns-2">
               <li>
-                <LinkButton size="small">All products</LinkButton>
+                <div className="w-fit">
+                  <LinkButton
+                    size="small"
+                    path="/products"
+                    onClick={handleMode}
+                    color={darkMode === 'light' ? 'dark' : 'light'}
+                  >
+                    All products
+                  </LinkButton>
+                </div>
               </li>
-              <li>
-                <LinkButton size="small">Plant pots</LinkButton>
-              </li>
-              <li>
-                <LinkButton size="small">Ceramics</LinkButton>
-              </li>
-              <li>
-                <LinkButton size="small">Tables</LinkButton>
-              </li>
-            </ul>
-            <ul className="flex-1 flex flex-col gap-4">
-              <li>
-                <LinkButton size="small">Chairs</LinkButton>
-              </li>
-              <li>
-                <LinkButton size="small">Crockery</LinkButton>
-              </li>
-              <li>
-                <LinkButton size="small">Tableware</LinkButton>
-              </li>
-              <li>
-                <LinkButton size="small">Cutlery</LinkButton>
-              </li>
+              {status === 'idle' ? (
+                categories.map((category) => (
+                  <li key={category.uuid}>
+                    <div className="w-fit my-5">
+                      <LinkButton
+                        size="small"
+                        path={`/products/${category.name
+                          .replace(' ', '-')
+                          .toLowerCase()}`}
+                        onClick={handleMode}
+                        color={darkMode === 'light' ? 'dark' : 'light'}
+                      >
+                        {category.name}
+                      </LinkButton>
+                    </div>
+                  </li>
+                ))
+              ) : (
+                <div>Loading</div>
+              )}
             </ul>
           </div>
         </div>
@@ -72,21 +100,55 @@ function NavDrawer() {
           <hr className="border-t border-t-border_dark" />
 
           {/* Menu list */}
-          <div className="mt-4 flex columns-2 gap-28">
-            <ul className="flex-1 flex flex-col gap-4">
+          <div className="mt-4">
+            <ul className="columns-2">
               <li>
-                <LinkButton size="small">New Arrivals</LinkButton>
+                <div className="w-fit">
+                  <LinkButton
+                    size="small"
+                    path="/products"
+                    onClick={handleMode}
+                    color={darkMode === 'light' ? 'dark' : 'light'}
+                  >
+                    New Arrivals
+                  </LinkButton>
+                </div>
               </li>
-              <li>
-                <LinkButton size="small">Best Sellers</LinkButton>
+              <li className="my-2">
+                <div className="w-fit my-5">
+                  <LinkButton
+                    size="small"
+                    path="/products"
+                    onClick={handleMode}
+                    color={darkMode === 'light' ? 'dark' : 'light'}
+                  >
+                    Best Sellers
+                  </LinkButton>
+                </div>
               </li>
-            </ul>
-            <ul className="flex-1 flex flex-col gap-4">
-              <li>
-                <LinkButton size="small">Recently viewed</LinkButton>
+              <li className="my-2">
+                <div className="w-fit my-5">
+                  <LinkButton
+                    size="small"
+                    path="/products"
+                    onClick={handleMode}
+                    color={darkMode === 'light' ? 'dark' : 'light'}
+                  >
+                    Recently viewed
+                  </LinkButton>
+                </div>
               </li>
-              <li>
-                <LinkButton size="small">Popular this week</LinkButton>
+              <li className="my-2">
+                <div className="w-fit my-5">
+                  <LinkButton
+                    size="small"
+                    onClick={handleMode}
+                    path="/products"
+                    color={darkMode === 'light' ? 'dark' : 'light'}
+                  >
+                    Popular this week
+                  </LinkButton>
+                </div>
               </li>
             </ul>
           </div>
@@ -100,24 +162,67 @@ function NavDrawer() {
           <hr className="border-t border-t-border_dark" />
 
           {/* Menu list */}
-          <div className="mt-4 flex columns-2 gap-28">
-            <ul className="flex-1 flex flex-col gap-4">
+          <div className="mt-4">
+            <ul className="columns-2">
               <li>
-                <LinkButton size="small">About us</LinkButton>
+                <div className="w-fit">
+                  <LinkButton
+                    size="small"
+                    path="/about"
+                    onClick={handleMode}
+                    color={darkMode === 'light' ? 'dark' : 'light'}
+                  >
+                    About us
+                  </LinkButton>
+                </div>
               </li>
               <li>
-                <LinkButton size="small">Vacancies</LinkButton>
+                <div className="w-fit my-5">
+                  <LinkButton
+                    path="/vacancies"
+                    onClick={handleMode}
+                    size="small"
+                    color={darkMode === 'light' ? 'dark' : 'light'}
+                  >
+                    Vacancies
+                  </LinkButton>
+                </div>
               </li>
-            </ul>
-            <ul className="flex-1 flex flex-col gap-4">
               <li>
-                <LinkButton size="small">Contact Us</LinkButton>
+                <div className="w-fit my-5">
+                  <LinkButton
+                    size="small"
+                    onClick={handleMode}
+                    color={darkMode === 'light' ? 'dark' : 'light'}
+                    path="/contactUs"
+                  >
+                    Contact Us
+                  </LinkButton>
+                </div>
               </li>
               <li>
-                <LinkButton size="small">Privacy</LinkButton>
+                <div className="w-fit my-5">
+                  <LinkButton
+                    size="small"
+                    onClick={handleMode}
+                    color={darkMode === 'light' ? 'dark' : 'light'}
+                    path="/privacy"
+                  >
+                    Privacy
+                  </LinkButton>
+                </div>
               </li>
               <li>
-                <LinkButton size="small">Returns Policy</LinkButton>
+                <div className="w-fit my-5">
+                  <LinkButton
+                    size="small"
+                    onClick={handleMode}
+                    color={darkMode === 'light' ? 'dark' : 'light'}
+                    path="/returnPolicy"
+                  >
+                    Returns Policy
+                  </LinkButton>
+                </div>
               </li>
             </ul>
           </div>
@@ -129,11 +234,24 @@ function NavDrawer() {
           <p className="text-h4 font-[500]">Join our mailing list</p>
 
           {/*footer emal field*/}
-          <EmailField Color="light" />
+          <EmailField Color={darkMode} />
 
           {/*footer social media*/}
-          <div className="block">
-            <SocialMedia />
+          <div className="flex items-center">
+            <SocialMedia Color={darkMode} />
+            <div onClick={handleDarkMode}>
+              {darkMode === 'light' ? (
+                <FontAwesomeIcon
+                  icon={faToggleOn}
+                  className="text-h2 cursor-pointer"
+                />
+              ) : (
+                <FontAwesomeIcon
+                  icon={faToggleOff}
+                  className="text-h1 cursor-pointer"
+                />
+              )}
+            </div>
           </div>
         </div>
       </div>

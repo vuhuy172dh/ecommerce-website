@@ -10,7 +10,7 @@ const getListCategories = async () => {
     listCategories.push(doc.data())
     listCategories[listCategories.length - 1].uuid = doc.id
   })
-  return listCategories
+  return Promise.resolve(listCategories)
 }
 
 export default getListCategories
