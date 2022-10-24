@@ -10,6 +10,7 @@ import {
 } from '../../redux/features/bills/billSlice'
 import { useDarkMode } from '../../hooks/useDarkMode'
 import ButtonIcon from '../../components/buttonIcon'
+import PagePreloader from '../../components/preloader/pagePreloader'
 
 function Purchase() {
   const [click, setClick] = useState('Waiting')
@@ -65,12 +66,14 @@ function Purchase() {
       </nav>
 
       {/*Puchase container*/}
-      {billStatus === 'idle' && bills.length !== 0 ? (
+      {billStatus !== 'loading' && bills.length !== 0 ? (
         <section className="w-full">
           <PurchaseItemList purchases={bills} />
         </section>
+      ) : billStatus !== 'loading' && bills.length === 0 ? (
+        <div>No bills</div>
       ) : (
-        <div>...loading</div>
+        <PagePreloader />
       )}
     </div>
   )
