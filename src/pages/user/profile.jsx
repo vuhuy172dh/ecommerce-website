@@ -24,6 +24,7 @@ import {
 import { updateOneUser } from '../../services/user'
 import RadioInput from '../../components/popup/radio'
 import createUserImg from '../../services/user/create'
+import { toast } from 'react-toastify'
 
 function Profile() {
   //create form hook
@@ -90,8 +91,8 @@ function Profile() {
       avatar: userAvatar,
       addr_default: userAddressDefault
     })
-      .then((res) => alert(res))
-      .catch((e) => console.log(e))
+      .then((res) => toast.success(res))
+      .catch((e) => toast.error(e))
   }
 
   const fileSelectedHandler = () => {
@@ -115,8 +116,8 @@ function Profile() {
         avatar: userAvatar,
         addr_default: userAddressDefault
       })
-        .then((res) => alert('update image successfully'))
-        .catch((e) => alert(e))
+        .then((res) => toast.success('Update image successfully'))
+        .catch((e) => toast.error(e))
     }
     input.type = 'file'
 
@@ -180,6 +181,7 @@ function Profile() {
                 type: 'email',
                 placeholder: 'email',
                 className: 'py-2 px-2 dark:bg-light_grey/40 rounded-md',
+                disabled: true,
                 handleChange: () => {},
                 render: (props) => <Input {...props} />
               }}

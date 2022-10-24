@@ -13,6 +13,7 @@ import {
   getAddressDefault
 } from '../../redux/features/address/addressSlice'
 import { setAddressDefault } from '../../services/address'
+import { toast } from 'react-toastify'
 
 function AddressItem({ address }) {
   const [popupDelete, setPopupDelete] = useState(false)
@@ -33,7 +34,7 @@ function AddressItem({ address }) {
         .then((res) => {
           dispatch(setActiveUser({ addr_default: address.Id }))
           dispatch(getAddressDefault(address.Id))
-          alert(res)
+          toast.success(res)
         })
         .catch((e) => alert(e))
     }
@@ -45,7 +46,7 @@ function AddressItem({ address }) {
   const handleDeleteAddress = () => {
     // handle delete address
     if (userAddressDefault === address.Id) {
-      alert('this is address defaul, cant delete')
+      toast.error('This is address defaul, cant delete')
     } else {
       dispatch(deleteAddress(userUid, address.Id))
     }

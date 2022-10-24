@@ -28,7 +28,6 @@ const userSlice = createSlice({
       state.error = null
     },
     setActiveUser: (state, action) => {
-      state.status = 'idle'
       if (action.payload.fullname) state.fullname = action.payload.fullname
       if (action.payload.phone) state.phone = action.payload.phone
       if (action.payload.gender) state.gender = action.payload.gender
@@ -38,6 +37,7 @@ const userSlice = createSlice({
         state.addr_default = action.payload.addr_default
       if (action.payload.birth) state.birth = action.payload.birth
       if (action.payload.avatar) state.avatar = action.payload.avatar
+      state.status = 'idle'
       state.error = null
     },
     setLogOutUser: (state) => {

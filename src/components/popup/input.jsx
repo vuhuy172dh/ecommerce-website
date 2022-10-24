@@ -16,6 +16,7 @@ const Input = (props) => {
         props.onChange && props.onChange(e)
       }}
       value={value}
+      disabled={props.disabled}
       className={props.className}
       type={props.type}
       placeholder={props.placeholder}

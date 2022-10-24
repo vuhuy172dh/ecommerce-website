@@ -5,6 +5,7 @@ import {
   deleteOneAddress,
   updateOneAddress
 } from '../../../services/address'
+import { toast } from 'react-toastify'
 
 const initialState = {
   status: 'idle',
@@ -76,7 +77,7 @@ export const deleteAddress = (userUid, addressUid) => (dispatch) => {
     await deleteOneAddress(userUid, addressUid)
       .then((res) => {
         dispatch(delAddress(addressUid))
-        alert(res)
+        toast.success(res)
       })
       .catch((e) => alert(e))
   }
@@ -101,7 +102,7 @@ export const addNewAddress = (userUid, newAddress) => (dispatch) => {
           uid: res
         }
         dispatch(setAddNewAddress(address))
-        alert('add new address successfully')
+        toast.success('add new address successfully')
       })
       .catch((e) => alert(e))
   }
@@ -127,7 +128,7 @@ export const updateAddr = (userUid, addressUid, updateAddr) => (dispatch) => {
           uid: addressUid
         }
         dispatch(updateAddress({ uid: addressUid, address: address }))
-        alert(res)
+        toast.success(res)
       })
       .catch((e) => alert(e))
   }

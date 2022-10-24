@@ -9,7 +9,7 @@ import {
 
 function Counter({
   maxNumber = Infinity,
-  currentNumber = 0,
+  currentNumber = 1,
   userUid = null,
   cart = null
 }) {
@@ -28,7 +28,7 @@ function Counter({
   }
 
   const decreaseCount = () => {
-    if (count > 0) {
+    if (count > 1) {
       setCount((count) => count - 1)
       if (userUid) {
         dispatch(updateUserCartFirebase(userUid, cart, count - 1))

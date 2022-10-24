@@ -18,9 +18,7 @@ function PurchaseDetail() {
   const billDetailStatus = useSelector(selectStatus)
   const dispatch = useDispatch()
 
-  const subTotal = billDetail?.products
-    ?.reduce((a, b) => a + Number(b.cartItem.price) * b.number, 0)
-    .toFixed(2)
+  const total = billDetail?.total + billDetail?.shipping_method.price
 
   useEffect(() => {
     dispatch(getBillDetail(purchaseId))
@@ -91,9 +89,9 @@ function PurchaseDetail() {
               <p className="text-h2">Total</p>
             </div>
             <div className="flex flex-col items-center">
-              <p>{subTotal}$</p>
+              <p>{billDetail.total}$</p>
               <p>{billDetail.shipping_method.price}$</p>
-              <p className="text-h2">{billDetail.total}$</p>
+              <p className="text-h2">{total}$</p>
             </div>
           </div>
 

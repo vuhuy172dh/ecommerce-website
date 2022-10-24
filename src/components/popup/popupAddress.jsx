@@ -186,10 +186,7 @@ function PopupAddress({ type = 'create', address, onBack = () => {} }) {
     if (type === 'update') {
       dispatch(updateAddr(userUid, address.Id, newAddress))
     }
-
-    console.log('data save to DB: ')
-    console.log(data)
-    console.log(newAddress)
+    onBack()
   }
 
   return (

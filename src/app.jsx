@@ -38,6 +38,8 @@ import { selectUserUid, getInformation } from './redux/features/userSlice'
 import { getUserCart } from './redux/features/carts/cartSlice'
 import { getWishlist } from './redux/features/wishlist/wishlistSlice'
 import { useEffect } from 'react'
+import { ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 const SidebarLayout = () => (
   <div className="laptop:flex">
@@ -166,6 +168,7 @@ function App() {
             <Footer />
           </footer>
         )}
+      <ToastContainer autoClose={1000} pauseOnHover={false} />
     </div>
   )
 }

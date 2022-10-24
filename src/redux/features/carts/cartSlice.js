@@ -5,9 +5,11 @@ import {
   updateFieldNumberCartItem,
   addProductToCart
 } from '../../../services/cart'
+import { toast } from 'react-toastify'
 
 const initialState = {
   cartStatus: 'idle',
+  addToCartStatus: 'idle',
   cartItems: localStorage.getItem('cartItems')
     ? JSON.parse(localStorage.getItem('cartItems'))
     : [],
@@ -21,6 +23,9 @@ const cartSlice = createSlice({
   reducers: {
     setRequest: (state) => {
       state.cartStatus = 'loading'
+    },
+    setAddToCartRequest: (state) => {
+      state.addToCartStatus = 'loading'
     },
     setIdle: (state) => {
       state.cartStatus = 'idle'
@@ -43,9 +48,10 @@ const cartSlice = createSlice({
         state.cartItems.push(action.payload)
       }
 
-      state.cartStatus = 'idle'
       //save to local storage
       localStorage.setItem('cartItems', JSON.stringify(state.cartItems))
+      state.addToCartStatus = 'success'
+      toast.success('Add to cart successfully')
     },
     addToCartForMerge: (state, action) => {
       state.cartStatus = 'idle'
@@ -68,21 +74,22 @@ const cartSlice = createSlice({
         (item) => item.cartItem.uuid !== action.payload
       )
       state.cartItems = newCartItems
-      state.cartStatus = 'idle'
       localStorage.setItem('cartItems', JSON.stringify(state.cartItems))
+      state.addToCartStatus = 'success'
+      toast.success('Remove from cart successfully')
     },
     updateNumber: (state, action) => {
       const existItem = state.cartItems.find(
         (i) => i.cartItem.uuid === action.payload.cartItem.cartItem.uuid
       )
       existItem.number = action.payload.number
-      state.cartStatus = 'idle'
+      state.cartStatus = 'success'
       localStorage.setItem('cartItems', JSON.stringify(state.cartItems))
     },
     setEmptyCart: (state) => {
-      state.cartStatus = 'idle'
       state.cartItems.length = 0
       localStorage.removeItem('cartItems')
+      state.cartStatus = 'success'
     }
   }
 })
@@ -123,7 +130,7 @@ export const getUserCart = (userUid) => (dispatch, getState) => {
 export const addItemToUserCart =
   (userUid, product, number) => (dispatch, getState) => {
     const add = async () => {
-      dispatch(setRequest())
+      dispatch(setAddToCartRequest())
       //check exist item
       const existItem = selectCartItems(getState()).find(
         (i) => i.cartItem.uuid === product.uuid
@@ -132,7 +139,6 @@ export const addItemToUserCart =
       if (existItem) {
         //update number of user cart
         const newNumber = existItem.number + number
-        console.log(existItem)
         await updateFieldNumberCartItem(userUid, existItem.uid, newNumber)
           .then((res) => {
             dispatch(updateNumber({ cartItem: existItem, number: newNumber }))
@@ -155,7 +161,7 @@ export const removeFromUserFirebase = (userUid, cartItem) => (dispatch) => {
   const remove = async () => {
     //remove from firebase
     await deleteOneProductFromCart(userUid, cartItem.uid)
-      .then((res) => alert(res))
+      .then((res) => console.log(res))
       .catch((e) => alert(e))
 
     //remove from local
@@ -197,6 +203,7 @@ export const updateUserCartFirebase =
 //export action
 export const {
   setRequest,
+  setAddToCartRequest,
   setIdle,
   addToCart,
   addToCartForMerge,
@@ -210,5 +217,6 @@ export const {
 export const selectCartItems = (state) => state.cart.cartItems
 export const selectCartStatus = (state) => state.cart.cartStatus
 export const selectCartErrors = (state) => state.cart.cartError
+export const selectAddToCartStatus = (state) => state.cart.addToCartStatus
 
 export default cartSlice.reducer

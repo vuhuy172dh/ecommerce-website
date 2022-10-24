@@ -43,6 +43,7 @@ function CommentDrawer({ commentOpen, handleOpen, productUid }) {
     }
 
     dispatch(createComment(productUid, commentData))
+    setValue('comment', '')
   }
 
   return (
