@@ -1,11 +1,9 @@
 import {
   collection,
-  getDoc,
   getDocs,
-  doc,
   query,
-  limit,
-  startAfter,
+  //limit,
+  //startAfter,
   where,
   orderBy
 } from 'firebase/firestore'
@@ -18,8 +16,8 @@ const searchProducts = async (searchTerm) => {
       collection(db, PRODUCTS),
       orderBy('name'),
       where('name', '>=', searchTerm.toUpperCase()),
-      where('name', '<=', searchTerm.toUpperCase() + '\uf8ff'),
-      limit(4)
+      where('name', '<=', searchTerm.toUpperCase() + '\uf8ff')
+      //limit(4)
     )
     const querySnapshot = await getDocs(start)
 

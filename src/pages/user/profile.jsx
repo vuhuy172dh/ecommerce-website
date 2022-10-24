@@ -6,7 +6,7 @@ import Input from '../../components/popup/input'
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import UserInformationSchema from '../../validations/userInformation'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import {
   getInformation,
@@ -25,6 +25,8 @@ import { updateOneUser } from '../../services/user'
 import RadioInput from '../../components/popup/radio'
 import createUserImg from '../../services/user/create'
 import { toast } from 'react-toastify'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faUserPen } from '@fortawesome/free-solid-svg-icons'
 
 function Profile() {
   //create form hook
@@ -54,6 +56,7 @@ function Profile() {
   const userBirth = useSelector(selectUserBirth)
   const userAddressDefault = useSelector(selectUserAddressDefault)
   const userAvatar = useSelector(selectUserAvatar)
+  const [hover, setHover] = useState(false)
 
   useEffect(() => {
     if (userUid) {
@@ -284,15 +287,26 @@ function Profile() {
 
         {/*Change Avatar*/}
         <div className="flex-col flex-1 hidden laptop:flex items-center justify-center gap-6">
-          <div className="w-32 h-32 rounded-full overflow-hidden">
+          <div
+            className="w-64 h-64 border-[4px] dark:border-border_grey/60 border-secondary/60 rounded-full overflow-hidden cursor-pointer relative"
+            onClick={() => fileSelectedHandler()}
+            onMouseEnter={() => setHover(true)}
+            onMouseLeave={() => setHover(false)}
+          >
             <img
               src={userAvatar || CeilingLamp}
               alt="avatar"
               className="w-full h-full object-cover"
             />
+
+            {hover && (
+              <div className="w-full h-full flex justify-center items-center bg-light_grey/40 dark:bg-secondary/40 absolute top-0 left-0">
+                <FontAwesomeIcon icon={faUserPen} />
+              </div>
+            )}
           </div>
 
-          <div className="w-fit h-fit">
+          {/* <div className="w-fit h-fit">
             <Button
               onClick={() => fileSelectedHandler()}
               Color="primary"
@@ -301,7 +315,7 @@ function Profile() {
             >
               Browse
             </Button>
-          </div>
+          </div> */}
         </div>
       </div>
     </div>
