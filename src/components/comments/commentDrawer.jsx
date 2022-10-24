@@ -15,6 +15,7 @@ import {
 import Controller from '../../components/popup/controller'
 import { useForm } from 'react-hook-form'
 import Textarea from '../popup/textarea'
+import { toast } from 'react-toastify'
 
 function CommentDrawer({ commentOpen, handleOpen, productUid }) {
   const dispatch = useDispatch()
@@ -42,29 +43,39 @@ function CommentDrawer({ commentOpen, handleOpen, productUid }) {
       }
     }
 
-    dispatch(createComment(productUid, commentData))
-    setValue('comment', '')
+    if (userUid === null) {
+      toast.error('please signin before comment')
+    } else {
+      dispatch(createComment(productUid, commentData))
+      setValue('comment', '')
+    }
   }
 
   return (
     <div
       className={`fixed top-0 left-0 bottom-0 right-0 flex-col ${
         commentOpen ? 'z-[300] visible' : 'invisible z-[-300]'
-      }`}
+      } transition-all duration-100`}
     >
       {/*backdrop*/}
       <div
-        className="w-full h-screen fixed top-0 left-0 bg-white/20 dark:bg-black/20 backdrop-blur-sm z-20"
+        className="w-full h-screen fixed top-0 left-0 bg-white/20 dark:bg-black/20 backdrop-blur-sm z-20 transition-all duration-100 cursor-pointer"
         onClick={() => handleOpen(() => setValue('comment', ''))}
       ></div>
 
       {/*container*/}
-      <div className="w-full h-[90vh] pt-4 fixed bottom-0 right-0 bg-border_grey border-t border-t-primary/30 rounded-t-3xl z-50 laptop:w-1/3 laptop:h-screen laptop:rounded-t-none laptop:rounded-l-3xl laptop:border-l laptop:border-l-primary/30">
+      <div
+        className={`w-full h-[90vh] pt-4 fixed bottom-0 right-0 bg-border_grey dark:bg-secondary border-t border-t-primary/30 dark:border-t-light_grey/30 rounded-t-3xl z-50 laptop:w-1/3 laptop:h-screen laptop:rounded-t-none laptop:rounded-l-3xl laptop:border-l laptop:border-l-primary/30 dark:laptop:border-l-light_grey/30 ${
+          commentOpen
+            ? 'laptop:translate-x-0 laptop:translate-y-0 opacity-1 translate-y-0'
+            : 'laptop:translate-x-full laptop:translate-y-0 opacity-100 translate-y-full'
+        } transition-all duration-100`}
+      >
         {/*comment title*/}
         <div className="w-full h-full flex flex-col relative px-3">
           <p className="text-h4">Comment</p>
 
-          <hr className="w-full my-2 border-t border-t-primary/40" />
+          <hr className="w-full my-2 border-t border-t-primary/40 dark:border-t-light_grey/40" />
 
           {/*others comment*/}
           <div className="w-full flex pb-28 no-scrollbar flex-col gap-2 overflow-auto relative">
@@ -98,7 +109,7 @@ function CommentDrawer({ commentOpen, handleOpen, productUid }) {
 
         <div className="w-full h-20 absolute bottom-0 left-0">
           <form
-            className="w-full h-full px-5 flex gap-2 items-center justify-center bg-border_dark rounded-t-2xl border-t border-t-primary/30"
+            className="w-full h-full px-5 flex gap-2 items-center justify-center bg-border_dark dark:bg-dark_secondary rounded-t-2xl border-t border-t-primary/30 dark:border-t-light_grey/30"
             onSubmit={handleSubmit(handleSend)}
           >
             <Controller
@@ -109,17 +120,11 @@ function CommentDrawer({ commentOpen, handleOpen, productUid }) {
                 type: 'text',
                 placeholder: 'Your comment....',
                 className:
-                  'w-full px-5 h-10 no-scrollbar rounded-2xl outline-none resize-none',
+                  'w-full px-5 h-10 no-scrollbar dark:bg-secondary rounded-2xl outline-none resize-none',
                 handleChange: () => {},
                 render: (props) => <Textarea {...props} />
               }}
             />
-            {/*<textarea
-              type="text"
-              name="comment"
-              id="comment"
-              className="w-full px-5 h-10 no-scrollbar rounded-2xl outline-none resize-none"
-            />*/}
             <button type="submit" className="cursor-pointer">
               send
             </button>

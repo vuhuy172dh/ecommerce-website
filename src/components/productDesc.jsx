@@ -107,7 +107,10 @@ function ProductDesc({
           {/*remain on stock*/}
           <div>{quantity} items</div>
           {/**/}
-          <div className="cursor-pointer" onClick={handleComment}>
+          <div
+            className="cursor-pointer w-fit px-2 bg-primary rounded-full text-light_grey"
+            onClick={handleComment}
+          >
             Comment
           </div>
         </div>
@@ -115,7 +118,7 @@ function ProductDesc({
       {/* Group btn */}
       <div className="gap-4 flex flex-col laptop:items-center mt-8 mb-8 laptop:mt-12 laptop:w-96 laptop:flex-row-reverse">
         <Button
-          Color="white"
+          Color={saved ? 'red' : 'white'}
           onClick={saved ? removeFromWishlist : handleAddToWishlist}
         >
           {saved ? 'Saved to favorites' : 'Save to favorites'}
