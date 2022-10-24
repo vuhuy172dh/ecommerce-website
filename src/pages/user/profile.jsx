@@ -181,6 +181,7 @@ function Profile() {
                 type: 'email',
                 placeholder: 'email',
                 className: 'py-2 px-2 dark:bg-light_grey/40 rounded-md',
+                disabled: true,
                 handleChange: () => {},
                 render: (props) => <Input {...props} />
               }}

@@ -8,6 +8,7 @@ const Controller = ({
   handleChange,
   type,
   radioValue,
+  disabled = false,
   placeholder,
   className,
   options
@@ -35,6 +36,7 @@ const Controller = ({
     type,
     placeholder,
     className,
+    disabled,
     options
   })
 }
