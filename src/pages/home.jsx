@@ -17,6 +17,8 @@ import { Helmet } from 'react-helmet-async'
 import InfoItemList from '../components/infoItemList'
 import { useDarkMode } from '../hooks/useDarkMode'
 import PagePreloader from '../components/preloader/pagePreloader'
+import ReactDOM from 'react-dom'
+import MessengerCustomerChat from 'react-messenger-customer-chat'
 
 function HomePage() {
   const { mode: darkMode } = useDarkMode()
@@ -145,6 +147,7 @@ function HomePage() {
       </div>
 
       {cartStatus === 'loading' && <PagePreloader />}
+      <MessengerCustomerChat pageId="100087373081474" appId="479082790856803" />
     </div>
   )
 }
