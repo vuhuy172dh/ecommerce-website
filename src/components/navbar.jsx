@@ -106,7 +106,7 @@ function Navbar() {
 
             {/*User icon button */}
             <div
-              className="mobile:hidden tablet:block relative"
+              className="block relative"
               onMouseEnter={() => setUserHover(true)}
               onMouseLeave={() => setUserHover(false)}
             >
