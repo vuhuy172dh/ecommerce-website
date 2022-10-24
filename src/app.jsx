@@ -34,8 +34,9 @@ import SearchDrawer from './components/search/searchDrawer'
 import { auth } from './services/firebase.config'
 import PurchaseDetail from './pages/user/purchaseDetail'
 import { useSelector, useDispatch } from 'react-redux'
-import { selectUserUid } from './redux/features/userSlice'
-import { setActiveUser } from './redux/features/userSlice'
+import { selectUserUid, getInformation } from './redux/features/userSlice'
+import { getUserCart } from './redux/features/carts/cartSlice'
+import { getWishlist } from './redux/features/wishlist/wishlistSlice'
 import { useEffect } from 'react'
 
 const SidebarLayout = () => (
@@ -48,24 +49,21 @@ const SidebarLayout = () => (
 function App() {
   const dispatch = useDispatch()
   const userUid = useSelector(selectUserUid)
-  //const userUid = auth.currentUser?.uid
   const path = useLocation().pathname
+
   useEffect(() => {
-    if (userUid === null) {
-      auth.onAuthStateChanged((user) => {
-        if (user) {
-          dispatch(
-            setActiveUser({
-              fullname: user.displayName,
-              email: user.email,
-              uid: user.uid,
-              addr_default: user.addr_default
-            })
-          )
-        }
-      })
-    }
+    auth.onAuthStateChanged((user) => {
+      console.log('user persistence', user)
+      if (user !== null) {
+        dispatch(getUserCart(user.uid))
+        dispatch(getInformation(user.uid))
+        dispatch(getWishlist(user.uid))
+      }
+    })
   }, [])
+
+  console.log('user uid', userUid)
+
   return (
     <div>
       {path === '/signin' ||
@@ -140,9 +138,18 @@ function App() {
           <Route path="/products" element={<ProductListingPage />} />
           <Route path="/product/:productId" element={<ProductDetailPage />} />
           <Route path="/products/:category" element={<Category />} />
-          <Route path="/signin" element={<SignIn />} />
-          <Route path="/signup" element={<SignUp />} />
-          <Route path="/forgetPassword" element={<ForgetPassword />} />
+          <Route
+            path="/signin"
+            element={userUid ? <Navigate to="/" /> : <SignIn />}
+          />
+          <Route
+            path="/signup"
+            element={userUid ? <Navigate to="/" /> : <SignUp />}
+          />
+          <Route
+            path="/forgetPassword"
+            element={userUid ? <Navigate to="/" /> : <ForgetPassword />}
+          />
           <Route path="/vacancies" element={<Vacancies />} />
           <Route path="/contactUs" element={<ContactUs />} />
           <Route path="/returnPolicy" element={<ReturnPolicy />} />

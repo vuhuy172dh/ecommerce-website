@@ -7,15 +7,18 @@ Properties:
   Price: string
 */
 
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import Button from './button'
 import { useDispatch, useSelector } from 'react-redux'
 import { selectUserUid } from '../redux/features/userSlice'
 import { addItemToUserCart, addToCart } from '../redux/features/carts/cartSlice'
+import { useSearchMode } from '../hooks/useSearchMode'
 
 function ProductItem({ product }) {
   const dispatch = useDispatch()
   const userUid = useSelector(selectUserUid)
+  const navigate = useNavigate()
+  const searchController = useSearchMode()
 
   const handleAddToCart = (number = 1, product, userUid) => {
     if (userUid) {
@@ -25,15 +28,20 @@ function ProductItem({ product }) {
     }
   }
 
+  const handleProductImgClick = () => {
+    navigate(`/product/${product.uuid}`)
+    searchController.handleSearchMode()
+  }
+
   return (
     <div className="m-w-[200px] flex justify-center w-full rounded-lg overflow-hidden relative group shadow-lg shadow-gray-700/40 cursor-pointer">
-      <Link to={`/product/${product.uuid}`}>
-        <img
-          src={product.arrImg?.[0]}
-          alt="Product"
-          className="w-full object-cover relative z-10"
-        />
-      </Link>
+      <img
+        src={product.arrImg?.[0]}
+        alt="Product"
+        className="w-full object-cover relative z-10"
+        onClick={handleProductImgClick}
+      />
+
       {/* this is information */}
       <div className="w-4/5 absolute bottom-4 z-20 px-4 flex flex-col items-center bg-light_grey dark:bg-secondary rounded-xl translate-y-[calc(100%+16px)] group-hover:translate-y-[calc(70%+16px)] hover:!translate-y-0 transition-all duration-200 dark:text-light_grey">
         <p className="text-center text-h4 py-2">

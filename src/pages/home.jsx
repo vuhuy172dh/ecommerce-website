@@ -17,9 +17,6 @@ import { Helmet } from 'react-helmet-async'
 import InfoItemList from '../components/infoItemList'
 import { useDarkMode } from '../hooks/useDarkMode'
 import PagePreloader from '../components/preloader/pagePreloader'
-import { selectUserUid, getInformation } from '../redux/features/userSlice'
-import { getUserCart } from '../redux/features/carts/cartSlice'
-import { getWishlist } from '../redux/features/wishlist/wishlistSlice'
 
 function HomePage() {
   const { mode: darkMode } = useDarkMode()
@@ -30,16 +27,6 @@ function HomePage() {
   const status = useSelector(selectStatus)
   const products = useSelector(selectProducts)
   const cartStatus = useSelector(selectCartStatus)
-  const userUid = useSelector(selectUserUid)
-
-  //fetch data when signing in
-  useEffect(() => {
-    if (userUid) {
-      dispatch(getUserCart(userUid))
-      dispatch(getInformation(userUid))
-      dispatch(getWishlist(userUid))
-    }
-  }, [userUid])
 
   useEffect(() => {
     if (products.length === 0)

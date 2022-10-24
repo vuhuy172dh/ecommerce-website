@@ -37,6 +37,7 @@ function CheckoutPayment() {
     .reduce((a, b) => a + Number(b.cartItem.price) * b.number, 0)
     .toFixed(2)
 
+  //handle when submit
   const onSubmit = (data) => {
     const payment = {
       name: data.payment,
@@ -45,6 +46,12 @@ function CheckoutPayment() {
       expirationDate: data.expirationDate,
       securityCode: data.securityCode
     }
+
+    if (addressDefault === null) {
+      alert("you don't have address to checkout")
+      return
+    }
+
     dispatch(addPaymen(payment))
     dispatch(addUser(userUid))
     dispatch(addShipTo(addressDefault))
@@ -68,6 +75,7 @@ function CheckoutPayment() {
     dispatch(setStep(2))
     navigate('/user/checkout/shipping')
   }
+
   return (
     <div className="w-full flex flex-col gap-7">
       {/*title*/}

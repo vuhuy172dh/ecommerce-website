@@ -39,8 +39,6 @@ function ProductDesc({
     if (count > 0) setCount(count - 1)
   }
 
-  const [commentOpen, setCommentOpen] = useState(false)
-
   return (
     <div className="col-span-4 laptop:col-span-6 laptop:ml-9 px-2">
       {/* Top Text */}

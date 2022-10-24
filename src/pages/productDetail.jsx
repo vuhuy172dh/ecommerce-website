@@ -24,7 +24,7 @@ import {
   selectWishlistList
 } from '../redux/features/wishlist/wishlistSlice'
 import CommentDrawer from '../components/comments/commentDrawer'
-import { set } from 'react-hook-form'
+import { getCommentByProductId } from '../redux/features/comment/commentSlice'
 
 function ProductDetailPage() {
   // get scroll position
@@ -132,7 +132,10 @@ function ProductDetailPage() {
                     ?.uid
                 )
               }
-              handleComment={() => setCommentOpen(!commentOpen)}
+              handleComment={() => {
+                setCommentOpen(!commentOpen)
+                dispatch(getCommentByProductId(product.uuid))
+              }}
             />
           </div>
         </section>
@@ -170,7 +173,11 @@ function ProductDetailPage() {
       {/*comment*/}
       <CommentDrawer
         commentOpen={commentOpen}
-        handleOpen={() => setCommentOpen(!commentOpen)}
+        handleOpen={(setValue) => {
+          setCommentOpen(!commentOpen)
+          setValue()
+        }}
+        productUid={product.uuid}
       />
     </div>
   )

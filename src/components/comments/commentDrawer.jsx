@@ -1,51 +1,48 @@
-import CeilingLamp from '../../assets/images/CeilingLamp.png'
 import CommentItem from './commentItem'
-import BlueChair from '../../assets/images/BlueChair.png'
 import { useDispatch, useSelector } from 'react-redux'
 import {
+  createComment,
   selectComment,
-  selectCommentStatus,
-  setActiveContent,
-  setComments
+  selectCommentStatus
 } from '../../redux/features/comment/commentSlice'
-import { useEffect } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
+import {
+  selectUserAvatar,
+  selectUserEmail,
+  selectUserName,
+  selectUserUid
+} from '../../redux/features/userSlice'
+import Controller from '../../components/popup/controller'
+import { useForm } from 'react-hook-form'
+import Textarea from '../popup/textarea'
 
-const comments = [
-  {
-    name: 'Huy Vu',
-    avatar: CeilingLamp,
-    content:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam hendrerit tortor id lectus auctor condimentum. Nam pretium lectus eu turpis.'
-  },
-  {
-    name: 'Hoang Phuc',
-    avatar: CeilingLamp,
-    content:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi tortor.'
-  },
-  {
-    name: 'Le Nghia',
-    avatar: BlueChair,
-    content:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc a sollicitudin dolor. Phasellus commodo tincidunt.'
-  }
-]
-
-function CommentDrawer({ commentOpen, handleOpen }) {
+function CommentDrawer({ commentOpen, handleOpen, productUid }) {
   const dispatch = useDispatch()
   const commentsList = useSelector(selectComment)
   const commentStatus = useSelector(selectCommentStatus)
+  const userUid = useSelector(selectUserUid)
+  const userEmail = useSelector(selectUserEmail)
+  const userName = useSelector(selectUserName)
+  const userAvatar = useSelector(selectUserAvatar)
 
-  useEffect(() => {
-    dispatch(setComments(comments))
-  }, [])
+  const { register, handleSubmit, control, setValue } = useForm({
+    defaultValues: {
+      comment: ''
+    }
+  })
 
   const handleSend = (data) => {
-    data.preventDefault()
+    const commentData = {
+      content: data.comment,
+      user: {
+        fullname: userName,
+        email: userEmail,
+        uid: userUid,
+        avatar: userAvatar
+      }
+    }
 
-    console.log(data.target[0].value)
-    dispatch(setActiveContent(data.target[0].value))
+    dispatch(createComment(productUid, commentData))
   }
 
   return (
@@ -57,7 +54,7 @@ function CommentDrawer({ commentOpen, handleOpen }) {
       {/*backdrop*/}
       <div
         className="w-full h-screen fixed top-0 left-0 bg-white/20 dark:bg-black/20 backdrop-blur-sm z-20"
-        onClick={handleOpen}
+        onClick={() => handleOpen(setValue('comment', ''))}
       ></div>
 
       {/*container*/}
@@ -101,15 +98,27 @@ function CommentDrawer({ commentOpen, handleOpen }) {
         <div className="w-full h-20 absolute bottom-0 left-0">
           <form
             className="w-full h-full px-5 flex gap-2 items-center justify-center bg-border_dark rounded-t-2xl border-t border-t-primary/30"
-            onSubmit={handleSend}
+            onSubmit={handleSubmit(handleSend)}
           >
-            <textarea
+            <Controller
+              {...{
+                control,
+                register,
+                name: 'comment',
+                type: 'text',
+                placeholder: 'Your comment....',
+                className:
+                  'w-full px-5 h-10 no-scrollbar rounded-2xl outline-none resize-none',
+                handleChange: () => {},
+                render: (props) => <Textarea {...props} />
+              }}
+            />
+            {/*<textarea
               type="text"
-              rows={50}
               name="comment"
               id="comment"
               className="w-full px-5 h-10 no-scrollbar rounded-2xl outline-none resize-none"
-            />
+            />*/}
             <button type="submit" className="cursor-pointer">
               send
             </button>

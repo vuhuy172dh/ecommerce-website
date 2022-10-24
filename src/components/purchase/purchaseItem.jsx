@@ -38,9 +38,16 @@ function PurchaseItem({ purchaseItem }) {
       <hr className="w-full border-t border-t-primary/50 my-2" />
 
       {/*detail*/}
-      <div className="w-full flex flex-col items-end">
-        <p className="my-5">
-          <strong>Total Price:</strong> {purchaseItem.total}$
+      <div className="w-full flex flex-col items-end gap-4">
+        <p>
+          <strong>Subtotal Price:</strong> {purchaseItem.total}$
+        </p>
+        <p>
+          <strong>Shipping:</strong> {purchaseItem.shipping_method.price}$
+        </p>
+        <p>
+          <strong>Total Price:</strong>{' '}
+          {purchaseItem.total + purchaseItem.shipping_method.price}$
         </p>
         <div className="flex gap-2">
           <Button

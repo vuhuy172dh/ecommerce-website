@@ -63,16 +63,7 @@ export const signInWithEmailAndPass = (email, password) => (dispatch) => {
   dispatch(setUserRequest())
   //call signInWithEmailAndPassword API from services/auth
   signInWithEmailAndPassword(email, password)
-    .then((user) => {
-      dispatch(
-        setActiveUser({
-          fullname: user.displayName,
-          email: user.email,
-          uid: user.uid,
-          addr_default: user.addr_default
-        })
-      )
-    })
+    .then((user) => console.log('sign in successfully'))
     .catch((e) => {
       dispatch(setUserError(e))
     })
@@ -124,7 +115,6 @@ export const getInformation = (userUid) => (dispatch) => {
     //call api
     await showOneUser(userUid)
       .then((user) => {
-        console.log(user)
         dispatch(
           setActiveUser({
             fullname: user.fullname,
@@ -133,7 +123,8 @@ export const getInformation = (userUid) => (dispatch) => {
             email: user.email,
             birth: user.dob,
             addr_default: user.addr_default,
-            avatar: user.avatar
+            avatar: user.avatar,
+            uid: userUid
           })
         )
       })
