@@ -1,4 +1,25 @@
+import { useDispatch, useSelector } from 'react-redux'
+import { deleteComment } from '../../redux/features/comment/commentSlice'
+import { selectProduct } from '../../redux/features/productSlice'
+import { selectUserUid } from '../../redux/features/userSlice'
+import { toast } from 'react-toastify'
+
 function CommentItem({ comment }) {
+  const dispatch = useDispatch()
+  const product = useSelector(selectProduct)
+  const userUid = useSelector(selectUserUid)
+  const commentUid = comment.uid
+
+  const handleDelComment = () => {
+    if (userUid === null) {
+      toast.error('Please Sign In')
+      return
+    }
+    console.log('hello 1')
+    console.log(product.uuid, userUid, commentUid)
+    dispatch(deleteComment(userUid, product.uuid, commentUid))
+  }
+
   return (
     <div className="w-full">
       {/**/}
@@ -14,6 +35,9 @@ function CommentItem({ comment }) {
           <p className="text-h6 font-bold">{comment.user.fullname}</p>
           <p className="text-body-sm">{comment.content}</p>
         </div>
+      </div>
+      <div className="text-red-500 cursor-pointer" onClick={handleDelComment}>
+        Del
       </div>
     </div>
   )
