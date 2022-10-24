@@ -55,7 +55,7 @@ function CommentDrawer({ commentOpen, handleOpen, productUid }) {
       {/*backdrop*/}
       <div
         className="w-full h-screen fixed top-0 left-0 bg-white/20 dark:bg-black/20 backdrop-blur-sm z-20"
-        onClick={() => handleOpen(setValue('comment', ''))}
+        onClick={() => handleOpen(() => setValue('comment', ''))}
       ></div>
 
       {/*container*/}
@@ -73,7 +73,7 @@ function CommentDrawer({ commentOpen, handleOpen, productUid }) {
                 {commentOpen &&
                   commentsList.map((item, index) => (
                     <motion.div
-                      key={index}
+                      key={item.uid}
                       initial={{ x: -40, opacity: 0 }}
                       animate={{
                         x: 0,

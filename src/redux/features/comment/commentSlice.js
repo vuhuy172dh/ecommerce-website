@@ -1,6 +1,9 @@
+import { async } from '@firebase/util'
 import { createSlice } from '@reduxjs/toolkit'
 import createOneComment from '../../../services/comment/create'
+import deleteOneComment from '../../../services/comment/delete'
 import showListComments from '../../../services/comment/show'
+import { toast } from 'react-toastify'
 
 const inititalState = {
   status: 'idle',
@@ -31,6 +34,12 @@ const commentSlice = createSlice({
       state.status = 'loading'
       state.comments = action.payload
       state.status = 'success'
+    },
+    removeComment: (state, action) => {
+      const newComments = state.comments.filter(
+        (comment) => comment.uid !== action.payload
+      )
+      state.comments = newComments
     }
   }
 })
@@ -47,6 +56,7 @@ export const getCommentByProductId = (productId) => (dispatch) => {
   get()
 }
 
+//create comment (ok)
 export const createComment = (productId, data) => (dispatch) => {
   const create = async () => {
     dispatch(setCreateRequest())
@@ -58,12 +68,30 @@ export const createComment = (productId, data) => (dispatch) => {
   create()
 }
 
+export const deleteComment =
+  (userUid, productUid, commentUid) => (dispatch) => {
+    const delComment = async () => {
+      await deleteOneComment({
+        idProduct: productUid,
+        idComment: commentUid,
+        userUid: userUid
+      })
+        .then((res) => {
+          dispatch(removeComment(commentUid))
+        })
+        .catch((e) => toast.error(e))
+    }
+
+    delComment()
+  }
+
 export const {
   setRequest,
   setCreateRequest,
   setActiveContent,
   setInitialComment,
-  setComments
+  setComments,
+  removeComment
 } = commentSlice.actions
 
 export const selectCommentStatus = (state) => state.comment.status
