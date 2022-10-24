@@ -29,14 +29,14 @@ function ProductDesc({
   handleComment
 }) {
   //
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState(1)
   //handle increase count
   const increaseCount = () => {
     if (count < quantity) setCount(count + 1)
   }
   //handle decrease count
   const decreaseCount = () => {
-    if (count > 0) setCount(count - 1)
+    if (count > 1) setCount(count - 1)
   }
 
   return (
@@ -94,7 +94,7 @@ function ProductDesc({
                   onClick={decreaseCount}
                 />
               </div>
-              <div className="">{count}</div>
+              <div>{count}</div>
               <div className="w-6 h-6 flex justify-center items-center hover:bg-border_dark dark:hover:bg-secondary rounded-full cursor-pointer">
                 <FontAwesomeIcon
                   icon={faPlus}
