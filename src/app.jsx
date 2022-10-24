@@ -40,6 +40,8 @@ import { getWishlist } from './redux/features/wishlist/wishlistSlice'
 import { useEffect } from 'react'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
+import ReactDOM from 'react-dom'
+import MessengerCustomerChat from 'react-messenger-customer-chat'
 
 const SidebarLayout = () => (
   <div className="laptop:flex">
@@ -169,6 +171,7 @@ function App() {
           </footer>
         )}
       <ToastContainer autoClose={1000} pauseOnHover={false} />
+      <MessengerCustomerChat pageId="100087373081474" appId="479082790856803" />
     </div>
   )
 }
