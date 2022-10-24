@@ -16,11 +16,18 @@ function PurchaseProductItem({ product }) {
       </div>
       {/*info*/}
       <div className="w-[80%] pl-2 flex flex-col justify-start">
-        <p className="text-h4 text-black">{product.cartItem.name}</p>
-        <p className="text-body-md text-black/70 line-clamp-3">
+        <p className="text-h4 text-black dark:text-light_grey">
+          {product.cartItem.name}
+        </p>
+        <p className="text-body-md text-black/70 dark:text-light_grey/60 line-clamp-3">
           {product.cartItem.description}
         </p>
-        <p className="text-body-md text-black/70">x{product.number}</p>
+        <p className="text-body-md text-black/70 dark:text-light_grey/60">
+          x{product.number}
+        </p>
+        <p className="text-body-sm text-black/70 dark:text-light_grey/60">
+          {product.cartItem.price}$
+        </p>
       </div>
       {/*price*/}
       <div className="w-[10%] h-full flex items-center justify-center">

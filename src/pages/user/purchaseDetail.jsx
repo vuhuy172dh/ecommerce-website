@@ -11,12 +11,14 @@ import LinkButton from '../../components/linkButton'
 import PurchaseProductItemList from '../../components/purchase/purchaseProductItemList'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faAngleLeft } from '@fortawesome/free-solid-svg-icons'
+import { useDarkMode } from '../../hooks/useDarkMode'
 
 function PurchaseDetail() {
   const { purchaseId } = useParams()
   const billDetail = useSelector(selectBillDetail)
   const billDetailStatus = useSelector(selectStatus)
   const dispatch = useDispatch()
+  const darkMode = useDarkMode().mode
 
   const total = billDetail?.total + billDetail?.shipping_method.price
 
@@ -27,10 +29,13 @@ function PurchaseDetail() {
   return (
     <div className="w-full laptop:py-6">
       {billDetailStatus === 'idle' && billDetail?.products ? (
-        <div className="mr-4 py-6 px-4 flex flex-col bg-border_grey rounded-md shadow-lg shadow-gray-600/50">
+        <div className="mr-4 py-6 px-4 flex flex-col bg-border_grey dark:bg-secondary rounded-md shadow-md shadow-gray-600/50 dark:shadow-light_grey/50">
           {/*status and back button*/}
           <div className="w-full flex justify-between">
-            <LinkButton path="/user/account/purchases" color="dark">
+            <LinkButton
+              path="/user/account/purchases"
+              color={darkMode === 'light' ? 'dark' : 'light'}
+            >
               <div className="flex gap-2 items-center">
                 <FontAwesomeIcon icon={faAngleLeft} />
                 Back
@@ -41,7 +46,7 @@ function PurchaseDetail() {
             </div>
           </div>
 
-          <hr className="w-full my-6 border-t border-t-primary/50" />
+          <hr className="w-full my-6 border-t border-t-primary/50 dark:border-t-light_grey/50" />
 
           {/*address*/}
           <div className="w-full flex flex-col">
@@ -50,14 +55,14 @@ function PurchaseDetail() {
               <p className="text-body-sm">{billDetail.shipping_method.name}</p>
             </div>
             <div className="w-full flex gap-3">
-              <p className="text-secondary font-semibold">
+              <p className="text-secondary dark:text-border_grey font-semibold">
                 {billDetail.ship_to.name}
               </p>
-              <p className="text-secondary/70">
+              <p className="text-secondary/70 dark:text-border_grey/70">
                 {billDetail.ship_to.phone_num}
               </p>
             </div>
-            <div className="text-secondary/90">
+            <div className="text-secondary/90 dark:text-border_grey/90">
               <p>
                 {billDetail.ship_to.ward}, {billDetail.ship_to.district},{' '}
                 {billDetail.ship_to.province}
@@ -69,7 +74,7 @@ function PurchaseDetail() {
             </div>
           </div>
 
-          <hr className="w-full my-6 border-t border-t-primary/50" />
+          <hr className="w-full my-6 border-t border-t-primary/50 dark:border-t-light_grey/50" />
 
           {/*product list*/}
           <div>
@@ -79,11 +84,11 @@ function PurchaseDetail() {
             <PurchaseProductItemList products={billDetail.products} />
           </div>
 
-          <hr className="w-full my-6 border-t border-t-primary/50" />
+          <hr className="w-full my-6 border-t border-t-primary/50 dark:border-t-light_grey/50" />
 
           {/*price*/}
           <div className="w-full flex gap-14 justify-end">
-            <div className="text-secondary font-semibold flex flex-col">
+            <div className="text-secondary dark:text-border_grey font-semibold flex flex-col">
               <p>Subtotal</p>
               <p>Shipping Fee</p>
               <p className="text-h2">Total</p>
@@ -95,7 +100,7 @@ function PurchaseDetail() {
             </div>
           </div>
 
-          <hr className="w-full my-6 border-t border-t-primary/50" />
+          <hr className="w-full my-6 border-t border-t-primary/50 dark:border-t-light_grey/50" />
 
           <div className="w-full flex justify-end">
             <p>{billDetail.payment.name}</p>

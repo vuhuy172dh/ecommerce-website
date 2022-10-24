@@ -25,9 +25,9 @@ function PurchaseItem({ purchaseItem }) {
   }
 
   return (
-    <div className="w-full py-2 px-8 bg-border_grey rounded-lg shadow-md shadow-gray-600/50">
+    <div className="w-full py-2 px-8 bg-border_grey dark:bg-secondary rounded-lg shadow-md shadow-gray-600/50 dark:shadow-border_dark/50">
       <div className="w-full flex justify-end">
-        <p className="text-h4 text-primary">
+        <p className="text-h4 text-primary dark:text-light_grey">
           <strong>{purchaseItem.status}</strong>
         </p>
       </div>
@@ -35,7 +35,7 @@ function PurchaseItem({ purchaseItem }) {
       {/*products cart list*/}
       <PurchaseProductItemList products={purchaseItem.products} />
       {/*Divider*/}
-      <hr className="w-full border-t border-t-primary/50 my-2" />
+      <hr className="w-full border-t border-t-primary/50 my-2 dark:border-t-light_grey/50" />
 
       {/*detail*/}
       <div className="w-full flex flex-col items-end gap-4">
