@@ -31,7 +31,7 @@ function PurchaseProductItem({ product }) {
       </div>
       {/*price*/}
       <div className="w-[10%] h-full flex items-center justify-center">
-        <p>{product.number * product.cartItem.price}$</p>
+        <p>{(product.number * product.cartItem.price).toFixed(2)}$</p>
       </div>
     </div>
   )
