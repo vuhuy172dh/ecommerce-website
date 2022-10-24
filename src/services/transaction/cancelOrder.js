@@ -42,8 +42,8 @@ const cancelOrder = async (uidTransaction) => {
       }
     })
 
-    if (result.status === 'success') return Promise.resolve(result)
-    return Promise.reject(result)
+    if (result.status === 'success') return Promise.resolve(result.mes)
+    return Promise.reject(result.mes)
   } catch (e) {
     const { code } = e
     return Promise.reject(code)

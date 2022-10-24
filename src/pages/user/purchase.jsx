@@ -43,9 +43,15 @@ function Purchase() {
 
   useEffect(() => {
     if (click === 'Waiting') dispatch(getBills('Waiting'))
-    else if (click === 'Canceled') dispatch(getBills('Canceled'))
-    console.log(click)
-  }, [cancelStatus, reorderStatus])
+  }, [])
+
+  useEffect(() => {
+    if (cancelStatus === 'success') dispatch(getBills('Waiting'))
+  }, [cancelStatus, dispatch])
+
+  useEffect(() => {
+    if (reorderStatus === 'success') dispatch(getBills('Canceled'))
+  }, [reorderStatus, dispatch])
 
   return (
     <div className="w-full laptop:px-6 flex laptop:flex-row-reverse flex-col relative">

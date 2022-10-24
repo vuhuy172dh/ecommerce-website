@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
+import { toast } from 'react-toastify'
 import {
   cancelOrder,
   createOneTransaction,
@@ -85,7 +86,7 @@ const billSlice = createSlice({
       //bill.status = 'Waiting'
     },
     addBills: (state, action) => {
-      state.status = 'idle'
+      state.status = 'success'
       state.bills = action.payload
     },
     addOneBillToBills: (state, action) => {
@@ -130,7 +131,7 @@ export const cancelBill = (uidTransaction) => (dispatch) => {
     await cancelOrder(uidTransaction)
       .then((res) => {
         dispatch(updateBillStatus(uidTransaction))
-        console.log(res.mes)
+        toast.success(res)
       })
       .catch((e) => console.log(e))
   }
@@ -145,7 +146,7 @@ export const reorderBill = (uidTransaction) => (dispatch) => {
     await reOrder(uidTransaction)
       .then((res) => {
         dispatch(updateBillReorder(uidTransaction))
-        console.log(res.mes)
+        toast.success(res)
       })
       .catch((e) => console.log(e))
   }
