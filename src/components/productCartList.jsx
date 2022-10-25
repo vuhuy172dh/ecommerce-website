@@ -15,10 +15,12 @@ import {
 } from '../redux/features/carts/cartSlice'
 import { selectUserUid } from '../redux/features/userSlice'
 import { motion, AnimatePresence } from 'framer-motion'
+import { useNavigate } from 'react-router-dom'
 
-const ProductCartList = ({ cartItems }) => {
+const ProductCartList = ({ cartItems, handleCartFloatClick = () => {} }) => {
   const dispatch = useDispatch()
   const userUid = useSelector(selectUserUid)
+  const navigate = useNavigate()
 
   //handle remove from cart
   const handleRemoveFromCart = (product) => {
@@ -35,14 +37,20 @@ const ProductCartList = ({ cartItems }) => {
         {cartItems.map((cart) => (
           <motion.div
             key={cart.cartItem.uuid}
-            className="flex py-4 laptop:w-[100%] laptop:justify-between"
+            className="flex py-4 laptop:w-[100%] laptop:justify-between cursor-pointer"
             animate={{ x: 0, opacity: 1 }}
             exit={{ x: 400, opacity: 0 }}
             transition={{ type: 'spring', duration: 0.5 }}
           >
             {/*Product Cart Item */}
             <div className="laptop:w-[45%] flex">
-              <div className="w-[134px] laptop:w-[110px] h-[166px] laptop:h-[134px] ">
+              <div
+                className="w-[134px] laptop:w-[110px] h-[166px] laptop:h-[134px] "
+                onClick={() => {
+                  navigate(`/product/${cart.cartItem.uuid}`)
+                  handleCartFloatClick()
+                }}
+              >
                 {/*Image product */}
                 <img
                   src={cart.cartItem.arrImg[0]}

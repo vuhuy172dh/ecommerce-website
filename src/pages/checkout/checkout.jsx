@@ -16,7 +16,7 @@ function Checkout() {
     .reduce((a, b) => a + Number(b.cartItem.price) * b.number, 0)
     .toFixed(2)
 
-  const cartTotalPrice = cartSubtotalPrice + shippingMethod?.price
+  const cartTotalPrice = cartSubtotalPrice + (shippingMethod?.price || 0)
 
   return (
     <div className="w-screen h-screen relative">

@@ -50,15 +50,21 @@ function PurchaseItem({ purchaseItem }) {
           <strong>Total Price:</strong>{' '}
           {purchaseItem.total + purchaseItem.shipping_method.price}$
         </p>
-        <div className="flex gap-2">
-          <Button
-            Color="red"
-            Custom={true}
-            Padding="px-2 laptop:px-4"
-            onClick={() => handleCancel(purchaseItem.uid)}
+        <div className={`flex gap-2`}>
+          <div
+            className={`${
+              purchaseItem.status === 'Waiting' ? 'block' : 'hidden'
+            }`}
           >
-            Cancel
-          </Button>
+            <Button
+              Color="red"
+              Custom={true}
+              Padding="px-2 laptop:px-4"
+              onClick={() => handleCancel(purchaseItem.uid)}
+            >
+              Cancel
+            </Button>
+          </div>
           <div
             className={`${
               purchaseItem.status === 'Canceled' ? 'block' : 'hidden'

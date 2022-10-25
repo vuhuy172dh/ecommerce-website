@@ -27,6 +27,9 @@ const cartSlice = createSlice({
     setAddToCartRequest: (state) => {
       state.addToCartStatus = 'loading'
     },
+    setAddToCartSuccess: (state) => {
+      state.addToCartStatus = 'success'
+    },
     setIdle: (state) => {
       state.cartStatus = 'idle'
     },
@@ -139,12 +142,17 @@ export const addItemToUserCart =
       if (existItem) {
         //update number of user cart
         const newNumber = existItem.number + number
-        await updateFieldNumberCartItem(userUid, existItem.uid, newNumber)
-          .then((res) => {
-            dispatch(updateNumber({ cartItem: existItem, number: newNumber }))
-            console.log(res)
-          })
-          .catch((e) => console.log(e))
+        if (newNumber <= product.remain) {
+          await updateFieldNumberCartItem(userUid, existItem.uid, newNumber)
+            .then((res) => {
+              dispatch(updateNumber({ cartItem: existItem, number: newNumber }))
+              toast.success('Added more item to Cart!')
+            })
+            .catch((e) => console.log(e))
+        } else {
+          dispatch(setAddToCartSuccess())
+          toast.error('No remain item to add!.')
+        }
       } else {
         //add new item to cart on firebase and add to local cart
         await addProductToCart(userUid, product, number)
@@ -204,6 +212,7 @@ export const updateUserCartFirebase =
 export const {
   setRequest,
   setAddToCartRequest,
+  setAddToCartSuccess,
   setIdle,
   addToCart,
   addToCartForMerge,

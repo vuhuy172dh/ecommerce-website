@@ -11,69 +11,36 @@
 | `Nguyễn Quang Vũ` | 20520352@gm.uit.edu.vn |
 | `Nguyễn Khánh Huyền` | 20520558@gm.uit.edu.vn |
 
-## Available Scripts
+# Avion Website
 
-In the project directory, you can run:
+![image](https://user-images.githubusercontent.com/56556185/197586999-25df9a1c-eb71-4e86-a476-b1cc42e02420.png)
 
-### `npm start`
+![image](https://user-images.githubusercontent.com/56556185/197587098-481e64b1-928f-4290-b827-3df8248f0549.png)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+![image](https://user-images.githubusercontent.com/56556185/197587156-145bf3d4-8734-49ca-8baa-d5e46d00af0a.png)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+# folder structure tree
 
-### `npm test`
+![image](https://user-images.githubusercontent.com/56556185/197586597-8836cc32-678b-4773-b329-bbf8d87d0a5f.png)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+# Packages: 
 
-### `npm run build`
+- react
+- react-router-dom
+- react-hook-form
+- react-helmet-async
+- react-redux
+- redux
+- react-toastify
+- firebase
+- framer-motion
+- swiper
+- yup
+- tailwindcss
+- prettier
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+# How to run
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+1. Clone this project
+2. Install packages (npm install or yarn install)
+3. Run the project (npm start)

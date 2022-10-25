@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
+import { toast } from 'react-toastify'
 import {
   cancelOrder,
   createOneTransaction,
@@ -33,6 +34,9 @@ const billSlice = createSlice({
     },
     setCreateRequest: (state) => {
       state.createStatus = 'loading'
+    },
+    setCreateIdle: (state) => {
+      state.createStatus = 'idle'
     },
     setCancelRequest: (state) => {
       state.cancelStatus = 'loading'
@@ -85,16 +89,16 @@ const billSlice = createSlice({
       //bill.status = 'Waiting'
     },
     addBills: (state, action) => {
-      state.status = 'idle'
       state.bills = action.payload
+      state.status = 'success'
     },
     addOneBillToBills: (state, action) => {
-      state.createStatus = 'success'
       state.bills.push(action.payload)
+      state.createStatus = 'success'
     },
     addBillDetail: (state, action) => {
-      state.status = 'idle'
       state.bill = action.payload
+      state.status = 'idle'
     }
   }
 })
@@ -130,7 +134,7 @@ export const cancelBill = (uidTransaction) => (dispatch) => {
     await cancelOrder(uidTransaction)
       .then((res) => {
         dispatch(updateBillStatus(uidTransaction))
-        console.log(res.mes)
+        toast.success(res)
       })
       .catch((e) => console.log(e))
   }
@@ -145,7 +149,7 @@ export const reorderBill = (uidTransaction) => (dispatch) => {
     await reOrder(uidTransaction)
       .then((res) => {
         dispatch(updateBillReorder(uidTransaction))
-        console.log(res.mes)
+        toast.success(res)
       })
       .catch((e) => console.log(e))
   }
@@ -188,6 +192,7 @@ export const {
   setCancelRequest,
   setReorderRequest,
   setCreateErrors,
+  setCreateIdle,
   addUser,
   addContact,
   addShipTo,

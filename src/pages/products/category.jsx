@@ -45,9 +45,9 @@ function Category() {
       </Helmet>
 
       {/* this is Header component */}
-      <header className=" bg-light_grey dark:bg-secondary py-8 px-6 laptop:bg-white dark:laptop:bg-dark_secondary laptop:pt-20 laptop:pb-3 laptop:px-20 relative z-30">
-        <h2 className="text-center mb-10 text-h2 laptop:mb-8">
-          View {category.toUpperCase()} Products
+      <header className=" bg-light_grey dark:bg-secondary py-8 px-6 laptop:bg-white dark:laptop:bg-dark_secondary laptop:pt-20 laptop:pb-3 laptop:px-20 relative z-30 flex justify-center">
+        <h2 className="text-center w-fit h-fit px-6 rounded-full shadow-md shadow-gray-700/50 dark:shadow-light_grey/60 mb-10 text-h2 laptop:mb-8 bg-border_dark dark:bg-secondary dark:text-light_grey">
+          {category.toUpperCase()}
         </h2>
       </header>
 
