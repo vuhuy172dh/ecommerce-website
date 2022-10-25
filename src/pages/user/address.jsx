@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
-import AddressList from '../../components/user/addressList'
+import { AddressList } from '../../components/user'
 import { Button } from '../../components/buttons'
 import PopupAddress from '../../components/popup/popupAddress'
 import {

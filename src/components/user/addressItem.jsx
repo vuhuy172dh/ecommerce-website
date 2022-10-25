@@ -3,8 +3,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { toast } from 'react-toastify'
 
 import { Button } from '../buttons'
-import PopupConfirm from '../popup/popupConfirm'
-import PopupAddress from '../popup/popupAddress'
+import { PopupConfirm, PopupAddress } from '../popup'
 import {
   selectUserAddressDefault,
   selectUserUid,

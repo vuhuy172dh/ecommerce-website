@@ -17,12 +17,11 @@ import {
 } from '../../redux/features/address/addressSlice'
 import { addContact } from '../../redux/features/bills/billSlice'
 import { setStep } from '../../redux/features/stepper/stepperSlice'
-import Controller from '../../components/popup/controller'
-import Input from '../../components/popup/input'
+import { Controller, Input } from '../../components/fields'
 import EmailSchema from '../../validations/email'
-import AddressList from '../../components/user/addressList'
+import { AddressList } from '../../components/user'
 import { Button } from '../../components/buttons'
-import PopupAddress from '../../components/popup/popupAddress'
+import { PopupAddress } from '../../components/popup'
 
 function CheckoutInformation() {
   const userEmail = useSelector(selectUserEmail)

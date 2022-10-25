@@ -9,8 +9,7 @@ import { faUserPen } from '@fortawesome/free-solid-svg-icons'
 
 import { Button } from '../../components/buttons'
 import CeilingLamp from '../../assets/images/CeilingLamp.png'
-import Controller from '../../components/popup/controller'
-import Input from '../../components/popup/input'
+import { Controller, Input, RadioInput } from '../../components/fields'
 import UserInformationSchema from '../../validations/userInformation'
 import {
   getInformation,
@@ -26,7 +25,6 @@ import {
   selectUserAvatar
 } from '../../redux/features/userSlice'
 import { updateOneUser } from '../../services/user'
-import RadioInput from '../../components/popup/radio'
 import createUserImg from '../../services/user/create'
 
 function Profile() {

@@ -9,7 +9,7 @@ import {
   selectCancelStatus,
   selectReorderStatus
 } from '../../redux/features/bills/billSlice'
-import PagePreloader from '../preloader/pagePreloader'
+import { PagePreloader } from '../preloader'
 
 function PurchaseItem({ purchaseItem }) {
   const navigate = useNavigate()

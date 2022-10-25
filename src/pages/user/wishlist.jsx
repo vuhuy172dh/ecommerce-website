@@ -8,7 +8,7 @@ import {
   selectWishlistStatus
 } from '../../redux/features/wishlist/wishlistSlice'
 import { selectUserUid } from '../../redux/features/userSlice'
-import PagePreloader from '../../components/preloader/pagePreloader'
+import { PagePreloader } from '../../components/preloader'
 
 function Wishlist() {
   const dispatch = useDispatch()

@@ -2,10 +2,10 @@ import { Helmet } from 'react-helmet-async'
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { toast } from 'react-toastify'
+import { updatePassword } from 'firebase/auth'
 
 import { Button } from '../../components/buttons'
 import { changePasswordScheme } from '../../validations/changePassword'
-import { updatePassword } from 'firebase/auth'
 import { auth } from '../../services/firebase.config'
 
 function ChangePassword() {

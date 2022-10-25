@@ -3,11 +3,9 @@ import { yupResolver } from '@hookform/resolvers/yup'
 import { useSelector, useDispatch } from 'react-redux'
 import { useCallback, useEffect, useState } from 'react'
 
-import Popup from './popup'
+import { Popup } from '../popup'
 import { Button } from '../buttons'
-import Controller from './controller'
-import Input from './input'
-import Select from './select'
+import { Controller, Input, Select } from '../fields'
 import { PopupAddressSchema } from '../../validations/popupAddress'
 import { selectUserUid } from '../../redux/features/userSlice'
 import {

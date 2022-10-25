@@ -17,7 +17,7 @@ import {
   selectUserUid
 } from '../../redux/features/userSlice'
 import WhiteRoomImg from '../../assets/images/features3.png'
-import PagePreloader from '../../components/preloader/pagePreloader'
+import { PagePreloader } from '../../components/preloader'
 
 function SignIn() {
   const {

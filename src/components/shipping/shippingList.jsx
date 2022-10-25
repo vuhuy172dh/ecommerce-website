@@ -1,6 +1,7 @@
-import ShippingItem from './shippingItem'
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
+
+import ShippingItem from './shippingItem'
 import ShippingMethodSchema from '../../validations/shippingMethod'
 
 function ShippingList({ shippingList, onSubmit }) {

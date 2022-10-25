@@ -23,7 +23,7 @@ import {
   selectCartItems
 } from '../../redux/features/carts/cartSlice'
 import { selectAddressDefault } from '../../redux/features/address/addressSlice'
-import PagePreloader from '../../components/preloader/pagePreloader'
+import { PagePreloader } from '../../components/preloader'
 
 function CheckoutPayment() {
   const dispatch = useDispatch()

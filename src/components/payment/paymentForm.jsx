@@ -1,10 +1,9 @@
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
-import PaymentMethodSchema from '../../validations/paymentMethod'
 import { useState } from 'react'
-import Controller from '../popup/controller'
-import RadioInput from '../popup/radio'
-import Input from '../popup/input'
+
+import PaymentMethodSchema from '../../validations/paymentMethod'
+import { Controller, RadioInput, Input } from '../fields'
 
 function PaymentForm({ onSubmit }) {
   const [click, setClick] = useState(false)

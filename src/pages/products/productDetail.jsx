@@ -28,7 +28,7 @@ import {
   removeItemFromWishlist,
   selectWishlistList
 } from '../../redux/features/wishlist/wishlistSlice'
-import CommentDrawer from '../../components/comments/commentDrawer'
+import { CommentDrawer } from '../../components/comments'
 import { getCommentByProductId } from '../../redux/features/comment/commentSlice'
 
 function ProductDetailPage() {

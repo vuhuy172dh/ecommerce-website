@@ -1,7 +1,8 @@
-import LinkButton from '../buttons/linkButton'
+import { useSelector } from 'react-redux'
+
+import { LinkButton } from '../buttons'
 import CeilingLamp from '../../assets/images/CeilingLamp.png'
 import { useDarkMode } from '../../hooks/useDarkMode'
-import { useSelector } from 'react-redux'
 import {
   selectUserAvatar,
   selectUserName

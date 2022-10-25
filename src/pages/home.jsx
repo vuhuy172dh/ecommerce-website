@@ -16,7 +16,7 @@ import {
 import { selectCartStatus } from '../redux/features/carts/cartSlice'
 import { InfoItemList } from '../components/others'
 import { useDarkMode } from '../hooks/useDarkMode'
-import PagePreloader from '../components/preloader/pagePreloader'
+import { PagePreloader } from '../components/preloader'
 
 function HomePage() {
   const { mode: darkMode } = useDarkMode()
