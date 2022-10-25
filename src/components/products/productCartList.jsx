@@ -10,7 +10,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 
-import Counter from '../counter'
+import { Counter } from '../others'
 import { ButtonIcon } from '../buttons'
 import {
   removeFromCart,

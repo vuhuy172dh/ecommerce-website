@@ -1,9 +1,10 @@
-import styles from '../styles/stepper.module.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCheck } from '@fortawesome/free-solid-svg-icons'
 import { Outlet } from 'react-router-dom'
 import { useSelector } from 'react-redux'
-import { selectCurrentStep } from '../redux/features/stepper/stepperSlice'
+
+import styles from '../../styles/stepper.module.css'
+import { selectCurrentStep } from '../../redux/features/stepper/stepperSlice'
 
 const steps = ['Information', 'Shipping', 'Payment']
 

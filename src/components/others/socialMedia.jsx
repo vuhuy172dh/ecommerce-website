@@ -5,7 +5,7 @@ Properties:
     Color: 'light'|'dark' (default: 'light')
 */
 
-import ButtonIcon from './buttons/buttonIcon'
+import { ButtonIcon } from '../buttons'
 
 function SocialMedia({ Color = 'light' }) {
   return (

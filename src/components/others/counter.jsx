@@ -1,11 +1,12 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMinus, faPlus } from '@fortawesome/free-solid-svg-icons'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { useDispatch } from 'react-redux'
+
 import {
   updateNumber,
   updateUserCartFirebase
-} from '../redux/features/carts/cartSlice'
+} from '../../redux/features/carts/cartSlice'
 
 function Counter({
   maxNumber = Infinity,

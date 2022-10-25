@@ -1,7 +1,8 @@
-import Icon from '../helper/icon'
 import { motion } from 'framer-motion'
 import { useState } from 'react'
-import useClientRect from '../hooks/useClientRect'
+
+import Icon from '../../helper/icon'
+import useClientRect from '../../hooks/useClientRect'
 
 function InfoItem({ icon, label, desc }) {
   //use useClientRect to get width of element

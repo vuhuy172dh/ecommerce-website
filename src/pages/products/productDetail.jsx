@@ -16,13 +16,12 @@ import {
 } from '../../redux/features/carts/cartSlice'
 import { selectUserUid } from '../../redux/features/userSlice'
 import WhiteRoomImg from '../../assets/images/features3.png'
-import InfoItemList from '../../components/infoItemList'
+import { InfoItemList, Overview } from '../../components/others'
 import {
   ProductDesc,
   ProductCarousel,
   ProductScrollView
 } from '../../components/products'
-import Overview from '../../components/overview'
 import useClientRect from '../../hooks/useClientRect'
 import {
   addNewItemToWishlist,

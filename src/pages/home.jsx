@@ -6,7 +6,7 @@ import { Helmet } from 'react-helmet-async'
 import homepage from '../assets/images/homepage.png'
 import feature2 from '../assets/images/features2.png'
 import { Button, LinkButton } from '../components/buttons'
-import EmailSignUp from '../components/emails/emailSignUp'
+import { EmailSignUp } from '../components/emails'
 import { ProductItemListing } from '../components/products'
 import {
   selectStatus,
@@ -14,7 +14,7 @@ import {
   getProducts
 } from '../redux/features/productsSlice'
 import { selectCartStatus } from '../redux/features/carts/cartSlice'
-import InfoItemList from '../components/infoItemList'
+import { InfoItemList } from '../components/others'
 import { useDarkMode } from '../hooks/useDarkMode'
 import PagePreloader from '../components/preloader/pagePreloader'
 

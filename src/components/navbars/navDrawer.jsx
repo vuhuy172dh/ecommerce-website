@@ -7,7 +7,7 @@ import { useDarkMode } from '../../hooks/useDarkMode'
 import { useNavMode } from '../../hooks/useNavMode'
 import { EmailField } from '../emails'
 import { LinkButton } from '../buttons'
-import SocialMedia from '../socialMedia'
+import { SocialMedia } from '../others'
 import {
   selectCategoryStatus,
   selectCategories,

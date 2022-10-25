@@ -1,11 +1,11 @@
 import React from 'react'
 import { Helmet } from 'react-helmet-async'
 
-import EmailSignUp from '../../components/emails/emailSignUp'
+import { EmailSignUp } from '../../components/emails'
 import feature2 from '../../assets/images/features1.png'
 import feature3 from '../../assets/images/features3.png'
 import { Button } from '../../components/buttons'
-import InfoItemList from '../../components/infoItemList'
+import { InfoItemList } from '../../components/others'
 
 function AboutPage() {
   return (

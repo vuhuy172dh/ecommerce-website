@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 
 import Background from '../../assets/images/background.jpg'
-import Stepper from '../../components/stepper'
+import { Stepper } from '../../components/others'
 import {
   ProductCheckoutList,
   ProductCheckoutListButton

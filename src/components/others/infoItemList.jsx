@@ -1,5 +1,5 @@
 import InfoItem from './infoItem'
-import { infos } from '../constant/infoItemList'
+import { infos } from '../../constant/infoItemList'
 
 function InfoItemList() {
   return (
