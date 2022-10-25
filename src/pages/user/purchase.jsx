@@ -9,7 +9,7 @@ import {
   selectStatus
 } from '../../redux/features/bills/billSlice'
 import { useDarkMode } from '../../hooks/useDarkMode'
-import ButtonIcon from '../../components/buttonIcon'
+import ButtonIcon from '../../components/buttons/buttonIcon'
 import PagePreloader from '../../components/preloader/pagePreloader'
 
 function Purchase() {

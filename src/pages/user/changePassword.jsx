@@ -1,10 +1,10 @@
-import Button from '../../components/button'
+import { Helmet } from 'react-helmet-async'
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
-import { changePasswordScheme } from '../../validations/changePassword'
-import { Helmet } from 'react-helmet-async'
-// import updatePasswordByEmail from '../../services/auth/updatePassword'
 import { toast } from 'react-toastify'
+
+import { Button } from '../../components/buttons'
+import { changePasswordScheme } from '../../validations/changePassword'
 import { updatePassword } from 'firebase/auth'
 import { auth } from '../../services/firebase.config'
 

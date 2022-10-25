@@ -34,13 +34,14 @@ import {
   Wishlist
 } from './pages/user'
 
+import { CartFloatButton, DarkModeButton } from './components/buttons'
+
 import Navbar from './components/navbar'
 import Footer from './components/footer'
 import NavDrawer from './components/navDrawer'
 import NavMode from './hooks/useNavMode'
 import Sidebar from './components/user/sidebar'
-import DarkModeButton from './components/darkModeButton'
-import CartFloatButton from './components/cartFloatButton'
+
 import SearchMode from './hooks/useSearchMode'
 import SearchDrawer from './components/search/searchDrawer'
 import { auth } from './services/firebase.config'

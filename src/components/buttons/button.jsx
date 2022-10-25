@@ -14,7 +14,8 @@ Properties:
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCaretDown } from '@fortawesome/free-solid-svg-icons'
 import { motion } from 'framer-motion'
-import { colors, sizes } from '../constant/button'
+
+import { colors, sizes } from '../../constant/button'
 
 const itemVariants = {
   open: {

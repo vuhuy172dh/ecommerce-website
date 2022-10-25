@@ -2,13 +2,14 @@ import { faShoppingCart } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { AnimatePresence, motion } from 'framer-motion'
 import { useState } from 'react'
-import useScrollPosition from '../hooks/useScrollPosition'
-import ProductCartList from './productCartList'
-import Button from './button'
 import { Link, useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
-import { selectCartItems } from '../redux/features/carts/cartSlice'
-import { selectCurrentStep } from '../redux/features/stepper/stepperSlice'
+
+import useScrollPosition from '../../hooks/useScrollPosition'
+import ProductCartList from '../productCartList'
+import Button from './button'
+import { selectCartItems } from '../../redux/features/carts/cartSlice'
+import { selectCurrentStep } from '../../redux/features/stepper/stepperSlice'
 
 function CartFloatButton() {
   const scrollY = useScrollPosition()

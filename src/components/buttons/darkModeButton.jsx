@@ -1,7 +1,7 @@
 import { faMoon, faSun } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { AnimatePresence, motion } from 'framer-motion'
-import { useDarkMode } from '../hooks/useDarkMode'
+import { useDarkMode } from '../../hooks/useDarkMode'
 
 const modes = {
   light: {

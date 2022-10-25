@@ -1,13 +1,17 @@
 import { Helmet } from 'react-helmet-async'
-import Button from '../../components/button'
+import { useForm } from 'react-hook-form'
+import { yupResolver } from '@hookform/resolvers/yup'
+import { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { toast } from 'react-toastify'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faUserPen } from '@fortawesome/free-solid-svg-icons'
+
+import { Button } from '../../components/buttons'
 import CeilingLamp from '../../assets/images/CeilingLamp.png'
 import Controller from '../../components/popup/controller'
 import Input from '../../components/popup/input'
-import { useForm } from 'react-hook-form'
-import { yupResolver } from '@hookform/resolvers/yup'
 import UserInformationSchema from '../../validations/userInformation'
-import { useEffect, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
 import {
   getInformation,
   selectStatus,
@@ -24,9 +28,6 @@ import {
 import { updateOneUser } from '../../services/user'
 import RadioInput from '../../components/popup/radio'
 import createUserImg from '../../services/user/create'
-import { toast } from 'react-toastify'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faUserPen } from '@fortawesome/free-solid-svg-icons'
 
 function Profile() {
   //create form hook

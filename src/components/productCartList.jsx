@@ -7,7 +7,7 @@ Properties:
 
 import React from 'react'
 import Counter from './counter'
-import ButtonIcon from './buttonIcon'
+import ButtonIcon from './buttons/buttonIcon'
 import { useDispatch, useSelector } from 'react-redux'
 import {
   removeFromCart,

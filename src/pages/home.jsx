@@ -1,19 +1,19 @@
-import homepage from '../assets/images/homepage.png'
-import feature2 from '../assets/images/features2.png'
-import Button from '../components/button'
-import LinkButton from '../components/linkButton'
-import EmailSignUp from '../components/emailSignUp'
-import ProductItemListing from '../components/productItemListing'
 import { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
+import { Link } from 'react-router-dom'
+import { Helmet } from 'react-helmet-async'
+
+import homepage from '../assets/images/homepage.png'
+import feature2 from '../assets/images/features2.png'
+import { Button, LinkButton } from '../components/buttons'
+import EmailSignUp from '../components/emailSignUp'
+import ProductItemListing from '../components/productItemListing'
 import {
   selectStatus,
   selectProducts,
   getProducts
 } from '../redux/features/productsSlice'
 import { selectCartStatus } from '../redux/features/carts/cartSlice'
-import { Link } from 'react-router-dom'
-import { Helmet } from 'react-helmet-async'
 import InfoItemList from '../components/infoItemList'
 import { useDarkMode } from '../hooks/useDarkMode'
 import PagePreloader from '../components/preloader/pagePreloader'

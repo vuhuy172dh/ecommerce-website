@@ -1,5 +1,5 @@
 import vacanciesImg from '../../assets/images/Vacancies.png'
-import Button from '../../components/button'
+import { Button } from '../../components/buttons'
 
 const jobs = [
   {

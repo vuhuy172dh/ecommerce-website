@@ -1,7 +1,7 @@
 import { useDarkMode } from '../hooks/useDarkMode'
 import { useNavMode } from '../hooks/useNavMode'
 import EmailField from './emailField'
-import LinkButton from './linkButton'
+import LinkButton from './buttons/linkButton'
 import SocialMedia from './socialMedia'
 import { useDispatch, useSelector } from 'react-redux'
 import {

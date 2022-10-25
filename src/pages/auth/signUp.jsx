@@ -12,7 +12,7 @@ import {
   selectStatus,
   selectError
 } from '../../redux/features/userSlice'
-import Button from '../../components/button'
+import { Button } from '../../components/buttons'
 import { signupScheme } from '../../validations/signup'
 import WhiteRoomImg from '../../assets/images/features3.png'
 

@@ -6,7 +6,7 @@ import {
   faEarthAmericas,
   faCommentDots
 } from '@fortawesome/free-solid-svg-icons'
-import Button from '../../components/button'
+import { Button } from '../../components/buttons'
 import bgImg from '../../assets/images/features3.png'
 
 function ContactUs() {

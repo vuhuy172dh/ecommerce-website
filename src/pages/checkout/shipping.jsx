@@ -1,7 +1,8 @@
-import ShippingList from '../../components/shipping/shippingList'
-import Button from '../../components/button'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
+
+import ShippingList from '../../components/shipping/shippingList'
+import { Button } from '../../components/buttons'
 import { setStep } from '../../redux/features/stepper/stepperSlice'
 import { addShippingMethod } from '../../redux/features/bills/billSlice'
 

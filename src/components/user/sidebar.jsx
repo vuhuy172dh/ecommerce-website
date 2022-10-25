@@ -1,4 +1,4 @@
-import LinkButton from '../linkButton'
+import LinkButton from '../buttons/linkButton'
 import CeilingLamp from '../../assets/images/CeilingLamp.png'
 import { useDarkMode } from '../../hooks/useDarkMode'
 import { useSelector } from 'react-redux'

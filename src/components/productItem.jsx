@@ -8,8 +8,9 @@ Properties:
 */
 
 import { useNavigate } from 'react-router-dom'
-import Button from './button'
 import { useDispatch, useSelector } from 'react-redux'
+
+import { Button } from './buttons'
 import { selectUserUid } from '../redux/features/userSlice'
 import { addItemToUserCart, addToCart } from '../redux/features/carts/cartSlice'
 import { useSearchMode } from '../hooks/useSearchMode'

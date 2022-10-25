@@ -1,8 +1,10 @@
-import PaymentForm from '../../components/payment/paymentForm'
-import Button from '../../components/button'
 import { useDispatch, useSelector } from 'react-redux'
-import { setStep } from '../../redux/features/stepper/stepperSlice'
 import { useNavigate } from 'react-router-dom'
+import { useEffect } from 'react'
+
+import PaymentForm from '../../components/payment/paymentForm'
+import { Button } from '../../components/buttons'
+import { setStep } from '../../redux/features/stepper/stepperSlice'
 import {
   addPaymen,
   addProducts,
@@ -20,7 +22,6 @@ import {
   selectCartItems
 } from '../../redux/features/carts/cartSlice'
 import { selectAddressDefault } from '../../redux/features/address/addressSlice'
-import { useEffect } from 'react'
 import PagePreloader from '../../components/preloader/pagePreloader'
 
 function CheckoutPayment() {

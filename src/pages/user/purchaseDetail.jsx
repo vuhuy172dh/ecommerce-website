@@ -7,7 +7,7 @@ import {
 } from '../../redux/features/bills/billSlice'
 import { useEffect } from 'react'
 import PagePreloader from '../../components/preloader/pagePreloader'
-import LinkButton from '../../components/linkButton'
+import LinkButton from '../../components/buttons/linkButton'
 import PurchaseProductItemList from '../../components/purchase/purchaseProductItemList'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faAngleLeft } from '@fortawesome/free-solid-svg-icons'

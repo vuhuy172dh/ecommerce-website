@@ -9,10 +9,11 @@ Properties:
   - quantity: number
 */
 
-import Button from './button'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMinus, faPlus } from '@fortawesome/free-solid-svg-icons'
 import { useState } from 'react'
+
+import { Button } from './buttons'
 
 function ProductDesc({
   name,
