@@ -1,17 +1,17 @@
 import { useEffect, useState } from 'react'
-import Button from '../components/button'
-import clubImg from '../assets/images/features3.png'
-import EmailField from '../components/emailField'
-import ProductItemListing from '../components/productItemListing'
+import { useSelector, useDispatch } from 'react-redux'
 import { Helmet } from 'react-helmet-async'
+import Button from '../../components/button'
+import clubImg from '../../assets/images/features3.png'
+import EmailField from '../../components/emailField'
+import ProductItemListing from '../../components/productItemListing'
 import {
   getProducts,
   selectProducts,
   selectStatus,
   selectLastVisible,
   setClearProducts
-} from '../redux/features/productsSlice'
-import { useSelector, useDispatch } from 'react-redux'
+} from '../../redux/features/productsSlice'
 
 function ProductListingPage() {
   //declare dispatch

@@ -1,30 +1,33 @@
-import EmailField from '../components/emailField'
-import useScrollPosition from '../hooks/useScrollPosition'
+import { useParams } from 'react-router-dom'
+import { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
+import { Helmet } from 'react-helmet-async'
+import EmailField from '../../components/emailField'
+import useScrollPosition from '../../hooks/useScrollPosition'
 import {
   getProductDetail,
   selectProduct,
   selectStatus
-} from '../redux/features/productSlice'
-import { addToCart, addItemToUserCart } from '../redux/features/carts/cartSlice'
-import { selectUserUid } from '../redux/features/userSlice'
-import WhiteRoomImg from '../assets/images/features3.png'
-import { Helmet } from 'react-helmet-async'
-import InfoItemList from '../components/infoItemList'
-import ProductDesc from '../components/productDesc'
-import ProductCarousel from '../components/productCarousel'
-import ProductScrollView from '../components/productScrollView'
-import Overview from '../components/overview'
-import useClientRect from '../hooks/useClientRect'
-import { useParams } from 'react-router-dom'
-import { useEffect, useState } from 'react'
+} from '../../redux/features/productSlice'
+import {
+  addToCart,
+  addItemToUserCart
+} from '../../redux/features/carts/cartSlice'
+import { selectUserUid } from '../../redux/features/userSlice'
+import WhiteRoomImg from '../../assets/images/features3.png'
+import InfoItemList from '../../components/infoItemList'
+import ProductDesc from '../../components/productDesc'
+import ProductCarousel from '../../components/productCarousel'
+import ProductScrollView from '../../components/productScrollView'
+import Overview from '../../components/overview'
+import useClientRect from '../../hooks/useClientRect'
 import {
   addNewItemToWishlist,
   removeItemFromWishlist,
   selectWishlistList
-} from '../redux/features/wishlist/wishlistSlice'
-import CommentDrawer from '../components/comments/commentDrawer'
-import { getCommentByProductId } from '../redux/features/comment/commentSlice'
+} from '../../redux/features/wishlist/wishlistSlice'
+import CommentDrawer from '../../components/comments/commentDrawer'
+import { getCommentByProductId } from '../../redux/features/comment/commentSlice'
 
 function ProductDetailPage() {
   // get scroll position

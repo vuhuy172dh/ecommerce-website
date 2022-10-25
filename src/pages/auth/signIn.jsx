@@ -1,9 +1,9 @@
 import { Link, useNavigate } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
-import Button from '../components/button'
-import Icon from '../helper/icon'
-import { signinScheme } from '../validations/signin'
+import Button from '../../components/button'
+import Icon from '../../helper/icon'
+import { signinScheme } from '../../validations/signin'
 import { Helmet } from 'react-helmet-async'
 import { motion } from 'framer-motion'
 import { useDispatch, useSelector } from 'react-redux'
@@ -13,10 +13,10 @@ import {
   selectError,
   selectStatus,
   selectUserUid
-} from '../redux/features/userSlice'
-import WhiteRoomImg from '../assets/images/features3.png'
+} from '../../redux/features/userSlice'
+import WhiteRoomImg from '../../assets/images/features3.png'
 import { useEffect } from 'react'
-import PagePreloader from '../components/preloader/pagePreloader'
+import PagePreloader from '../../components/preloader/pagePreloader'
 
 function SignIn() {
   const {

@@ -2,20 +2,19 @@ import { Link, useNavigate } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useDispatch, useSelector } from 'react-redux'
+import { Helmet } from 'react-helmet-async'
+import { useEffect } from 'react'
+import { motion } from 'framer-motion'
+
 import {
   selectUserEmail,
   signUpUser,
   selectStatus,
   selectError
-} from '../redux/features/userSlice'
-import Button from '../components/button'
-import { signupScheme } from '../validations/signup'
-import { motion } from 'framer-motion'
-
-// Sample img
-import WhiteRoomImg from '../assets/images/features3.png'
-import { Helmet } from 'react-helmet-async'
-import { useEffect } from 'react'
+} from '../../redux/features/userSlice'
+import Button from '../../components/button'
+import { signupScheme } from '../../validations/signup'
+import WhiteRoomImg from '../../assets/images/features3.png'
 
 function SignUp() {
   //declare useForm

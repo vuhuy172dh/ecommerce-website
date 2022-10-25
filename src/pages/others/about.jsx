@@ -1,10 +1,10 @@
 import React from 'react'
-import EmailSignUp from '../components/emailSignUp'
-import feature2 from '../assets/images/features1.png'
-import feature3 from '../assets/images/features3.png'
-import Button from '../components/button'
 import { Helmet } from 'react-helmet-async'
-import InfoItemList from '../components/infoItemList'
+import EmailSignUp from '../../components/emailSignUp'
+import feature2 from '../../assets/images/features1.png'
+import feature3 from '../../assets/images/features3.png'
+import Button from '../../components/button'
+import InfoItemList from '../../components/infoItemList'
 
 function AboutPage() {
   return (

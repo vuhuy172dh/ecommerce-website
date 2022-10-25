@@ -1,10 +1,10 @@
-import ProductCartList from '../components/productCartList'
-import Button from './../components/button'
 import { Helmet } from 'react-helmet-async'
 import { Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
-import { selectCartItems } from '../redux/features/carts/cartSlice'
-import { selectCurrentStep } from '../redux/features/stepper/stepperSlice'
+import ProductCartList from '../../components/productCartList'
+import Button from '../../components/button'
+import { selectCartItems } from '../../redux/features/carts/cartSlice'
+import { selectCurrentStep } from '../../redux/features/stepper/stepperSlice'
 
 function ProductCartPage() {
   //call cart state

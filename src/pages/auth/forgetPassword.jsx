@@ -1,14 +1,12 @@
 import { Link } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
-import { yupResolver } from '@hookform/resolvers/yup'
-import { forgetPasswordScheme } from '../validations/forgetPassword'
-import Button from '../components/button'
 import { motion } from 'framer-motion'
 import { Helmet } from 'react-helmet-async'
-import { resetPasswordByEmail } from '../services/auth'
-
-// Sample img
-import WhiteRoomImg from '../assets/images/features3.png'
+import { yupResolver } from '@hookform/resolvers/yup'
+import { forgetPasswordScheme } from '../../validations/forgetPassword'
+import Button from '../../components/button'
+import { resetPasswordByEmail } from '../../services/auth'
+import WhiteRoomImg from '../../assets/images/features3.png'
 
 function ForgetPassword() {
   const {

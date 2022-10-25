@@ -1,18 +1,19 @@
 import { useEffect } from 'react'
-import clubImg from '../assets/images/features3.png'
-import EmailField from '../components/emailField'
-import ProductItemListing from '../components/productItemListing'
-import Button from '../components/button'
 import { Helmet } from 'react-helmet-async'
+import { useSelector, useDispatch } from 'react-redux'
+import { useParams } from 'react-router-dom'
+
+import clubImg from '../../assets/images/features3.png'
+import EmailField from '../../components/emailField'
+import ProductItemListing from '../../components/productItemListing'
+import Button from '../../components/button'
 import {
   selectProductsCategory,
   getCategoryProducts,
   selectLastVisibleCategory,
   selectStatusCategory,
   setClearCategory
-} from '../redux/features/productsSlice'
-import { useSelector, useDispatch } from 'react-redux'
-import { useParams } from 'react-router-dom'
+} from '../../redux/features/productsSlice'
 
 function Category() {
   //declare dispatch
