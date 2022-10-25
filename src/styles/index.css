@@ -24,6 +24,19 @@
   box-sizing: border-box;
 }
 
+.fb_dialog.fb_dialog_advanced {
+  right: 18pt;
+ margin-right: 50px;
+}
+iframe.fb_customer_chat_bounce_in_v2 {
+  right: 9pt;
+  margin-right: 50px;
+}
+iframe.fb_customer_chat_bounce_out_v2 {
+  right: 9pt;
+  margin-right: 50px;
+}
+
 body {
   /* Scrollbar vertical */
   overflow-y: overlay;
