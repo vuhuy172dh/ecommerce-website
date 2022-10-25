@@ -1,5 +1,5 @@
-import EmailField from './emailField'
-import LinkButton from './buttons/linkButton'
+import { EmailField } from './emails'
+import { LinkButton } from './buttons'
 import SocialMedia from './socialMedia'
 
 function Footer() {

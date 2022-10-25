@@ -4,7 +4,7 @@ import { Helmet } from 'react-helmet-async'
 
 import { Button } from '../../components/buttons'
 import clubImg from '../../assets/images/features3.png'
-import EmailField from '../../components/emailField'
+import { EmailField } from '../../components/emails'
 import { ProductItemListing } from '../../components/products'
 import {
   getProducts,

@@ -1,7 +1,7 @@
 import React from 'react'
 import { Helmet } from 'react-helmet-async'
 
-import EmailSignUp from '../../components/emailSignUp'
+import EmailSignUp from '../../components/emails/emailSignUp'
 import feature2 from '../../assets/images/features1.png'
 import feature3 from '../../assets/images/features3.png'
 import { Button } from '../../components/buttons'

@@ -1,17 +1,18 @@
+import { useEffect } from 'react'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faToggleOff, faToggleOn } from '@fortawesome/free-solid-svg-icons'
+import { useDispatch, useSelector } from 'react-redux'
+
 import { useDarkMode } from '../../hooks/useDarkMode'
 import { useNavMode } from '../../hooks/useNavMode'
-import EmailField from '../emailField'
-import LinkButton from '../buttons/linkButton'
+import { EmailField } from '../emails'
+import { LinkButton } from '../buttons'
 import SocialMedia from '../socialMedia'
-import { useDispatch, useSelector } from 'react-redux'
 import {
   selectCategoryStatus,
   selectCategories,
   getCategories
 } from '../../redux/features/category/categorySlice'
-import { useEffect } from 'react'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faToggleOff, faToggleOn } from '@fortawesome/free-solid-svg-icons'
 
 function NavDrawer() {
   const { mode, handleMode } = useNavMode()

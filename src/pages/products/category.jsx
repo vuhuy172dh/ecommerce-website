@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { useParams } from 'react-router-dom'
 
 import clubImg from '../../assets/images/features3.png'
-import EmailField from '../../components/emailField'
+import { EmailField } from '../../components/emails'
 import { ProductItemListing } from '../../components/products'
 import { Button } from '../../components/buttons'
 import {

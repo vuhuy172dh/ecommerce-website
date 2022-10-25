@@ -5,7 +5,7 @@ Properties:
   Color: 'dark' | 'light' (default 'dark')
 */
 
-import { Button } from './buttons'
+import { Button } from '../buttons'
 
 const colors = {
   dark: ['bg-[rgba(255,255,255,0.15)]', 'white'],

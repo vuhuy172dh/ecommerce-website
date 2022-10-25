@@ -6,7 +6,7 @@ import { Helmet } from 'react-helmet-async'
 import homepage from '../assets/images/homepage.png'
 import feature2 from '../assets/images/features2.png'
 import { Button, LinkButton } from '../components/buttons'
-import EmailSignUp from '../components/emailSignUp'
+import EmailSignUp from '../components/emails/emailSignUp'
 import { ProductItemListing } from '../components/products'
 import {
   selectStatus,

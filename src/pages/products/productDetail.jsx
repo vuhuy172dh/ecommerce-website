@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { Helmet } from 'react-helmet-async'
 
-import EmailField from '../../components/emailField'
+import { EmailField } from '../../components/emails'
 import useScrollPosition from '../../hooks/useScrollPosition'
 import {
   getProductDetail,
