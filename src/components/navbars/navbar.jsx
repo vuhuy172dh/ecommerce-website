@@ -1,24 +1,24 @@
-import { Link, useNavigate } from 'react-router-dom'
-import { useDarkMode } from '../hooks/useDarkMode'
-import { useNavMode } from '../hooks/useNavMode'
-import useScrollPosition from '../hooks/useScrollPosition'
-import BannerCarousel from './bannerCarousel'
-import ButtonIcon from './buttons/buttonIcon'
-import LinkButton from './buttons/linkButton'
-import { selectUserUid } from '../redux/features/userSlice'
 import { useSelector, useDispatch } from 'react-redux'
 import { useEffect, useState } from 'react'
-import { signOut } from '../services/auth/index'
+import { AnimatePresence, motion } from 'framer-motion'
+import { Link, useNavigate } from 'react-router-dom'
+
+import { useDarkMode } from '../../hooks/useDarkMode'
+import { useNavMode } from '../../hooks/useNavMode'
+import useScrollPosition from '../../hooks/useScrollPosition'
+import BannerCarousel from '../bannerCarousel'
+import { ButtonIcon, LinkButton } from '../buttons'
+import { selectUserUid } from '../../redux/features/userSlice'
+import { signOut } from '../../services/auth/index'
 import {
   selectCategories,
   selectCategoryStatus,
   getCategories
-} from '../redux/features/category/categorySlice'
-import { useSearchMode } from '../hooks/useSearchMode'
-import { setEmptyWishlist } from '../redux/features/wishlist/wishlistSlice'
-import { setEmptyCart } from '../redux/features/carts/cartSlice'
-import { AnimatePresence, motion } from 'framer-motion'
-import { setLogOutUser } from '../redux/features/userSlice'
+} from '../../redux/features/category/categorySlice'
+import { useSearchMode } from '../../hooks/useSearchMode'
+import { setEmptyWishlist } from '../../redux/features/wishlist/wishlistSlice'
+import { setEmptyCart } from '../../redux/features/carts/cartSlice'
+import { setLogOutUser } from '../../redux/features/userSlice'
 
 function Navbar() {
   const handleMode = useNavMode().handleMode
