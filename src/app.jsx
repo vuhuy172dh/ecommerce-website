@@ -35,7 +35,7 @@ import {
 } from './pages/user'
 import { CartFloatButton, DarkModeButton } from './components/buttons'
 import { NavDrawer, Navbar } from './components/navbars'
-import Footer from './components/footer'
+import { Footer } from './components/footers'
 import NavMode from './hooks/useNavMode'
 import Sidebar from './components/user/sidebar'
 import SearchMode from './hooks/useSearchMode'
