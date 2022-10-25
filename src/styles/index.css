@@ -24,6 +24,11 @@
   box-sizing: border-box;
 }
 
+.fb_dialog, .fb_customer_chat_bounce_in_v2, .fb_customer_chat_bounce_out_v2 {
+  right: auto !important;
+  left: 10pt !important;
+  bottom: 10pt !important;}
+
 body {
   /* Scrollbar vertical */
   overflow-y: overlay;
