@@ -23,7 +23,7 @@ const commentSlice = createSlice({
       state.createStatus = 'loading'
     },
     setActiveContent: (state, action) => {
-      state.comments.push(action.payload)
+      state.comments.unshift(action.payload)
       state.createStatus = 'success'
     },
     setInitialComment: (state, action) => {

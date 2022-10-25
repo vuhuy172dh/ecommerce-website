@@ -9,6 +9,7 @@ function ProductCheckoutList({ productList }) {
           img={product.cartItem.arrImg[0]}
           name={product.cartItem.name}
           price={product.cartItem.price}
+          numberProduct={product.number}
         />
       ))}
     </div>

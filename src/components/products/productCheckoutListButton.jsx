@@ -46,33 +46,37 @@ function ProductCheckoutListButton({ products }) {
           }
         }}
       >
-        {products.map((item) => (
-          <motion.li
-            key={item.uid}
-            variants={{
-              open: {
-                opacity: 1,
-                y: 0,
-                transition: {
-                  type: 'spring',
-                  stiffness: 300,
-                  damping: 24
+        {products.map((item) => {
+          console.log(item)
+          return (
+            <motion.li
+              key={item.uid}
+              variants={{
+                open: {
+                  opacity: 1,
+                  y: 0,
+                  transition: {
+                    type: 'spring',
+                    stiffness: 300,
+                    damping: 24
+                  }
+                },
+                closed: {
+                  opacity: 0,
+                  y: 20,
+                  transition: { duration: 0.2 }
                 }
-              },
-              closed: {
-                opacity: 0,
-                y: 20,
-                transition: { duration: 0.2 }
-              }
-            }}
-          >
-            <ProductCheckout
-              img={item.cartItem.arrImg[0]}
-              name={item.cartItem.name}
-              price={item.cartItem.price}
-            />
-          </motion.li>
-        ))}
+              }}
+            >
+              <ProductCheckout
+                img={item.cartItem.arrImg[0]}
+                name={item.cartItem.name}
+                price={item.cartItem.price}
+                numberProduct={item.number}
+              />
+            </motion.li>
+          )
+        })}
       </motion.ul>
     </motion.nav>
   )

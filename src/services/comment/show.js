@@ -6,7 +6,7 @@ const showListComments = async (idProduct) => {
   try {
     const q = query(
       collection(db, PRODUCTS, idProduct, 'comments'),
-      orderBy('create_date', 'asc')
+      orderBy('create_date', 'desc')
     )
 
     const commentSnap = await getDocs(q)

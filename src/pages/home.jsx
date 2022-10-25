@@ -145,6 +145,7 @@ function HomePage() {
       </div>
 
       {cartStatus === 'loading' && <PagePreloader />}
+      <div id="fb-customer-chat" className="fb-customerchat"></div>
     </div>
   )
 }
