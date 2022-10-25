@@ -38,7 +38,7 @@ function HomePage() {
   }, [products])
 
   return (
-    <div className="w-full flex flex-col">
+    <div className="w-full flex flex-col relative">
       {/*Helmet async*/}
       <Helmet>
         <title>Avion</title>
@@ -145,7 +145,9 @@ function HomePage() {
       </div>
 
       {cartStatus === 'loading' && <PagePreloader />}
-      <div id="fb-customer-chat" className="fb-customerchat"></div>
+      <div className="w-fit h-fit absolute bottom-0 left-0 z-10">
+        <div id="fb-customer-chat" className="fb-customerchat"></div>
+      </div>
     </div>
   )
 }
