@@ -145,9 +145,6 @@ function HomePage() {
       </div>
 
       {cartStatus === 'loading' && <PagePreloader />}
-      <div className="w-fit h-fit absolute bottom-0 left-0 z-10">
-        <div id="fb-customer-chat" className="fb-customerchat"></div>
-      </div>
     </div>
   )
 }
