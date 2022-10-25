@@ -6,16 +6,17 @@ Properties:
 */
 
 import React from 'react'
-import Counter from './counter'
-import ButtonIcon from './buttons/buttonIcon'
+import { motion, AnimatePresence } from 'framer-motion'
+import { useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
+
+import Counter from '../counter'
+import { ButtonIcon } from '../buttons'
 import {
   removeFromCart,
   removeFromUserFirebase
-} from '../redux/features/carts/cartSlice'
-import { selectUserUid } from '../redux/features/userSlice'
-import { motion, AnimatePresence } from 'framer-motion'
-import { useNavigate } from 'react-router-dom'
+} from '../../redux/features/carts/cartSlice'
+import { selectUserUid } from '../../redux/features/userSlice'
 
 const ProductCartList = ({ cartItems, handleCartFloatClick = () => {} }) => {
   const dispatch = useDispatch()

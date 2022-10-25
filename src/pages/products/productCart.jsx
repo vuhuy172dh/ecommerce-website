@@ -2,7 +2,7 @@ import { Helmet } from 'react-helmet-async'
 import { Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 
-import ProductCartList from '../../components/productCartList'
+import { ProductCartList } from '../../components/products'
 import { Button } from '../../components/buttons'
 import { selectCartItems } from '../../redux/features/carts/cartSlice'
 import { selectCurrentStep } from '../../redux/features/stepper/stepperSlice'

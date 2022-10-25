@@ -1,7 +1,8 @@
 import { useEffect, useRef, useState } from 'react'
+
 import { useSearchMode } from '../../hooks/useSearchMode'
 import { searchProducts } from '../../services/search'
-import ProductItemListing from '../productItemListing'
+import { ProductItemListing } from '../products'
 
 function SearchDrawer() {
   const { mode: searchMode, handleSearchMode } = useSearchMode()

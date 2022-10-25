@@ -2,6 +2,7 @@ import { useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { Helmet } from 'react-helmet-async'
+
 import EmailField from '../../components/emailField'
 import useScrollPosition from '../../hooks/useScrollPosition'
 import {
@@ -16,9 +17,11 @@ import {
 import { selectUserUid } from '../../redux/features/userSlice'
 import WhiteRoomImg from '../../assets/images/features3.png'
 import InfoItemList from '../../components/infoItemList'
-import ProductDesc from '../../components/productDesc'
-import ProductCarousel from '../../components/productCarousel'
-import ProductScrollView from '../../components/productScrollView'
+import {
+  ProductDesc,
+  ProductCarousel,
+  ProductScrollView
+} from '../../components/products'
 import Overview from '../../components/overview'
 import useClientRect from '../../hooks/useClientRect'
 import {

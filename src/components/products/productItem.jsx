@@ -10,10 +10,13 @@ Properties:
 import { useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 
-import { Button } from './buttons'
-import { selectUserUid } from '../redux/features/userSlice'
-import { addItemToUserCart, addToCart } from '../redux/features/carts/cartSlice'
-import { useSearchMode } from '../hooks/useSearchMode'
+import { Button } from '../buttons'
+import { selectUserUid } from '../../redux/features/userSlice'
+import {
+  addItemToUserCart,
+  addToCart
+} from '../../redux/features/carts/cartSlice'
+import { useSearchMode } from '../../hooks/useSearchMode'
 
 function ProductItem({ product }) {
   const dispatch = useDispatch()

@@ -1,10 +1,13 @@
 import { Helmet } from 'react-helmet-async'
+import { Link } from 'react-router-dom'
+import { useSelector } from 'react-redux'
+
 import Background from '../../assets/images/background.jpg'
 import Stepper from '../../components/stepper'
-import { Link } from 'react-router-dom'
-import ProductCheckoutList from '../../components/productCheckoutList'
-import ProductCheckoutListButton from '../../components/productCheckoutListButton'
-import { useSelector } from 'react-redux'
+import {
+  ProductCheckoutList,
+  ProductCheckoutListButton
+} from '../../components/products'
 import { selectCartItems } from '../../redux/features/carts/cartSlice'
 import { selectShippingMethod } from '../../redux/features/bills/billSlice'
 
