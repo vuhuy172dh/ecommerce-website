@@ -1,8 +1,9 @@
-import AddressList from '../../components/user/addressList'
-import Button from '../../components/button'
-import PopupAddress from '../../components/popup/popupAddress'
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+
+import { AddressList } from '../../components/user'
+import { Button } from '../../components/buttons'
+import PopupAddress from '../../components/popup/popupAddress'
 import {
   getAddressList,
   selectError,

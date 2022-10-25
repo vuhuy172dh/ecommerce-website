@@ -1,8 +1,9 @@
 import { useState } from 'react'
-import Button from '../button'
-import PopupConfirm from '../popup/popupConfirm'
-import PopupAddress from '../popup/popupAddress'
 import { useSelector, useDispatch } from 'react-redux'
+import { toast } from 'react-toastify'
+
+import { Button } from '../buttons'
+import { PopupConfirm, PopupAddress } from '../popup'
 import {
   selectUserAddressDefault,
   selectUserUid,
@@ -13,7 +14,6 @@ import {
   getAddressDefault
 } from '../../redux/features/address/addressSlice'
 import { setAddressDefault } from '../../services/address'
-import { toast } from 'react-toastify'
 
 function AddressItem({ address }) {
   const [popupDelete, setPopupDelete] = useState(false)

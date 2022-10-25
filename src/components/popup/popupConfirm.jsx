@@ -1,5 +1,5 @@
 import Popup from './popup'
-import Button from '../button'
+import { Button } from '../buttons'
 
 function PopupConfirm({
   Title = 'Title',

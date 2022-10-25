@@ -1,11 +1,12 @@
 import { useDispatch, useSelector } from 'react-redux'
+import { useState } from 'react'
+import { AnimatePresence, motion } from 'framer-motion'
+import { toast } from 'react-toastify'
+
 import { deleteComment } from '../../redux/features/comment/commentSlice'
 import { selectProduct } from '../../redux/features/productSlice'
 import { selectUserUid } from '../../redux/features/userSlice'
-import { toast } from 'react-toastify'
 import Avatar from '../../assets/images/avatar.png'
-import { useState } from 'react'
-import { AnimatePresence, motion } from 'framer-motion'
 
 function CommentItem({ comment }) {
   const dispatch = useDispatch()

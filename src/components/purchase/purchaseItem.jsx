@@ -1,14 +1,15 @@
 import { useNavigate } from 'react-router-dom'
-import Button from '../button'
-import PurchaseProductItemList from './purchaseProductItemList'
 import { useDispatch, useSelector } from 'react-redux'
+
+import { Button } from '../buttons'
+import PurchaseProductItemList from './purchaseProductItemList'
 import {
   cancelBill,
   reorderBill,
   selectCancelStatus,
   selectReorderStatus
 } from '../../redux/features/bills/billSlice'
-import PagePreloader from '../preloader/pagePreloader'
+import { PagePreloader } from '../preloader'
 
 function PurchaseItem({ purchaseItem }) {
   const navigate = useNavigate()

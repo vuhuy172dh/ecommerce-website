@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
-import PurchaseItemList from '../../components/purchase/purchaseItemList'
 import { useSelector, useDispatch } from 'react-redux'
+
+import { PurchaseItemList } from '../../components/purchase'
 import {
   getBills,
   selectBills,
@@ -8,9 +9,8 @@ import {
   selectReorderStatus,
   selectStatus
 } from '../../redux/features/bills/billSlice'
-import { useDarkMode } from '../../hooks/useDarkMode'
-import ButtonIcon from '../../components/buttonIcon'
-import PagePreloader from '../../components/preloader/pagePreloader'
+import { ButtonIcon } from '../../components/buttons'
+import { PagePreloader } from '../../components/preloader'
 
 function Purchase() {
   const [click, setClick] = useState('Waiting')

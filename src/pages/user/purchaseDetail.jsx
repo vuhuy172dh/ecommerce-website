@@ -1,16 +1,17 @@
 import { useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
+import { useEffect } from 'react'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faAngleLeft } from '@fortawesome/free-solid-svg-icons'
+
 import {
   getBillDetail,
   selectBillDetail,
   selectStatus
 } from '../../redux/features/bills/billSlice'
-import { useEffect } from 'react'
-import PagePreloader from '../../components/preloader/pagePreloader'
-import LinkButton from '../../components/linkButton'
-import PurchaseProductItemList from '../../components/purchase/purchaseProductItemList'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faAngleLeft } from '@fortawesome/free-solid-svg-icons'
+import { PagePreloader } from '../../components/preloader'
+import { LinkButton } from '../../components/buttons'
+import { PurchaseProductItemList } from '../../components/purchase'
 import { useDarkMode } from '../../hooks/useDarkMode'
 
 function PurchaseDetail() {

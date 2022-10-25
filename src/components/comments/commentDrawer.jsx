@@ -1,21 +1,21 @@
-import CommentItem from './commentItem'
 import { useDispatch, useSelector } from 'react-redux'
+import { AnimatePresence, motion } from 'framer-motion'
+import { toast } from 'react-toastify'
+import { useForm } from 'react-hook-form'
+
+import CommentItem from './commentItem'
 import {
   createComment,
   selectComment,
   selectCommentStatus
 } from '../../redux/features/comment/commentSlice'
-import { AnimatePresence, motion } from 'framer-motion'
 import {
   selectUserAvatar,
   selectUserEmail,
   selectUserName,
   selectUserUid
 } from '../../redux/features/userSlice'
-import Controller from '../../components/popup/controller'
-import { useForm } from 'react-hook-form'
-import Textarea from '../popup/textarea'
-import { toast } from 'react-toastify'
+import { Controller, Textarea } from '../fields'
 
 function CommentDrawer({ commentOpen, handleOpen, productUid }) {
   const dispatch = useDispatch()

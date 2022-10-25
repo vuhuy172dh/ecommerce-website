@@ -1,45 +1,50 @@
-import React from 'react'
 import { Routes, Route, Outlet, useLocation, Navigate } from 'react-router-dom'
-import AboutPage from './pages/about'
+import React, { useEffect } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+import { ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
+
 import HomePage from './pages/home'
-import ProductCartPage from './pages/productCart'
-import ProductDetailPage from './pages/productDetail'
-import ProductListingPage from './pages/productListing'
-import Navbar from './components/navbar'
-import Footer from './components/footer'
-import NavDrawer from './components/navDrawer'
+import {
+  Category,
+  ProductCartPage,
+  ProductDetailPage,
+  ProductListingPage
+} from './pages/products'
+import {
+  Checkout,
+  CheckoutInformation,
+  CheckoutPayment,
+  CheckoutShipping
+} from './pages/checkout'
+import {
+  AboutPage,
+  ContactUs,
+  Privacy,
+  ReturnPolicy,
+  Vacancies
+} from './pages/others'
+import { SignIn, SignUp, ForgetPassword } from './pages/auth'
+import {
+  Address,
+  Profile,
+  ChangePassword,
+  Purchase,
+  PurchaseDetail,
+  Wishlist
+} from './pages/user'
+import { CartFloatButton, DarkModeButton } from './components/buttons'
+import { NavDrawer, Navbar } from './components/navbars'
+import { Footer } from './components/footers'
 import NavMode from './hooks/useNavMode'
-import SignIn from './pages/signIn'
-import SignUp from './pages/signUp'
-import ForgetPassword from './pages/forgetPassword'
 import Sidebar from './components/user/sidebar'
-import Address from './pages/user/address'
-import Profile from './pages/user/profile'
-import Purchase from './pages/user/purchase'
-import Wishlist from './pages/user/wishlist'
-import ChangePassword from './pages/user/changePassword'
-import DarkModeButton from './components/darkModeButton'
-import CartFloatButton from './components/cartFloatButton'
-import Checkout from './pages/checkout/checkout'
-import Vacancies from './pages/vacancies'
-import ContactUs from './pages/contactUs'
-import ReturnPolicy from './pages/returnPolicy'
-import Privacy from './pages/Privacy'
-import Category from './pages/category'
-import CheckoutInformation from './pages/checkout/information'
-import CheckoutShipping from './pages/checkout/shipping'
-import CheckoutPayment from './pages/checkout/payment'
 import SearchMode from './hooks/useSearchMode'
 import SearchDrawer from './components/search/searchDrawer'
 import { auth } from './services/firebase.config'
-import PurchaseDetail from './pages/user/purchaseDetail'
-import { useSelector, useDispatch } from 'react-redux'
+
 import { selectUserUid, getInformation } from './redux/features/userSlice'
 import { getUserCart } from './redux/features/carts/cartSlice'
 import { getWishlist } from './redux/features/wishlist/wishlistSlice'
-import { useEffect } from 'react'
-import { ToastContainer } from 'react-toastify'
-import 'react-toastify/dist/ReactToastify.css'
 
 const SidebarLayout = () => (
   <div className="laptop:flex">

@@ -1,13 +1,14 @@
-import ProductItemListing from '../../components/productItemListing'
+import { useDispatch, useSelector } from 'react-redux'
+import { useEffect } from 'react'
+
+import { ProductItemListing } from '../../components/products'
 import {
   getWishlist,
   selectWishlistList,
   selectWishlistStatus
 } from '../../redux/features/wishlist/wishlistSlice'
-import { useDispatch, useSelector } from 'react-redux'
-import { useEffect } from 'react'
 import { selectUserUid } from '../../redux/features/userSlice'
-import PagePreloader from '../../components/preloader/pagePreloader'
+import { PagePreloader } from '../../components/preloader'
 
 function Wishlist() {
   const dispatch = useDispatch()
